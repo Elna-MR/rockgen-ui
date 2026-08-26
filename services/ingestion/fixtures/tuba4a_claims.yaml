@@ -1,0 +1,68 @@
+claims:
+  - id: tuba4a-r320c-microtubule
+    text: "TUBA4A R320C impairs microtubule stability / polymerization"
+    topic: microtubule_instability
+    mutation_key: "TUBA4A:R320C"
+    phenotype_id: microtubule_instability
+    relation: CAUSES_CHANGE
+    evidence:
+      - id: ev-tuba-r320c-invitro
+        evidence_type: in_vitro
+        confidence: high
+        quality: high
+        stance: support
+        directness: direct
+        experimental_model: tubulin_polymerization_assay
+        publication_date: "2014"
+        citation: "TUBA4A ALS mutants disrupt microtubule dynamics"
+        paper_id: "pmid:25374358"
+        query_tags: [tuba4a_als, tuba4a_mt]
+      - id: ev-tuba-r320c-human
+        evidence_type: human_genetic
+        confidence: high
+        quality: high
+        stance: support
+        directness: direct
+        experimental_model: familial_segregation
+        publication_date: "2014"
+        citation: "Exome sequencing identifies TUBA4A mutations in familial ALS"
+        paper_id: "pmid:25374358"
+        query_tags: [tuba4a_als]
+
+  - id: tuba4a-r320c-axonal-transport
+    text: "TUBA4A R320C contributes to axonal transport defects"
+    topic: axonal_transport
+    mutation_key: "TUBA4A:R320C"
+    phenotype_id: axonal_transport_defect
+    relation: CAUSES_CHANGE
+    evidence:
+      - id: ev-tuba-axonal-invitro
+        evidence_type: in_vitro
+        confidence: medium
+        quality: medium
+        stance: support
+        directness: direct
+        experimental_model: cellular_transport_assay
+        publication_date: "2015"
+        citation: "Mutant TUBA4A linked to impaired axonal trafficking phenotypes"
+        paper_id: "pmid:25374358"
+        query_tags: [tuba4a_transport, tuba4a_als]
+
+  - id: tuba4a-r320c-mn-injury
+    text: "TUBA4A microtubule defects contribute to motor neuron injury in ALS"
+    topic: motor_neuron_injury
+    mutation_key: "TUBA4A:R320C"
+    phenotype_id: motor_neuron_injury
+    relation: INCREASES_RISK
+    evidence:
+      - id: ev-tuba-mn-genetic
+        evidence_type: human_genetic
+        confidence: medium
+        quality: high
+        stance: support
+        directness: indirect
+        experimental_model: disease_association
+        publication_date: "2014"
+        citation: "TUBA4A familial ALS association implies MN vulnerability"
+        paper_id: "pmid:25374358"
+        query_tags: [tuba4a_als]

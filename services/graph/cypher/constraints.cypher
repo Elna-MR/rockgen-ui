@@ -1,0 +1,48 @@
+// Biological knowledge graph constraints — RockGen Phase 1
+CREATE CONSTRAINT disease_slug IF NOT EXISTS
+FOR (d:Disease) REQUIRE d.slug IS UNIQUE;
+
+CREATE CONSTRAINT gene_symbol IF NOT EXISTS
+FOR (g:Gene) REQUIRE g.symbol IS UNIQUE;
+
+CREATE CONSTRAINT protein_uniprot IF NOT EXISTS
+FOR (p:Protein) REQUIRE p.uniprot_id IS UNIQUE;
+
+CREATE CONSTRAINT mutation_key IF NOT EXISTS
+FOR (m:Mutation) REQUIRE m.key IS UNIQUE;
+
+CREATE CONSTRAINT structure_id IF NOT EXISTS
+FOR (s:Structure) REQUIRE s.id IS UNIQUE;
+
+CREATE CONSTRAINT pathway_id IF NOT EXISTS
+FOR (pw:Pathway) REQUIRE pw.id IS UNIQUE;
+
+CREATE CONSTRAINT paper_id IF NOT EXISTS
+FOR (p:Paper) REQUIRE p.id IS UNIQUE;
+
+CREATE CONSTRAINT trial_nct IF NOT EXISTS
+FOR (t:ClinicalTrial) REQUIRE t.nct_id IS UNIQUE;
+
+CREATE CONSTRAINT drug_id IF NOT EXISTS
+FOR (d:Drug) REQUIRE d.id IS UNIQUE;
+
+CREATE CONSTRAINT biomarker_id IF NOT EXISTS
+FOR (b:Biomarker) REQUIRE b.id IS UNIQUE;
+
+CREATE CONSTRAINT phenotype_id IF NOT EXISTS
+FOR (ph:Phenotype) REQUIRE ph.id IS UNIQUE;
+
+CREATE CONSTRAINT claim_id IF NOT EXISTS
+FOR (c:Claim) REQUIRE c.id IS UNIQUE;
+
+CREATE CONSTRAINT evidence_id IF NOT EXISTS
+FOR (e:Evidence) REQUIRE e.id IS UNIQUE;
+
+CREATE CONSTRAINT clinvar_id IF NOT EXISTS
+FOR (c:ClinVarAssertion) REQUIRE c.id IS UNIQUE;
+
+CREATE CONSTRAINT mechanism_id IF NOT EXISTS
+FOR (m:Mechanism) REQUIRE m.id IS UNIQUE;
+
+CREATE CONSTRAINT disease_axis_id IF NOT EXISTS
+FOR (a:DiseaseAxis) REQUIRE a.id IS UNIQUE;

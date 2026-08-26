@@ -1,0 +1,26 @@
+{
+  "disease": {
+    "slug": "als",
+    "name": "Amyotrophic Lateral Sclerosis"
+  },
+  "proteins": [
+    {
+      "uniprot_id": "P07737",
+      "symbol": "PFN1",
+      "name": "Profilin-1"
+    }
+  ],
+  "mutations": [
+    {
+      "key": "PFN1:G118V",
+      "hgvs_p": "p.Gly118Val",
+      "position": 118
+    }
+  ],
+  "sources": {
+    "uniprot": "https://rest.uniprot.org/uniprotkb/{accession}.json",
+    "pdb": "https://data.rcsb.org/rest/v1/core/entry/{pdb_id}",
+    "pubmed": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi",
+    "clinvar": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=clinvar"
+  }
+}

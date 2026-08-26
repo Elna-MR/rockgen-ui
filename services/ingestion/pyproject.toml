@@ -1,0 +1,24 @@
+[project]
+name = "rockgen-ingestion"
+version = "0.1.0"
+description = "RockGen external data ingestion adapters"
+requires-python = ">=3.12"
+dependencies = [
+  "httpx>=0.28.0",
+  "pydantic>=2.10.0",
+  "pyyaml>=6.0",
+  "rockgen-graph",
+]
+
+[tool.uv.sources]
+rockgen-graph = { path = "../graph", editable = true }
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["rockgen_ingestion"]
+
+[project.scripts]
+rockgen-ingest = "rockgen_ingestion.cli:main"

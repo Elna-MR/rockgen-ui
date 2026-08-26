@@ -1,0 +1,258 @@
+claims:
+  - id: pfn1-g118v-structural-change
+    text: "G118V changes PFN1 structure / flexibility"
+    topic: structural_change
+    mutation_key: "PFN1:G118V"
+    phenotype_id: structural_change
+    relation: CAUSES_CHANGE
+    evidence:
+      - id: ev-g118v-struct-computational
+        evidence_type: computational_prediction
+        confidence: medium
+        quality: medium
+        stance: support
+        directness: direct
+        experimental_model: molecular_dynamics
+        publication_date: "2018"
+        citation: "Biophysical / MD studies of PFN1 G118V"
+        paper_id: "pmid:25447202"
+        query_tags: [pfn1_md, pfn1_g118v]
+      - id: ev-g118v-struct-invitro
+        evidence_type: in_vitro
+        confidence: medium
+        quality: medium
+        stance: support
+        directness: direct
+        experimental_model: biophysical_assay
+        publication_date: "2018"
+        citation: "In vitro biophysical characterization of ALS-linked PFN1"
+        paper_id: "pmid:25447202"
+        query_tags: [pfn1_g118v]
+
+  - id: pfn1-g118v-misfolding
+    text: "G118V promotes PFN1 misfolding"
+    topic: misfolding
+    mutation_key: "PFN1:G118V"
+    phenotype_id: misfolding
+    relation: CAUSES_CHANGE
+    evidence:
+      - id: ev-g118v-misfold-invitro
+        evidence_type: in_vitro
+        confidence: medium
+        quality: medium
+        stance: support
+        directness: direct
+        experimental_model: cellular_biochemical
+        publication_date: "2012"
+        citation: "Familial ALS PFN1 mutations and conformational effects"
+        paper_id: "pmid:23334667"
+        query_tags: [pfn1_g118v, pfn1_als]
+
+  - id: pfn1-g118v-increases-aggregation
+    text: "G118V increases aggregation of PFN1"
+    topic: aggregation
+    mutation_key: "PFN1:G118V"
+    phenotype_id: aggregation
+    relation: INCREASES_RISK
+    evidence:
+      - id: ev-g118v-agg-computational
+        evidence_type: computational_prediction
+        confidence: medium
+        quality: medium
+        stance: support
+        directness: indirect
+        experimental_model: molecular_dynamics
+        publication_date: "2018"
+        citation: "Computational analysis consistent with aggregation-prone PFN1 mutants"
+        paper_id: "pmid:25447202"
+        query_tags: [pfn1_md, pfn1_aggregation]
+      - id: ev-g118v-agg-invitro
+        evidence_type: in_vitro
+        confidence: high
+        quality: high
+        stance: support
+        directness: direct
+        experimental_model: cellular_aggregation_assay
+        publication_date: "2014"
+        citation: "ALS-linked mutations enlarge aggregation propensity of PFN1"
+        paper_id: "pmid:25447202"
+        query_tags: [pfn1_aggregation, pfn1_g118v]
+      - id: ev-g118v-agg-animal
+        evidence_type: animal
+        confidence: medium
+        quality: medium
+        stance: support
+        directness: direct
+        experimental_model: mouse
+        publication_date: "2021"
+        citation: "Mouse models linking mutant PFN1 aggregation to toxicity"
+        paper_id: null
+        query_tags: [pfn1_aggregation]
+        note: "Linked when aggregation-tagged literature is ingested."
+
+  - id: pfn1-therapeutic-opportunity
+    text: "A drug will stabilize PFN1 / reduce toxic aggregation"
+    topic: therapeutic_opportunity
+    mutation_key: "PFN1:G118V"
+    phenotype_id: therapeutic_opportunity
+    relation: ASSOCIATED_WITH
+    evidence:
+      - id: ev-pfn1-therapeutic-unvalidated
+        evidence_type: computational_prediction
+        confidence: low
+        quality: low
+        stance: support
+        directness: indirect
+        experimental_model: hypothesis
+        publication_date: null
+        citation: "Therapeutic hypothesis — not yet clinically validated"
+        paper_id: null
+        not_yet_validated: true
+        query_tags: []
+
+  - id: pfn1-c71g-structural-change
+    text: "C71G alters PFN1 structure at the actin-binding face"
+    topic: structural_change
+    mutation_key: "PFN1:C71G"
+    phenotype_id: structural_change
+    relation: CAUSES_CHANGE
+    evidence:
+      - id: ev-c71g-struct-invitro
+        evidence_type: in_vitro
+        confidence: medium
+        quality: medium
+        stance: support
+        directness: direct
+        experimental_model: biophysical_assay
+        publication_date: "2012"
+        citation: "ALS-linked PFN1 C71G structural / biophysical characterization"
+        paper_id: "pmid:23334667"
+        query_tags: [pfn1_c71g, pfn1_als]
+
+  - id: pfn1-c71g-misfolding
+    text: "C71G promotes PFN1 misfolding"
+    topic: misfolding
+    mutation_key: "PFN1:C71G"
+    phenotype_id: misfolding
+    relation: CAUSES_CHANGE
+    evidence:
+      - id: ev-c71g-misfold-invitro
+        evidence_type: in_vitro
+        confidence: medium
+        quality: medium
+        stance: support
+        directness: direct
+        experimental_model: cellular_biochemical
+        publication_date: "2012"
+        citation: "Familial ALS PFN1 C71G conformational effects"
+        paper_id: "pmid:23334667"
+        query_tags: [pfn1_c71g, pfn1_als]
+
+  - id: pfn1-c71g-increases-aggregation
+    text: "C71G increases aggregation of PFN1"
+    topic: aggregation
+    mutation_key: "PFN1:C71G"
+    phenotype_id: aggregation
+    relation: INCREASES_RISK
+    evidence:
+      - id: ev-c71g-agg-invitro
+        evidence_type: in_vitro
+        confidence: high
+        quality: high
+        stance: support
+        directness: direct
+        experimental_model: cellular_aggregation_assay
+        publication_date: "2014"
+        citation: "ALS-linked PFN1 mutations including C71G show elevated aggregation"
+        paper_id: "pmid:25447202"
+        query_tags: [pfn1_c71g, pfn1_aggregation]
+      - id: ev-c71g-agg-animal
+        evidence_type: animal
+        confidence: medium
+        quality: medium
+        stance: support
+        directness: direct
+        experimental_model: mouse
+        publication_date: "2016"
+        citation: "Mouse / animal models of PFN1 C71G toxicity"
+        paper_id: null
+        query_tags: [pfn1_c71g, pfn1_aggregation]
+      - id: ev-c71g-human-genetic
+        evidence_type: human_genetic
+        confidence: high
+        quality: high
+        stance: support
+        directness: direct
+        experimental_model: familial_segregation
+        publication_date: "2012"
+        citation: "Familial ALS linkage for PFN1 C71G"
+        paper_id: "pmid:23334667"
+        query_tags: [pfn1_c71g, pfn1_als]
+
+  - id: pfn1-t109m-structural-change
+    text: "T109M alters local PFN1 structure near the PLP-proximal region"
+    topic: structural_change
+    mutation_key: "PFN1:T109M"
+    phenotype_id: structural_change
+    relation: CAUSES_CHANGE
+    evidence:
+      - id: ev-t109m-struct-computational
+        evidence_type: computational_prediction
+        confidence: medium
+        quality: medium
+        stance: support
+        directness: indirect
+        experimental_model: molecular_dynamics
+        publication_date: "2018"
+        citation: "Computational analysis of ALS-linked PFN1 T109M"
+        paper_id: null
+        query_tags: [pfn1_t109m, pfn1_md]
+
+  - id: pfn1-t109m-misfolding
+    text: "T109M may promote mild / context-dependent PFN1 misfolding"
+    topic: misfolding
+    mutation_key: "PFN1:T109M"
+    phenotype_id: misfolding
+    relation: CAUSES_CHANGE
+    evidence:
+      - id: ev-t109m-misfold-invitro
+        evidence_type: in_vitro
+        confidence: low
+        quality: medium
+        stance: support
+        directness: indirect
+        experimental_model: biophysical_assay
+        publication_date: "2014"
+        citation: "Functional / folding characterization of PFN1 T109M (mixed strength)"
+        paper_id: "pmid:25447202"
+        query_tags: [pfn1_t109m]
+
+  - id: pfn1-t109m-aggregation
+    text: "T109M aggregation risk is moderate / unclear relative to G118V and C71G"
+    topic: aggregation
+    mutation_key: "PFN1:T109M"
+    phenotype_id: aggregation
+    relation: INCREASES_RISK
+    evidence:
+      - id: ev-t109m-agg-mixed
+        evidence_type: in_vitro
+        confidence: low
+        quality: medium
+        stance: mixed
+        directness: indirect
+        experimental_model: cellular_aggregation_assay
+        publication_date: "2014"
+        citation: "Aggregation findings for T109M less consistent than G118V/C71G"
+        paper_id: "pmid:25447202"
+        query_tags: [pfn1_t109m, pfn1_aggregation]
+      - id: ev-t109m-human-genetic
+        evidence_type: human_genetic
+        confidence: medium
+        quality: medium
+        stance: support
+        directness: direct
+        experimental_model: case_series
+        publication_date: "2012"
+        citation: "Human genetic association of PFN1 T109M with ALS"
+        paper_id: "pmid:23334667"
+        query_tags: [pfn1_t109m, pfn1_als]
