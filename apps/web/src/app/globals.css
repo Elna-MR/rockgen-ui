@@ -1786,29 +1786,117 @@ a {
   align-items: start;
 }
 
+.explorer-result-pdb {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0.65rem;
+}
+
+.explorer-thumb {
+  width: 3.25rem;
+  height: 3.25rem;
+  object-fit: cover;
+  border-radius: 3px;
+  background: #0f1419;
+  flex-shrink: 0;
+}
+
+.explorer-result-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.explorer-result-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  color: var(--ink-muted);
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+
+.chem-seq button.chem-aa {
+  font: inherit;
+  border: none;
+  background: transparent;
+  padding: 0 0.05rem;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.chem-seq button.chem-aa:hover,
+.chem-aa-active {
+  outline: 1px solid var(--accent);
+  background: var(--accent-soft);
+}
+
+.pdb-viewer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.pdb-viewer-canvas,
+.pdb-viewer-skeleton {
+  width: 100%;
+  height: 360px;
+  border-radius: var(--radius);
+  background: #0f1419;
+  color: #9bb0bc;
+  display: grid;
+  place-items: center;
+}
+
+.pdb-viewer-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: end;
+}
+
+.pdb-viewer-controls label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.pdb-viewer-controls select {
+  font: inherit;
+  font-size: 0.85rem;
+  text-transform: none;
+  letter-spacing: 0;
+  padding: 0.35rem 0.45rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.pdb-viewer-status {
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+  margin: 0;
+}
+
 .explorer-viewer {
   position: sticky;
   top: 4.5rem;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--surface);
-  padding: 0.85rem 0.85rem 0.65rem;
+  padding: 0.65rem;
   box-shadow: 0 1px 2px rgba(26, 43, 51, 0.04);
 }
 
-.explorer-viewer-title {
-  font-family: var(--font-display);
-  font-size: 1.05rem;
-  margin: 0 0 0.25rem;
-}
-
-.explorer-viewer .viewer-shell {
-  margin-top: 0.55rem;
-}
-
-.explorer-viewer .viewer-canvas,
-.explorer-viewer .viewer-skeleton {
-  height: 340px;
+.explorer-viewer .pdb-viewer-canvas {
+  height: 380px;
 }
 
 .level-tabs {
@@ -1819,7 +1907,7 @@ a {
 
 .level-tab {
   display: grid;
-  grid-template-columns: 1.75rem 1fr;
+  grid-template-columns: auto 1fr;
   gap: 0.45rem;
   align-items: start;
   text-align: left;
@@ -1847,13 +1935,14 @@ a {
 }
 
 .level-tab-n {
-  width: 1.55rem;
+  min-width: 1.75rem;
   height: 1.55rem;
+  padding: 0 0.3rem;
   border-radius: 999px;
   border: 1px solid var(--line);
   display: grid;
   place-items: center;
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   font-variant-numeric: tabular-nums;
 }
 

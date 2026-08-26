@@ -6,12 +6,13 @@ type Props = { params: Promise<{ id: string }> };
 
 export default async function ProteinStructurePage({ params }: Props) {
   const { id } = await params;
-  let protein: Awaited<ReturnType<typeof getProtein>> | null = null;
   let catalog: Array<{ uniprot_id: string; symbol: string; name: string }> = [];
+  let initialQuery = "profilin-1";
   let error: string | null = null;
 
   try {
-    protein = await getProtein(id);
+    const protein = await getProtein(id);
+    initialQuery = protein.name || protein.symbol;
     const disease = await getDisease("als").catch(() => null);
     catalog =
       disease?.proteins?.map((p) => ({
@@ -19,7 +20,7 @@ export default async function ProteinStructurePage({ params }: Props) {
         symbol: p.symbol,
         name: p.name,
       })) || [];
-    if (protein && !catalog.some((p) => p.uniprot_id === protein!.uniprot_id)) {
+    if (!catalog.some((p) => p.uniprot_id === protein.uniprot_id)) {
       catalog = [
         { uniprot_id: protein.uniprot_id, symbol: protein.symbol, name: protein.name },
         ...catalog,
@@ -29,10 +30,10 @@ export default async function ProteinStructurePage({ params }: Props) {
     error = e instanceof Error ? e.message : "Failed to load protein";
   }
 
-  if (error || !protein) {
+  if (error && catalog.length === 0) {
     return (
       <main className="page">
-        <p className="error">{error ?? "Not found"}</p>
+        <p className="error">{error}</p>
       </main>
     );
   }
@@ -41,20 +42,16 @@ export default async function ProteinStructurePage({ params }: Props) {
     <main className="page page-explorer">
       <p className="eyebrow">
         <Link href="/diseases/als">ALS</Link> ·{" "}
-        <Link href={`/proteins/${protein.uniprot_id}`}>{protein.symbol}</Link> · Structure explorer
+        <Link href={`/proteins/${id}`}>{id}</Link> · Structure explorer
       </p>
       <header className="page-header" style={{ marginBottom: "1.25rem" }}>
         <h1>Structure explorer</h1>
         <p className="lede">
-          Search a protein, then move through primary → quaternary detail — sequence chemistry,
-          fold cues, 3D, and assembly context.
+          PDB search seeded from this protein — pick a structure to inspect primary through quaternary
+          detail with the 3D fold on the right.
         </p>
       </header>
-      <StructureExplorer
-        catalog={catalog}
-        initialId={protein.uniprot_id}
-        detailsById={{ [protein.uniprot_id]: protein }}
-      />
+      <StructureExplorer catalog={catalog} initialQuery={initialQuery} />
     </main>
   );
 }
