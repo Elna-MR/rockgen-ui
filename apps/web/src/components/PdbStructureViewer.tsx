@@ -47,9 +47,17 @@ type Props = {
   chainIds: string[];
   highlightResi?: number | null;
   highlightChain?: string;
+  /** Inclusive residue window to emphasize around a mutation (Complement-style patch). */
+  focusWindow?: { start: number; end: number } | null;
 };
 
-export function PdbStructureViewer({ pdbId, chainIds, highlightResi, highlightChain }: Props) {
+export function PdbStructureViewer({
+  pdbId,
+  chainIds,
+  highlightResi,
+  highlightChain,
+  focusWindow,
+}: Props) {
   const hostRef = useRef<HTMLDivElement>(null);
   const viewerRef = useRef<Viewer | null>(null);
   const spinRef = useRef<number | null>(null);
@@ -109,25 +117,31 @@ export function PdbStructureViewer({ pdbId, chainIds, highlightResi, highlightCh
   useEffect(() => {
     const viewer = viewerRef.current;
     if (!viewer || !ready) return;
-    applyStyle(viewer, styleMode, chain);
-    viewer.render();
-    setStatus(
-      `Showing chain ${chain} — asymmetric unit as deposited. Drag to rotate, scroll to zoom.`,
-    );
-  }, [styleMode, chain, ready]);
-
-  useEffect(() => {
-    const viewer = viewerRef.current;
-    if (!viewer || !ready || highlightResi == null) return;
     const c = highlightChain || chain;
     applyStyle(viewer, styleMode, c);
-    viewer.addStyle(
-      { chain: c, resi: highlightResi },
-      { cartoon: { color: "#f59e0b" }, stick: { color: "#fbbf24", radius: 0.25 } },
-    );
-    viewer.zoomTo({ chain: c, resi: highlightResi });
+    if (focusWindow) {
+      viewer.addStyle(
+        { chain: c, resi: `${focusWindow.start}-${focusWindow.end}` },
+        { stick: { colorscheme: "cyanCarbon", radius: 0.15 } },
+      );
+    }
+    if (highlightResi != null) {
+      viewer.addStyle(
+        { chain: c, resi: highlightResi },
+        { cartoon: { color: "#f59e0b" }, stick: { color: "#fbbf24", radius: 0.28 } },
+      );
+      viewer.zoomTo({ chain: c, resi: highlightResi });
+      setStatus(`Focused on ${c}${highlightResi} — mutation / selected site.`);
+    } else if (focusWindow) {
+      viewer.zoomTo({ chain: c, resi: `${focusWindow.start}-${focusWindow.end}` });
+      setStatus(`Showing local patch ${focusWindow.start}–${focusWindow.end} on chain ${c}.`);
+    } else {
+      setStatus(
+        `Showing chain ${chain} — asymmetric unit as deposited. Drag to rotate, scroll to zoom.`,
+      );
+    }
     viewer.render();
-  }, [highlightResi, highlightChain, ready, styleMode, chain]);
+  }, [highlightResi, highlightChain, focusWindow, ready, styleMode, chain]);
 
   useEffect(() => {
     if (spinRef.current) {

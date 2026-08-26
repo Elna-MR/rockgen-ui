@@ -3,6 +3,12 @@
 import dynamic from "next/dynamic";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { aaClass, chemistrySummary } from "@/lib/proteinChemistry";
+import {
+  ALS_MUTATION_CHIPS,
+  assessMutationSite,
+  parseMutationQuery,
+  type ParsedMutation,
+} from "@/lib/mutationContext";
 
 const PdbStructureViewer = dynamic(
   () => import("@/components/PdbStructureViewer").then((m) => m.PdbStructureViewer),
@@ -95,7 +101,10 @@ function formatReleased(iso: string | null) {
 }
 
 export function StructureExplorer({ catalog, initialQuery }: Props) {
-  const [query, setQuery] = useState(initialQuery || "profilin-1");
+  const [query, setQuery] = useState(initialQuery || "PFN1-G118V");
+  const [mutation, setMutation] = useState<ParsedMutation | null>(() =>
+    parseMutationQuery(initialQuery || "PFN1-G118V"),
+  );
   const [hits, setHits] = useState<SearchHit[]>([]);
   const [total, setTotal] = useState(0);
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -109,10 +118,13 @@ export function StructureExplorer({ catalog, initialQuery }: Props) {
   const runSearch = useCallback(async (q: string) => {
     const term = q.trim();
     if (!term) return;
+    const parsed = parseMutationQuery(term);
+    setMutation(parsed);
+    const pdbTerm = parsed?.pdbId || parsed?.searchTerm || term;
     setSearching(true);
     setError(null);
     try {
-      const res = await fetch(`/api/pdb/search?q=${encodeURIComponent(term)}&rows=14`);
+      const res = await fetch(`/api/pdb/search?q=${encodeURIComponent(pdbTerm)}&rows=14`);
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || `Search failed (${res.status})`);
       setHits(data.results || []);
@@ -148,7 +160,11 @@ export function StructureExplorer({ catalog, initialQuery }: Props) {
         const res = await fetch(`/api/pdb/entry/${selectedId}`);
         const data = await res.json();
         if (!res.ok) throw new Error(data.error || `Entry failed (${res.status})`);
-        if (!cancelled) setEntry(data);
+        if (!cancelled) {
+          setEntry(data);
+          const mut = parseMutationQuery(query);
+          if (mut?.pos) setActiveResi(mut.pos);
+        }
       } catch (e) {
         if (!cancelled) setError(e instanceof Error ? e.message : "Failed to load entry");
       } finally {
@@ -159,12 +175,20 @@ export function StructureExplorer({ catalog, initialQuery }: Props) {
     return () => {
       cancelled = true;
     };
-  }, [selectedId]);
+  }, [selectedId, query]);
 
   const primary = entry?.primary;
   const sequence = primary?.sequence || "";
   const chainLabel = primary?.chain_ids?.[0] || "A";
   const chem = useMemo(() => (sequence ? chemistrySummary(sequence) : null), [sequence]);
+  const site = useMemo(
+    () => (sequence && mutation ? assessMutationSite(sequence, mutation) : null),
+    [sequence, mutation],
+  );
+  const focusWindow = useMemo(() => {
+    if (!site?.patch.length) return null;
+    return { start: site.patch[0].pos, end: site.patch[site.patch.length - 1].pos };
+  }, [site]);
   const allChains = useMemo(() => {
     const ids = new Set<string>();
     for (const p of entry?.polymers || []) for (const c of p.chain_ids) ids.add(c);
@@ -183,7 +207,7 @@ export function StructureExplorer({ catalog, initialQuery }: Props) {
             id="protein-search"
             className="ask-input explorer-input"
             type="search"
-            placeholder="Protein name or PDB id…"
+            placeholder="Protein, PDB id, or mutation (e.g. PFN1-G118V)…"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={(e) => {
@@ -195,7 +219,23 @@ export function StructureExplorer({ catalog, initialQuery }: Props) {
             {searching ? "Searching…" : "Search"}
           </button>
         </div>
+        <p className="hint explorer-mut-hint">
+          ALS mutation chips resolve the gene → PDB search and focus the local chemistry / 3D patch.
+        </p>
         <div className="chip-row explorer-quick">
+          {ALS_MUTATION_CHIPS.map((q) => (
+            <button
+              key={q.q}
+              type="button"
+              className={`chip ${query === q.q ? "chip-active" : ""}`}
+              onClick={() => {
+                setQuery(q.q);
+                void runSearch(q.q);
+              }}
+            >
+              {q.label}
+            </button>
+          ))}
           {QUICK.map((q) => (
             <button
               key={q.q}
@@ -284,6 +324,55 @@ export function StructureExplorer({ catalog, initialQuery }: Props) {
                 </div>
               </header>
 
+              {mutation && site && (
+                <section className={`mut-gate mut-gate-${site.verdict}`} aria-label="Mutation site gate">
+                  <div className="mut-gate-head">
+                    <span className="mut-gate-badge">{site.verdict === "yes" ? "Candidate site" : site.verdict === "no" ? "Out of range" : "Inspect carefully"}</span>
+                    <strong>{mutation.label}</strong>
+                    {mutation.target ? <span className="hint">{mutation.target}</span> : null}
+                  </div>
+                  <p className="mut-gate-headline">{site.headline}</p>
+                  <p className="hint">{site.detail}</p>
+                  <div className="chem-grid mut-gate-stats">
+                    <div>
+                      <strong>
+                        {site.observedWt ?? "—"}
+                        {mutation.pos}
+                      </strong>
+                      <span>Observed WT</span>
+                    </div>
+                    <div>
+                      <strong>{site.windowGravy.toFixed(2)}</strong>
+                      <span>Local GRAVY ±8</span>
+                    </div>
+                    <div>
+                      <strong>{site.chargedNeighbors + site.polarNeighbors}</strong>
+                      <span>Polar / charged nbrs</span>
+                    </div>
+                    <div>
+                      <strong>{site.hydrophobicNeighbors}</strong>
+                      <span>Hydrophobic nbrs</span>
+                    </div>
+                  </div>
+                  <h3 className="mut-patch-title">Local sequence patch</h3>
+                  <div className="mut-patch" role="list">
+                    {site.patch.map((r) => (
+                      <button
+                        key={r.pos}
+                        type="button"
+                        role="listitem"
+                        className={`mut-patch-aa chem-${r.chem} ${r.isMutation ? "mut-patch-hit" : ""} ${activeResi === r.pos ? "chem-aa-active" : ""}`}
+                        title={`${r.aa}${r.pos}${r.isMutation ? ` → ${mutation.mt}` : ""}`}
+                        onClick={() => onResidueClick(r.pos)}
+                      >
+                        <span>{r.aa}</span>
+                        <em>{r.pos}</em>
+                      </button>
+                    ))}
+                  </div>
+                </section>
+              )}
+
               <div className="explorer-body">
                 <nav className="level-tabs" aria-label="Structural levels">
                   {LEVELS.map((L) => (
@@ -343,12 +432,16 @@ export function StructureExplorer({ catalog, initialQuery }: Props) {
                       <div className="chem-seq">
                         {sequence.split("").map((aa, i) => {
                           const resi = i + 1;
+                          const inPatch = focusWindow
+                            ? resi >= focusWindow.start && resi <= focusWindow.end
+                            : false;
+                          const isMut = mutation?.pos === resi;
                           return (
                             <button
                               key={resi}
                               type="button"
-                              className={`chem-aa chem-${aaClass(aa)} ${activeResi === resi ? "chem-aa-active" : ""}`}
-                              title={`${aa}${resi}`}
+                              className={`chem-aa chem-${aaClass(aa)} ${activeResi === resi ? "chem-aa-active" : ""} ${inPatch ? "chem-aa-patch" : ""} ${isMut ? "chem-aa-mut" : ""}`}
+                              title={`${aa}${resi}${isMut && mutation ? ` → ${mutation.mt}` : ""}`}
                               onClick={() => onResidueClick(resi)}
                             >
                               {aa}
@@ -454,12 +547,16 @@ export function StructureExplorer({ catalog, initialQuery }: Props) {
                       <h3>Tertiary structure</h3>
                       <p className="article-body">
                         The 3D fold for <strong>{entry.pdb_id}</strong> is shown on the right. Use Style /
-                        Chain / Spin / Recentre under the viewer. Click a residue in Primary to zoom that
-                        site.
+                        Chain / Spin / Recentre under the viewer. Click a residue in Primary or the
+                        mutation patch to zoom that site
+                        {mutation ? ` (${mutation.label} highlighted when mapped)` : ""}.
                       </p>
                       <p className="hint">
                         Method: {entry.method}
                         {entry.resolution != null ? ` · ${Number(entry.resolution).toFixed(2)} Å` : ""}
+                        {focusWindow
+                          ? ` · Local patch ${focusWindow.start}–${focusWindow.end}`
+                          : ""}
                       </p>
                     </section>
                   )}
@@ -507,6 +604,7 @@ export function StructureExplorer({ catalog, initialQuery }: Props) {
                       chainIds={allChains.length ? allChains : [chainLabel]}
                       highlightResi={activeResi}
                       highlightChain={chainLabel}
+                      focusWindow={focusWindow}
                     />
                   )}
                 </aside>

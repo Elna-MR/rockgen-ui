@@ -33,11 +33,11 @@ export default async function StructureExplorePage() {
       <header className="page-header" style={{ marginBottom: "1.25rem" }}>
         <h1>Structure explorer</h1>
         <p className="lede">
-          Search the PDB by protein name — ranked structures, chain chemistry, sequence, and a live 3D
-          fold (same information pattern as a classic PDB structure explorer).
+          Search by protein, PDB id, or ALS mutation (e.g. PFN1-G118V) — ranked structures, local site
+          chemistry, sequence, and a live 3D fold focused on the mutation patch.
         </p>
       </header>
-      <StructureExplorer catalog={catalog} initialQuery="profilin-1" />
+      <StructureExplorer catalog={catalog} initialQuery="PFN1-G118V" />
     </main>
   );
 }

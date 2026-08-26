@@ -1833,6 +1833,109 @@ a {
   background: var(--accent-soft);
 }
 
+.chem-aa-patch {
+  background: rgba(74, 139, 134, 0.12);
+}
+
+.chem-aa-mut {
+  outline: 2px solid #d97706;
+  background: rgba(217, 119, 6, 0.18);
+  font-weight: 700;
+}
+
+.explorer-mut-hint {
+  margin: 0.55rem 0 0;
+}
+
+.mut-gate {
+  margin: 0 0 1.15rem;
+  padding: 0.95rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, var(--surface), transparent);
+  border-left: 3px solid var(--accent);
+}
+
+.mut-gate-yes {
+  border-left-color: #0f766e;
+}
+
+.mut-gate-partial {
+  border-left-color: #b45309;
+}
+
+.mut-gate-no {
+  border-left-color: #b91c1c;
+}
+
+.mut-gate-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.75rem;
+  align-items: baseline;
+  margin-bottom: 0.35rem;
+}
+
+.mut-gate-badge {
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+  background: var(--accent-soft);
+  padding: 0.2rem 0.45rem;
+  border-radius: var(--radius);
+}
+
+.mut-gate-headline {
+  margin: 0.25rem 0 0.35rem;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+}
+
+.mut-gate-stats {
+  margin-top: 0.75rem;
+}
+
+.mut-patch-title {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  margin: 0.95rem 0 0.45rem;
+}
+
+.mut-patch {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.mut-patch-aa {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 1.85rem;
+  padding: 0.3rem 0.25rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  font: inherit;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.82rem;
+  cursor: pointer;
+  color: inherit;
+}
+
+.mut-patch-aa em {
+  font-style: normal;
+  font-size: 0.62rem;
+  color: var(--ink-muted);
+}
+
+.mut-patch-hit {
+  border-color: #d97706;
+  background: rgba(217, 119, 6, 0.16);
+  box-shadow: inset 0 0 0 1px rgba(217, 119, 6, 0.35);
+}
+
 .pdb-viewer {
   display: flex;
   flex-direction: column;
