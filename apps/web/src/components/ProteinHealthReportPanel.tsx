@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+import { absoluteApiBase, apiBase } from "@/lib/apiBase";
 
 type Props = { uniprotId: string };
 
@@ -16,10 +15,10 @@ type ReportPayload = {
 export function ProteinHealthReportPanel({ uniprotId }: Props) {
   const [report, setReport] = useState<ReportPayload | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const mdUrl = `${API_URL}/v1/proteins/${uniprotId}/health-report?format=markdown`;
+  const mdUrl = `${absoluteApiBase()}/v1/proteins/${uniprotId}/health-report?format=markdown`;
 
   useEffect(() => {
-    void fetch(`${API_URL}/v1/proteins/${uniprotId}/health-report`)
+    void fetch(`${apiBase()}/v1/proteins/${uniprotId}/health-report`)
       .then((r) => {
         if (!r.ok) throw new Error(`Report failed (${r.status})`);
         return r.json();

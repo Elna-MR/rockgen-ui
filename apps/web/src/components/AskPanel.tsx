@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+import { apiBase } from "@/lib/apiBase";
 
 const STARTERS = [
   "Does G118V change PFN1 structure?",
@@ -111,7 +110,7 @@ export function AskPanel() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch(`${API_URL}/v1/ask`, {
+      const res = await fetch(`${apiBase()}/v1/ask`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ question: q }),

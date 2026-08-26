@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+import { absoluteApiBase, apiBase } from "@/lib/apiBase";
 
 type DynamicsSummary = {
   normal_protein_states: number;
@@ -42,10 +41,10 @@ type DynamicsReport = {
 export function DynamicsReportPanel() {
   const [report, setReport] = useState<DynamicsReport | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const mdUrl = `${API_URL}/v1/dynamics/pfn1/g118v?format=markdown`;
+  const mdUrl = `${absoluteApiBase()}/v1/dynamics/pfn1/g118v?format=markdown`;
 
   useEffect(() => {
-    void fetch(`${API_URL}/v1/dynamics/pfn1/g118v`)
+    void fetch(`${apiBase()}/v1/dynamics/pfn1/g118v`)
       .then((r) => {
         if (!r.ok) throw new Error(`Dynamics failed (${r.status})`);
         return r.json();

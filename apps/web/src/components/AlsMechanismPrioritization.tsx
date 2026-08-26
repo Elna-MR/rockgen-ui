@@ -2,8 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+import { apiBase } from "@/lib/apiBase";
 
 type Prioritization = {
   comparison: {
@@ -86,7 +85,8 @@ export function AlsMechanismPrioritization({ markdownUrl }: Props) {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    void fetch(`${API_URL}/v1/diseases/als/mechanism-prioritization`)
+    const base = apiBase();
+    void fetch(`${base}/v1/diseases/als/mechanism-prioritization`)
       .then((r) => {
         if (!r.ok) throw new Error(`Prioritization failed (${r.status})`);
         return r.json();
@@ -94,7 +94,7 @@ export function AlsMechanismPrioritization({ markdownUrl }: Props) {
       .then(setData)
       .catch((e) => setError(e instanceof Error ? e.message : "Failed to load"));
 
-    void fetch(`${API_URL}/v1/ask`, {
+    void fetch(`${base}/v1/ask`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

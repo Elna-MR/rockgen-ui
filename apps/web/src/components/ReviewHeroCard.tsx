@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+import { apiBase } from "@/lib/apiBase";
 
 type ReviewBrief = {
   conclusion: string;
@@ -19,7 +18,7 @@ export function ReviewHeroCard() {
   const [showWhy, setShowWhy] = useState(false);
 
   useEffect(() => {
-    void fetch(`${API_URL}/v1/ask`, {
+    void fetch(`${apiBase()}/v1/ask`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ question: "Does G118V increase aggregation?" }),

@@ -2,14 +2,13 @@
 
 import { useEffect, useState } from "react";
 import { PFN1_EXPERIMENTS, PFN1_GAPS } from "@/data/pfn1Dossier";
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+import { apiBase } from "@/lib/apiBase";
 
 export function ResearchGaps() {
   const [apiGaps, setApiGaps] = useState<string[]>([]);
 
   useEffect(() => {
-    void fetch(`${API_URL}/v1/ask`, {
+    void fetch(`${apiBase()}/v1/ask`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ question: "What remains unproven?" }),
