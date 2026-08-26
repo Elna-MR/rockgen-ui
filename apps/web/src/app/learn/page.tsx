@@ -11,7 +11,9 @@ export default function LearnHubPage() {
         <h1>Learn ALS biology</h1>
         <p className="lede">
           An eight-step path: orient, read, then practice with one research tool at a time. Each
-          module has a clear outcome so you know what “done” looks like.
+          module has a clear outcome so you know what “done” looks like. Prefer the big picture
+          first? Read{" "}
+          <Link href="/approach">mechanism-first approach</Link>.
         </p>
         <p className="meta-pill">~75 minutes total · families: use Understand instead</p>
       </header>

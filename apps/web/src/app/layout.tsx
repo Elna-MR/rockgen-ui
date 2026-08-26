@@ -17,9 +17,9 @@ const display = Source_Serif_4({
 });
 
 export const metadata: Metadata = {
-  title: "RockGen — Understand, learn, and research ALS",
+  title: "RockGen — Mechanism-first ALS biology",
   description:
-    "Plain-language ALS guides for patients and families, a structured learning path for students, and an evidence workspace for researchers.",
+    "Map ALS disease proteins and shared mechanisms before designing drugs. Guides for families, a learning path for students, and an evidence workspace for researchers.",
 };
 
 export default function RootLayout({
@@ -36,6 +36,7 @@ export default function RootLayout({
               RockGen
             </Link>
             <nav className="nav">
+              <Link href="/approach">Approach</Link>
               <Link href="/understand">Understand</Link>
               <Link href="/learn">Learn</Link>
               <Link href="/diseases/als">Research</Link>

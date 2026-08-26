@@ -1485,3 +1485,191 @@ a {
     padding-top: 0;
   }
 }
+
+/* Biotech science storytelling (Origami-style structure, RockGen palette) */
+
+.home-page,
+.approach-page {
+  max-width: 52rem;
+  padding-top: 2.75rem;
+  padding-bottom: 4.5rem;
+}
+
+.home-page.page,
+.approach-page.page {
+  max-width: 52rem;
+}
+
+.science-hero {
+  margin-bottom: 2.75rem;
+  animation: rise 0.75s ease both;
+}
+
+.science-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 6vw, 3.75rem);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin-bottom: 0.85rem;
+}
+
+.science-thesis {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2.8vw, 1.85rem);
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  max-width: 34rem;
+  margin-bottom: 0.85rem;
+  color: var(--ink);
+}
+
+.science-thesis-compact {
+  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+  max-width: 36rem;
+  margin-bottom: 0.55rem;
+}
+
+.science-hero .lede {
+  margin-bottom: 1.5rem;
+}
+
+.science-band {
+  margin: 0 0 2.75rem;
+  padding: 1.75rem 0 0.25rem;
+  border-top: 1px solid var(--line);
+  animation: rise 0.8s ease both;
+  animation-delay: 0.08s;
+}
+
+.science-band h2,
+.science-section h2 {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  margin-bottom: 0.4rem;
+}
+
+.science-section {
+  margin-bottom: 2.75rem;
+  animation: rise 0.7s ease both;
+}
+
+.science-section .article-body + .article-body {
+  margin-top: 1rem;
+}
+
+.pillar-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.pillar {
+  padding: 1.15rem 1.2rem 1.25rem;
+  border-top: 2px solid var(--accent);
+  background: linear-gradient(180deg, var(--surface), transparent);
+}
+
+.pillar h3 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 0.45rem;
+}
+
+.pillar p {
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.contrast-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1.15rem;
+}
+
+.contrast-panel {
+  padding: 1.25rem 1.3rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.contrast-panel h3 {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  margin: 0.35rem 0 0.55rem;
+}
+
+.contrast-panel p:last-child {
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: 0.925rem;
+  line-height: 1.5;
+}
+
+.contrast-panel-accent {
+  border-color: rgba(74, 139, 134, 0.35);
+  background: linear-gradient(180deg, var(--accent-soft), var(--surface));
+}
+
+.flow-chain {
+  list-style: none;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+
+.flow-chain li {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.25rem;
+  padding: 1rem 0 1rem 1rem;
+  border-bottom: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  animation: rise 0.55s ease both;
+}
+
+.flow-chain li:nth-child(2) {
+  animation-delay: 0.05s;
+}
+.flow-chain li:nth-child(3) {
+  animation-delay: 0.1s;
+}
+.flow-chain li:nth-child(4) {
+  animation-delay: 0.15s;
+}
+.flow-chain li:nth-child(5) {
+  animation-delay: 0.2s;
+}
+
+.flow-chain strong {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+}
+
+.flow-chain span {
+  color: var(--ink-muted);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.science-cta {
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--line);
+}
+
+@media (max-width: 840px) {
+  .pillar-grid,
+  .contrast-split {
+    grid-template-columns: 1fr;
+  }
+}
+

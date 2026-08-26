@@ -51,7 +51,18 @@ export default async function DiseaseHubPage({ params }: Props) {
       </p>
       <header className="hub-hero">
         <h1>ALS</h1>
+        <p className="science-thesis science-thesis-compact">
+          Shared mechanisms across program proteins — then prioritize what to study next.
+        </p>
         <p className="lede">{disease.synopsis}</p>
+        <div className="cta-row" style={{ marginTop: "1.25rem" }}>
+          <Link className="btn btn-primary" href="/diseases/als/mechanisms">
+            Mechanisms
+          </Link>
+          <Link className="btn btn-ghost" href="/approach">
+            Why mechanism-first
+          </Link>
+        </div>
       </header>
 
       <section className="section">
