@@ -21,6 +21,9 @@ export default async function PracticeExercisePage({ params }: Props) {
       <header className="hub-hero">
         <h1>{exercise.title}</h1>
         <p className="lede">{exercise.goal}</p>
+        <p className="meta-pill">
+          {exercise.level === "intro" ? "Intro" : "Next"} · ~{exercise.minutes} min
+        </p>
       </header>
 
       <section className="section">
@@ -32,7 +35,7 @@ export default async function PracticeExercisePage({ params }: Props) {
         </ol>
       </section>
 
-      <div className="cta-row" style={{ marginTop: "1.5rem" }}>
+      <div className="cta-row" style={{ marginTop: "1.25rem" }}>
         <Link className="btn btn-primary" href={exercise.openHref}>
           {exercise.openLabel}
         </Link>
@@ -40,6 +43,17 @@ export default async function PracticeExercisePage({ params }: Props) {
           Learn hub
         </Link>
       </div>
+
+      {exercise.reflect && exercise.reflect.length > 0 && (
+        <aside className="reflect-panel" aria-label="Reflect">
+          <h2>Write before you leave</h2>
+          <ol>
+            {exercise.reflect.map((r, i) => (
+              <li key={i}>{r}</li>
+            ))}
+          </ol>
+        </aside>
+      )}
 
       <p className="hint" style={{ marginTop: "1.5rem" }}>
         <Link href="/learn/practice">← All practice</Link>

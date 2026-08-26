@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DM_Sans, Fraunces } from "next/font/google";
+import { DM_Sans, Source_Serif_4 } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
 
@@ -11,7 +11,7 @@ const sans = DM_Sans({
   variable: "--font-sans",
 });
 
-const display = Fraunces({
+const display = Source_Serif_4({
   subsets: ["latin"],
   variable: "--font-display",
 });
@@ -19,7 +19,7 @@ const display = Fraunces({
 export const metadata: Metadata = {
   title: "RockGen — Understand, learn, and research ALS",
   description:
-    "Plain-language ALS guides for patients and families, learning paths for students, and an evidence workspace for researchers.",
+    "Plain-language ALS guides for patients and families, a structured learning path for students, and an evidence workspace for researchers.",
 };
 
 export default function RootLayout({
@@ -42,6 +42,9 @@ export default function RootLayout({
             </nav>
           </header>
           {children}
+          <footer className="site-footer">
+            Educational — not medical advice. Care decisions belong with your clinical team.
+          </footer>
         </div>
       </body>
     </html>

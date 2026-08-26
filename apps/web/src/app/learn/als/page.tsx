@@ -4,13 +4,16 @@ export default function LearnAlsPage() {
   return (
     <main className="page hub-page">
       <p className="eyebrow">
-        <Link href="/learn">Learn</Link> · Tour
+        <Link href="/learn">Learn</Link> · Module 01
       </p>
-      <h1>ALS in five ideas</h1>
-      <p className="lede">
-        Amyotrophic lateral sclerosis damages motor neurons. Many genes can contribute; they often
-        share overlapping biology even when the proteins look different.
-      </p>
+      <header className="hub-hero">
+        <h1>ALS in five ideas</h1>
+        <p className="lede">
+          Amyotrophic lateral sclerosis damages motor neurons. Many genes can contribute; they often
+          share overlapping biology even when the proteins look different.
+        </p>
+        <p className="meta-pill">~5 min · Outcome: tell the disease story without jargon</p>
+      </header>
 
       <ol className="learn-list">
         <li>
@@ -36,15 +39,20 @@ export default function LearnAlsPage() {
         </li>
       </ol>
 
+      <aside className="check-panel" aria-label="Check your understanding">
+        <h2>Check your understanding</h2>
+        <ol>
+          <li>Say the five ideas back in your own words (no looking).</li>
+          <li>Which idea separates “interesting finding” from “ready for therapy design”?</li>
+        </ol>
+      </aside>
+
       <div className="cta-row" style={{ marginTop: "2rem" }}>
-        <Link className="btn btn-primary" href="/learn/practice/compare-pfn1">
-          Practice: compare PFN1
+        <Link className="btn btn-primary" href="/learn/practice/patient-view">
+          Next: patient lens
         </Link>
-        <Link className="btn btn-ghost" href="/understand">
-          Patient &amp; family view
-        </Link>
-        <Link className="btn btn-ghost" href="/diseases/als">
-          Research workspace
+        <Link className="btn btn-ghost" href="/learn">
+          Full curriculum
         </Link>
       </div>
     </main>

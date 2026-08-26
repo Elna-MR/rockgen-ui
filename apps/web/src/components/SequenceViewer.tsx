@@ -65,7 +65,7 @@ export function SequenceViewer({ sequence }: Props) {
           <i style={{ background: "#9bb4bc" }} /> Low / catalog-only
         </span>
         <span>
-          <i style={{ background: "#3dd6c6" }} /> Actin-binding
+          <i style={{ background: "#6aa09b" }} /> Actin-binding
         </span>
         <span>
           <i style={{ background: "#5b8def" }} /> PLP-binding

@@ -103,7 +103,7 @@ export function ProteinViewer3D() {
 
         hostRef.current.innerHTML = "";
         const viewer = $3Dmol.createViewer(hostRef.current, {
-          backgroundColor: "#f3f6f5",
+          backgroundColor: "#f4f6f8",
           antialias: true,
         });
         viewer.clear();
@@ -182,7 +182,7 @@ export function ProteinViewer3D() {
             <i style={{ background: "#9bb4bc" }} /> Low
           </span>
           <span>
-            <i style={{ background: "#3dd6c6" }} /> Actin-binding
+            <i style={{ background: "#6aa09b" }} /> Actin-binding
           </span>
           <span>
             <i style={{ background: "#5b8def" }} /> PLP-binding

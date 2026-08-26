@@ -12,7 +12,7 @@ export default function PracticeIndexPage() {
       </p>
       <header className="hub-hero">
         <h1>Practice</h1>
-        <p className="lede">One exercise, one goal, one page. Keep it calm.</p>
+        <p className="lede">One exercise, one goal, then write a short reflection before moving on.</p>
       </header>
 
       <section className="section">

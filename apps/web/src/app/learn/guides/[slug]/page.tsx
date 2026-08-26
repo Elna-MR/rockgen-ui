@@ -21,6 +21,7 @@ export default async function LearnGuidePage({ params }: Props) {
       <header className="hub-hero">
         <h1>{guide.title}</h1>
         <p className="lede">{guide.summary}</p>
+        {guide.minutes ? <p className="meta-pill">{guide.minutes} min read</p> : null}
       </header>
 
       <article className="section">
@@ -31,8 +32,19 @@ export default async function LearnGuidePage({ params }: Props) {
         ))}
       </article>
 
+      {guide.checks && guide.checks.length > 0 && (
+        <aside className="check-panel" aria-label="Check your understanding">
+          <h2>Check your understanding</h2>
+          <ol>
+            {guide.checks.map((q, i) => (
+              <li key={i}>{q}</li>
+            ))}
+          </ol>
+        </aside>
+      )}
+
       {guide.next && guide.next.length > 0 && (
-        <section className="section">
+        <section className="section" style={{ marginTop: "2rem" }}>
           <h2>Continue</h2>
           <div className="hub-grid">
             {guide.next.map((n) => (

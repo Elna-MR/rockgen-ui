@@ -9,7 +9,7 @@ export default function GuidesIndexPage() {
       </p>
       <header className="hub-hero">
         <h1>Guides</h1>
-        <p className="lede">Short readings for students — then practice.</p>
+        <p className="lede">Readings with check prompts — then practice in real tools.</p>
       </header>
       <div className="hub-grid">
         {LEARN_GUIDES.map((g) => (
