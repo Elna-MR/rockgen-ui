@@ -3,6 +3,9 @@ import { DM_Sans, Fraunces } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
 
+// Pages call the live API — never prerender against a missing build-time host.
+export const dynamic = "force-dynamic";
+
 const sans = DM_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
