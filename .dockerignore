@@ -1,0 +1,20 @@
+# Ignore local/runtime junk in Docker build context
+.git
+**/__pycache__
+**/*.pyc
+**/.venv
+**/node_modules
+**/.next
+**/.turbo
+**/.mypy_cache
+**/.ruff_cache
+**/.pytest_cache
+**/*.egg-info
+.env
+.env.*
+!.env.example
+apps/web
+docs
+infra
+**/cache
+**/*.log

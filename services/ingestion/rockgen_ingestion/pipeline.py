@@ -47,7 +47,11 @@ def ingest_protein(
     stats["uniprot_variants"] = len(uniprot.get("variants") or [])
 
     print(f"→ RCSB PDB structures ({uniprot_id})")
-    structures = fetch_pdb_for_uniprot(uniprot_id)
+    try:
+        structures = fetch_pdb_for_uniprot(uniprot_id)
+    except Exception as exc:  # noqa: BLE001 — network soft-fail
+        print(f"  PDB warning: {exc}")
+        structures = []
     _cache_write(f"pdb_{uniprot_id}.json", structures)
     write_structures(uniprot_id, structures)
     stats["structures"] = len(structures)
