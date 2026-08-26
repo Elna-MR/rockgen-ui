@@ -24,7 +24,7 @@ export const PFN1_ANNOTATIONS = {
         [59, 74],
         [119, 125],
       ] as [number, number][],
-      color: "#0d9f8f",
+      color: "#4a8b86",
     },
     {
       id: "pocket",
