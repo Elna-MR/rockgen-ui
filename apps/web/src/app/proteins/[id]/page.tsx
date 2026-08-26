@@ -70,6 +70,10 @@ export default async function ProteinOverviewPage({ params }: Props) {
               <span>Pathway, timeline, gaps, sequence, and ask.</span>
             </Link>
           )}
+          <Link href={`/proteins/${protein.uniprot_id}/structure`} className="hub-link">
+            <strong>Structure explorer</strong>
+            <span>Search and inspect primary → quaternary detail.</span>
+          </Link>
           <Link href="/diseases/als/mechanisms" className="hub-link">
             <strong>ALS mechanisms</strong>
             <span>How this protein sits in cross-protein prioritization.</span>

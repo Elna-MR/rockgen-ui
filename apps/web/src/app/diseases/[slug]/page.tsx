@@ -72,6 +72,10 @@ export default async function DiseaseHubPage({ params }: Props) {
             <strong>Mechanisms</strong>
             <span>What is shared between PFN1 and TUBA4A — and what to investigate first.</span>
           </Link>
+          <Link href="/proteins/explore" className="hub-link">
+            <strong>Structure explorer</strong>
+            <span>Search a protein — primary chemistry through 3D and assembly.</span>
+          </Link>
           <Link href="/diseases/als/map" className="hub-link">
             <strong>Disease map</strong>
             <span>Browse ALS by biology axis (cytoskeleton, RNA, proteostasis…).</span>

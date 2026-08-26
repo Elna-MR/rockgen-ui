@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const ALLOWED: Record<string, string[]> = {
+const STATIC: Record<string, string[]> = {
   "AF-P07737-F1": [
     "https://alphafold.ebi.ac.uk/files/AF-P07737-F1-model_v6.pdb",
     "https://alphafold.ebi.ac.uk/files/AF-P07737-F1-model_v4.pdb",
@@ -8,16 +8,29 @@ const ALLOWED: Record<string, string[]> = {
   "2PAV": ["https://files.rcsb.org/download/2PAV.pdb"],
 };
 
-export async function GET(
-  _req: NextRequest,
-  ctx: { params: Promise<{ id: string }> }
-) {
+function resolveUrls(key: string): string[] | null {
+  if (STATIC[key]) return STATIC[key];
+  // AlphaFold by UniProt: AF-P07737-F1
+  const af = /^AF-([A-Z0-9]+)-F(\d+)$/i.exec(key);
+  if (af) {
+    const uid = af[1].toUpperCase();
+    const f = af[2];
+    return [
+      `https://alphafold.ebi.ac.uk/files/AF-${uid}-F${f}-model_v6.pdb`,
+      `https://alphafold.ebi.ac.uk/files/AF-${uid}-F${f}-model_v4.pdb`,
+    ];
+  }
+  // RCSB PDB id
+  if (/^[0-9][A-Za-z0-9]{3}$/.test(key)) {
+    return [`https://files.rcsb.org/download/${key.toUpperCase()}.pdb`];
+  }
+  return null;
+}
+
+export async function GET(_req: NextRequest, ctx: { params: Promise<{ id: string }> }) {
   const { id } = await ctx.params;
   const key = id.replace(/\.pdb$/i, "");
-
-  // Prefer bundled public file when present (served by Next statically);
-  // this route is a live-fetch fallback for CORS / upstream freshness.
-  const urls = ALLOWED[key];
+  const urls = resolveUrls(key);
   if (!urls) {
     return NextResponse.json({ error: `Unknown structure ${key}` }, { status: 404 });
   }
