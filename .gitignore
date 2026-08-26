@@ -27,7 +27,8 @@ npm-debug.log*
 *.swp
 
 # Data / local
-data/
+/data/
+**/cache/
 *.log
 .coverage
 htmlcov/
