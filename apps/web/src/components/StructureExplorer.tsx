@@ -281,7 +281,8 @@ export function StructureExplorer({ catalog, detailsById, initialId }: Props) {
                         <Link href={`/proteins/${protein.uniprot_id}`}>{protein.uniprot_id}</Link>
                       </p>
 
-                      <h3>Sequence</h3>
+                      <h3>Sequence — chain A</h3>
+                      <p className="hint">Colour by chemistry. The 3D fold stays on the right.</p>
                       <div className="chem-seq">
                         {protein.sequence!.split("").map((aa, i) => (
                           <span key={i} className={`chem-aa chem-${aaClass(aa)}`} title={`${aa}${i + 1}`}>
@@ -336,9 +337,8 @@ export function StructureExplorer({ catalog, detailsById, initialId }: Props) {
                     <section className="explorer-panel">
                       <h3>Secondary structure</h3>
                       <p className="article-body">
-                        Secondary structure is the local fold — helices, strands, and loops. Full DSSP
-                        assignment is not computed in-browser yet; use the tertiary view for the 3D
-                        cartoon, which encodes secondary elements visually.
+                        Secondary structure is the local fold — helices, strands, and loops. The cartoon
+                        on the right shows those elements in 3D (spectrum N→C).
                       </p>
                       {chem && (
                         <div className="chem-grid" style={{ marginTop: "1rem" }}>
@@ -368,9 +368,10 @@ export function StructureExplorer({ catalog, detailsById, initialId }: Props) {
                           </div>
                           <div>
                             <strong>
-                              {(((chem.composition.G || 0) + (chem.composition.P || 0)) / Math.max(chem.length, 1)).toFixed(
-                                2,
-                              )}
+                              {(
+                                ((chem.composition.G || 0) + (chem.composition.P || 0)) /
+                                Math.max(chem.length, 1)
+                              ).toFixed(2)}
                             </strong>
                             <span>Loop / turn cues (G+P)</span>
                           </div>
@@ -383,13 +384,17 @@ export function StructureExplorer({ catalog, detailsById, initialId }: Props) {
                   )}
 
                   {level === "tertiary" && (
-                    <section className="explorer-panel explorer-panel-viewer">
+                    <section className="explorer-panel">
                       <h3>Tertiary structure</h3>
-                      <p className="hint">
-                        Cartoon coloured N→C. AlphaFold models are predictions; experimental PDBs when
-                        linked.
+                      <p className="article-body">
+                        The full 3D fold is shown on the right — cartoon coloured N→C. Switch AlphaFold
+                        vs experimental PDB with the chips above the viewer. Drag to rotate; scroll to
+                        zoom.
                       </p>
-                      <SimpleStructureViewer structures={structs} />
+                      <p className="hint">
+                        AlphaFold models are predictions; experimental entries appear when linked in the
+                        graph.
+                      </p>
                     </section>
                   )}
 
@@ -397,9 +402,8 @@ export function StructureExplorer({ catalog, detailsById, initialId }: Props) {
                     <section className="explorer-panel">
                       <h3>Quaternary / assembly</h3>
                       <p className="article-body">
-                        Quaternary structure is how multiple chains assemble. AlphaFold single-chain
-                        models show the asymmetric fold as deposited for that chain — not a full
-                        biological assembly unless an experimental multimer is available.
+                        Quaternary structure is how multiple chains assemble. The model on the right is
+                        typically a single chain (asymmetric unit) unless a multimer PDB is selected.
                       </p>
                       <div className="chem-grid" style={{ marginTop: "1rem" }}>
                         <div>
@@ -428,6 +432,12 @@ export function StructureExplorer({ catalog, detailsById, initialId }: Props) {
                     </section>
                   )}
                 </div>
+
+                <aside className="explorer-viewer" aria-label="3D structure">
+                  <h3 className="explorer-viewer-title">3D fold</h3>
+                  <p className="hint">Cartoon · colour N→C · always visible</p>
+                  <SimpleStructureViewer key={protein.uniprot_id} structures={structs} />
+                </aside>
               </div>
             </>
           )}
