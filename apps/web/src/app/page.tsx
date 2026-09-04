@@ -6,21 +6,21 @@ export default function HomePage() {
     <main className="page home-page home-page-visual">
       <section className="home-stage">
         <div className="home-stage-copy">
-          <p className="eyebrow">ALS · mechanism-first biology</p>
+          <p className="eyebrow">Neurodegeneration · mechanism-first biology</p>
           <h1>RockGen</h1>
           <p className="science-thesis">
             Map disease proteins and shared mechanisms before designing drugs.
           </p>
           <p className="lede">
-            A calm workspace for families, students, and researchers — evidence labeled, one tool at a
-            time.
+            A calm workspace for families, students, and researchers — ALS, Parkinson’s, Alzheimer’s,
+            and more — evidence labeled, one tool at a time.
           </p>
           <div className="cta-row">
             <Link className="btn btn-primary" href="/approach">
               How the approach works
             </Link>
-            <Link className="btn btn-ghost" href="/diseases/als">
-              Open ALS workspace
+            <Link className="btn btn-ghost" href="/diseases">
+              Open research hub
             </Link>
           </div>
         </div>
@@ -89,10 +89,13 @@ export default function HomePage() {
               tracks.
             </p>
           </Link>
-          <Link href="/diseases/als" className="path-tile">
+          <Link href="/diseases" className="path-tile">
             <p className="eyebrow">Researchers</p>
-            <h2>Research workspace</h2>
-            <p>Proteins, mechanisms, maps, and review — focused and citation-aware.</p>
+            <h2>Research hub</h2>
+            <p>
+              Disease tiles for ALS, Parkinson’s, Alzheimer’s, and more — mechanisms, maps, and
+              citation-aware review.
+            </p>
           </Link>
         </div>
       </section>

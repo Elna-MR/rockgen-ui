@@ -1,43 +1,51 @@
 import Link from "next/link";
-import { listDiseases } from "@/lib/api";
+import { ProteinField } from "@/components/ProteinField";
+import { ResearchHubClient } from "@/components/ResearchHubClient";
 
-export default async function DiseasesPage() {
-  let diseases: Awaited<ReturnType<typeof listDiseases>> = [];
-  let error: string | null = null;
-  try {
-    diseases = await listDiseases();
-  } catch (e) {
-    error = e instanceof Error ? e.message : "Failed to load diseases";
-  }
-
+export default function ResearchHubPage() {
   return (
-    <main className="page">
-      <header className="page-header">
-        <p className="eyebrow">Programs</p>
-        <h1>Disease workspaces</h1>
-        <p className="lede">
-          Every disease program gets a home: genes, proteins, mutations,
-          biomarkers, trials, and publications in one graph-backed view.
-        </p>
+    <main className="page learn-hub-page">
+      <p className="eyebrow">
+        <Link href="/">Home</Link> · Research
+      </p>
+      <header className="hub-hero hub-hero-visual">
+        <div>
+          <h1>Research hub</h1>
+          <p className="lede">
+            Disease workspaces for ALS, Parkinson’s, Alzheimer’s, Huntington’s, and FTD —
+            mechanisms, proteins, structures, and evidence tools. Open one disease at a time.
+          </p>
+          <p className="meta-pill">Mechanism-first · citation-aware · not medical advice</p>
+        </div>
+        <div className="hub-hero-motif" aria-hidden="true">
+          <ProteinField variant="panel" />
+        </div>
       </header>
 
-      {error ? (
-        <p className="error">{error}. Is the API running on :8000?</p>
-      ) : (
-        <section className="section">
-          <div className="grid">
-            {diseases.map((d) => (
-              <Link key={d.slug} href={`/diseases/${d.slug}`} className="item">
-                <strong>{d.name}</strong>
-                <span>
-                  {d.protein_count ?? 0} protein
-                  {(d.protein_count ?? 0) === 1 ? "" : "s"} · {d.slug}
-                </span>
-              </Link>
-            ))}
-          </div>
-        </section>
-      )}
+      <ResearchHubClient />
+
+      <section className="section learn-shared">
+        <h2>Shared research labs</h2>
+        <p className="hint">Use across diseases once you know the protein and mechanism map.</p>
+        <div className="hub-grid">
+          <Link href="/proteins/explore" className="hub-link">
+            <strong>Structure explorer</strong>
+            <span>PDB search, mutation sites, and folds</span>
+          </Link>
+          <Link href="/ask" className="hub-link">
+            <strong>Ask a review</strong>
+            <span>Structured scientific Q&amp;A with citations</span>
+          </Link>
+          <Link href="/approach" className="hub-link">
+            <strong>Why mechanism-first</strong>
+            <span>Prioritize routes before molecule design</span>
+          </Link>
+          <Link href="/learn" className="hub-link">
+            <strong>Learning hub</strong>
+            <span>Student primers for the same diseases</span>
+          </Link>
+        </div>
+      </section>
     </main>
   );
 }

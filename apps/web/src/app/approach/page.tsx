@@ -124,8 +124,11 @@ export default function ApproachPage() {
       <section className="science-section science-cta">
         <h2>Continue</h2>
         <div className="cta-row">
-          <Link className="btn btn-primary" href="/diseases/als/mechanisms">
-            Mechanism prioritization
+          <Link className="btn btn-primary" href="/diseases">
+            Research hub
+          </Link>
+          <Link className="btn btn-ghost" href="/diseases/als/mechanisms">
+            ALS mechanisms
           </Link>
           <Link className="btn btn-ghost" href="/learn">
             Learn hub

@@ -16,7 +16,7 @@ export default function AskPage() {
       </header>
       <AskPanel />
       <p className="hint" style={{ marginTop: "1.5rem" }}>
-        <Link href="/diseases/als">← Research workspace</Link>
+        <Link href="/diseases">← Research hub</Link>
         {" · "}
         <Link href="/learn/als#plain-language">ALS plain language</Link>
       </p>

@@ -27,9 +27,9 @@ const mono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "RockGen — ALS biology workspace",
+  title: "RockGen — neurodegeneration research",
   description:
-    "Map ALS disease proteins and shared mechanisms before designing drugs. Guides for families, a learning path for students, and an evidence workspace for researchers.",
+    "Map disease proteins and shared mechanisms across ALS, Parkinson’s, Alzheimer’s, and related biology — before designing drugs. Learn tracks and evidence workspaces.",
 };
 
 export default function RootLayout({
@@ -50,7 +50,7 @@ export default function RootLayout({
               <Link href="/approach">Approach</Link>
               <Link href="/learn">Learn</Link>
               <Link href="/proteins/explore">Structures</Link>
-              <Link href="/diseases/als">Research</Link>
+              <Link href="/diseases">Research</Link>
             </nav>
           </header>
           {children}
