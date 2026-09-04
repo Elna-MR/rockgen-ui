@@ -109,7 +109,7 @@ a {
 }
 
 .hero h1 {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: clamp(2.6rem, 6vw, 4.2rem);
   line-height: 1.05;
   margin-bottom: 1rem;
@@ -187,9 +187,10 @@ a {
 }
 
 .page-header h1 {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 2.8rem);
-  letter-spacing: -0.02em;
+  font-family: var(--font-sans);
+  font-size: clamp(1.85rem, 3.8vw, 2.45rem);
+  font-weight: 600;
+  letter-spacing: -0.025em;
   margin-bottom: 0.5rem;
 }
 
@@ -206,9 +207,11 @@ a {
 }
 
 .section h2 {
-  font-family: var(--font-display);
-  font-size: 1.35rem;
-  margin-bottom: 0.35rem;
+  font-family: var(--font-sans);
+  font-size: clamp(1.2rem, 2.2vw, 1.4rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.45rem;
 }
 
 .section .hint {
@@ -399,7 +402,7 @@ a {
 }
 
 .ask-result h3 {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: 1.05rem;
   margin: 0.85rem 0 0.4rem;
 }
@@ -488,7 +491,7 @@ a {
 }
 
 .review-panel .review-hero h3 {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: 1.6rem;
   margin: 0.25rem 0 0.5rem;
 }
@@ -608,7 +611,7 @@ a {
 
 .hero-visual h2,
 .hero-review h2 {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: 1.25rem;
   margin-bottom: 0.35rem;
 }
@@ -676,7 +679,7 @@ a {
 }
 
 .review-hero-card h2 {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: 1.45rem;
   margin: 0.25rem 0 0.5rem;
 }
@@ -851,7 +854,7 @@ a {
 }
 
 .exp-card h3 {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: 1.05rem;
   margin: 0.35rem 0 0.55rem;
 }
@@ -916,7 +919,7 @@ a {
 }
 
 .intel-card h3 {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: 1.45rem;
   margin: 0.2rem 0 0.45rem;
 }
@@ -1012,7 +1015,7 @@ a {
 
 .compare-table thead th {
   background: var(--bg-1);
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
 }
 
 .compare-table tbody th {
@@ -1204,7 +1207,7 @@ a {
 
 .overlap-panel h3 {
   margin: 0 0 0.5rem;
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
 }
 
 /* Minimal hubs — student / researcher entry */
@@ -1220,7 +1223,11 @@ a {
 }
 
 .hub-hero h1 {
-  font-size: clamp(2.25rem, 5vw, 3.25rem);
+  font-family: var(--font-sans);
+  font-size: clamp(2.1rem, 4.5vw, 2.85rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
   margin-bottom: 0.65rem;
 }
 
@@ -1259,7 +1266,7 @@ a {
 }
 
 .path-tile h2 {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: 1.35rem;
   font-weight: 600;
   margin: 0;
@@ -1414,7 +1421,7 @@ a {
 }
 
 .curriculum-num {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: 1.15rem;
   color: var(--accent);
   line-height: 1.3;
@@ -1463,7 +1470,7 @@ a {
 
 .check-panel h2,
 .reflect-panel h2 {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: 1.15rem;
   margin: 0 0 0.65rem;
 }
@@ -1565,9 +1572,11 @@ a {
 
 .science-band h2,
 .science-section h2 {
-  font-family: var(--font-display);
-  font-size: 1.45rem;
-  margin-bottom: 0.4rem;
+  font-family: var(--font-sans);
+  font-size: clamp(1.25rem, 2.4vw, 1.45rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.55rem;
 }
 
 .science-section {
@@ -1593,7 +1602,7 @@ a {
 }
 
 .pillar h3 {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: 1.1rem;
   font-weight: 600;
   margin: 0 0 0.45rem;
@@ -1621,7 +1630,7 @@ a {
 }
 
 .contrast-panel h3 {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: 1.2rem;
   margin: 0.35rem 0 0.55rem;
 }
@@ -1672,7 +1681,7 @@ a {
 }
 
 .flow-chain strong {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: 1.05rem;
 }
 
@@ -1934,7 +1943,7 @@ a {
 }
 
 .explorer-entry-header h2 {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: clamp(1.6rem, 3vw, 2.1rem);
   margin-bottom: 0.35rem;
 }
@@ -2055,7 +2064,7 @@ a {
 
 .mut-gate-headline {
   margin: 0.25rem 0 0.35rem;
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: 1.05rem;
 }
 
@@ -2064,7 +2073,7 @@ a {
 }
 
 .mut-patch-title {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: 0.95rem;
   margin: 0.95rem 0 0.45rem;
 }
@@ -2228,7 +2237,7 @@ a {
 }
 
 .explorer-panel h3 {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: 1.15rem;
   margin: 1.15rem 0 0.55rem;
 }
