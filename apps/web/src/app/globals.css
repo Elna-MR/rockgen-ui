@@ -2398,12 +2398,62 @@ i.chem-swatch.chem-special {
   overflow: hidden;
 }
 
+.atm-shade {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(48px);
+  will-change: transform, opacity;
+}
+
+.atm-shade-1 {
+  width: min(58vw, 34rem);
+  height: min(46vw, 26rem);
+  top: -12%;
+  right: -8%;
+  background: radial-gradient(ellipse at center, rgba(26, 43, 51, 0.1), transparent 70%);
+  box-shadow: 0 40px 90px rgba(42, 85, 82, 0.12);
+  animation: atmShadeDrift 18s ease-in-out infinite alternate;
+}
+
+.atm-shade-2 {
+  width: min(50vw, 28rem);
+  height: min(50vw, 28rem);
+  bottom: -6%;
+  left: -12%;
+  background: radial-gradient(circle, rgba(74, 139, 134, 0.14), transparent 68%);
+  box-shadow: 0 30px 80px rgba(26, 43, 51, 0.08);
+  animation: atmShadeDrift 24s ease-in-out infinite alternate-reverse;
+  animation-delay: -4s;
+}
+
+.atm-shade-3 {
+  width: min(36vw, 20rem);
+  height: min(36vw, 20rem);
+  top: 38%;
+  left: 28%;
+  background: radial-gradient(circle, rgba(90, 120, 140, 0.12), transparent 72%);
+  box-shadow: 0 24px 60px rgba(74, 139, 134, 0.1);
+  animation: atmShadePulse 14s ease-in-out infinite;
+  animation-delay: -2s;
+}
+
+.atm-shade-4 {
+  width: min(42vw, 22rem);
+  height: min(28vw, 14rem);
+  top: 58%;
+  right: 8%;
+  background: radial-gradient(ellipse at center, rgba(26, 43, 51, 0.07), transparent 74%);
+  box-shadow: 0 36px 70px rgba(42, 85, 82, 0.09);
+  animation: atmShadeDrift 20s ease-in-out infinite alternate;
+  animation-delay: -9s;
+}
+
 .atm-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(40px);
-  opacity: 0.55;
-  animation: atmDrift 22s ease-in-out infinite alternate;
+  filter: blur(36px);
+  opacity: 0.7;
+  animation: atmDrift 16s ease-in-out infinite alternate;
 }
 
 .atm-orb-1 {
@@ -2411,7 +2461,8 @@ i.chem-swatch.chem-special {
   height: min(48vw, 28rem);
   top: -8%;
   right: -6%;
-  background: radial-gradient(circle, rgba(74, 139, 134, 0.22), transparent 68%);
+  background: radial-gradient(circle, rgba(74, 139, 134, 0.28), transparent 68%);
+  box-shadow: 0 0 80px rgba(74, 139, 134, 0.12);
 }
 
 .atm-orb-2 {
@@ -2419,38 +2470,109 @@ i.chem-swatch.chem-special {
   height: min(42vw, 24rem);
   bottom: 8%;
   left: -10%;
-  background: radial-gradient(circle, rgba(106, 154, 175, 0.16), transparent 70%);
-  animation-delay: -7s;
-  animation-duration: 28s;
+  background: radial-gradient(circle, rgba(106, 154, 175, 0.2), transparent 70%);
+  box-shadow: 0 0 70px rgba(90, 120, 140, 0.1);
+  animation-delay: -5s;
+  animation-duration: 20s;
 }
 
 .atm-orb-3 {
   width: min(30vw, 16rem);
   height: min(30vw, 16rem);
   top: 42%;
-  left: 38%;
-  background: radial-gradient(circle, rgba(74, 139, 134, 0.1), transparent 72%);
-  animation-delay: -12s;
-  animation-duration: 26s;
+  left: 42%;
+  background: radial-gradient(circle, rgba(74, 139, 134, 0.14), transparent 72%);
+  animation-delay: -10s;
+  animation-duration: 18s;
 }
 
 .atm-ribbon {
   position: absolute;
-  inset: 12% -5% auto;
-  width: 110%;
-  height: min(42vh, 28rem);
-  opacity: 0.9;
-  animation: atmRibbon 30s ease-in-out infinite alternate;
+  left: -6%;
+  width: 112%;
+  height: min(48vh, 32rem);
+  opacity: 1;
+}
+
+.atm-ribbon-a {
+  top: 8%;
+  animation: atmRibbon 22s ease-in-out infinite alternate;
+}
+
+.atm-ribbon-b {
+  top: 42%;
+  height: min(36vh, 24rem);
+  animation: atmRibbonAlt 26s ease-in-out infinite alternate;
+  animation-delay: -6s;
+}
+
+.atm-path-wide {
+  stroke: rgba(42, 85, 82, 0.11);
+  stroke-width: 36;
+  filter: blur(1.5px);
+}
+
+.atm-path-mid {
+  stroke: rgba(74, 139, 134, 0.14);
+  stroke-width: 16;
+}
+
+.atm-path-thin {
+  stroke: rgba(26, 43, 51, 0.08);
+  stroke-width: 10;
+  filter: blur(0.8px);
+}
+
+.atm-veil {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 80% 0%, rgba(255, 255, 255, 0.35), transparent 55%),
+    radial-gradient(ellipse 60% 45% at 10% 100%, rgba(244, 246, 248, 0.55), transparent 50%);
+  animation: atmVeil 20s ease-in-out infinite alternate;
 }
 
 @keyframes atmDrift {
   from { transform: translate3d(0, 0, 0) scale(1); }
-  to { transform: translate3d(2%, 3%, 0) scale(1.06); }
+  to { transform: translate3d(4%, 5%, 0) scale(1.1); }
+}
+
+@keyframes atmShadeDrift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+    opacity: 0.55;
+  }
+  to {
+    transform: translate3d(6%, -4%, 0) scale(1.12) rotate(4deg);
+    opacity: 0.9;
+  }
+}
+
+@keyframes atmShadePulse {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.45;
+  }
+  50% {
+    transform: translate3d(-3%, 4%, 0) scale(1.18);
+    opacity: 0.8;
+  }
 }
 
 @keyframes atmRibbon {
-  from { transform: translateX(0) translateY(0); opacity: 0.85; }
-  to { transform: translateX(-1.5%) translateY(2%); opacity: 1; }
+  from { transform: translate3d(0, 0, 0) scaleX(1); opacity: 0.75; }
+  to { transform: translate3d(-3%, 3%, 0) scaleX(1.03); opacity: 1; }
+}
+
+@keyframes atmRibbonAlt {
+  from { transform: translate3d(0, 0, 0) scaleX(1.02); opacity: 0.55; }
+  to { transform: translate3d(2.5%, -2.5%, 0) scaleX(1); opacity: 0.85; }
+}
+
+@keyframes atmVeil {
+  from { opacity: 0.65; }
+  to { opacity: 1; }
 }
 
 .home-page-visual.page,
@@ -2495,7 +2617,8 @@ i.chem-swatch.chem-special {
 .home-stage-visual .protein-field {
   width: min(100%, 34rem);
   height: auto;
-  filter: drop-shadow(0 18px 40px rgba(42, 85, 82, 0.08));
+  filter: drop-shadow(0 22px 48px rgba(42, 85, 82, 0.14));
+  animation: pfShadowBreathe 8s ease-in-out infinite;
 }
 
 .home-stage-caption {
@@ -2657,6 +2780,18 @@ i.chem-swatch.chem-special {
   to { transform: rotate(360deg); }
 }
 
+@keyframes pfShadowBreathe {
+  0%,
+  100% {
+    filter: drop-shadow(0 18px 36px rgba(42, 85, 82, 0.1));
+    transform: translateY(0);
+  }
+  50% {
+    filter: drop-shadow(0 28px 56px rgba(42, 85, 82, 0.18));
+    transform: translateY(-4px);
+  }
+}
+
 @media (max-width: 860px) {
   .home-stage,
   .approach-hero {
@@ -2679,7 +2814,10 @@ i.chem-swatch.chem-special {
 
 @media (prefers-reduced-motion: reduce) {
   .atm-orb,
+  .atm-shade,
   .atm-ribbon,
+  .atm-veil,
+  .home-stage-visual .protein-field,
   .protein-field .pf-ribbon-main,
   .protein-field .pf-ribbon-back,
   .protein-field .pf-trace,
