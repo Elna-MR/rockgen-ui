@@ -1,32 +1,20 @@
 import Link from "next/link";
 import { StructureExplorer } from "@/components/StructureExplorer";
-import { getDisease } from "@/lib/api";
 
 type Props = { searchParams: Promise<{ q?: string }> };
 
-const FALLBACK_CATALOG = [
+/** Local ALS panel — avoids blocking Structures on a down Neo4j/API catalog. */
+const ALS_CATALOG = [
   { uniprot_id: "P07737", symbol: "PFN1", name: "Profilin-1" },
   { uniprot_id: "P68366", symbol: "TUBA4A", name: "Tubulin alpha-4A chain" },
+  { uniprot_id: "P00441", symbol: "SOD1", name: "Superoxide dismutase [Cu-Zn]" },
+  { uniprot_id: "P35637", symbol: "FUS", name: "RNA-binding protein FUS" },
+  { uniprot_id: "Q13148", symbol: "TARDBP", name: "TAR DNA-binding protein 43" },
 ];
 
 export default async function StructureExplorePage({ searchParams }: Props) {
   const { q } = await searchParams;
   const initialQuery = (q || "PFN1-G118V").trim();
-  let catalog = FALLBACK_CATALOG;
-  let apiWarning: string | null = null;
-
-  try {
-    const disease = await getDisease("als");
-    if (disease.proteins?.length) {
-      catalog = disease.proteins.map((p) => ({
-        uniprot_id: p.uniprot_id,
-        symbol: p.symbol,
-        name: p.name,
-      }));
-    }
-  } catch (e) {
-    apiWarning = e instanceof Error ? e.message : "ALS catalog unavailable";
-  }
 
   return (
     <main className="page page-explorer">
@@ -40,12 +28,7 @@ export default async function StructureExplorePage({ searchParams }: Props) {
           3D chemistry, or jump to peptide binder design at the same site.
         </p>
       </header>
-      {apiWarning && (
-        <p className="hint" style={{ marginBottom: "0.85rem" }}>
-          Live ALS catalog temporarily unavailable — PDB search still works. ({apiWarning})
-        </p>
-      )}
-      <StructureExplorer catalog={catalog} initialQuery={initialQuery} />
+      <StructureExplorer catalog={ALS_CATALOG} initialQuery={initialQuery} />
     </main>
   );
 }
