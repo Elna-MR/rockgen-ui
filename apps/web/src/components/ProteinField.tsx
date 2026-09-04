@@ -1,4 +1,4 @@
-/** Minimal protein-inspired decorative SVG — ribbons, backbone, residue nodes. */
+/** Minimal protein motif — thin backbone, helix, residue nodes. */
 type Props = {
   variant?: "hero" | "panel" | "ambient";
   className?: string;
@@ -9,83 +9,103 @@ export function ProteinField({ variant = "hero", className = "" }: Props) {
   return (
     <svg
       className={`protein-field protein-field-${variant} ${className}`.trim()}
-      viewBox="0 0 640 480"
+      viewBox="0 0 640 420"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
       focusable="false"
     >
       <defs>
-        <linearGradient id={`${id}-ribbon`} x1="40" y1="80" x2="600" y2="400" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#4a8b86" stopOpacity="0.55" />
-          <stop offset="0.45" stopColor="#6a9aaf" stopOpacity="0.35" />
-          <stop offset="1" stopColor="#4a8b86" stopOpacity="0.15" />
-        </linearGradient>
-        <linearGradient id={`${id}-soft`} x1="200" y1="40" x2="520" y2="440" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#9bb8b4" stopOpacity="0.28" />
-          <stop offset="1" stopColor="#4a8b86" stopOpacity="0.05" />
+        <linearGradient id={`${id}-line`} x1="40" y1="80" x2="600" y2="340" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#4a8b86" stopOpacity="0.7" />
+          <stop offset="0.5" stopColor="#5c8a9a" stopOpacity="0.45" />
+          <stop offset="1" stopColor="#4a8b86" stopOpacity="0.25" />
         </linearGradient>
         <filter id={`${id}-blur`} x="-20%" y="-20%" width="140%" height="140%">
-          <feGaussianBlur stdDeviation="18" />
+          <feGaussianBlur stdDeviation="12" />
         </filter>
       </defs>
 
-      {/* Soft atmospheric blobs */}
-      <ellipse className="pf-blob pf-blob-a" cx="470" cy="150" rx="160" ry="110" fill={`url(#${id}-soft)`} filter={`url(#${id}-blur)`} />
-      <ellipse className="pf-blob pf-blob-b" cx="180" cy="340" rx="130" ry="90" fill={`url(#${id}-soft)`} filter={`url(#${id}-blur)`} />
-
-      {/* Secondary fold ribbon */}
-      <path
-        className="pf-ribbon pf-ribbon-back"
-        d="M70 300 C150 220, 210 360, 300 280 S470 180, 560 240"
-        stroke={`url(#${id}-ribbon)`}
-        strokeWidth="18"
-        strokeLinecap="round"
-        opacity="0.35"
+      <ellipse
+        className="pf-blob pf-blob-a"
+        cx="460"
+        cy="150"
+        rx="120"
+        ry="80"
+        fill="#9bb8b4"
+        fillOpacity="0.12"
+        filter={`url(#${id}-blur)`}
+      />
+      <ellipse
+        className="pf-blob pf-blob-b"
+        cx="180"
+        cy="280"
+        rx="100"
+        ry="70"
+        fill="#4a8b86"
+        fillOpacity="0.08"
+        filter={`url(#${id}-blur)`}
       />
 
-      {/* Primary backbone ribbon */}
+      {/* Shadow line */}
+      <path
+        d="M70 250 C170 140, 260 340, 370 220 S520 130, 590 230"
+        stroke="rgba(26,43,51,0.06)"
+        strokeWidth="8"
+        strokeLinecap="round"
+      />
+
+      {/* Backbone */}
       <path
         className="pf-ribbon pf-ribbon-main"
-        d="M50 200 C140 90, 230 320, 340 190 S500 80, 600 170"
-        stroke={`url(#${id}-ribbon)`}
-        strokeWidth="22"
+        d="M60 240 C160 130, 250 340, 360 210 S510 120, 600 220"
+        stroke={`url(#${id}-line)`}
+        strokeWidth="2.5"
         strokeLinecap="round"
       />
 
-      {/* Thin structure trace */}
+      {/* Helix */}
+      <path
+        className="pf-ribbon pf-ribbon-back"
+        d="M210 220
+           C228 185, 252 185, 270 220
+           C288 255, 312 255, 330 220
+           C348 185, 372 185, 390 220"
+        stroke="#4a8b86"
+        strokeOpacity="0.4"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+
+      {/* Sheet */}
+      <g stroke="#6a9aaf" strokeOpacity="0.35" strokeWidth="1.5" strokeLinecap="round">
+        <path d="M430 175 L505 160" />
+        <path d="M435 190 L510 175" />
+        <path d="M440 205 L515 190" />
+      </g>
+
       <path
         className="pf-trace"
-        d="M80 250 C160 160, 250 340, 360 230 S510 120, 580 200"
+        d="M90 255 C180 160, 270 320, 380 230 S530 145, 580 225"
         stroke="#2a5552"
-        strokeOpacity="0.22"
-        strokeWidth="1.5"
+        strokeOpacity="0.18"
+        strokeWidth="1"
         strokeLinecap="round"
-        strokeDasharray="4 8"
+        strokeDasharray="3 7"
       />
 
-      {/* Residue nodes along the fold */}
       <g className="pf-residues" fill="#4a8b86">
-        <circle className="pf-res pf-res-1" cx="120" cy="155" r="5.5" />
-        <circle className="pf-res pf-res-2" cx="210" cy="255" r="4.5" />
-        <circle className="pf-res pf-res-3" cx="300" cy="210" r="6" />
-        <circle className="pf-res pf-res-4" cx="390" cy="155" r="4.5" />
-        <circle className="pf-res pf-res-5" cx="480" cy="135" r="5.5" />
-        <circle className="pf-res pf-res-6" cx="545" cy="175" r="4" />
+        <circle className="pf-res pf-res-1" cx="110" cy="200" r="3.5" />
+        <circle className="pf-res pf-res-2" cx="210" cy="220" r="3" />
+        <circle className="pf-res pf-res-3" cx="300" cy="235" r="3.8" />
+        <circle className="pf-res pf-res-4" cx="390" cy="220" r="3.2" />
+        <circle className="pf-res pf-res-5" cx="470" cy="170" r="3.4" />
+        <circle className="pf-res pf-res-6" cx="560" cy="210" r="3" />
       </g>
 
-      {/* Side-chain ticks */}
-      <g className="pf-ticks" stroke="#4a8b86" strokeOpacity="0.35" strokeWidth="1.5" strokeLinecap="round">
-        <path d="M120 155 L105 125" />
-        <path d="M300 210 L325 245" />
-        <path d="M480 135 L505 110" />
-        <path d="M210 255 L185 285" />
-      </g>
-
-      {/* Helix cue rings */}
-      <g className="pf-helix" stroke="#4a8b86" strokeOpacity="0.2" strokeWidth="1.25" fill="none">
-        <ellipse className="pf-ring pf-ring-1" cx="340" cy="190" rx="42" ry="16" />
-        <ellipse className="pf-ring pf-ring-2" cx="340" cy="190" rx="58" ry="24" />
+      <g className="pf-helix" stroke="#4a8b86" strokeOpacity="0.18" strokeWidth="1" fill="none">
+        <ellipse className="pf-ring pf-ring-1" cx="300" cy="225" rx="28" ry="11" />
+        <ellipse className="pf-ring pf-ring-2" cx="300" cy="225" rx="40" ry="16" />
       </g>
     </svg>
   );

@@ -2448,87 +2448,75 @@ i.chem-swatch.chem-special {
   animation-delay: -9s;
 }
 
+.atm-shade-4 {
+  display: none;
+}
+
 .atm-orb {
+  display: none;
+}
+
+.atm-protein {
   position: absolute;
-  border-radius: 50%;
-  filter: blur(36px);
-  opacity: 0.7;
-  animation: atmDrift 16s ease-in-out infinite alternate;
+  pointer-events: none;
+  overflow: visible;
 }
 
-.atm-orb-1 {
-  width: min(48vw, 28rem);
-  height: min(48vw, 28rem);
-  top: -8%;
-  right: -6%;
-  background: radial-gradient(circle, rgba(74, 139, 134, 0.28), transparent 68%);
-  box-shadow: 0 0 80px rgba(74, 139, 134, 0.12);
-}
-
-.atm-orb-2 {
-  width: min(42vw, 24rem);
-  height: min(42vw, 24rem);
-  bottom: 8%;
-  left: -10%;
-  background: radial-gradient(circle, rgba(106, 154, 175, 0.2), transparent 70%);
-  box-shadow: 0 0 70px rgba(90, 120, 140, 0.1);
-  animation-delay: -5s;
-  animation-duration: 20s;
-}
-
-.atm-orb-3 {
-  width: min(30vw, 16rem);
-  height: min(30vw, 16rem);
-  top: 42%;
-  left: 42%;
-  background: radial-gradient(circle, rgba(74, 139, 134, 0.14), transparent 72%);
-  animation-delay: -10s;
-  animation-duration: 18s;
-}
-
-.atm-ribbon {
-  position: absolute;
-  left: -6%;
-  width: 112%;
-  height: min(48vh, 32rem);
+.atm-protein-main {
+  top: 6%;
+  right: -8%;
+  width: min(78vw, 46rem);
+  height: auto;
   opacity: 1;
+  animation: atmProteinDrift 28s ease-in-out infinite alternate;
+  filter: drop-shadow(0 18px 40px rgba(42, 85, 82, 0.06));
 }
 
-.atm-ribbon-a {
-  top: 8%;
-  animation: atmRibbon 22s ease-in-out infinite alternate;
+.atm-protein-side {
+  bottom: 4%;
+  left: -6%;
+  width: min(52vw, 28rem);
+  height: auto;
+  opacity: 0.9;
+  animation: atmProteinDriftAlt 32s ease-in-out infinite alternate;
+  animation-delay: -8s;
 }
 
-.atm-ribbon-b {
-  top: 42%;
-  height: min(36vh, 24rem);
-  animation: atmRibbonAlt 26s ease-in-out infinite alternate;
-  animation-delay: -6s;
+.atm-backbone {
+  stroke-dasharray: 1200;
+  stroke-dashoffset: 0;
+  animation: atmDrawSoft 1.8s ease both;
 }
 
-.atm-path-wide {
-  stroke: rgba(42, 85, 82, 0.11);
-  stroke-width: 36;
-  filter: blur(1.5px);
+.atm-helix,
+.atm-helix-side {
+  animation: atmHelixGlow 6s ease-in-out infinite;
 }
 
-.atm-path-mid {
-  stroke: rgba(74, 139, 134, 0.14);
-  stroke-width: 16;
+.atm-node {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: atmNodePulse 4.5s ease-in-out infinite;
 }
 
-.atm-path-thin {
-  stroke: rgba(26, 43, 51, 0.08);
-  stroke-width: 10;
-  filter: blur(0.8px);
+.atm-node.n2 { animation-delay: 0.4s; }
+.atm-node.n3 { animation-delay: 0.8s; }
+.atm-node.n4 { animation-delay: 1.2s; }
+.atm-node.n5 { animation-delay: 1.6s; }
+.atm-node.n6 { animation-delay: 2s; }
+.atm-node.n7 { animation-delay: 2.4s; }
+
+.atm-sheet {
+  animation: atmSheetShift 12s ease-in-out infinite alternate;
+  transform-origin: 560px 260px;
 }
 
 .atm-veil {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 70% 50% at 80% 0%, rgba(255, 255, 255, 0.35), transparent 55%),
-    radial-gradient(ellipse 60% 45% at 10% 100%, rgba(244, 246, 248, 0.55), transparent 50%);
+    radial-gradient(ellipse 70% 50% at 80% 0%, rgba(255, 255, 255, 0.4), transparent 55%),
+    radial-gradient(ellipse 60% 45% at 10% 100%, rgba(244, 246, 248, 0.6), transparent 50%);
   animation: atmVeil 20s ease-in-out infinite alternate;
 }
 
@@ -2540,11 +2528,11 @@ i.chem-swatch.chem-special {
 @keyframes atmShadeDrift {
   from {
     transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
-    opacity: 0.55;
+    opacity: 0.45;
   }
   to {
-    transform: translate3d(6%, -4%, 0) scale(1.12) rotate(4deg);
-    opacity: 0.9;
+    transform: translate3d(5%, -3%, 0) scale(1.08) rotate(3deg);
+    opacity: 0.75;
   }
 }
 
@@ -2552,27 +2540,59 @@ i.chem-swatch.chem-special {
   0%,
   100% {
     transform: translate3d(0, 0, 0) scale(1);
-    opacity: 0.45;
+    opacity: 0.35;
   }
   50% {
-    transform: translate3d(-3%, 4%, 0) scale(1.18);
-    opacity: 0.8;
+    transform: translate3d(-2%, 3%, 0) scale(1.12);
+    opacity: 0.65;
   }
 }
 
-@keyframes atmRibbon {
-  from { transform: translate3d(0, 0, 0) scaleX(1); opacity: 0.75; }
-  to { transform: translate3d(-3%, 3%, 0) scaleX(1.03); opacity: 1; }
+@keyframes atmProteinDrift {
+  from { transform: translate3d(0, 0, 0) rotate(-1.5deg); }
+  to { transform: translate3d(-2.5%, 2%, 0) rotate(2deg); }
 }
 
-@keyframes atmRibbonAlt {
-  from { transform: translate3d(0, 0, 0) scaleX(1.02); opacity: 0.55; }
-  to { transform: translate3d(2.5%, -2.5%, 0) scaleX(1); opacity: 0.85; }
+@keyframes atmProteinDriftAlt {
+  from { transform: translate3d(0, 0, 0) rotate(2deg); }
+  to { transform: translate3d(3%, -2%, 0) rotate(-1deg); }
+}
+
+@keyframes atmHelixGlow {
+  0%,
+  100% { opacity: 0.75; }
+  50% { opacity: 1; }
+}
+
+@keyframes atmNodePulse {
+  0%,
+  100% { transform: scale(1); opacity: 0.28; }
+  50% { transform: scale(1.55); opacity: 0.55; }
+}
+
+@keyframes atmSheetShift {
+  from { transform: translateX(0); opacity: 0.7; }
+  to { transform: translateX(6px); opacity: 1; }
+}
+
+@keyframes atmDrawSoft {
+  from { stroke-dashoffset: 400; opacity: 0.3; }
+  to { stroke-dashoffset: 0; opacity: 1; }
 }
 
 @keyframes atmVeil {
-  from { opacity: 0.65; }
+  from { opacity: 0.7; }
   to { opacity: 1; }
+}
+
+/* legacy ribbon rules unused */
+.atm-ribbon,
+.atm-ribbon-a,
+.atm-ribbon-b,
+.atm-path-wide,
+.atm-path-mid,
+.atm-path-thin {
+  display: none;
 }
 
 .home-page-visual.page,
@@ -2816,6 +2836,11 @@ i.chem-swatch.chem-special {
   .atm-orb,
   .atm-shade,
   .atm-ribbon,
+  .atm-protein,
+  .atm-helix,
+  .atm-helix-side,
+  .atm-node,
+  .atm-sheet,
   .atm-veil,
   .home-stage-visual .protein-field,
   .protein-field .pf-ribbon-main,
