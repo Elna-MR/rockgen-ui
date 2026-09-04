@@ -2,7 +2,11 @@ import Link from "next/link";
 import { StructureExplorer } from "@/components/StructureExplorer";
 import { getDisease } from "@/lib/api";
 
-export default async function StructureExplorePage() {
+type Props = { searchParams: Promise<{ q?: string }> };
+
+export default async function StructureExplorePage({ searchParams }: Props) {
+  const { q } = await searchParams;
+  const initialQuery = (q || "PFN1-G118V").trim();
   let catalog: Array<{ uniprot_id: string; symbol: string; name: string }> = [];
   let error: string | null = null;
 
@@ -28,16 +32,16 @@ export default async function StructureExplorePage() {
   return (
     <main className="page page-explorer">
       <p className="eyebrow">
-        <Link href="/diseases/als">ALS</Link> · Structure explorer
+        <Link href="/diseases/als">ALS</Link> · Structures
       </p>
-      <header className="page-header" style={{ marginBottom: "1.25rem" }}>
+      <header className="page-header" style={{ marginBottom: "0.85rem" }}>
         <h1>Structure explorer</h1>
         <p className="lede">
-          Search by protein, PDB id, or ALS mutation (e.g. PFN1-G118V) — ranked structures, local site
-          chemistry, sequence, and a live 3D fold focused on the mutation patch.
+          Search by protein, PDB id, or ALS mutation. From here you can inspect the substitution in
+          3D chemistry, or jump to peptide binder design at the same site.
         </p>
       </header>
-      <StructureExplorer catalog={catalog} initialQuery="PFN1-G118V" />
+      <StructureExplorer catalog={catalog} initialQuery={initialQuery} />
     </main>
   );
 }

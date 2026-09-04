@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { aaClass, chemistrySummary } from "@/lib/proteinChemistry";
 import {
@@ -9,6 +10,7 @@ import {
   parseMutationQuery,
   type ParsedMutation,
 } from "@/lib/mutationContext";
+import { StructureWorkspaceNav } from "@/components/StructureWorkspaceNav";
 
 const PdbStructureViewer = dynamic(
   () => import("@/components/PdbStructureViewer").then((m) => m.PdbStructureViewer),
@@ -114,13 +116,26 @@ export function StructureExplorer({ catalog, initialQuery }: Props) {
   const [loadingEntry, setLoadingEntry] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [activeResi, setActiveResi] = useState<number | null>(null);
+  const [lastSearched, setLastSearched] = useState<string | null>(null);
+
+  const liveParse = useMemo(() => parseMutationQuery(query), [query]);
+  const resolvedTerm = liveParse?.pdbId || liveParse?.searchTerm || query.trim();
+
+  const catalogChips = useMemo(() => {
+    const used = new Set(
+      [...ALS_MUTATION_CHIPS, ...QUICK].map((c) => c.label.toUpperCase()),
+    );
+    return catalog.filter((p) => !used.has(p.symbol.toUpperCase())).slice(0, 6);
+  }, [catalog]);
 
   const runSearch = useCallback(async (q: string) => {
     const term = q.trim();
     if (!term) return;
     const parsed = parseMutationQuery(term);
     setMutation(parsed);
+    setQuery(term);
     const pdbTerm = parsed?.pdbId || parsed?.searchTerm || term;
+    setLastSearched(pdbTerm);
     setSearching(true);
     setError(null);
     try {
@@ -199,70 +214,113 @@ export function StructureExplorer({ catalog, initialQuery }: Props) {
     setActiveResi(resi);
   }
 
+  function applyChip(q: string) {
+    setQuery(q);
+    void runSearch(q);
+  }
+
   return (
     <div className="explorer">
+      <StructureWorkspaceNav active="explore" query={query.trim() || undefined} />
       <div className="explorer-search">
+        <label className="explorer-search-label" htmlFor="protein-search">
+          Find a structure
+        </label>
         <div className="explorer-search-row">
-          <input
-            id="protein-search"
-            className="ask-input explorer-input"
-            type="search"
-            placeholder="Protein, PDB id, or mutation (e.g. PFN1-G118V)…"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") void runSearch(query);
-            }}
-            autoComplete="off"
-          />
-          <button type="button" className="btn btn-primary" onClick={() => void runSearch(query)} disabled={searching}>
+          <div className="explorer-input-wrap">
+            <input
+              id="protein-search"
+              className="ask-input explorer-input"
+              type="search"
+              placeholder="Try PFN1-G118V, profilin-1, or 2PAV…"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") void runSearch(query);
+              }}
+              autoComplete="off"
+              spellCheck={false}
+              aria-describedby="protein-search-help"
+            />
+            {query && (
+              <button
+                type="button"
+                className="explorer-clear"
+                aria-label="Clear search"
+                onClick={() => setQuery("")}
+              >
+                ×
+              </button>
+            )}
+          </div>
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={() => void runSearch(query)}
+            disabled={searching || !query.trim()}
+          >
             {searching ? "Searching…" : "Search"}
           </button>
         </div>
-        <p className="hint explorer-mut-hint">
-          ALS mutation chips resolve the gene → PDB search and focus the local chemistry / 3D patch.
+        <p id="protein-search-help" className="hint explorer-mut-hint">
+          {liveParse ? (
+            <>
+              Mutation <strong>{liveParse.label}</strong>
+              {liveParse.target ? ` on ${liveParse.target}` : ""} → searching PDB for{" "}
+              <strong>{resolvedTerm}</strong>, then focusing the local site in 3D.
+            </>
+          ) : query.trim() ? (
+            <>
+              Searching PDB for <strong>{resolvedTerm || "…"}</strong>. Add a mutation like{" "}
+              <code>G118V</code> to highlight a site.
+            </>
+          ) : (
+            <>Type a protein name, PDB id, or ALS mutation — or pick a shortcut below.</>
+          )}
         </p>
-        <div className="chip-row explorer-quick">
-          {ALS_MUTATION_CHIPS.map((q) => (
-            <button
-              key={q.q}
-              type="button"
-              className={`chip ${query === q.q ? "chip-active" : ""}`}
-              onClick={() => {
-                setQuery(q.q);
-                void runSearch(q.q);
-              }}
-            >
-              {q.label}
-            </button>
-          ))}
-          {QUICK.map((q) => (
-            <button
-              key={q.q}
-              type="button"
-              className="chip"
-              onClick={() => {
-                setQuery(q.q);
-                void runSearch(q.q);
-              }}
-            >
-              {q.label}
-            </button>
-          ))}
-          {catalog.slice(0, 4).map((p) => (
-            <button
-              key={p.uniprot_id}
-              type="button"
-              className="chip"
-              onClick={() => {
-                const q = p.name || p.symbol;
-                setQuery(q);
-                void runSearch(q);
-              }}
-            >
-              {p.symbol}
-            </button>
-          ))}
+
+        <div className="explorer-chip-groups">
+          <div className="explorer-chip-group">
+            <span className="explorer-chip-label">ALS mutations</span>
+            <div className="chip-row explorer-quick">
+              {ALS_MUTATION_CHIPS.map((q) => (
+                <button
+                  key={q.q}
+                  type="button"
+                  className={`chip ${query === q.q ? "chip-active" : ""}`}
+                  onClick={() => applyChip(q.q)}
+                >
+                  {q.label}
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="explorer-chip-group">
+            <span className="explorer-chip-label">Example proteins</span>
+            <div className="chip-row explorer-quick">
+              {QUICK.map((q) => (
+                <button
+                  key={q.q}
+                  type="button"
+                  className={`chip ${query === q.q ? "chip-active" : ""}`}
+                  onClick={() => applyChip(q.q)}
+                >
+                  {q.label}
+                </button>
+              ))}
+              {catalogChips.map((p) => (
+                <button
+                  key={p.uniprot_id}
+                  type="button"
+                  className={`chip ${query === (p.name || p.symbol) ? "chip-active" : ""}`}
+                  onClick={() => applyChip(p.name || p.symbol)}
+                  title={p.name}
+                >
+                  {p.symbol}
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 
@@ -271,8 +329,11 @@ export function StructureExplorer({ catalog, initialQuery }: Props) {
       <div className="explorer-layout">
         <aside className="explorer-sidebar" aria-label="Matching structures">
           <p className="eyebrow">
-            {hits.length} structure{hits.length === 1 ? "" : "s"}
-            {total > hits.length ? ` of ${total.toLocaleString()}` : ""} — ranked by relevance
+            {searching
+              ? "Searching PDB…"
+              : `${hits.length} structure${hits.length === 1 ? "" : "s"}${
+                  total > hits.length ? ` of ${total.toLocaleString()}` : ""
+                }${lastSearched ? ` for “${lastSearched}”` : ""}`}
           </p>
           <ul className="explorer-results">
             {hits.map((h) => (
@@ -294,7 +355,10 @@ export function StructureExplorer({ catalog, initialQuery }: Props) {
                 </button>
               </li>
             ))}
-            {!searching && hits.length === 0 && <li className="hint">No PDB structures for this query.</li>}
+            {searching && hits.length === 0 && <li className="hint">Looking up structures…</li>}
+            {!searching && hits.length === 0 && (
+              <li className="hint">No PDB structures for this query. Try a protein name or PDB id.</li>
+            )}
           </ul>
         </aside>
 
@@ -369,6 +433,20 @@ export function StructureExplorer({ catalog, initialQuery }: Props) {
                         <em>{r.pos}</em>
                       </button>
                     ))}
+                  </div>
+                  <div className="mut-gate-actions cta-row">
+                    <Link
+                      className="btn btn-primary"
+                      href={`/proteins/inspect?q=${encodeURIComponent(query.trim() || mutation.label)}`}
+                    >
+                      Open mutation inspector
+                    </Link>
+                    <Link
+                      className="btn btn-ghost"
+                      href={`/proteins/design?q=${encodeURIComponent(query.trim() || mutation.label)}`}
+                    >
+                      Design peptide at site
+                    </Link>
                   </div>
                 </section>
               )}

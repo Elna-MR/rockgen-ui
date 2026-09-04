@@ -12,7 +12,8 @@ export default async function ProteinStructurePage({ params }: Props) {
 
   try {
     const protein = await getProtein(id);
-    initialQuery = protein.name || protein.symbol;
+    initialQuery =
+      protein.symbol === "PFN1" ? "PFN1-G118V" : protein.name || protein.symbol;
     const disease = await getDisease("als").catch(() => null);
     catalog =
       disease?.proteins?.map((p) => ({
@@ -42,13 +43,13 @@ export default async function ProteinStructurePage({ params }: Props) {
     <main className="page page-explorer">
       <p className="eyebrow">
         <Link href="/diseases/als">ALS</Link> ·{" "}
-        <Link href={`/proteins/${id}`}>{id}</Link> · Structure explorer
+        <Link href={`/proteins/${id}`}>{id}</Link> · Structures
       </p>
-      <header className="page-header" style={{ marginBottom: "1.25rem" }}>
+      <header className="page-header" style={{ marginBottom: "0.85rem" }}>
         <h1>Structure explorer</h1>
         <p className="lede">
-          PDB search seeded from this protein — pick a structure to inspect primary through quaternary
-          detail with the 3D fold on the right.
+          PDB search seeded from this protein — inspect primary→quaternary detail, then open the
+          mutation inspector or peptide design tools for the same site.
         </p>
       </header>
       <StructureExplorer catalog={catalog} initialQuery={initialQuery} />

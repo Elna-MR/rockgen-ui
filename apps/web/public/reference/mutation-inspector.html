@@ -1,0 +1,1023 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Substitution — a point mutation inspector</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Same rule as the structure explorer: the interface is monochrome ink,
+   and every hue that appears carries chemical or structural meaning. */
+:root{
+  --ink:#0B1118; --panel:#101A24; --panel-2:#16222E; --rule:#22323F;
+  --bone:#E7EEF4; --muted:#8497A7; --dim:#5B6D7C; --accent:#5FD3E0;
+  --helix:#E0533F; --strand:#E8B23A; --coil:#6C8195;
+  --hydrophobic:#C9A227; --polar:#4FB3A5; --acidic:#E0533F; --basic:#6E8FE0; --special:#A97BD1;
+  --warn:#E0533F; --caution:#E8B23A; --ok:#4FB3A5;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --disp:"Space Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--ink);color:var(--bone);font-family:var(--disp);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)} button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+header{border-bottom:1px solid var(--rule);background:linear-gradient(180deg,#0E1822,#0B1118);position:sticky;top:0;z-index:40}
+.bar{max-width:1500px;margin:0 auto;padding:14px 22px;display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+.brand{display:flex;flex-direction:column;line-height:1.05}
+.brand b{font-weight:700;letter-spacing:-.02em;font-size:19px}
+.brand span{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.searchwrap{flex:1;min-width:300px;display:flex;gap:8px}
+#q{flex:1;background:var(--ink);border:1px solid var(--rule);border-radius:2px;padding:11px 14px;
+  font-family:var(--mono);font-size:14px;letter-spacing:.04em;text-transform:uppercase}
+#q::placeholder{color:var(--dim);text-transform:none;letter-spacing:.01em}
+#q:focus{border-color:var(--accent)}
+.btn{background:transparent;border:1px solid var(--rule);border-radius:2px;padding:10px 16px;cursor:pointer;
+  font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--bone);transition:.15s}
+.btn:hover{border-color:var(--accent);background:#12212B}
+.btn.go{border-color:var(--accent);color:var(--accent)}
+.chips{display:flex;gap:6px;flex-wrap:wrap;padding:0 22px 13px;max-width:1500px;margin:0 auto}
+.chip{background:none;border:1px dashed var(--rule);border-radius:99px;padding:3px 11px;font-family:var(--mono);
+  font-size:11.5px;color:var(--muted);cursor:pointer}
+.chip:hover{color:var(--accent);border-color:var(--accent)}
+main{max-width:1500px;margin:0 auto;padding:22px;display:grid;grid-template-columns:1fr minmax(0,430px);gap:26px;align-items:start}
+@media (max-width:1180px){main{grid-template-columns:1fr}}
+.sec-label{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin:0 0 10px;font-weight:500}
+.block{margin-bottom:28px}
+/* ---------- signature: the substitution card ---------- */
+.subcard{border:1px solid var(--rule);border-radius:2px;background:var(--panel);padding:24px;margin-bottom:26px}
+.subhead{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:20px}
+.subhead h1{font-size:clamp(34px,5.2vw,54px);font-weight:700;letter-spacing:-.04em;margin:0;line-height:.95}
+.subhead .prot{font-size:14px;color:var(--muted);max-width:46ch}
+.swap{display:grid;grid-template-columns:1fr 74px 1fr;align-items:center;gap:10px}
+@media (max-width:560px){.swap{grid-template-columns:1fr;gap:18px}.arrowcol{transform:rotate(90deg)}}
+.aacell{text-align:center}
+.disc{width:118px;height:118px;margin:0 auto;display:grid;place-items:center;border-radius:50%;position:relative}
+.disc .bubble{position:absolute;border-radius:50%;opacity:.15}
+.disc .ring{position:absolute;border-radius:50%;border:1px solid currentColor;opacity:.55}
+.disc .let{position:relative;font-family:var(--mono);font-size:36px;font-weight:600;letter-spacing:-.02em}
+.aacell .nm{font-size:13px;color:var(--bone);margin-top:8px}
+.aacell .tag{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-top:2px}
+.arrowcol{text-align:center;font-family:var(--mono);color:var(--dim)}
+.arrowcol .ar{font-size:26px;color:var(--accent);line-height:1}
+.arrowcol .n{font-size:10px;letter-spacing:.1em;text-transform:uppercase;margin-top:4px}
+/* ---------- verdict ---------- */
+.verdict{border:1px solid var(--rule);border-left-width:3px;border-radius:2px;padding:16px 18px;background:var(--panel);margin-bottom:26px}
+.verdict[data-sev="high"]{border-left-color:var(--warn)}
+.verdict[data-sev="moderate"]{border-left-color:var(--caution)}
+.verdict[data-sev="low"]{border-left-color:var(--ok)}
+.verdict .lvl{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px}
+.verdict[data-sev="high"] .lvl{color:var(--warn)}
+.verdict[data-sev="moderate"] .lvl{color:var(--caution)}
+.verdict[data-sev="low"] .lvl{color:var(--ok)}
+.verdict h3{margin:0 0 10px;font-size:19px;font-weight:500;letter-spacing:-.01em}
+.flags{list-style:none;margin:0;padding:0}
+.flags li{display:grid;grid-template-columns:16px 1fr;gap:10px;padding:8px 0;border-top:1px solid var(--rule);font-size:13.5px;color:var(--muted)}
+.flags li b{color:var(--bone);font-weight:500}
+.flags li .m{font-family:var(--mono);font-size:15px;line-height:1.2}
+.disclaimer{font-size:12.5px;color:var(--dim);margin:14px 0 0;line-height:1.6;border-top:1px solid var(--rule);padding-top:12px}
+/* ---------- data blocks ---------- */
+.grid-stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:2px;overflow:hidden}
+.stat{background:var(--panel);padding:11px 12px}
+.stat .k{font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--dim)}
+.stat .v{font-family:var(--mono);font-size:17px;font-weight:500;margin-top:3px;letter-spacing:-.01em}
+.stat .u{font-size:11px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px}
+th{text-align:left;font-weight:500;color:var(--dim);font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;padding:8px 10px;border-bottom:1px solid var(--rule)}
+td{padding:8px 10px;border-bottom:1px solid var(--rule)}
+tr:last-child td{border-bottom:0}
+.tbl{background:var(--panel);border:1px solid var(--rule);border-radius:2px;overflow:auto}
+.num{text-align:right}
+.delta.up{color:var(--strand)} .delta.dn{color:var(--accent)} .delta.zero{color:var(--dim)}
+.swatch{display:inline-block;width:9px;height:9px;border-radius:1px;margin-right:7px;vertical-align:baseline}
+.bury{height:6px;background:#0A1017;border:1px solid var(--rule);border-radius:2px;overflow:hidden;margin-top:7px}
+.bury span{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--strand))}
+/* sequence context strip */
+.ctx{font-family:var(--mono);font-size:14px;background:var(--panel);border:1px solid var(--rule);border-radius:2px;padding:14px;overflow-x:auto;white-space:nowrap}
+.ctx .site{background:var(--accent);color:var(--ink);padding:1px 2px;font-weight:600}
+.ctx .ss{font-size:11px;color:var(--dim);display:block;margin-top:2px}
+.ctxlab{font-family:var(--mono);font-size:10.5px;color:var(--dim);margin-top:8px}
+/* structure candidates */
+.cand{display:grid;grid-template-columns:52px 1fr;gap:11px;width:100%;text-align:left;background:var(--panel);
+  border:1px solid var(--rule);border-left:2px solid var(--rule);border-radius:2px;padding:9px;margin-bottom:7px;cursor:pointer}
+.cand:hover{border-left-color:var(--accent)}
+.cand[aria-current="true"]{border-left-color:var(--accent);background:var(--panel-2)}
+.cand img{width:52px;height:52px;object-fit:cover;border-radius:2px;background:#0A1017;filter:saturate(.7)}
+.cand .id{font-family:var(--mono);font-size:12.5px;font-weight:600;color:var(--accent);letter-spacing:.05em}
+.cand .t{font-size:11.5px;color:var(--bone);line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin:1px 0 3px}
+.cand .m{font-family:var(--mono);font-size:10px;color:var(--dim)}
+.cand .m .no{color:var(--warn)}
+/* viewer */
+.side{position:sticky;top:96px}
+@media (max-width:1180px){.side{position:static}}
+#viewport{height:400px;background:#080D13;border:1px solid var(--rule);border-radius:2px;position:relative;overflow:hidden}
+@media (max-width:640px){#viewport{height:320px}}
+.vctl{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.vctl button,.vctl select{background:var(--panel);border:1px solid var(--rule);border-radius:2px;padding:6px 9px;font-family:var(--mono);font-size:11px;cursor:pointer}
+.vctl button[aria-pressed="true"]{border-color:var(--accent);color:var(--accent)}
+.vnote{font-family:var(--mono);font-size:10.5px;color:var(--dim);margin-top:8px;line-height:1.55}
+.loading{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);background:#080D13;z-index:5}
+.err{border:1px solid var(--warn);border-left-width:2px;background:rgba(224,83,63,.07);padding:13px 15px;border-radius:2px;font-size:13.5px;margin-bottom:16px}
+.err b{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--warn);margin-bottom:4px}
+.note{border:1px solid var(--rule);border-left:2px solid var(--caution);background:rgba(232,178,58,.05);padding:12px 15px;border-radius:2px;font-size:13.5px;margin-bottom:16px;color:var(--muted)}
+.note b{color:var(--bone);font-weight:500}
+.empty{border:1px dashed var(--rule);border-radius:2px;padding:44px 26px;color:var(--muted);max-width:64ch}
+.empty h3{font-size:20px;color:var(--bone);margin:0 0 8px;font-weight:500;letter-spacing:-.01em}
+.empty p{margin:0 0 10px;font-size:14px}
+.empty code{font-family:var(--mono);font-size:13px;color:var(--accent)}
+.spin{display:inline-block;width:9px;height:9px;border:1px solid var(--accent);border-top-color:transparent;border-radius:50%;animation:sp .7s linear infinite;vertical-align:middle;margin-right:8px}
+@keyframes sp{to{transform:rotate(360deg)}}
+.fade{animation:fd .22s ease-out}
+@keyframes fd{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+footer{max-width:1500px;margin:0 auto;padding:28px 22px 44px;border-top:1px solid var(--rule);font-family:var(--mono);font-size:11px;color:var(--dim);line-height:1.7}
+</style>
+</head>
+<body>
+<header>
+  <div class="bar">
+    <div class="brand"><b>Substitution</b><span>point mutation inspector</span></div>
+    <div class="searchwrap">
+      <input id="q" placeholder="Gene or UniProt accession + mutation — e.g. PFN1-G118V" autocomplete="off" spellcheck="false">
+      <button class="btn go" id="goBtn">Analyse</button>
+    </div>
+  </div>
+  <div class="chips" id="chips"></div>
+</header>
+<main>
+  <section id="out">
+    <div class="empty">
+      <h3>Type a mutation the way you'd say it out loud.</h3>
+      <p><code>PFN1-G118V</code> · <code>SOD1 A4V</code> · <code>P04637 R175H</code> · <code>TP53 p.Arg273His</code> · <code>1FIL G118V</code></p>
+      <p>The wild-type residue is checked against the UniProt sequence before anything else — if the notation and the sequence disagree, that gets reported rather than quietly ignored. Then the position is mapped onto a real crystal structure and the local environment is measured: burial, backbone conformation, packing neighbours, hydrogen bonds and salt bridges that the substitution would disturb.</p>
+    </div>
+  </section>
+  <aside class="side" id="side"></aside>
+</main>
+<footer>
+  Sequence and curated variants: UniProt REST. Structures: RCSB PDB Search + Data APIs and coordinate files. Rendering: NGL Viewer.<br>
+  Burial is Shrake–Rupley solvent accessibility computed here from the deposited coordinates; contacts and dihedrals are measured from the same atoms.
+</footer>
+<script>
+/* =====================================================================
+   Reference data
+   ===================================================================== */
+const AA3 = {ALA:'A',ARG:'R',ASN:'N',ASP:'D',CYS:'C',GLN:'Q',GLU:'E',GLY:'G',HIS:'H',ILE:'I',LEU:'L',
+  LYS:'K',MET:'M',PHE:'F',PRO:'P',SER:'S',THR:'T',TRP:'W',TYR:'Y',VAL:'V',MSE:'M',SEC:'U',
+  HSD:'H',HSE:'H',HSP:'H',CSO:'C',PTR:'Y',SEP:'S',TPO:'T'};
+const NAME = {A:'Alanine',R:'Arginine',N:'Asparagine',D:'Aspartate',C:'Cysteine',Q:'Glutamine',E:'Glutamate',
+  G:'Glycine',H:'Histidine',I:'Isoleucine',L:'Leucine',K:'Lysine',M:'Methionine',F:'Phenylalanine',
+  P:'Proline',S:'Serine',T:'Threonine',W:'Tryptophan',Y:'Tyrosine',V:'Valine'};
+const THREE = {ALA:'A',ARG:'R',ASN:'N',ASP:'D',CYS:'C',GLN:'Q',GLU:'E',GLY:'G',HIS:'H',ILE:'I',LEU:'L',
+  LYS:'K',MET:'M',PHE:'F',PRO:'P',SER:'S',THR:'T',TRP:'W',TYR:'Y',VAL:'V'};
+const CLASS_OF = {A:'hydrophobic',V:'hydrophobic',L:'hydrophobic',I:'hydrophobic',M:'hydrophobic',F:'hydrophobic',
+  W:'hydrophobic',C:'hydrophobic',S:'polar',T:'polar',N:'polar',Q:'polar',Y:'polar',
+  D:'acidic',E:'acidic',K:'basic',R:'basic',H:'basic',G:'special',P:'special'};
+const CLASS_COLOR = {hydrophobic:'#C9A227',polar:'#4FB3A5',acidic:'#E0533F',basic:'#6E8FE0',special:'#A97BD1'};
+/* side-chain + residue volumes (Å³, Zamyatnin), max ASA (Å², Tien 2013 theoretical),
+   Kyte-Doolittle hydropathy, formal charge at pH 7, Chou-Fasman helix/sheet propensity */
+const P = {
+  A:{vol:88.6, sc:31, asa:129, kd: 1.8, q: 0, pa:1.42, pb:0.83},
+  R:{vol:173.4,sc:124,asa:274, kd:-4.5, q: 1, pa:0.98, pb:0.93},
+  N:{vol:114.1,sc:56, asa:195, kd:-3.5, q: 0, pa:0.67, pb:0.89},
+  D:{vol:111.1,sc:54, asa:193, kd:-3.5, q:-1, pa:1.01, pb:0.54},
+  C:{vol:108.5,sc:55, asa:167, kd: 2.5, q: 0, pa:0.70, pb:1.19},
+  Q:{vol:143.8,sc:85, asa:225, kd:-3.5, q: 0, pa:1.11, pb:1.10},
+  E:{vol:138.4,sc:83, asa:223, kd:-3.5, q:-1, pa:1.51, pb:0.37},
+  G:{vol:60.1, sc:3,  asa:104, kd:-0.4, q: 0, pa:0.57, pb:0.75},
+  H:{vol:153.2,sc:96, asa:224, kd:-3.2, q: 0.1,pa:1.00, pb:0.87},
+  I:{vol:166.7,sc:111,asa:197, kd: 4.5, q: 0, pa:1.08, pb:1.60},
+  L:{vol:166.7,sc:111,asa:201, kd: 3.8, q: 0, pa:1.21, pb:1.30},
+  K:{vol:168.6,sc:119,asa:236, kd:-3.9, q: 1, pa:1.16, pb:0.74},
+  M:{vol:162.9,sc:105,asa:224, kd: 1.9, q: 0, pa:1.45, pb:1.05},
+  F:{vol:189.9,sc:132,asa:240, kd: 2.8, q: 0, pa:1.13, pb:1.38},
+  P:{vol:112.7,sc:32.5,asa:159,kd:-1.6, q: 0, pa:0.57, pb:0.55},
+  S:{vol:89.0, sc:32, asa:155, kd:-0.8, q: 0, pa:0.77, pb:0.75},
+  T:{vol:116.1,sc:61, asa:172, kd:-0.7, q: 0, pa:0.83, pb:1.19},
+  W:{vol:227.8,sc:170,asa:285, kd:-0.9, q: 0, pa:1.08, pb:1.37},
+  Y:{vol:193.6,sc:136,asa:263, kd:-1.3, q: 0, pa:0.69, pb:1.47},
+  V:{vol:140.0,sc:84, asa:174, kd: 4.2, q: 0, pa:1.06, pb:1.70}
+};
+/* Grantham 1974 composition / polarity / volume */
+const GR = {S:[1.42,9.2,32], R:[0.65,10.5,124], L:[0,4.9,111], P:[0.39,8.0,32.5], T:[0.71,8.6,61],
+  A:[0,8.1,31], V:[0,5.9,84], G:[0.74,9.0,3], I:[0,5.2,111], F:[0,5.2,132], Y:[0.20,6.2,136],
+  C:[2.75,5.5,55], H:[0.58,10.4,96], Q:[0.89,10.5,85], N:[1.33,11.6,56], K:[0.33,11.3,119],
+  D:[1.38,13.0,54], E:[0.92,12.3,83], M:[0,5.7,105], W:[0.13,5.4,170]};
+const BORDER = 'ARNDCQEGHILKMFPSTWYV';
+const B62 = [
+ [4,-1,-2,-2,0,-1,-1,0,-2,-1,-1,-1,-1,-2,-1,1,0,-3,-2,0],
+ [-1,5,0,-2,-3,1,0,-2,0,-3,-2,2,-1,-3,-2,-1,-1,-3,-2,-3],
+ [-2,0,6,1,-3,0,0,0,1,-3,-3,0,-2,-3,-2,1,0,-4,-2,-3],
+ [-2,-2,1,6,-3,0,2,-1,-1,-3,-4,-1,-3,-3,-1,0,-1,-4,-3,-3],
+ [0,-3,-3,-3,9,-3,-4,-3,-3,-1,-1,-3,-1,-2,-3,-1,-1,-2,-2,-1],
+ [-1,1,0,0,-3,5,2,-2,0,-3,-2,1,0,-3,-1,0,-1,-2,-1,-2],
+ [-1,0,0,2,-4,2,5,-2,0,-3,-3,1,-2,-3,-1,0,-1,-3,-2,-2],
+ [0,-2,0,-1,-3,-2,-2,6,-2,-4,-4,-2,-3,-3,-2,0,-2,-2,-3,-3],
+ [-2,0,1,-1,-3,0,0,-2,8,-3,-3,-1,-2,-1,-2,-1,-2,-2,2,-3],
+ [-1,-3,-3,-3,-1,-3,-3,-4,-3,4,2,-3,1,0,-3,-2,-1,-3,-1,3],
+ [-1,-2,-3,-4,-1,-2,-3,-4,-3,2,4,-2,2,0,-3,-2,-1,-2,-1,1],
+ [-1,2,0,-1,-3,1,1,-2,-1,-3,-2,5,-1,-3,-1,0,-1,-3,-2,-2],
+ [-1,-1,-2,-3,-1,0,-2,-3,-2,1,2,-1,5,0,-2,-1,-1,-1,-1,1],
+ [-2,-3,-3,-3,-2,-3,-3,-3,-1,0,0,-3,0,6,-4,-2,-2,1,3,-1],
+ [-1,-2,-2,-1,-3,-1,-1,-2,-2,-3,-3,-1,-2,-4,7,-1,-1,-4,-3,-2],
+ [1,-1,1,0,-1,0,0,0,-1,-2,-2,0,-1,-2,-1,4,1,-3,-2,-2],
+ [0,-1,0,-1,-1,-1,-1,-2,-2,-1,-1,-1,-1,-2,-1,1,5,-2,-2,0],
+ [-3,-3,-4,-4,-2,-2,-3,-2,-2,-3,-2,-3,-1,1,-4,-3,-2,11,2,-3],
+ [-2,-2,-2,-3,-2,-1,-2,-3,2,-1,-1,-2,-1,3,-3,-2,-2,2,7,-1],
+ [0,-3,-3,-3,-1,-2,-2,-3,-3,3,1,-2,1,-1,-2,-2,0,-3,-1,4]
+];
+const blosum = (a,b) => B62[BORDER.indexOf(a)]?.[BORDER.indexOf(b)] ?? 0;
+function grantham(a,b){
+  const x = GR[a], y = GR[b]; if(!x || !y) return null;
+  return 50.723 * Math.sqrt(1.833*(x[0]-y[0])**2 + 0.1018*(x[1]-y[1])**2 + 0.000399*(x[2]-y[2])**2);
+}
+const VDW = {C:1.70,N:1.55,O:1.52,S:1.80,P:1.80,SE:1.90,F:1.47,CL:1.75,BR:1.85,I:1.98};
+const CHARGED_ATOMS = {ASP:['OD1','OD2'],GLU:['OE1','OE2'],LYS:['NZ'],ARG:['NE','NH1','NH2'],HIS:['ND1','NE2']};
+const API = {
+  uniGene: (g,org) => `https://rest.uniprot.org/uniprotkb/search?query=${encodeURIComponent(`gene_exact:${g}${org?' AND organism_id:9606':''} AND reviewed:true`)}&fields=accession,id,protein_name,gene_names,organism_name,sequence,ft_variant&format=json&size=5`,
+  uniAny : (t,h) => `https://rest.uniprot.org/uniprotkb/search?query=${encodeURIComponent(`${t}${h?' AND organism_id:9606':''} AND reviewed:true`)}&fields=accession,id,protein_name,gene_names,organism_name,sequence,ft_variant&format=json&size=5`,
+  uniAcc : a => `https://rest.uniprot.org/uniprotkb/${a}.json?fields=accession,id,protein_name,gene_names,organism_name,sequence,ft_variant`,
+  search : 'https://search.rcsb.org/rcsbsearch/v2/query?json=',
+  entry  : id => `https://data.rcsb.org/rest/v1/core/entry/${id}`,
+  poly   : (id,e) => `https://data.rcsb.org/rest/v1/core/polymer_entity/${id}/${e}`,
+  inst   : (id,a) => `https://data.rcsb.org/rest/v1/core/polymer_entity_instance/${id}/${a}`,
+  pdb    : id => `https://files.rcsb.org/download/${id}.pdb`,
+  cif    : id => `https://files.rcsb.org/download/${id}.cif`,
+  img    : id => `https://cdn.rcsb.org/images/structures/${id.toLowerCase()}_assembly-1.jpeg`,
+  page   : id => `https://www.rcsb.org/structure/${id}`
+};
+const NGL_SOURCES = [
+  'https://cdnjs.cloudflare.com/ajax/libs/ngl/2.3.1/ngl.js',
+  'https://unpkg.com/ngl@2.3.1/dist/ngl.js',
+  'https://cdn.jsdelivr.net/npm/ngl@2.3.1/dist/ngl.js'
+];
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const num = (n,d=1) => (n===null||n===undefined||isNaN(n)) ? '—' : Number(n).toFixed(d);
+async function getJSON(u){ const r = await fetch(u); if(!r.ok) throw new Error(`${r.status} from ${new URL(u).hostname}`); return r.json(); }
+/* =====================================================================
+   State
+   ===================================================================== */
+const S = { mut:null, prot:null, cands:[], chosen:null, struct:null, site:null, analysis:null,
+  view:{ wt:true, mutVol:true, neighbours:true, surface:false, cartoon:true },
+  ngl:{ stage:null, comp:null, shape:null, reps:[] } };
+/* =====================================================================
+   1. Parse the mutation notation
+   ===================================================================== */
+function parseMutation(raw){
+  const s = raw.trim().replace(/\s+/g,' ');
+  if(!s) return null;
+  /* separators are allowed inside the notation: G118V, G118-V, Gly-118-Val all read the same */
+  const tail = /(?:p\.)?\(?([A-Za-z]{3}|[A-Za-z])[\s\-_.]*(\d+)[\s\-_.]*([A-Za-z]{3}|[A-Za-z])\)?\s*$/.exec(s);
+  if(!tail) return null;
+  const to1 = t => t.length === 3 ? THREE[t.toUpperCase()] : t.toUpperCase();
+  const wt = to1(tail[1]), mt = to1(tail[3]);
+  if(!wt || !mt || !(wt in P) || !(mt in P)) return null;
+  let target = s.slice(0, tail.index).replace(/[\s\-_:,.]+$/,'').trim();
+  let pdbId = null;
+  const pm = /\b([0-9][A-Za-z0-9]{3})\b/.exec(target);
+  if(pm && target.replace(pm[0],'').trim().length === 0){ pdbId = pm[1].toUpperCase(); target = ''; }
+  return { raw:s.toUpperCase(), target, pdbId, wt, mt, pos:+tail[2], label:`${wt}${tail[2]}${mt}` };
+}
+/* =====================================================================
+   2. Resolve the protein (UniProt) and pick structures
+   ===================================================================== */
+const isAccession = t => /^([OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2})$/i.test(t);
+/* A gene may be written PFN-1 or PFN1; try both, human first, then a free-text search. */
+function geneVariants(t){
+  const up = t.toUpperCase(), out = [up];
+  const flat = up.replace(/[\s\-_.]/g,'');
+  if(flat && flat !== up) out.push(flat);
+  return out;
+}
+async function lookupGene(target){
+  for(const human of [true,false])
+    for(const g of geneVariants(target)){
+      try{ const j = await getJSON(API.uniGene(g,human)); if(j.results?.length) return j; }catch(e){}
+    }
+  for(const human of [true,false]){
+    try{ const j = await getJSON(API.uniAny(target,human)); if(j.results?.length) return j; }catch(e){}
+  }
+  return null;
+}
+async function resolveProtein(m){
+  if(!m.target) return null;                       // structure-only mode, e.g. "1FIL G118V"
+  let j;
+  if(isAccession(m.target)){
+    j = { results:[ await getJSON(API.uniAcc(m.target.toUpperCase())) ] };
+  }else{
+    j = await lookupGene(m.target) || {};
+  }
+  const r = j.results?.[0];
+  if(!r) return null;
+  return {
+    acc: r.primaryAccession,
+    id: r.uniProtkbId,
+    name: r.proteinDescription?.recommendedName?.fullName?.value
+       || r.proteinDescription?.submissionNames?.[0]?.fullName?.value || '',
+    gene: r.genes?.[0]?.geneName?.value || m.target.toUpperCase(),
+    organism: r.organism?.scientificName || '',
+    seq: r.sequence?.value || '',
+    variants: (r.features || []).filter(f => f.type === 'Natural variant')
+  };
+}
+async function findStructures(prot, m){
+  if(m.pdbId){
+    const e = await getJSON(API.entry(m.pdbId));
+    const eid = e.rcsb_entry_container_identifiers?.polymer_entity_ids?.[0] || '1';
+    return [ await describeCandidate(m.pdbId, eid, e, prot) ];
+  }
+  const query = {
+    query:{ type:'terminal', service:'text', parameters:{
+      attribute:'rcsb_polymer_entity_container_identifiers.reference_sequence_identifiers.database_accession',
+      operator:'exact_match', value: prot.acc } },
+    return_type:'polymer_entity',
+    request_options:{ paginate:{start:0,rows:12},
+      sort:[{ sort_by:'rcsb_entry_info.resolution_combined', direction:'asc' }] }
+  };
+  const res = await fetch(API.search + encodeURIComponent(JSON.stringify(query)));
+  if(res.status === 204) return [];
+  if(!res.ok) throw new Error('PDB search returned ' + res.status);
+  const ids = ((await res.json()).result_set || []).map(r => r.identifier).slice(0,10);
+  const out = await Promise.all(ids.map(async pid => {
+    const [entryId, entityId] = pid.split('_');
+    try{ return await describeCandidate(entryId, entityId, await getJSON(API.entry(entryId)), prot); }
+    catch(e){ return null; }
+  }));
+  return out.filter(Boolean);
+}
+async function describeCandidate(entryId, entityId, entry, prot){
+  const pe = await getJSON(API.poly(entryId, entityId));
+  const cid = pe.rcsb_polymer_entity_container_identifiers || {};
+  const align = (pe.rcsb_polymer_entity_align || []).find(a =>
+    !prot || a.reference_database_accession === prot.acc) || (pe.rcsb_polymer_entity_align || [])[0];
+  const info = entry.rcsb_entry_info || {};
+  return {
+    entryId, entityId, entry,
+    title: entry.struct?.title || '',
+    method: entry.exptl?.[0]?.method || '',
+    resolution: info.resolution_combined?.[0] ?? null,
+    authChains: cid.auth_asym_ids || [],
+    asymIds: cid.asym_ids || [],
+    entitySeq: (pe.entity_poly?.pdbx_seq_one_letter_code_can || '').replace(/\s/g,''),
+    align,
+    description: pe.rcsb_polymer_entity?.pdbx_description || ''
+  };
+}
+/* UniProt position -> index in the entity's own sequence (1-based) */
+function uniprotToEntity(cand, uniPos){
+  if(!cand.align?.aligned_regions) return null;
+  for(const r of cand.align.aligned_regions){
+    const refStart = r.ref_beg_seq_id, len = r.length, entStart = r.entity_beg_seq_id;
+    if(uniPos >= refStart && uniPos < refStart + len) return entStart + (uniPos - refStart);
+  }
+  return null;
+}
+/* =====================================================================
+   3. Coordinates: full-atom parse
+   ===================================================================== */
+async function fetchStructure(id){
+  try{
+    const r = await fetch(API.pdb(id));
+    if(r.ok){ const t = await r.text(); return { ext:'pdb', text:t, ...parsePDB(t) }; }
+  }catch(e){}
+  const r2 = await fetch(API.cif(id));
+  if(!r2.ok) throw new Error('No coordinate file for ' + id);
+  const t = await r2.text();
+  return { ext:'cif', text:t, ...parseCIF(t) };
+}
+function newRes(chain, seq, name){
+  return { chain, seq, name, aa: AA3[name] || 'X', atoms:[], hetero:false, ss:'C' };
+}
+function parsePDB(text){
+  const residues = new Map(), helices = [], strands = [], ssbonds = [];
+  let model = 0;
+  for(const line of text.split('\n')){
+    const rec = line.slice(0,6);
+    if(rec === 'MODEL '){ model++; if(model > 1) break; }
+    if(rec === 'ENDMDL') break;
+    if(rec === 'HELIX '){ helices.push({chain:line.slice(19,20).trim()||'A',start:+line.slice(21,25),end:+line.slice(33,37),cls:+line.slice(38,40)||1}); continue; }
+    if(rec === 'SHEET '){ strands.push({chain:line.slice(21,22).trim()||'A',start:+line.slice(22,26),end:+line.slice(33,37)}); continue; }
+    if(rec === 'SSBOND'){ ssbonds.push({c1:line.slice(15,16).trim(),r1:+line.slice(17,21),c2:line.slice(29,30).trim(),r2:+line.slice(31,35)}); continue; }
+    if(rec !== 'ATOM  ' && rec !== 'HETATM') continue;
+    const alt = line.slice(16,17); if(alt !== ' ' && alt !== 'A') continue;
+    let el = line.slice(76,78).trim().toUpperCase();
+    const an = line.slice(12,16).trim();
+    if(!el) el = an.replace(/[^A-Za-z]/g,'').charAt(0).toUpperCase();
+    if(el === 'H' || el === 'D') continue;
+    const name = line.slice(17,20).trim();
+    const chain = line.slice(21,22).trim() || 'A';
+    const seq = +line.slice(22,26);
+    const key = chain + '|' + seq;
+    let r = residues.get(key);
+    if(!r){ r = newRes(chain, seq, name); r.hetero = (rec === 'HETATM') && !(name in AA3); residues.set(key, r); }
+    r.atoms.push({ n:an, el, x:+line.slice(30,38), y:+line.slice(38,46), z:+line.slice(46,54), b:+line.slice(60,66) });
+  }
+  return finish(residues, helices, strands, ssbonds);
+}
+function parseCIF(text){
+  const lines = text.split('\n'); const loops = {}; let i = 0;
+  while(i < lines.length){
+    if(lines[i].trim() === 'loop_'){
+      i++; const tags = [];
+      while(i < lines.length && lines[i].trim().startsWith('_')){ tags.push(lines[i].trim().split(/\s+/)[0]); i++; }
+      const cat = tags[0].split('.')[0]; const rows = []; let buf = [];
+      while(i < lines.length){
+        const t = lines[i].trim();
+        if(t === 'loop_' || t.startsWith('_') || t.startsWith('data_')) break;
+        if(t === '#'){ i++; break; }
+        if(t.startsWith(';')){ let v = t.slice(1); i++;
+          while(i < lines.length && !lines[i].startsWith(';')){ v += ' ' + lines[i].trim(); i++; } i++; buf.push(v);
+        }else{ if(t) buf.push(...tok(t)); i++; }
+        while(buf.length >= tags.length) rows.push(buf.splice(0, tags.length));
+      }
+      if(!loops[cat]) loops[cat] = { tags: tags.map(t => t.split('.')[1]), rows };
+      else loops[cat].rows.push(...rows);
+    } else i++;
+  }
+  const c = (l,n) => l ? l.tags.indexOf(n) : -1;
+  const residues = new Map(), helices = [], strands = [], ssbonds = [];
+  const at = loops['_atom_site'];
+  if(at){
+    const g = c(at,'group_PDB'), an = c(at,'label_atom_id'), cn = c(at,'label_comp_id'), ch = c(at,'auth_asym_id'),
+      sq = c(at,'auth_seq_id'), X = c(at,'Cartn_x'), Y = c(at,'Cartn_y'), Z = c(at,'Cartn_z'),
+      el = c(at,'type_symbol'), md = c(at,'pdbx_PDB_model_num'), alt = c(at,'label_alt_id'), bf = c(at,'B_iso_or_equiv');
+    const m0 = at.rows[0] && md >= 0 ? at.rows[0][md] : null;
+    for(const r of at.rows){
+      if(md >= 0 && r[md] !== m0) continue;
+      if(alt >= 0 && !['.','?','A'].includes(r[alt])) continue;
+      const E = (r[el] || '').toUpperCase(); if(E === 'H' || E === 'D') continue;
+      const nm = r[cn], chn = r[ch] || 'A', s = +r[sq], key = chn + '|' + s;
+      let res = residues.get(key);
+      if(!res){ res = newRes(chn, s, nm); res.hetero = (r[g] === 'HETATM') && !(nm in AA3); residues.set(key, res); }
+      res.atoms.push({ n:r[an], el:E, x:+r[X], y:+r[Y], z:+r[Z], b: bf >= 0 ? +r[bf] : 0 });
+    }
+  }
+  const sc = loops['_struct_conf'];
+  if(sc){ const t = c(sc,'conf_type_id'), bc = c(sc,'beg_auth_asym_id'), bs = c(sc,'beg_auth_seq_id'),
+    es = c(sc,'end_auth_seq_id'), hc = c(sc,'pdbx_PDB_helix_class');
+    for(const r of sc.rows){ if(t >= 0 && !/HELX/i.test(r[t])) continue;
+      helices.push({chain:r[bc],start:+r[bs],end:+r[es],cls:(hc>=0?+r[hc]:1)||1}); } }
+  const sr = loops['_struct_sheet_range'];
+  if(sr){ const bc = c(sr,'beg_auth_asym_id'), bs = c(sr,'beg_auth_seq_id'), es = c(sr,'end_auth_seq_id');
+    for(const r of sr.rows) strands.push({chain:r[bc],start:+r[bs],end:+r[es]}); }
+  const cn2 = loops['_struct_conn'];
+  if(cn2){ const ty = c(cn2,'conn_type_id'), a1 = c(cn2,'ptnr1_auth_asym_id'), s1 = c(cn2,'ptnr1_auth_seq_id'),
+    a2 = c(cn2,'ptnr2_auth_asym_id'), s2 = c(cn2,'ptnr2_auth_seq_id');
+    for(const r of cn2.rows) if(ty >= 0 && r[ty] === 'disulf') ssbonds.push({c1:r[a1],r1:+r[s1],c2:r[a2],r2:+r[s2]}); }
+  return finish(residues, helices, strands, ssbonds);
+}
+function tok(line){ const o = [], re = /'([^']*)'|"([^"]*)"|(\S+)/g; let m; while((m = re.exec(line))) o.push(m[1] ?? m[2] ?? m[3]); return o; }
+function finish(residues, helices, strands, ssbonds){
+  const all = [...residues.values()];
+  const mark = (rs, code) => { for(const r of rs) for(const res of all)
+    if(res.chain === r.chain && res.seq >= r.start && res.seq <= r.end && !res.hetero) res.ss = code(r); };
+  mark(strands, () => 'E');
+  mark(helices, r => r.cls === 5 ? 'G' : (r.cls === 3 ? 'I' : 'H'));
+  const atoms = [];
+  for(const r of all) for(const a of r.atoms){ a.res = r; atoms.push(a); }
+  return { residues, list:all, atoms, helices, strands, ssbonds, grid: buildGrid(atoms) };
+}
+/* spatial hash for neighbour queries */
+function buildGrid(atoms, cell = 8){
+  const g = new Map();
+  const key = (i,j,k) => i + ',' + j + ',' + k;
+  for(const a of atoms){
+    const k = key(Math.floor(a.x/cell), Math.floor(a.y/cell), Math.floor(a.z/cell));
+    if(!g.has(k)) g.set(k, []);
+    g.get(k).push(a);
+  }
+  return {
+    cell, map:g,
+    near(x, y, z, r){
+      const out = [], n = Math.ceil(r/cell);
+      const ci = Math.floor(x/cell), cj = Math.floor(y/cell), ck = Math.floor(z/cell);
+      for(let i = ci-n; i <= ci+n; i++) for(let j = cj-n; j <= cj+n; j++) for(let k = ck-n; k <= ck+n; k++){
+        const b = g.get(key(i,j,k)); if(!b) continue;
+        for(const a of b){ const dx = a.x-x, dy = a.y-y, dz = a.z-z;
+          if(dx*dx + dy*dy + dz*dz <= r*r) out.push(a); }
+      }
+      return out;
+    }
+  };
+}
+/* =====================================================================
+   4. Geometry: SASA, dihedrals, virtual Cβ
+   ===================================================================== */
+const SPHERE = (() => {                    // golden-spiral points on unit sphere
+  const n = 194, pts = [], off = 2/n, inc = Math.PI * (3 - Math.sqrt(5));
+  for(let i = 0; i < n; i++){
+    const y = i*off - 1 + off/2, r = Math.sqrt(Math.max(0, 1 - y*y)), phi = i*inc;
+    pts.push([Math.cos(phi)*r, y, Math.sin(phi)*r]);
+  }
+  return pts;
+})();
+function residueSASA(res, grid, probe = 1.4){
+  let total = 0;
+  for(const a of res.atoms){
+    const ra = (VDW[a.el] || 1.7) + probe;
+    const nb = grid.near(a.x, a.y, a.z, ra + 3.0 + probe)
+      .filter(o => o !== a && !(o.res === res && o.n === a.n));
+    let acc = 0;
+    for(const p of SPHERE){
+      const px = a.x + ra*p[0], py = a.y + ra*p[1], pz = a.z + ra*p[2];
+      let free = true;
+      for(const o of nb){
+        const ro = (VDW[o.el] || 1.7) + probe;
+        const dx = px-o.x, dy = py-o.y, dz = pz-o.z;
+        if(dx*dx + dy*dy + dz*dz < ro*ro){ free = false; break; }
+      }
+      if(free) acc++;
+    }
+    total += 4*Math.PI*ra*ra * acc/SPHERE.length;
+  }
+  return total;
+}
+const at = (res, n) => res.atoms.find(a => a.n === n);
+function dihedral(p1,p2,p3,p4){
+  const sub=(a,b)=>[a.x-b.x,a.y-b.y,a.z-b.z], cross=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]];
+  const dot=(a,b)=>a[0]*b[0]+a[1]*b[1]+a[2]*b[2], norm=a=>Math.hypot(...a);
+  const b1 = sub(p2,p1), b2 = sub(p3,p2), b3 = sub(p4,p3);
+  const n1 = cross(b1,b2), n2 = cross(b2,b3);
+  const u = b2.map(v => v/(norm(b2) || 1));
+  /* IUPAC sign: atan2( (n1 x n2)·b2̂ , n1·n2 ) */
+  return Math.atan2(dot(cross(n1,n2), u), dot(n1,n2)) * 180/Math.PI;
+}
+function backboneAngles(struct, res){
+  const prev = struct.residues.get(res.chain + '|' + (res.seq-1));
+  const next = struct.residues.get(res.chain + '|' + (res.seq+1));
+  const N = at(res,'N'), CA = at(res,'CA'), C = at(res,'C');
+  let phi = null, psi = null;
+  if(prev && at(prev,'C') && N && CA && C) phi = dihedral(at(prev,'C'), N, CA, C);
+  if(next && at(next,'N') && N && CA && C) psi = dihedral(N, CA, C, at(next,'N'));
+  return { phi, psi };
+}
+function virtualCB(res){
+  const N = at(res,'N'), CA = at(res,'CA'), C = at(res,'C');
+  if(!N || !CA || !C) return null;
+  const b = [CA.x-N.x, CA.y-N.y, CA.z-N.z], c = [C.x-CA.x, C.y-CA.y, C.z-CA.z];
+  const a = [b[1]*c[2]-b[2]*c[1], b[2]*c[0]-b[0]*c[2], b[0]*c[1]-b[1]*c[0]];
+  return { n:'CB*', el:'C',
+    x: -0.58273431*a[0] + 0.56802827*b[0] - 0.54067466*c[0] + CA.x,
+    y: -0.58273431*a[1] + 0.56802827*b[1] - 0.54067466*c[1] + CA.y,
+    z: -0.58273431*a[2] + 0.56802827*b[2] - 0.54067466*c[2] + CA.z };
+}
+/* =====================================================================
+   5. The analysis
+   ===================================================================== */
+function analyse(struct, res, m){
+  const grid = struct.grid;
+  const sasa = residueSASA(res, grid);
+  const rsa = Math.min(1, sasa / (P[res.aa]?.asa || 200));
+  const { phi, psi } = backboneAngles(struct, res);
+  const cb = at(res,'CB') || virtualCB(res);
+  const ca = at(res,'CA');
+  /* neighbouring residues within 4.5 Å of any atom */
+  const seen = new Map();
+  for(const a of res.atoms){
+    for(const o of grid.near(a.x, a.y, a.z, 4.5)){
+      if(o.res === res) continue;
+      const d = Math.hypot(a.x-o.x, a.y-o.y, a.z-o.z);
+      const k = o.res.chain + '|' + o.res.seq;
+      const cur = seen.get(k);
+      if(!cur || d < cur.d) seen.set(k, { res:o.res, d, a1:a.n, a2:o.n });
+    }
+  }
+  const neighbours = [...seen.values()].sort((x,y) => x.d - y.d)
+    .filter(n => !(n.res.chain === res.chain && Math.abs(n.res.seq - res.seq) === 1));
+  /* polar contacts and salt bridges made by the wild-type side chain */
+  const scAtoms = res.atoms.filter(a => !['N','CA','C','O','OXT'].includes(a.n));
+  const hbonds = [], salts = [];
+  const myCharged = (CHARGED_ATOMS[res.name] || []);
+  for(const a of scAtoms){
+    if(!['N','O','S'].includes(a.el)) continue;
+    for(const o of grid.near(a.x, a.y, a.z, 3.6)){
+      if(o.res === res) continue;
+      if(!['N','O'].includes(o.el)) continue;
+      const d = Math.hypot(a.x-o.x, a.y-o.y, a.z-o.z);
+      if(d > 3.5) continue;
+      hbonds.push({ from:a.n, to:o.n, res:o.res, d });
+      const oc = (CHARGED_ATOMS[o.res.name] || []);
+      if(myCharged.includes(a.n) && oc.includes(o.n) && d <= 4.2){
+        const q1 = P[res.aa]?.q || 0, q2 = P[o.res.aa]?.q || 0;
+        if(q1 * q2 < 0) salts.push({ res:o.res, d });
+      }
+    }
+  }
+  /* crude packing check: can the larger side chain fit where the old one sat? */
+  let clashes = [], sphere = null;
+  if(cb && ca){
+    const dv = [cb.x-ca.x, cb.y-ca.y, cb.z-ca.z];
+    const len = Math.hypot(...dv) || 1;
+    const rad = Math.cbrt(3 * P[m.mt].sc / (4*Math.PI));       // sphere of equal side-chain volume
+    const reach = Math.max(0, rad - 1.0);
+    const cx = ca.x + dv[0]/len*(1.53 + reach), cy = ca.y + dv[1]/len*(1.53 + reach), cz = ca.z + dv[2]/len*(1.53 + reach);
+    sphere = { x:cx, y:cy, z:cz, r:rad };
+    for(const o of grid.near(cx, cy, cz, rad + 2.2)){
+      if(o.res === res) continue;
+      if(o.res.chain === res.chain && Math.abs(o.res.seq - res.seq) <= 1 && ['N','C','O','CA'].includes(o.n)) continue;
+      const d = Math.hypot(cx-o.x, cy-o.y, cz-o.z);
+      if(d < rad + (VDW[o.el] || 1.7) - 0.9) clashes.push({ res:o.res, atom:o.n, d });
+    }
+    clashes.sort((a,b) => a.d - b.d);
+  }
+  const dis = struct.ssbonds.some(b =>
+    (b.c1 === res.chain && b.r1 === res.seq) || (b.c2 === res.chain && b.r2 === res.seq));
+  const dVol = P[m.mt].vol - P[m.wt].vol;
+  const dCharge = (P[m.mt].q || 0) - (P[m.wt].q || 0);
+  const dKD = P[m.mt].kd - P[m.wt].kd;
+  return { sasa, rsa, phi, psi, cb, neighbours, hbonds, salts, clashes, sphere, disulfide:dis,
+    dVol, dCharge, dKD, grantham: grantham(m.wt, m.mt), blosum: blosum(m.wt, m.mt) };
+}
+function flagsFor(a, res, m){
+  const F = [], buried = a.rsa < 0.10, partial = a.rsa < 0.25;
+  const push = (sev, mark, title, text) => F.push({ sev, mark, title, text });
+  if(buried) push(1,'▪','Buried position',
+    `Only ${Math.round(a.rsa*100)}% of this residue's surface is solvent accessible, so the substitution happens inside the packed core rather than on the surface.`);
+  else if(partial) push(0.5,'▫','Partially buried',
+    `${Math.round(a.rsa*100)}% relative accessibility — at the rim of the core, where changes are tolerated less well than on the open surface.`);
+  if(a.dVol > 25 && buried) push(2,'▲','Larger side chain forced into a packed core',
+    `The side chain grows by ${Math.round(a.dVol)} Å³ at a buried site. A sphere of the new side chain's volume overlaps ${a.clashes.length} neighbouring atom${a.clashes.length===1?'':'s'}, so the surrounding residues would have to move to accommodate it.`);
+  else if(a.dVol > 40) push(1,'▲','Substantially larger side chain',
+    `${Math.round(a.dVol)} Å³ of extra bulk. At an exposed site this is usually absorbed by the solvent, but check anything nearby that binds here.`);
+  if(a.dVol < -35 && buried) push(1.5,'▼','Cavity left behind',
+    `The side chain shrinks by ${Math.round(-a.dVol)} Å³ in the core. Under-packing costs stability even when nothing clashes.`);
+  if(m.wt === 'G'){
+    const odd = a.phi !== null && a.phi > 0;
+    push(odd ? 2 : 1, odd ? '⬤' : '◐',
+      odd ? 'Glycine in a conformation only glycine can adopt' : 'Glycine replaced',
+      odd ? `The backbone here sits at φ = ${num(a.phi,0)}°, a positive-φ conformation that non-glycine residues are strongly strained in. Any side chain at this position pushes the backbone out of its preferred geometry.`
+          : `Glycine gives the backbone flexibility no other residue has; replacing it rigidifies this point of the chain (φ = ${a.phi===null?'not measurable':num(a.phi,0)+'°'}).`);
+  }
+  if(m.mt === 'P') push(2,'⬤','Proline introduced',
+    `Proline locks φ near −60° and removes the backbone amide hydrogen. In a helix or strand${res.ss !== 'C' ? ' — and this residue is in ' + (res.ss === 'E' ? 'a β-strand' : 'a helix') + ' —' : ''} it breaks the hydrogen-bonding pattern.`);
+  if(m.wt === 'P') push(1,'◐','Proline removed',
+    'The backbone gains rotational freedom and an amide hydrogen it did not have, which can shift the local conformation and the turn geometry.');
+  if(a.disulfide && m.wt === 'C') push(2.5,'⬤','Breaks a disulfide bond',
+    'This cysteine forms a disulfide in the deposited structure. Removing it deletes a covalent cross-link.');
+  if(Math.abs(a.dCharge) >= 1 && buried) push(2,'⬤','Charge buried in the core',
+    `Net charge changes by ${a.dCharge > 0 ? '+' : ''}${a.dCharge} at a buried position. Burying an uncompensated charge is expensive unless a partner is nearby.`);
+  else if(Math.abs(a.dCharge) >= 1) push(0.5,'▫','Surface charge change',
+    `Net charge changes by ${a.dCharge > 0 ? '+' : ''}${a.dCharge}. On the surface this mostly affects binding, solubility and pI rather than folding.`);
+  if(a.salts.length && P[m.mt].q === 0) push(1.5,'▲','Salt bridge lost',
+    `The wild-type side chain forms ${a.salts.length} salt bridge${a.salts.length===1?'':'s'} (${a.salts.map(s => s.res.name + s.res.seq).join(', ')}) that the substitution cannot make.`);
+  const scH = a.hbonds.length;
+  if(scH && !['S','T','N','Q','Y','H','K','R','D','E','C','W'].includes(m.mt))
+    push(1,'▲','Side-chain hydrogen bonds lost',
+      `${scH} polar contact${scH===1?'':'s'} within 3.5 Å come from the wild-type side chain; ${NAME[m.mt]} has no donor or acceptor to replace them.`);
+  if(res.ss !== 'C'){
+    const el = res.ss === 'E' ? 'β-strand' : 'helix';
+    const prop = res.ss === 'E' ? 'pb' : 'pa';
+    const d = P[m.mt][prop] - P[m.wt][prop];
+    if(d < -0.3) push(1,'▲', `Poor ${el} former substituted in`,
+      `${NAME[m.mt]} has a markedly lower ${el} propensity than ${NAME[m.wt]} (${num(P[m.mt][prop],2)} vs ${num(P[m.wt][prop],2)}), and this residue sits inside ${el === 'helix' ? 'a helix' : 'a strand'}.`);
+  }
+  if(a.grantham > 100) push(1,'▲','Chemically distant substitution',
+    `Grantham distance ${Math.round(a.grantham)} with a BLOSUM62 score of ${a.blosum} — this pair is rarely swapped in homologous proteins.`);
+  if(!F.length) push(0,'▫','No structural red flags found',
+    'Exposed position, conservative change, no lost contacts. That is not proof of neutrality — function can depend on residues the geometry says nothing about.');
+  return F.sort((x,y) => y.sev - x.sev);
+}
+/* =====================================================================
+   6. Run
+   ===================================================================== */
+const EXAMPLES = ['PFN1-G118V','PFN-1-G118-V','SOD1 A4V','TP53 R175H','HBB E6V','P07737 T109M','1FIL G118V'];
+$('#chips').innerHTML = EXAMPLES.map(e => `<button class="chip" data-q="${esc(e)}">${esc(e)}</button>`).join('');
+$('#chips').addEventListener('click', e => { const b = e.target.closest('.chip'); if(!b) return;
+  $('#q').value = b.dataset.q; run(); });
+$('#goBtn').addEventListener('click', run);
+$('#q').addEventListener('keydown', e => { if(e.key === 'Enter') run(); });
+async function run(){
+  const m = parseMutation($('#q').value);
+  if(!m){
+    $('#out').innerHTML = `<div class="err"><b>Could not read that mutation</b>Write it as wild-type residue, position, new residue — with an optional gene, UniProt accession or PDB ID in front. For example <code>PFN1-G118V</code>, <code>P07737 G118V</code>, <code>TP53 p.Arg273His</code>. Only single substitutions between the 20 standard amino acids are handled — indels and frameshifts are out of scope.</div>`;
+    return;
+  }
+  S.mut = m;
+  $('#out').innerHTML = `<div class="empty"><span class="spin"></span>Resolving ${esc(m.target || m.pdbId || '')} ${esc(m.label)}…</div>`;
+  $('#side').innerHTML = '';
+  try{
+    const prot = m.target ? await resolveProtein(m) : null;
+    if(m.target && !prot) throw new Error(`No reviewed UniProt entry matched “${m.target}”. Try the accession directly, or give a PDB ID instead.`);
+    S.prot = prot;
+    /* validate the wild-type residue against the canonical sequence */
+    let check = { ok:true, msg:'', shifted:0 };
+    if(prot?.seq){
+      const got = prot.seq[m.pos - 1];
+      if(got !== m.wt){
+        let alt = null;
+        for(const d of [1,-1,2,-2]) if(prot.seq[m.pos - 1 + d] === m.wt){ alt = d; break; }
+        check = { ok:false, shifted:alt,
+          msg: got
+            ? `UniProt ${prot.acc} has ${NAME[got] || got} at position ${m.pos}, not ${NAME[m.wt]}.`
+              + (alt ? ` ${NAME[m.wt]} is at position ${m.pos + alt} — a ${Math.abs(alt)}-residue offset, which usually means the mutation is numbered on the mature protein after signal-peptide or initiator-methionine removal.` : '')
+            : `Position ${m.pos} is past the end of this ${prot.seq.length}-residue sequence.` };
+      }
+    }
+    const cands = await findStructures(prot, m);
+    if(!cands.length) throw new Error('No PDB structure is linked to this protein, so there is nothing to measure. The sequence-level comparison below still applies.');
+    for(const c of cands) c.entityPos = prot ? uniprotToEntity(c, m.pos) : m.pos;
+    cands.sort((a,b) => (a.entityPos ? 0 : 1) - (b.entityPos ? 0 : 1)
+      || (a.resolution ?? 99) - (b.resolution ?? 99));
+    S.cands = cands;
+    await useStructure(cands.find(c => c.entityPos) || cands[0], check);
+  }catch(err){
+    $('#out').innerHTML = `<div class="err"><b>Stopped</b>${esc(err.message)}</div>`;
+  }
+}
+async function useStructure(cand, check){
+  S.chosen = cand;
+  S.check = check || S.check;
+  $('#out').innerHTML = `<div class="empty"><span class="spin"></span>Loading ${esc(cand.entryId)} and measuring the site…</div>`;
+  const m = S.mut;
+  try{
+    /* entity index -> author numbering, via the instance mapping when available */
+    let authSeq = null, chain = cand.authChains[0] || 'A';
+    const entPos = cand.entityPos;
+    if(entPos && cand.asymIds[0]){
+      try{
+        const inst = await getJSON(API.inst(cand.entryId, cand.asymIds[0]));
+        const map = inst.rcsb_polymer_entity_instance_container_identifiers?.auth_to_entity_poly_seq_mapping;
+        if(map && map[entPos - 1] !== undefined) authSeq = +map[entPos - 1];
+      }catch(e){}
+    }
+    S.struct = await fetchStructure(cand.entryId);
+    if(authSeq === null){                       /* fall back to matching the sequence itself */
+      const guess = [...S.struct.residues.values()]
+        .filter(r => r.chain === chain && r.aa === m.wt && !r.hetero);
+      const exact = guess.find(r => r.seq === m.pos);
+      authSeq = exact ? exact.seq : (guess[0]?.seq ?? m.pos);
+    }
+    let res = S.struct.residues.get(chain + '|' + authSeq);
+    if(!res || res.hetero){
+      for(const c of cand.authChains){
+        const r = S.struct.residues.get(c + '|' + authSeq);
+        if(r && !r.hetero){ res = r; chain = c; break; }
+      }
+    }
+    if(!res) throw new Error(`Residue ${m.pos} is not resolved in ${cand.entryId} — it falls in a disordered or truncated region. Pick another structure on the right.`);
+    S.site = { res, chain, authSeq };
+    S.analysis = analyse(S.struct, res, m);
+    render();
+    initViewer();
+  }catch(err){
+    render(err.message);
+  }
+}
+/* =====================================================================
+   7. Render
+   ===================================================================== */
+function disc(letter, volume, maxVol){
+  const cls = CLASS_OF[letter], col = CLASS_COLOR[cls];
+  const d = 26 + 92 * Math.sqrt(volume / maxVol);
+  return `<div class="disc" style="color:${col}">
+    <span class="bubble" style="width:${d}px;height:${d}px;background:${col}"></span>
+    <span class="ring" style="width:${d}px;height:${d}px"></span>
+    <span class="let" style="color:${col}">${letter}</span></div>`;
+}
+function render(fatal){
+  const m = S.mut, prot = S.prot, cand = S.chosen, a = S.analysis, site = S.site, ck = S.check;
+  const maxVol = 227.8;
+  const title = prot ? `${prot.gene} ${m.label}` : `${cand ? cand.entryId : ''} ${m.label}`;
+  const parts = [];
+  parts.push(`<div class="subcard">
+    <div class="subhead"><h1>${esc(title)}</h1>
+      <span class="prot">${esc(prot ? `${prot.name} · ${prot.organism} · UniProt ${prot.acc}` : (cand?.description || ''))}</span></div>
+    <div class="swap">
+      <div class="aacell">${disc(m.wt, P[m.wt].vol, maxVol)}
+        <div class="nm">${NAME[m.wt]}</div><div class="tag">wild type · ${CLASS_OF[m.wt]}</div></div>
+      <div class="arrowcol"><div class="ar">→</div><div class="n">position ${m.pos}</div></div>
+      <div class="aacell">${disc(m.mt, P[m.mt].vol, maxVol)}
+        <div class="nm">${NAME[m.mt]}</div><div class="tag">variant · ${CLASS_OF[m.mt]}</div></div>
+    </div>
+  </div>`);
+  if(ck && !ck.ok) parts.push(`<div class="note"><b>Numbering check.</b> ${esc(ck.msg)} The analysis below still uses position ${m.pos} as written${ck.shifted ? `; re-run as ${m.wt}${m.pos + ck.shifted}${m.mt} if the offset is what you meant` : ''}.</div>`);
+  if(fatal) parts.push(`<div class="err"><b>Structural analysis unavailable</b>${esc(fatal)}</div>`);
+  /* --- verdict --- */
+  if(a){
+    const flags = flagsFor(a, site.res, m);
+    const score = flags.reduce((s,f) => s + f.sev, 0);
+    const sev = score >= 4 ? 'high' : score >= 2 ? 'moderate' : 'low';
+    const head = sev === 'high' ? 'The geometry says this substitution is disruptive'
+      : sev === 'moderate' ? 'The geometry says this substitution is not free'
+      : 'The geometry raises little objection to this substitution';
+    parts.push(`<div class="verdict" data-sev="${sev}">
+      <div class="lvl">${sev} structural impact · ${flags.length} finding${flags.length===1?'':'s'}</div>
+      <h3>${head}</h3>
+      <ul class="flags">${flags.map(f => `<li><span class="m" style="color:${
+        f.sev >= 2 ? 'var(--warn)' : f.sev >= 1 ? 'var(--caution)' : 'var(--dim)'}">${f.mark}</span>
+        <span><b>${esc(f.title)}.</b> ${esc(f.text)}</span></li>`).join('')}</ul>
+      <p class="disclaimer">This is a reading of one experimental structure, not a stability prediction. Every statement above is measured from the coordinates of ${esc(cand.entryId)} — accessibility, distances, dihedrals, volumes — and the mutant side chain is approximated by a sphere of equivalent volume rather than modelled as a rotamer. For a ΔΔG estimate use FoldX, Rosetta or ThermoMPNN; for pathogenicity use AlphaMissense, REVEL or ClinVar.</p>
+    </div>`);
+  }
+  /* --- chemistry --- */
+  const row = (k, w, v, d, unit='') => {
+    const dv = (v - w);
+    const cls = Math.abs(dv) < 1e-9 ? 'zero' : dv > 0 ? 'up' : 'dn';
+    return `<tr><td>${k}</td><td class="num">${num(w,d)}${unit}</td><td class="num">${num(v,d)}${unit}</td>
+      <td class="num delta ${cls}">${dv > 0 ? '+' : ''}${num(dv,d)}</td></tr>`;
+  };
+  parts.push(`<div class="block"><div class="sec-label">What changes chemically</div>
+    <div class="tbl"><table><thead><tr><th>Property</th><th class="num">${m.wt}</th><th class="num">${m.mt}</th><th class="num">Δ</th></tr></thead><tbody>
+      ${row('Residue volume (Å³)', P[m.wt].vol, P[m.mt].vol, 1)}
+      ${row('Side-chain volume (Å³)', P[m.wt].sc, P[m.mt].sc, 1)}
+      ${row('Hydropathy (Kyte–Doolittle)', P[m.wt].kd, P[m.mt].kd, 1)}
+      ${row('Charge at pH 7', P[m.wt].q, P[m.mt].q, 1)}
+      ${row('Helix propensity (Pα)', P[m.wt].pa, P[m.mt].pa, 2)}
+      ${row('Sheet propensity (Pβ)', P[m.wt].pb, P[m.mt].pb, 2)}
+      ${row('Max accessible area (Å²)', P[m.wt].asa, P[m.mt].asa, 0)}
+    </tbody></table></div>
+    <div class="grid-stats" style="margin-top:10px">
+      <div class="stat"><div class="k">Grantham distance</div><div class="v">${a ? Math.round(a.grantham) : Math.round(grantham(m.wt,m.mt))}<span class="u"> / 215</span></div></div>
+      <div class="stat"><div class="k">BLOSUM62</div><div class="v">${blosum(m.wt,m.mt)}</div></div>
+      <div class="stat"><div class="k">Class change</div><div class="v" style="font-size:13px">${CLASS_OF[m.wt]} → ${CLASS_OF[m.mt]}</div></div>
+    </div></div>`);
+  /* --- structural site --- */
+  if(a){
+    const res = site.res;
+    const ssName = res.ss === 'E' ? 'β-strand' : res.ss === 'H' ? 'α-helix' : res.ss === 'G' ? '3₁₀-helix' : res.ss === 'I' ? 'π-helix' : 'loop / turn';
+    const rama = a.phi === null ? '—'
+      : a.phi > 0 ? 'left-handed (positive φ)'
+      : (a.psi !== null && a.psi > -120 && a.psi < 50) ? 'α region' : 'β region';
+    parts.push(`<div class="block"><div class="sec-label">The site in ${esc(cand.entryId)} — chain ${esc(site.chain)}, residue ${site.authSeq}</div>
+      <div class="grid-stats">
+        <div class="stat"><div class="k">Secondary structure</div><div class="v" style="font-size:13px;color:${res.ss==='E'?'var(--strand)':res.ss==='C'?'var(--coil)':'var(--helix)'}">${ssName}</div></div>
+        <div class="stat"><div class="k">Accessible area</div><div class="v">${Math.round(a.sasa)}<span class="u"> Å²</span></div></div>
+        <div class="stat"><div class="k">Relative accessibility</div><div class="v">${Math.round(a.rsa*100)}<span class="u">%</span>
+          <div class="bury"><span style="width:${Math.round(a.rsa*100)}%"></span></div></div></div>
+        <div class="stat"><div class="k">φ / ψ</div><div class="v" style="font-size:14px">${num(a.phi,0)}° / ${num(a.psi,0)}°</div><div class="u">${rama}</div></div>
+        <div class="stat"><div class="k">Contacting residues</div><div class="v">${a.neighbours.length}</div></div>
+        <div class="stat"><div class="k">Predicted clashes</div><div class="v" style="color:${a.clashes.length?'var(--warn)':'inherit'}">${a.clashes.length}</div></div>
+      </div></div>`);
+    if(prot?.seq){
+      const from = Math.max(0, m.pos - 11), to = Math.min(prot.seq.length, m.pos + 10);
+      let strip = '';
+      for(let i = from; i < to; i++){
+        const c = prot.seq[i];
+        strip += i === m.pos - 1 ? `<span class="site">${c}</span>` : c;
+      }
+      parts.push(`<div class="block"><div class="sec-label">Sequence context</div>
+        <div class="ctx">${from + 1} … ${strip} … ${to}</div>
+        <div class="ctxlab">Canonical UniProt sequence, ten residues either side. The highlighted position is the one being changed.</div></div>`);
+    }
+    if(a.neighbours.length) parts.push(`<div class="block"><div class="sec-label">Packing environment — residues within 4.5 Å</div>
+      <div class="tbl"><table><thead><tr><th>Residue</th><th>Chain</th><th class="num">Closest approach</th><th>Character</th><th>Structure</th></tr></thead><tbody>
+      ${a.neighbours.slice(0,16).map(n => `<tr>
+        <td><span class="swatch" style="background:${CLASS_COLOR[CLASS_OF[n.res.aa]] || 'var(--dim)'}"></span>${esc(n.res.name)} ${n.res.seq}</td>
+        <td>${esc(n.res.chain)}${n.res.chain !== site.chain ? ' <span style="color:var(--accent)">interface</span>' : ''}</td>
+        <td class="num">${num(n.d,2)} Å</td>
+        <td style="color:var(--muted)">${n.res.hetero ? 'ligand / solvent' : CLASS_OF[n.res.aa] || '—'}</td>
+        <td style="color:var(--muted)">${n.res.ss === 'E' ? 'strand' : n.res.ss === 'C' ? 'loop' : 'helix'}</td></tr>`).join('')}
+      </tbody></table></div>
+      ${a.neighbours.length > 16 ? `<div class="ctxlab">${a.neighbours.length - 16} further contacts not shown.</div>` : ''}</div>`);
+    if(a.hbonds.length || a.clashes.length) parts.push(`<div class="block"><div class="sec-label">Interactions at stake</div>
+      <div class="tbl"><table><thead><tr><th>Type</th><th>Detail</th><th class="num">Distance</th></tr></thead><tbody>
+      ${a.salts.map(s => `<tr><td style="color:var(--basic)">Salt bridge</td><td>${esc(s.res.name)} ${s.res.seq} · chain ${esc(s.res.chain)}</td><td class="num">${num(s.d,2)} Å</td></tr>`).join('')}
+      ${a.hbonds.slice(0,8).map(h => `<tr><td style="color:var(--polar)">Polar contact</td><td>${esc(h.from)} → ${esc(h.res.name)} ${h.res.seq} ${esc(h.to)}</td><td class="num">${num(h.d,2)} Å</td></tr>`).join('')}
+      ${a.clashes.slice(0,8).map(c => `<tr><td style="color:var(--warn)">Would clash</td><td>${esc(c.res.name)} ${c.res.seq} ${esc(c.atom)}</td><td class="num">${num(c.d,2)} Å</td></tr>`).join('')}
+      </tbody></table></div>
+      <div class="ctxlab">Polar contacts are side-chain N/O/S pairs within 3.5 Å. Clashes are neighbouring atoms overlapping the equal-volume sphere of the new side chain — an indication of strain, not a rotamer calculation.</div></div>`);
+  }
+  /* --- known variants --- */
+  if(prot?.variants?.length){
+    const here = prot.variants.filter(v => (v.location?.start?.value === m.pos));
+    const same = here.find(v => (v.alternativeSequence?.alternativeSequences || [])[0] === m.mt);
+    parts.push(`<div class="block"><div class="sec-label">Curated variants at position ${m.pos} (UniProt)</div>
+      ${here.length ? `<div class="tbl"><table><thead><tr><th>Change</th><th>Annotation</th></tr></thead><tbody>
+        ${here.map(v => { const altv = (v.alternativeSequence?.alternativeSequences || [])[0] || '?';
+          const isThis = altv === m.mt;
+          return `<tr${isThis ? ' style="background:rgba(95,211,224,.06)"' : ''}>
+            <td style="color:${isThis ? 'var(--accent)' : 'inherit'}">${esc(m.wt)}${m.pos}${esc(altv)}${isThis ? ' ← yours' : ''}</td>
+            <td style="white-space:normal;color:var(--muted)">${esc(v.description || '')}</td></tr>`; }).join('')}
+      </tbody></table></div>${same ? '' : `<div class="ctxlab">Your exact substitution is not among them — the position is known, this particular change is not annotated here.</div>`}`
+      : `<p style="font-size:13.5px;color:var(--muted);margin:0">No curated natural variant is recorded at this position. UniProt lists ${prot.variants.length} elsewhere in the protein.</p>`}
+    </div>`);
+  }
+  $('#out').innerHTML = parts.join('');
+  $('#out').classList.add('fade');
+  renderSide();
+}
+function renderSide(){
+  const cand = S.chosen;
+  $('#side').innerHTML = `
+    <div id="viewport"><div class="loading" id="vload">Starting viewer</div></div>
+    <div class="vctl" id="vctl"></div>
+    <div class="vnote" id="vnote"></div>
+    <div class="block" style="margin-top:24px">
+      <div class="sec-label">Structures containing this position (${S.cands.length})</div>
+      ${S.cands.map(c => `<button class="cand" data-id="${c.entryId}_${c.entityId}" aria-current="${c === cand}">
+        <img src="${API.img(c.entryId)}" alt="" loading="lazy" onerror="this.style.visibility='hidden'">
+        <span><span class="id">${c.entryId}</span>
+        <span class="t">${esc(c.title)}</span>
+        <span class="m">${c.resolution ? c.resolution.toFixed(2) + ' Å' : (c.method || '').toLowerCase()} ·
+          ${c.entityPos ? 'covers residue ' + S.mut.pos : '<span class="no">position not covered</span>'}</span></span>
+      </button>`).join('')}
+    </div>`;
+  $('#side').querySelectorAll('.cand').forEach(b => b.addEventListener('click', () => {
+    const c = S.cands.find(x => x.entryId + '_' + x.entityId === b.dataset.id);
+    if(c && c !== S.chosen) useStructure(c);
+  }));
+  renderViewerControls();
+}
+/* =====================================================================
+   8. Viewer
+   ===================================================================== */
+function loadScript(src){
+  return new Promise((res, rej) => { const s = document.createElement('script');
+    s.src = src; s.onload = res; s.onerror = () => rej(new Error('blocked')); document.head.appendChild(s); });
+}
+async function ensureNGL(){
+  if(window.NGL) return;
+  for(const src of NGL_SOURCES){ try{ await loadScript(src); if(window.NGL) return; }catch(e){} }
+  throw new Error('The NGL viewer library could not be loaded from any CDN. All measurements above were computed locally and are unaffected.');
+}
+function renderViewerControls(){
+  const v = S.view;
+  $('#vctl').innerHTML = `
+    <button data-t="wt" aria-pressed="${v.wt}">Wild-type side chain</button>
+    <button data-t="mutVol" aria-pressed="${v.mutVol}">Mutant volume</button>
+    <button data-t="neighbours" aria-pressed="${v.neighbours}">Neighbours</button>
+    <button data-t="surface" aria-pressed="${v.surface}">Pocket surface</button>
+    <button data-t="cartoon" aria-pressed="${v.cartoon}">Cartoon</button>
+    <button data-t="reset">Recentre</button>`;
+  $('#vctl').addEventListener('click', e => {
+    const b = e.target.closest('button'); if(!b) return;
+    if(b.dataset.t === 'reset'){ focusSite(); return; }
+    S.view[b.dataset.t] = !S.view[b.dataset.t];
+    b.setAttribute('aria-pressed', String(S.view[b.dataset.t]));
+    draw();
+  });
+}
+async function initViewer(){
+  const vp = $('#viewport'); if(!vp) return;
+  try{
+    await ensureNGL();
+    S.ngl.stage = new NGL.Stage(vp, { backgroundColor:'#080D13', quality:'medium' });
+    window.addEventListener('resize', () => S.ngl.stage && S.ngl.stage.handleResize());
+    const blob = new Blob([S.struct.text], { type:'text/plain' });
+    S.ngl.comp = await S.ngl.stage.loadFile(blob, { ext:S.struct.ext, name:S.chosen.entryId });
+    draw();
+    $('#vload')?.remove();
+  }catch(err){
+    const l = $('#vload');
+    if(l) l.innerHTML = `<span style="max-width:280px;text-align:center;line-height:1.7;text-transform:none;letter-spacing:0;font-size:12px">${esc(err.message)}</span>`;
+  }
+}
+function draw(){
+  const comp = S.ngl.comp; if(!comp) return;
+  comp.removeAllRepresentations();
+  if(S.ngl.shape){ S.ngl.stage.removeComponent(S.ngl.shape); S.ngl.shape = null; }
+  const { chain, authSeq } = S.site, v = S.view, a = S.analysis;
+  const site = `${authSeq}:${chain}`;
+  const near = a.neighbours.slice(0,14).map(n => `${n.res.seq}:${n.res.chain}`).join(' or ') || site;
+  if(v.cartoon) comp.addRepresentation('cartoon', { sele:'polymer', colorScheme:'sstruc', opacity:0.30, side:'front' });
+  if(v.neighbours) comp.addRepresentation('licorice', { sele:`(${near}) and sidechainAttached`, colorScheme:'element',
+    colorValue:'#44586A', radiusScale:0.9 });
+  if(v.surface) comp.addRepresentation('surface', { sele:`(${near}) or ${site}`, opacity:0.28,
+    colorScheme:'hydrophobicity', surfaceType:'av', probeRadius:1.4 });
+  if(v.wt) comp.addRepresentation('ball+stick', { sele:site, colorScheme:'element',
+    colorValue:'#5FD3E0', radiusScale:1.5, aspectRatio:1.5 });
+  try{
+    comp.addRepresentation('label', { sele:`${site} and .CA`, labelType:'format',
+      labelFormat:`${S.mut.wt}${authSeq}\u2192${S.mut.mt}`, color:'#E7EEF4', zOffset:2,
+      attachment:'bottom-center', showBackground:true, backgroundColor:'#0B1118',
+      backgroundOpacity:0.7, radiusScale:1.4 });
+  }catch(e){ /* older NGL builds lack the format label */ }
+  if(v.mutVol && a.sphere){
+    const s = new NGL.Shape('mutant volume');
+    s.addSphere([a.sphere.x, a.sphere.y, a.sphere.z], [0.88, 0.33, 0.25], a.sphere.r, 'mutant side-chain volume');
+    S.ngl.shape = S.ngl.stage.addComponentFromObject(s);
+    S.ngl.shape.addRepresentation('buffer', { opacity:0.35, side:'double' });
+  }
+  focusSite();
+  $('#vnote').innerHTML = `Cyan sticks: the wild-type ${NAME[S.mut.wt]} as deposited. Red sphere: the volume ${NAME[S.mut.mt]}'s side chain would need, placed along the Cα–Cβ direction — a space check, not a modelled rotamer. Grey sticks: residues within 4.5 Å.`;
+}
+function focusSite(){
+  const comp = S.ngl.comp; if(!comp) return;
+  comp.autoView(`${S.site.authSeq}:${S.site.chain}`, 800);
+  try{ S.ngl.stage.viewerControls.zoom(-0.35); }catch(e){}
+}
+$('#q').focus();
+</script>
+
+<script>
+/* RockGen: seed query from ?q= and optional auto-run */
+(function(){
+  try {
+    var params = new URLSearchParams(location.search);
+    var q = params.get('q');
+    if (!q) return;
+    var el = document.getElementById('q');
+    if (!el) return;
+    el.value = q;
+    var go = document.getElementById('goBtn');
+    if (go && params.get('run') !== '0') {
+      setTimeout(function(){ go.click(); }, 120);
+    }
+  } catch (e) {}
+})();
+</script>
+</body>
+</html>

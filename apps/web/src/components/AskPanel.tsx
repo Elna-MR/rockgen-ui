@@ -132,35 +132,55 @@ export function AskPanel() {
         Evidence-weighted reviewer for PFN1/G118V. Confidence is calculated in code from the
         graph—not invented by a model.
       </p>
-      <div className="chip-row">
-        {STARTERS.map((s) => (
+
+      <div className="ask-search">
+        <label className="explorer-search-label" htmlFor="ask-question">
+          Ask a review question
+        </label>
+        <div className="explorer-chip-group">
+          <span className="explorer-chip-label">Starter questions</span>
+          <div className="chip-row">
+            {STARTERS.map((s) => (
+              <button
+                key={s}
+                type="button"
+                className={`chip ${question === s ? "chip-active" : ""}`}
+                onClick={() => {
+                  setQuestion(s);
+                  void submit(s);
+                }}
+              >
+                {s}
+              </button>
+            ))}
+          </div>
+        </div>
+        <textarea
+          id="ask-question"
+          className="ask-input"
+          rows={2}
+          placeholder="e.g. Does G118V increase aggregation?"
+          value={question}
+          onChange={(e) => setQuestion(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) {
+              e.preventDefault();
+              if (question.trim()) void submit(question);
+            }
+          }}
+        />
+        <div className="ask-actions">
           <button
-            key={s}
             type="button"
-            className="chip"
-            onClick={() => {
-              setQuestion(s);
-              void submit(s);
-            }}
+            className="btn btn-primary"
+            disabled={loading || !question.trim()}
+            onClick={() => submit(question)}
           >
-            {s}
+            {loading ? "Reviewing…" : "Run scientific review"}
           </button>
-        ))}
+          <span className="hint">⌘/Ctrl + Enter to run</span>
+        </div>
       </div>
-      <textarea
-        className="ask-input"
-        rows={2}
-        value={question}
-        onChange={(e) => setQuestion(e.target.value)}
-      />
-      <button
-        type="button"
-        className="btn btn-primary"
-        disabled={loading || !question.trim()}
-        onClick={() => submit(question)}
-      >
-        {loading ? "Reviewing…" : "Run scientific review"}
-      </button>
       {error && <p className="error">{error}</p>}
 
       {result && (
