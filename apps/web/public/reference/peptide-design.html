@@ -651,7 +651,7 @@ function designAll(subs,subsWT,scaf,n=10){
 /* =====================================================================
    Run
    ===================================================================== */
-const EXAMPLES=['PFN1-G118V','PFN-1-G118-V','KRAS G12C','SOD1 A4V','TP53 Y220C','1FIL G118V'];
+const EXAMPLES=['PFN1-G118V','KRAS G12C','SOD1 A4V','TP53 Y220C','1FIL G118V'];
 $('#chips').innerHTML=EXAMPLES.map(e=>`<button class="chip" data-q="${esc(e)}">${esc(e)}</button>`).join('');
 $('#chips').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;$('#q').value=b.dataset.q;run();});
 $('#goBtn').addEventListener('click',run);
