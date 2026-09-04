@@ -167,8 +167,8 @@ export default async function DiseaseHubPage({ params }: Props) {
             <Link className="btn btn-primary" href="/diseases/als/mechanisms">
               Mechanisms
             </Link>
-            <Link className="btn btn-ghost" href="/approach">
-              Why mechanism-first
+            <Link className="btn btn-ghost" href="/how-it-works">
+              How it works
             </Link>
             <Link className="btn btn-ghost" href="/diseases">
               All diseases

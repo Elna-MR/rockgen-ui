@@ -233,9 +233,9 @@ export const RESEARCH_DISEASES: ResearchDisease[] = [
         status: "ready",
       },
       {
-        title: "Why mechanism-first",
-        summary: "RockGen approach before molecule design.",
-        href: "/approach",
+        title: "How it works",
+        summary: "RockGen method before molecule design.",
+        href: "/how-it-works",
         status: "ready",
       },
       {
