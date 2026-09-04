@@ -13,8 +13,7 @@ export default function ApproachPage() {
       </p>
 
       <header className="science-hero approach-hero">
-        <p className="eyebrow">Approach</p>
-        <h1>RockGen</h1>
+        <h1>Approach</h1>
         <p className="science-thesis">
           Understand how disease proteins fail — and which shared routes matter — before designing
           molecules.

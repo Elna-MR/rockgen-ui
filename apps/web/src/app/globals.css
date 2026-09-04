@@ -85,10 +85,10 @@ a {
 }
 
 .brand {
-  font-family: var(--font-display);
-  font-size: 1.55rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  font-family: var(--font-sans);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
 }
 
 .nav {
@@ -1533,12 +1533,12 @@ a {
 }
 
 .science-hero h1 {
-  font-family: var(--font-display);
-  font-size: clamp(2.85rem, 7vw, 4.35rem);
+  font-family: var(--font-sans);
+  font-size: clamp(2.15rem, 5vw, 3rem);
   font-weight: 600;
-  letter-spacing: -0.035em;
-  line-height: 1.02;
-  margin-bottom: 0.95rem;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  margin-bottom: 0.85rem;
 }
 
 .science-thesis {
