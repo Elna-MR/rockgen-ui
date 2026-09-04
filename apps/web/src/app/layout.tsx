@@ -26,7 +26,7 @@ const mono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "RockGen — Mechanism-first ALS biology",
+  title: "RockGen — ALS biology workspace",
   description:
     "Map ALS disease proteins and shared mechanisms before designing drugs. Guides for families, a learning path for students, and an evidence workspace for researchers.",
 };

@@ -13,13 +13,14 @@ export default function ApproachPage() {
       </p>
 
       <header className="science-hero approach-hero">
-        <h1>Mechanism-first ALS biology</h1>
+        <p className="eyebrow">Approach</p>
+        <h1>RockGen</h1>
         <p className="science-thesis">
           Understand how disease proteins fail — and which shared routes matter — before designing
           molecules.
         </p>
         <p className="lede">
-          RockGen is an educational and research workspace. It does not invent drugs or replace
+          An educational and research workspace for ALS biology. It does not invent drugs or replace
           clinical care.
         </p>
       </header>
