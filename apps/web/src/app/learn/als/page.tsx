@@ -1,58 +1,130 @@
 import Link from "next/link";
+import { ProteinField } from "@/components/ProteinField";
+import { LEARN_GUIDES, LEARN_MODULES, PRACTICE } from "@/data/alsGuide";
+import { getLearnDisease } from "@/data/learnHub";
 
-export default function LearnAlsPage() {
+export default function LearnAlsTrackPage() {
+  const disease = getLearnDisease("als")!;
+
   return (
-    <main className="page hub-page">
+    <main className="page learn-disease-page">
       <p className="eyebrow">
-        <Link href="/learn">Learn</Link> · Module 01
+        <Link href="/learn">Learn</Link> · ALS
       </p>
-      <header className="hub-hero">
-        <h1>ALS in five ideas</h1>
-        <p className="lede">
-          Amyotrophic lateral sclerosis damages motor neurons. Many genes can contribute; they often
-          share overlapping biology even when the proteins look different.
-        </p>
-        <p className="meta-pill">~5 min · Outcome: tell the disease story without jargon</p>
+      <header className="hub-hero hub-hero-visual">
+        <div>
+          <p className="learn-disease-kicker">{disease.category} · {disease.status === "ready" ? "Full track" : "Growing"}</p>
+          <h1>{disease.shortName}</h1>
+          <p className="science-thesis science-thesis-compact">{disease.tagline}</p>
+          <p className="lede">{disease.summary}</p>
+          <p className="meta-pill">
+            {disease.modules} modules · {disease.minutes}
+          </p>
+        </div>
+        <div className="hub-hero-motif" aria-hidden="true">
+          <ProteinField variant="panel" />
+        </div>
       </header>
 
-      <ol className="learn-list">
-        <li>
-          <strong>Genes encode proteins.</strong> In this program you will meet{" "}
-          <Link href="/proteins/P07737">PFN1</Link> (actin / cell framework) and{" "}
-          <Link href="/proteins/P68366">TUBA4A</Link> (microtubules).
-        </li>
-        <li>
-          <strong>Mutations change shape and behavior.</strong> Some alleles raise aggregation or
-          stress the cytoskeleton; comparison pages show which change looks most disruptive.
-        </li>
-        <li>
-          <strong>Mechanisms are the shared language.</strong> Aggregation, cytoskeleton failure, and
-          axonal transport can appear across different proteins.
-        </li>
-        <li>
-          <strong>Evidence has types.</strong> Computation, cell assays, animals, and human genetics
-          are not equal — RockGen labels the mix.
-        </li>
-        <li>
-          <strong>Prioritize before designing drugs.</strong> Rank mechanisms to investigate; molecule
-          generation comes later.
-        </li>
-      </ol>
+      <section className="section" id="overview">
+        <h2>Key ideas</h2>
+        <ul className="learn-fact-list">
+          {disease.keyFacts.map((f) => (
+            <li key={f}>{f}</li>
+          ))}
+        </ul>
+      </section>
 
-      <aside className="check-panel" aria-label="Check your understanding">
-        <h2>Check your understanding</h2>
-        <ol>
-          <li>Say the five ideas back in your own words (no looking).</li>
-          <li>Which idea separates “interesting finding” from “ready for therapy design”?</li>
+      <section className="section">
+        <h2>Proteins to know</h2>
+        <div className="learn-protein-grid">
+          {disease.proteins.map((p) => (
+            <div key={p.symbol} className="learn-protein-card">
+              {p.href ? (
+                <Link href={p.href}>
+                  <strong>{p.symbol}</strong>
+                </Link>
+              ) : (
+                <strong>{p.symbol}</strong>
+              )}
+              <span className="hint">{p.name}</span>
+              <p>{p.role}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="section">
+        <h2>Mechanism words</h2>
+        <div className="chip-row">
+          {disease.mechanisms.map((m) => (
+            <span key={m} className="chip chip-static">
+              {m}
+            </span>
+          ))}
+        </div>
+      </section>
+
+      <section className="section" id="curriculum">
+        <h2>Curriculum</h2>
+        <p className="hint">Follow in order the first time. Jump ahead only if you already know the outcome.</p>
+        <ol className="curriculum">
+          {LEARN_MODULES.map((m) => (
+            <li key={m.id}>
+              <Link href={m.href} className="curriculum-row">
+                <span className="curriculum-num">{String(m.number).padStart(2, "0")}</span>
+                <div className="curriculum-body">
+                  <h3>{m.title}</h3>
+                  <p>
+                    <span className="curriculum-kind">{m.kind}</span>
+                    {m.outcome}
+                  </p>
+                </div>
+                <span className="curriculum-meta">{m.minutes}</span>
+              </Link>
+            </li>
+          ))}
         </ol>
-      </aside>
+      </section>
 
-      <div className="cta-row" style={{ marginTop: "2rem" }}>
-        <Link className="btn btn-primary" href="/learn/practice/patient-view">
-          Next: patient lens
+      <section className="section">
+        <h2>Guides</h2>
+        <div className="hub-grid">
+          {LEARN_GUIDES.map((g) => (
+            <Link key={g.slug} href={`/learn/guides/${g.slug}`} className="hub-link">
+              <strong>{g.title}</strong>
+              <span>
+                {g.minutes ? `${g.minutes} min · ` : ""}
+                {g.summary}
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="section">
+        <h2>Practice lab</h2>
+        <div className="hub-grid">
+          {PRACTICE.map((p) => (
+            <Link key={p.slug} href={`/learn/practice/${p.slug}`} className="hub-link">
+              <strong>{p.title}</strong>
+              <span>
+                {p.level === "intro" ? "Intro" : "Next"} · {p.minutes} min — {p.goal}
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <div className="cta-row" style={{ marginTop: "1.5rem" }}>
+        <Link className="btn btn-primary" href="/learn/als/orient">
+          Start module 01
+        </Link>
+        <Link className="btn btn-ghost" href="/diseases/als">
+          ALS research workspace
         </Link>
         <Link className="btn btn-ghost" href="/learn">
-          Full curriculum
+          All diseases
         </Link>
       </div>
     </main>

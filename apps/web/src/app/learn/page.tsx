@@ -1,85 +1,51 @@
 import Link from "next/link";
+import { LearnHubClient } from "@/components/LearnHubClient";
 import { ProteinField } from "@/components/ProteinField";
-import { LEARN_GUIDES, LEARN_MODULES, PRACTICE } from "@/data/alsGuide";
 
 export default function LearnHubPage() {
   return (
-    <main className="page hub-page hub-page-visual">
+    <main className="page learn-hub-page">
       <p className="eyebrow">
         <Link href="/">Home</Link> · Learn
       </p>
       <header className="hub-hero hub-hero-visual">
         <div>
-          <h1>Learn ALS biology</h1>
+          <h1>Learning hub</h1>
           <p className="lede">
-            An eight-step path: orient, read, then practice with one research tool at a time. Each
-            module has a clear outcome so you know what “done” looks like. Prefer the big picture
-            first? Read{" "}
-            <Link href="/approach">mechanism-first approach</Link>.
+            Search and open disease tracks for students — ALS, Parkinson’s, Alzheimer’s, and related
+            neurodegenerative biology. Each tile links proteins, mechanisms, and practice tools.
           </p>
-          <p className="meta-pill">~75 minutes total · families: use Understand instead</p>
+          <p className="meta-pill">Mechanism-first · not medical advice · start with one disease</p>
         </div>
         <div className="hub-hero-motif" aria-hidden="true">
           <ProteinField variant="panel" />
         </div>
       </header>
 
-      <section className="section">
-        <h2>Curriculum</h2>
-        <p className="hint">Follow in order the first time. Jump ahead only if you already know the outcome.</p>
-        <ol className="curriculum">
-          {LEARN_MODULES.map((m) => (
-            <li key={m.id}>
-              <Link href={m.href} className="curriculum-row">
-                <span className="curriculum-num">{String(m.number).padStart(2, "0")}</span>
-                <div className="curriculum-body">
-                  <h3>{m.title}</h3>
-                  <p>
-                    <span className="curriculum-kind">{m.kind}</span>
-                    {m.outcome}
-                  </p>
-                </div>
-                <span className="curriculum-meta">{m.minutes}</span>
-              </Link>
-            </li>
-          ))}
-        </ol>
-      </section>
+      <LearnHubClient />
 
-      <section className="section">
-        <h2>Guides</h2>
-        <p className="hint">Deeper reading — each ends with check-your-understanding prompts.</p>
+      <section className="section learn-shared">
+        <h2>Shared student tools</h2>
+        <p className="hint">Use across diseases once you know the basic map.</p>
         <div className="hub-grid">
-          {LEARN_GUIDES.map((g) => (
-            <Link key={g.slug} href={`/learn/guides/${g.slug}`} className="hub-link">
-              <strong>{g.title}</strong>
-              <span>
-                {g.minutes ? `${g.minutes} min · ` : ""}
-                {g.summary}
-              </span>
-            </Link>
-          ))}
+          <Link href="/learn/guides/mental-model" className="hub-link">
+            <strong>Mental model</strong>
+            <span>Gene → protein → mechanism → disease</span>
+          </Link>
+          <Link href="/learn/guides/evidence" className="hub-link">
+            <strong>Read evidence</strong>
+            <span>Claim vs evidence type vs confidence</span>
+          </Link>
+          <Link href="/proteins/explore" className="hub-link">
+            <strong>Structure lab</strong>
+            <span>Search PDB folds and mutation sites</span>
+          </Link>
+          <Link href="/approach" className="hub-link">
+            <strong>Why mechanism-first</strong>
+            <span>The RockGen approach story</span>
+          </Link>
         </div>
       </section>
-
-      <section className="section">
-        <h2>Practice lab</h2>
-        <p className="hint">Open one tool with a goal, then write short reflections before moving on.</p>
-        <div className="hub-grid">
-          {PRACTICE.map((p) => (
-            <Link key={p.slug} href={`/learn/practice/${p.slug}`} className="hub-link">
-              <strong>{p.title}</strong>
-              <span>
-                {p.level === "intro" ? "Intro" : "Next"} · {p.minutes} min — {p.goal}
-              </span>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <p className="hint" style={{ marginTop: "1.5rem" }}>
-        Ready for full tools? <Link href="/diseases/als">Open the ALS research workspace</Link>.
-      </p>
     </main>
   );
 }

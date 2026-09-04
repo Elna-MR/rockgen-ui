@@ -48,7 +48,7 @@ export const LEARN_MODULES: LearnModule[] = [
     title: "Orient — ALS in five ideas",
     minutes: "5 min",
     outcome: "Tell the disease story without jargon.",
-    href: "/learn/als",
+    href: "/learn/als/orient",
     kind: "read",
   },
   {
@@ -227,7 +227,7 @@ export const LEARN_GUIDES: GuideArticle[] = [
     ],
     next: [
       { label: "How to read evidence", href: "/learn/guides/evidence" },
-      { label: "ALS in five ideas", href: "/learn/als" },
+      { label: "ALS in five ideas", href: "/learn/als/orient" },
     ],
   },
   {
@@ -290,7 +290,7 @@ export const PRACTICE: PracticeExercise[] = [
       "Write the five ideas as five short bullets from memory.",
       "Circle the one idea you want to practice next.",
     ],
-    openHref: "/learn/als",
+    openHref: "/learn/als/orient",
     openLabel: "Open five ideas",
   },
   {
