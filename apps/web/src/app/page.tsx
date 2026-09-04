@@ -6,35 +6,35 @@ export default function HomePage() {
     <main className="page home-page home-page-visual">
       <section className="home-stage">
         <div className="home-stage-copy">
-          <p className="eyebrow">Neurodegeneration · mechanism-first biology</p>
+          <p className="eyebrow">Neurodegeneration biology workspace</p>
           <h1>RockGen</h1>
           <p className="science-thesis">
-            Map disease proteins and shared mechanisms before designing drugs.
+            Learn and research disease proteins across ALS, Parkinson’s, Alzheimer’s, and related
+            biology — mechanisms before molecules.
           </p>
           <p className="lede">
-            A calm workspace for families, students, and researchers — ALS, Parkinson’s, Alzheimer’s,
-            and more — evidence labeled, one tool at a time.
+            Plain-language tracks for families and students. Citation-aware tools for researchers.
+            One disease, one decision at a time.
           </p>
           <div className="cta-row">
-            <Link className="btn btn-primary" href="/approach">
-              How the approach works
+            <Link className="btn btn-primary" href="/learn">
+              Start learning
             </Link>
             <Link className="btn btn-ghost" href="/diseases">
-              Open research hub
+              Open research
             </Link>
           </div>
         </div>
         <div className="home-stage-visual" aria-hidden="true">
           <ProteinField variant="hero" />
-          <p className="home-stage-caption">Fold · route · evidence</p>
+          <p className="home-stage-caption">Protein · mechanism · evidence</p>
         </div>
       </section>
 
       <section className="science-band" aria-labelledby="different-heading">
-        <h2 id="different-heading">How RockGen works</h2>
+        <h2 id="different-heading">What you get</h2>
         <p className="hint">
-          Three ideas borrowed from serious biotech storytelling — applied to ALS learning and
-          research.
+          Built for serious biology storytelling — without drowning you in a dashboard.
         </p>
         <div className="pillar-grid">
           <article className="pillar">
@@ -79,22 +79,21 @@ export default function HomePage() {
       </section>
 
       <section className="section" aria-label="Choose how to enter">
-        <h2>Enter RockGen</h2>
+        <h2>Choose a path</h2>
         <div className="path-grid path-grid-2">
           <Link href="/learn" className="path-tile path-tile-primary">
             <p className="eyebrow">Students &amp; families</p>
             <h2>Learning hub</h2>
             <p>
-              Disease tiles for ALS, Parkinson’s, Alzheimer’s, and more — plain language plus student
-              tracks.
+              Disease tiles with plain language and student tracks — ALS, Parkinson’s, Alzheimer’s,
+              and more.
             </p>
           </Link>
           <Link href="/diseases" className="path-tile">
             <p className="eyebrow">Researchers</p>
             <h2>Research hub</h2>
             <p>
-              Disease tiles for ALS, Parkinson’s, Alzheimer’s, and more — mechanisms, maps, and
-              citation-aware review.
+              Disease workspaces for mechanisms, maps, structures, and citation-aware review.
             </p>
           </Link>
         </div>
