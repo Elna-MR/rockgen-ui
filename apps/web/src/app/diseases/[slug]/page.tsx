@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ALS_FALLBACK } from "@/data/alsFallback";
 import { getDisease, mechanismReportMarkdownUrl } from "@/lib/api";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -8,17 +9,24 @@ const PROGRAM_FOCUS = new Set(["P07737", "P68366"]);
 export default async function DiseaseHubPage({ params }: Props) {
   const { slug } = await params;
   let disease: Awaited<ReturnType<typeof getDisease>> | null = null;
-  let error: string | null = null;
+  let offline = false;
+
   try {
     disease = await getDisease(slug);
-  } catch (e) {
-    error = e instanceof Error ? e.message : "Failed to load disease";
+  } catch {
+    if (slug === "als") {
+      disease = ALS_FALLBACK;
+      offline = true;
+    }
   }
 
-  if (error || !disease) {
+  if (!disease) {
     return (
       <main className="page">
-        <p className="error">{error ?? "Not found"}</p>
+        <p className="error">Disease not found.</p>
+        <p className="hint" style={{ marginTop: "0.75rem" }}>
+          <Link href="/diseases/als">Back to ALS workspace</Link>
+        </p>
       </main>
     );
   }
@@ -55,6 +63,11 @@ export default async function DiseaseHubPage({ params }: Props) {
           Shared mechanisms across program proteins — then prioritize what to study next.
         </p>
         <p className="lede">{disease.synopsis}</p>
+        {offline && (
+          <p className="hint" style={{ marginTop: "0.65rem" }}>
+            Live graph catalog is offline — showing the local ALS panel so you can keep navigating.
+          </p>
+        )}
         <div className="cta-row" style={{ marginTop: "1.25rem" }}>
           <Link className="btn btn-primary" href="/diseases/als/mechanisms">
             Mechanisms

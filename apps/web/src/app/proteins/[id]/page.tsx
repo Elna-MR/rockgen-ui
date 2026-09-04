@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ProteinViewerClient } from "@/components/ProteinViewerClient";
+import { proteinFallback } from "@/data/proteinFallback";
 import { getProtein, getProteinEvidence } from "@/lib/api";
 
 type Props = { params: Promise<{ id: string }> };
@@ -7,20 +8,24 @@ type Props = { params: Promise<{ id: string }> };
 export default async function ProteinOverviewPage({ params }: Props) {
   const { id } = await params;
   let protein: Awaited<ReturnType<typeof getProtein>> | null = null;
-  let error: string | null = null;
+  let offline = false;
 
   try {
     protein = await getProtein(id);
     // Warm evidence cache / ensure ingest without expanding UI
     await getProteinEvidence(id).catch(() => null);
-  } catch (e) {
-    error = e instanceof Error ? e.message : "Failed to load protein";
+  } catch {
+    protein = proteinFallback(id);
+    offline = Boolean(protein);
   }
 
-  if (error || !protein) {
+  if (!protein) {
     return (
       <main className="page">
-        <p className="error">{error ?? "Not found"}</p>
+        <p className="error">Protein not found.</p>
+        <p className="hint" style={{ marginTop: "0.75rem" }}>
+          <Link href="/diseases/als">Back to ALS workspace</Link>
+        </p>
       </main>
     );
   }
@@ -46,6 +51,11 @@ export default async function ProteinOverviewPage({ params }: Props) {
           </span>
         </p>
         {functionText && <p className="hint">{functionText}</p>}
+        {offline && (
+          <p className="hint" style={{ marginTop: "0.55rem" }}>
+            Live protein API is offline — showing a local summary. Structure tools still work.
+          </p>
+        )}
       </header>
 
       <section className="section">
