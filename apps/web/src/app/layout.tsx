@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DM_Sans, Source_Serif_4 } from "next/font/google";
+import { DM_Sans, IBM_Plex_Mono, Source_Serif_4 } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
 
@@ -8,12 +8,21 @@ export const dynamic = "force-dynamic";
 
 const sans = DM_Sans({
   subsets: ["latin"],
-  variable: "--font-sans",
+  variable: "--font-sans-face",
+  display: "swap",
 });
 
 const display = Source_Serif_4({
   subsets: ["latin"],
-  variable: "--font-display",
+  variable: "--font-display-face",
+  display: "swap",
+});
+
+const mono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-mono-face",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -28,8 +37,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${sans.variable} ${display.variable}`}>
+    <html lang="en" className={`${sans.variable} ${display.variable} ${mono.variable}`}>
+      <body>
         <div className="shell">
           <header className="topbar">
             <Link href="/" className="brand">

@@ -6,7 +6,7 @@
 <title>Complement — peptide binder design against a mutation site</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
   --ink:#0B1118;--panel:#101A24;--panel-2:#16222E;--rule:#22323F;
@@ -15,7 +15,7 @@
   --hydrophobic:#C9A227;--polar:#4FB3A5;--acidic:#E0533F;--basic:#6E8FE0;--special:#A97BD1;
   --warn:#E0533F;--caution:#E8B23A;--ok:#4FB3A5;
   --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-  --disp:"Space Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --disp:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;--serif:"Source Serif 4",Georgia,serif;
 }
 *{box-sizing:border-box} html,body{margin:0;padding:0}
 body{background:var(--ink);color:var(--bone);font-family:var(--disp);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
@@ -23,8 +23,8 @@ a{color:var(--accent)} button,input,select{font:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 header{border-bottom:1px solid var(--rule);background:linear-gradient(180deg,#0E1822,#0B1118);position:sticky;top:0;z-index:40}
 .bar{max-width:1560px;margin:0 auto;padding:14px 22px;display:flex;gap:20px;align-items:center;flex-wrap:wrap}
-.brand{display:flex;flex-direction:column;line-height:1.05}
-.brand b{font-weight:700;letter-spacing:-.02em;font-size:19px}
+.brand{font-family:var(--serif);display:flex;flex-direction:column;line-height:1.05}
+.brand b{font-family:var(--serif);font-weight:700;letter-spacing:-.02em;font-size:19px}
 .brand span{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
 .searchwrap{flex:1;min-width:300px;display:flex;gap:8px}
 #q{flex:1;background:var(--ink);border:1px solid var(--rule);border-radius:2px;padding:11px 14px;font-family:var(--mono);font-size:14px;letter-spacing:.04em;text-transform:uppercase}
@@ -879,10 +879,10 @@ function wheel(seq,plan,scaf){
     const onFace=plan.faceSet.has(i);
     s+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="11" fill="${onFace?CC[CLASS_OF[a]]:'#16222E'}"
          stroke="${onFace?CC[CLASS_OF[a]]:'#22323F'}" fill-opacity="${onFace?0.9:1}"/>
-      <text x="${x.toFixed(1)}" y="${(y+4).toFixed(1)}" text-anchor="middle" font-family="IBM Plex Mono, monospace"
+      <text x="${x.toFixed(1)}" y="${(y+4).toFixed(1)}" text-anchor="middle" font-family="IBM Plex Mono, DM Sans, monospace"
         font-size="11" fill="${onFace?'#0B1118':'#5B6D7C'}">${a}</text>`;
   });
-  s+=`<text x="${cx}" y="212" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9"
+  s+=`<text x="${cx}" y="212" text-anchor="middle" font-family="IBM Plex Mono, DM Sans, monospace" font-size="9"
       letter-spacing="1.5" fill="#5B6D7C">${scaf.key==='helix'?'100° PER RESIDUE':scaf.key==='strand'?'180° PER RESIDUE':'FACE MAP'}</text></svg>`;
   return s;
 }

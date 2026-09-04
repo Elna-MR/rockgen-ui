@@ -14,8 +14,10 @@
   --warn: #a67c2d;
   --danger: #b33a3a;
   --radius: 4px;
-  --font-sans: var(--font-sans), "DM Sans", sans-serif;
-  --font-display: var(--font-display), "Source Serif 4", Georgia, serif;
+  /* next/font faces (html) + fallbacks — one stack site-wide */
+  --font-sans: var(--font-sans-face), "DM Sans", system-ui, sans-serif;
+  --font-display: var(--font-display-face), "Source Serif 4", Georgia, serif;
+  --font-mono: var(--font-mono-face), "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 * {
@@ -37,6 +39,24 @@ body {
     radial-gradient(640px 380px at 96% 4%, rgba(90, 120, 140, 0.06) 0%, transparent 50%),
     linear-gradient(180deg, #f8fafb 0%, var(--bg-0) 42%, #eef1f4 100%);
   -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  font-family: var(--font-sans);
+}
+
+code,
+kbd,
+pre,
+samp,
+.chem-seq,
+.mut-patch-aa,
+.mono {
+  font-family: var(--font-mono);
 }
 
 a {
@@ -249,7 +269,7 @@ a {
 }
 
 .seq {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-family: var(--font-mono);
   font-size: 0.78rem;
   line-height: 1.7;
   word-break: break-all;
@@ -690,7 +710,7 @@ a {
 }
 
 .seq-viewer {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-family: var(--font-mono);
   font-size: 0.82rem;
   line-height: 1.7;
 }
@@ -1160,7 +1180,7 @@ a {
   list-style: none;
   padding: 0;
   margin: 0.5rem 0 0;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-family: var(--font-mono);
   font-size: 0.9rem;
   color: var(--ink-muted);
 }
@@ -2064,7 +2084,7 @@ a {
   border-radius: var(--radius);
   background: var(--surface);
   font: inherit;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-family: var(--font-mono);
   font-size: 0.82rem;
   cursor: pointer;
   color: inherit;
@@ -2239,7 +2259,7 @@ a {
 }
 
 .chem-seq {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-family: var(--font-mono);
   font-size: 0.82rem;
   line-height: 1.85;
   word-break: break-all;
