@@ -40,9 +40,9 @@ export default function LearnHubPage() {
             <strong>Structure lab</strong>
             <span>Search PDB folds and mutation sites</span>
           </Link>
-          <Link href="/how-it-works" className="hub-link">
-            <strong>How it works</strong>
-            <span>The RockGen method story</span>
+          <Link href="/mechanism-first" className="hub-link">
+            <strong>Mechanism first</strong>
+            <span>Why RockGen ranks biology before molecules</span>
           </Link>
         </div>
       </section>

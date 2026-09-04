@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 
-/** Legacy Approach URL — renamed to How it works. */
+/** Legacy Approach URL — page is now Mechanism first. */
 export default function ApproachRedirect() {
-  redirect("/how-it-works");
+  redirect("/mechanism-first");
 }
