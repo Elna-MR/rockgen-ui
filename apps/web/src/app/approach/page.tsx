@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ProteinField } from "@/components/ProteinField";
 
 /**
  * Science explainer — storytelling pattern inspired by biotech modality pages
@@ -7,21 +8,26 @@ import Link from "next/link";
  */
 export default function ApproachPage() {
   return (
-    <main className="page approach-page">
+    <main className="page approach-page approach-page-visual">
       <p className="eyebrow">
         <Link href="/">Home</Link> · Approach
       </p>
 
       <header className="science-hero approach-hero">
-        <h1>Approach</h1>
-        <p className="science-thesis">
-          Understand how disease proteins fail — and which shared routes matter — before designing
-          molecules.
-        </p>
-        <p className="lede">
-          An educational and research workspace for ALS biology. It does not invent drugs or replace
-          clinical care.
-        </p>
+        <div className="approach-hero-copy">
+          <h1>Approach</h1>
+          <p className="science-thesis">
+            Understand how disease proteins fail — and which shared routes matter — before designing
+            molecules.
+          </p>
+          <p className="lede">
+            An educational and research workspace for ALS biology. It does not invent drugs or replace
+            clinical care.
+          </p>
+        </div>
+        <div className="approach-hero-visual" aria-hidden="true">
+          <ProteinField variant="panel" />
+        </div>
       </header>
 
       <section className="science-section">

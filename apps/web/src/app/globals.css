@@ -65,6 +65,8 @@ a {
 }
 
 .shell {
+  position: relative;
+  z-index: 1;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -2385,3 +2387,348 @@ i.chem-swatch.chem-special {
   }
 }
 
+
+/* —— Protein atmosphere & dynamic motifs —— */
+
+.site-atmosphere {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.atm-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0.55;
+  animation: atmDrift 22s ease-in-out infinite alternate;
+}
+
+.atm-orb-1 {
+  width: min(48vw, 28rem);
+  height: min(48vw, 28rem);
+  top: -8%;
+  right: -6%;
+  background: radial-gradient(circle, rgba(74, 139, 134, 0.22), transparent 68%);
+}
+
+.atm-orb-2 {
+  width: min(42vw, 24rem);
+  height: min(42vw, 24rem);
+  bottom: 8%;
+  left: -10%;
+  background: radial-gradient(circle, rgba(106, 154, 175, 0.16), transparent 70%);
+  animation-delay: -7s;
+  animation-duration: 28s;
+}
+
+.atm-orb-3 {
+  width: min(30vw, 16rem);
+  height: min(30vw, 16rem);
+  top: 42%;
+  left: 38%;
+  background: radial-gradient(circle, rgba(74, 139, 134, 0.1), transparent 72%);
+  animation-delay: -12s;
+  animation-duration: 26s;
+}
+
+.atm-ribbon {
+  position: absolute;
+  inset: 12% -5% auto;
+  width: 110%;
+  height: min(42vh, 28rem);
+  opacity: 0.9;
+  animation: atmRibbon 30s ease-in-out infinite alternate;
+}
+
+@keyframes atmDrift {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to { transform: translate3d(2%, 3%, 0) scale(1.06); }
+}
+
+@keyframes atmRibbon {
+  from { transform: translateX(0) translateY(0); opacity: 0.85; }
+  to { transform: translateX(-1.5%) translateY(2%); opacity: 1; }
+}
+
+.home-page-visual.page,
+.approach-page-visual.page {
+  max-width: min(1120px, 100%);
+}
+
+.home-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 1.5rem 2rem;
+  align-items: center;
+  margin: 0 0 2.75rem;
+  min-height: min(62vh, 34rem);
+  position: relative;
+}
+
+.home-stage-copy {
+  position: relative;
+  z-index: 1;
+  animation: rise 0.75s ease both;
+}
+
+.home-stage-copy h1 {
+  font-family: var(--font-sans);
+  font-size: clamp(2.4rem, 6vw, 3.6rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+  margin-bottom: 0.85rem;
+}
+
+.home-stage-visual {
+  position: relative;
+  min-height: 18rem;
+  display: grid;
+  place-items: center;
+  animation: rise 0.9s ease both;
+  animation-delay: 0.12s;
+}
+
+.home-stage-visual .protein-field {
+  width: min(100%, 34rem);
+  height: auto;
+  filter: drop-shadow(0 18px 40px rgba(42, 85, 82, 0.08));
+}
+
+.home-stage-caption {
+  position: absolute;
+  bottom: 0.35rem;
+  right: 0.5rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.approach-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: 1.25rem 1.75rem;
+  align-items: center;
+}
+
+.approach-hero-visual {
+  min-height: 11rem;
+  display: grid;
+  place-items: center;
+}
+
+.approach-hero-visual .protein-field {
+  width: min(100%, 22rem);
+  height: auto;
+  opacity: 0.92;
+}
+
+.protein-field-hero .pf-ribbon-main {
+  stroke-dasharray: 900;
+  stroke-dashoffset: 900;
+  animation: pfDraw 2.4s ease forwards;
+}
+
+.protein-field-hero .pf-ribbon-back {
+  stroke-dasharray: 900;
+  stroke-dashoffset: 900;
+  animation: pfDraw 2.8s ease 0.15s forwards;
+}
+
+.protein-field-hero .pf-trace {
+  animation: pfDash 18s linear infinite;
+}
+
+.protein-field .pf-blob-a {
+  animation: pfFloat 12s ease-in-out infinite alternate;
+  transform-origin: center;
+}
+
+.protein-field .pf-blob-b {
+  animation: pfFloat 15s ease-in-out infinite alternate-reverse;
+  transform-origin: center;
+}
+
+.protein-field .pf-res {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pfPulse 3.6s ease-in-out infinite;
+}
+
+.protein-field .pf-res-2 { animation-delay: 0.35s; }
+.protein-field .pf-res-3 { animation-delay: 0.7s; }
+.protein-field .pf-res-4 { animation-delay: 1.05s; }
+.protein-field .pf-res-5 { animation-delay: 1.4s; }
+.protein-field .pf-res-6 { animation-delay: 1.75s; }
+
+.protein-field .pf-ring-1 {
+  animation: pfSpin 22s linear infinite;
+  transform-origin: 340px 190px;
+}
+
+.protein-field .pf-ring-2 {
+  animation: pfSpin 34s linear infinite reverse;
+  transform-origin: 340px 190px;
+}
+
+.protein-field-panel {
+  width: 100%;
+  max-height: 7.5rem;
+}
+
+.pillar-glyph {
+  height: 3.6rem;
+  margin-bottom: 0.65rem;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.pillar-glyph .protein-field {
+  width: 9rem;
+  max-height: 3.6rem;
+  opacity: 0.85;
+}
+
+.glyph-nodes,
+.glyph-steps {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.glyph-nodes i,
+.glyph-steps i {
+  display: block;
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.55;
+  animation: pfPulse 2.8s ease-in-out infinite;
+}
+
+.glyph-nodes i:nth-child(2) { animation-delay: 0.35s; opacity: 0.75; }
+.glyph-nodes i:nth-child(3) { animation-delay: 0.7s; }
+
+.glyph-steps i {
+  width: 1.35rem;
+  height: 0.28rem;
+  border-radius: 99px;
+  opacity: 0.45;
+}
+
+.glyph-steps i:nth-child(2) { width: 1.8rem; opacity: 0.65; animation-delay: 0.25s; }
+.glyph-steps i:nth-child(3) { width: 2.2rem; opacity: 0.85; animation-delay: 0.5s; }
+
+.path-tile,
+.pillar {
+  transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+.path-tile:hover,
+.pillar:hover {
+  transform: translateY(-2px);
+}
+
+@keyframes pfDraw {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes pfDash {
+  to { stroke-dashoffset: -120; }
+}
+
+@keyframes pfFloat {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(8px, -10px, 0); }
+}
+
+@keyframes pfPulse {
+  0%, 100% { transform: scale(1); opacity: 0.55; }
+  50% { transform: scale(1.35); opacity: 1; }
+}
+
+@keyframes pfSpin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 860px) {
+  .home-stage,
+  .approach-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .home-stage {
+    min-height: 0;
+  }
+
+  .home-stage-visual {
+    order: -1;
+    min-height: 14rem;
+  }
+
+  .approach-hero-visual {
+    min-height: 9rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .atm-orb,
+  .atm-ribbon,
+  .protein-field .pf-ribbon-main,
+  .protein-field .pf-ribbon-back,
+  .protein-field .pf-trace,
+  .protein-field .pf-blob-a,
+  .protein-field .pf-blob-b,
+  .protein-field .pf-res,
+  .protein-field .pf-ring-1,
+  .protein-field .pf-ring-2,
+  .glyph-nodes i,
+  .glyph-steps i {
+    animation: none !important;
+  }
+
+  .protein-field-hero .pf-ribbon-main,
+  .protein-field-hero .pf-ribbon-back {
+    stroke-dashoffset: 0;
+  }
+}
+
+.hub-hero-visual {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  gap: 1rem 1.5rem;
+  align-items: center;
+}
+
+.hub-hero-motif {
+  display: grid;
+  place-items: center;
+  min-height: 8rem;
+}
+
+.hub-hero-motif .protein-field {
+  width: min(100%, 18rem);
+  height: auto;
+  opacity: 0.88;
+}
+
+.hub-page-visual.page {
+  max-width: min(52rem, 100%);
+}
+
+@media (max-width: 720px) {
+  .hub-hero-visual {
+    grid-template-columns: 1fr;
+  }
+
+  .hub-hero-motif {
+    order: -1;
+    min-height: 7rem;
+  }
+}

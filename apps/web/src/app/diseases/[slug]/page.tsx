@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ProteinField } from "@/components/ProteinField";
 import { ALS_FALLBACK } from "@/data/alsFallback";
 import { getDisease, mechanismReportMarkdownUrl } from "@/lib/api";
 
@@ -57,24 +58,29 @@ export default async function DiseaseHubPage({ params }: Props) {
       <p className="eyebrow">
         <Link href="/">Home</Link> · Disease
       </p>
-      <header className="hub-hero">
-        <h1>ALS</h1>
-        <p className="science-thesis science-thesis-compact">
-          Shared mechanisms across program proteins — then prioritize what to study next.
-        </p>
-        <p className="lede">{disease.synopsis}</p>
-        {offline && (
-          <p className="hint" style={{ marginTop: "0.65rem" }}>
-            Live graph catalog is offline — showing the local ALS panel so you can keep navigating.
+      <header className="hub-hero hub-hero-visual">
+        <div>
+          <h1>ALS</h1>
+          <p className="science-thesis science-thesis-compact">
+            Shared mechanisms across program proteins — then prioritize what to study next.
           </p>
-        )}
-        <div className="cta-row" style={{ marginTop: "1.25rem" }}>
-          <Link className="btn btn-primary" href="/diseases/als/mechanisms">
-            Mechanisms
-          </Link>
-          <Link className="btn btn-ghost" href="/approach">
-            Why mechanism-first
-          </Link>
+          <p className="lede">{disease.synopsis}</p>
+          {offline && (
+            <p className="hint" style={{ marginTop: "0.65rem" }}>
+              Live graph catalog is offline — showing the local ALS panel so you can keep navigating.
+            </p>
+          )}
+          <div className="cta-row" style={{ marginTop: "1.25rem" }}>
+            <Link className="btn btn-primary" href="/diseases/als/mechanisms">
+              Mechanisms
+            </Link>
+            <Link className="btn btn-ghost" href="/approach">
+              Why mechanism-first
+            </Link>
+          </div>
+        </div>
+        <div className="hub-hero-motif" aria-hidden="true">
+          <ProteinField variant="panel" />
         </div>
       </header>
 

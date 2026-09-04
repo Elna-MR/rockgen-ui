@@ -1,33 +1,46 @@
 import Link from "next/link";
+import { ProteinField } from "@/components/ProteinField";
 
 export default function HomePage() {
   return (
-    <main className="page home-page">
-      <header className="science-hero">
-        <p className="eyebrow">ALS · mechanism-first biology</p>
-        <h1>RockGen</h1>
-        <p className="science-thesis">
-          Map disease proteins and shared mechanisms before designing drugs.
-        </p>
-        <p className="lede">
-          A calm workspace for families, students, and researchers — evidence labeled, one tool at a
-          time.
-        </p>
-        <div className="cta-row">
-          <Link className="btn btn-primary" href="/approach">
-            How the approach works
-          </Link>
-          <Link className="btn btn-ghost" href="/diseases/als">
-            Open ALS workspace
-          </Link>
+    <main className="page home-page home-page-visual">
+      <section className="home-stage">
+        <div className="home-stage-copy">
+          <p className="eyebrow">ALS · mechanism-first biology</p>
+          <h1>RockGen</h1>
+          <p className="science-thesis">
+            Map disease proteins and shared mechanisms before designing drugs.
+          </p>
+          <p className="lede">
+            A calm workspace for families, students, and researchers — evidence labeled, one tool at a
+            time.
+          </p>
+          <div className="cta-row">
+            <Link className="btn btn-primary" href="/approach">
+              How the approach works
+            </Link>
+            <Link className="btn btn-ghost" href="/diseases/als">
+              Open ALS workspace
+            </Link>
+          </div>
         </div>
-      </header>
+        <div className="home-stage-visual" aria-hidden="true">
+          <ProteinField variant="hero" />
+          <p className="home-stage-caption">Fold · route · evidence</p>
+        </div>
+      </section>
 
       <section className="science-band" aria-labelledby="different-heading">
         <h2 id="different-heading">How RockGen works</h2>
-        <p className="hint">Three ideas borrowed from serious biotech storytelling — applied to ALS learning and research.</p>
+        <p className="hint">
+          Three ideas borrowed from serious biotech storytelling — applied to ALS learning and
+          research.
+        </p>
         <div className="pillar-grid">
           <article className="pillar">
+            <div className="pillar-glyph" aria-hidden="true">
+              <ProteinField variant="panel" />
+            </div>
             <h3>Mechanisms first</h3>
             <p>
               Shared failure routes across genes — aggregation, cytoskeleton, transport — before any
@@ -35,6 +48,13 @@ export default function HomePage() {
             </p>
           </article>
           <article className="pillar">
+            <div className="pillar-glyph" aria-hidden="true">
+              <span className="glyph-nodes">
+                <i />
+                <i />
+                <i />
+              </span>
+            </div>
             <h3>Evidence that travels</h3>
             <p>
               Claims stay tied to evidence type and confidence: computation, cells, animals, human
@@ -42,6 +62,13 @@ export default function HomePage() {
             </p>
           </article>
           <article className="pillar">
+            <div className="pillar-glyph" aria-hidden="true">
+              <span className="glyph-steps">
+                <i />
+                <i />
+                <i />
+              </span>
+            </div>
             <h3>One decision at a time</h3>
             <p>
               Progressive tools — overview, compare, map, Ask — so the next step stays clear and

@@ -1,21 +1,27 @@
 import Link from "next/link";
+import { ProteinField } from "@/components/ProteinField";
 import { LEARN_GUIDES, LEARN_MODULES, PRACTICE } from "@/data/alsGuide";
 
 export default function LearnHubPage() {
   return (
-    <main className="page hub-page">
+    <main className="page hub-page hub-page-visual">
       <p className="eyebrow">
         <Link href="/">Home</Link> · Learn
       </p>
-      <header className="hub-hero">
-        <h1>Learn ALS biology</h1>
-        <p className="lede">
-          An eight-step path: orient, read, then practice with one research tool at a time. Each
-          module has a clear outcome so you know what “done” looks like. Prefer the big picture
-          first? Read{" "}
-          <Link href="/approach">mechanism-first approach</Link>.
-        </p>
-        <p className="meta-pill">~75 minutes total · families: use Understand instead</p>
+      <header className="hub-hero hub-hero-visual">
+        <div>
+          <h1>Learn ALS biology</h1>
+          <p className="lede">
+            An eight-step path: orient, read, then practice with one research tool at a time. Each
+            module has a clear outcome so you know what “done” looks like. Prefer the big picture
+            first? Read{" "}
+            <Link href="/approach">mechanism-first approach</Link>.
+          </p>
+          <p className="meta-pill">~75 minutes total · families: use Understand instead</p>
+        </div>
+        <div className="hub-hero-motif" aria-hidden="true">
+          <ProteinField variant="panel" />
+        </div>
       </header>
 
       <section className="section">

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { DM_Sans, IBM_Plex_Mono, Source_Serif_4 } from "next/font/google";
 import Link from "next/link";
+import { SiteAtmosphere } from "@/components/SiteAtmosphere";
 import "./globals.css";
 
 // Pages call the live API — never prerender against a missing build-time host.
@@ -39,6 +40,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${sans.variable} ${display.variable} ${mono.variable}`}>
       <body>
+        <SiteAtmosphere />
         <div className="shell">
           <header className="topbar">
             <Link href="/" className="brand">
