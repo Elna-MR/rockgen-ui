@@ -147,9 +147,9 @@ export default async function DiseaseHubPage({ params }: Props) {
       </section>
 
       <p className="hint" style={{ marginTop: "1.5rem" }}>
-        New here?{" "}
-        <Link href="/understand">Understand ALS</Link> (families) or{" "}
-        <Link href="/learn">Learn</Link> (students).
+        New here? Start with{" "}
+        <Link href="/learn">Learn</Link> — disease primers and the ALS track
+        (plain language + curriculum).
       </p>
     </main>
   );

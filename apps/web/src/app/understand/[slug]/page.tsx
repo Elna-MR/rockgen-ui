@@ -1,53 +1,9 @@
-import Link from "next/link";
-import { notFound } from "next/navigation";
-import { UNDERSTAND_PAGES, getUnderstandPage } from "@/data/alsGuide";
+import { redirect } from "next/navigation";
 
 type Props = { params: Promise<{ slug: string }> };
 
-export function generateStaticParams() {
-  return UNDERSTAND_PAGES.map((p) => ({ slug: p.slug }));
-}
-
-export default async function UnderstandArticlePage({ params }: Props) {
+/** Legacy Understand articles — merged into Learn → ALS plain language. */
+export default async function UnderstandArticleRedirect({ params }: Props) {
   const { slug } = await params;
-  const page = getUnderstandPage(slug);
-  if (!page) notFound();
-
-  return (
-    <main className="page hub-page">
-      <p className="eyebrow">
-        <Link href="/understand">Understand ALS</Link>
-      </p>
-      <header className="hub-hero">
-        <h1>{page.title}</h1>
-        <p className="lede">{page.summary}</p>
-      </header>
-
-      <article className="section">
-        {page.paragraphs.map((para, i) => (
-          <p key={i} className="article-body" style={{ marginBottom: "1.1rem" }}>
-            {para}
-          </p>
-        ))}
-      </article>
-
-      {page.next && page.next.length > 0 && (
-        <section className="section">
-          <h2>Continue</h2>
-          <div className="hub-grid">
-            {page.next.map((n) => (
-              <Link key={n.href} href={n.href} className="hub-link">
-                <strong>{n.label}</strong>
-                <span>Next</span>
-              </Link>
-            ))}
-          </div>
-        </section>
-      )}
-
-      <p className="hint" style={{ marginTop: "1.5rem" }}>
-        <Link href="/understand">← All Understand pages</Link>
-      </p>
-    </main>
-  );
+  redirect(`/learn/als/plain/${slug}`);
 }

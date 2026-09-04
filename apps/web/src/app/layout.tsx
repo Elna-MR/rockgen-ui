@@ -48,7 +48,6 @@ export default function RootLayout({
             </Link>
             <nav className="nav">
               <Link href="/approach">Approach</Link>
-              <Link href="/understand">Understand</Link>
               <Link href="/learn">Learn</Link>
               <Link href="/proteins/explore">Structures</Link>
               <Link href="/diseases/als">Research</Link>

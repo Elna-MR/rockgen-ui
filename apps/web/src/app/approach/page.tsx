@@ -128,10 +128,10 @@ export default function ApproachPage() {
             Mechanism prioritization
           </Link>
           <Link className="btn btn-ghost" href="/learn">
-            Student curriculum
+            Learn hub
           </Link>
-          <Link className="btn btn-ghost" href="/understand">
-            Family-friendly guides
+          <Link className="btn btn-ghost" href="/learn/als#plain-language">
+            ALS plain language
           </Link>
         </div>
       </section>

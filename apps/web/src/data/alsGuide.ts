@@ -131,8 +131,8 @@ export const UNDERSTAND_PAGES: GuideArticle[] = [
       "This site explains the biology researchers study. It is educational, not a diagnosis or a treatment plan. Decisions about care belong with your clinical team.",
     ],
     next: [
-      { label: "What happens in the body?", href: "/understand/what-happens" },
-      { label: "Genes and proteins (gentle)", href: "/understand/genes-and-proteins" },
+      { label: "What happens in the body?", href: "/learn/als/plain/what-happens" },
+      { label: "Genes and proteins (gentle)", href: "/learn/als/plain/genes-and-proteins" },
     ],
   },
   {
@@ -148,8 +148,8 @@ export const UNDERSTAND_PAGES: GuideArticle[] = [
       "Researchers group those failures into biological “routes” or mechanisms — shared ways different genes can harm the same cells. Understanding routes helps science decide what to study next; it does not mean a drug already exists for every route.",
     ],
     next: [
-      { label: "Genes and proteins", href: "/understand/genes-and-proteins" },
-      { label: "How science studies ALS", href: "/understand/research-today" },
+      { label: "Genes and proteins", href: "/learn/als/plain/genes-and-proteins" },
+      { label: "How science studies ALS", href: "/learn/als/plain/research-today" },
     ],
   },
   {
@@ -165,8 +165,8 @@ export const UNDERSTAND_PAGES: GuideArticle[] = [
       "You do not need both names to live with ALS. They matter to researchers comparing how different proteins can reach similar problems. Your clinician can discuss whether genetic testing is relevant for your family.",
     ],
     next: [
-      { label: "Research today", href: "/understand/research-today" },
-      { label: "Common questions", href: "/understand/questions" },
+      { label: "Research today", href: "/learn/als/plain/research-today" },
+      { label: "Common questions", href: "/learn/als/plain/questions" },
     ],
   },
   {
@@ -182,8 +182,8 @@ export const UNDERSTAND_PAGES: GuideArticle[] = [
       "Clinical trials and approved medicines (when they exist) are decided through medical and regulatory pathways. This website does not recommend treatments.",
     ],
     next: [
-      { label: "Common questions", href: "/understand/questions" },
-      { label: "For students — start learning", href: "/learn" },
+      { label: "Common questions", href: "/learn/als/plain/questions" },
+      { label: "For students — ALS curriculum", href: "/learn/als#curriculum" },
     ],
   },
   {
@@ -200,8 +200,9 @@ export const UNDERSTAND_PAGES: GuideArticle[] = [
       "Where do students and researchers go next? Students can follow the Learn path. Researchers open the ALS workspace for proteins, mechanisms, and evidence tools.",
     ],
     next: [
-      { label: "Back to Understand", href: "/understand" },
-      { label: "Student Learn path", href: "/learn" },
+      { label: "Back to ALS learn track", href: "/learn/als#plain-language" },
+      { label: "ALS student curriculum", href: "/learn/als#curriculum" },
+      { label: "All diseases", href: "/learn" },
       { label: "ALS research workspace", href: "/diseases/als" },
     ],
   },
@@ -283,7 +284,7 @@ export const PRACTICE: PracticeExercise[] = [
     goal: "Build a simple story of the disease before opening research tools.",
     steps: [
       "Read the five ideas page once through.",
-      "Optional: skim What is ALS? in Understand if any sentence feels clinical.",
+      "Optional: skim What is ALS? under ALS plain language if any sentence feels clinical.",
       "Continue to the next practice when ready.",
     ],
     reflect: [
@@ -300,7 +301,7 @@ export const PRACTICE: PracticeExercise[] = [
     minutes: 8,
     goal: "See how the same disease is explained without research jargon.",
     steps: [
-      "Open Understand and read What is ALS?",
+      "Open ALS Learn and read What is ALS? under Plain language",
       "Read What happens in the body?",
       "Note one sentence you would use to explain ALS to a non-scientist.",
     ],
@@ -308,8 +309,8 @@ export const PRACTICE: PracticeExercise[] = [
       "Your one-sentence explanation (plain words only).",
       "One word you would avoid when talking with families.",
     ],
-    openHref: "/understand",
-    openLabel: "Open Understand",
+    openHref: "/learn/als#plain-language",
+    openLabel: "Open ALS plain language",
   },
   {
     slug: "compare-pfn1",

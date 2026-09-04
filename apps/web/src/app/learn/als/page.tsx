@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ProteinField } from "@/components/ProteinField";
-import { LEARN_GUIDES, LEARN_MODULES, PRACTICE } from "@/data/alsGuide";
+import { LEARN_GUIDES, LEARN_MODULES, PRACTICE, UNDERSTAND_PAGES } from "@/data/alsGuide";
 import { getLearnDisease } from "@/data/learnHub";
 
 export default function LearnAlsTrackPage() {
@@ -13,18 +13,41 @@ export default function LearnAlsTrackPage() {
       </p>
       <header className="hub-hero hub-hero-visual">
         <div>
-          <p className="learn-disease-kicker">{disease.category} · {disease.status === "ready" ? "Full track" : "Growing"}</p>
+          <p className="learn-disease-kicker">
+            {disease.category} · {disease.status === "ready" ? "Full track" : "Growing"}
+          </p>
           <h1>{disease.shortName}</h1>
           <p className="science-thesis science-thesis-compact">{disease.tagline}</p>
-          <p className="lede">{disease.summary}</p>
+          <p className="lede">
+            One ALS learning home for families and students — plain-language primers, then the deeper
+            curriculum and practice labs. Educational only; not medical advice.
+          </p>
           <p className="meta-pill">
-            {disease.modules} modules · {disease.minutes}
+            {disease.modules} modules · {disease.minutes} · plain language included
           </p>
         </div>
         <div className="hub-hero-motif" aria-hidden="true">
           <ProteinField variant="panel" />
         </div>
       </header>
+
+      <section className="section" id="plain-language">
+        <h2>Plain language</h2>
+        <p className="hint">
+          Start here if you are new to ALS biology — written for families and first-time readers.
+        </p>
+        <div className="hub-grid">
+          {UNDERSTAND_PAGES.map((p) => (
+            <Link key={p.slug} href={`/learn/als/plain/${p.slug}`} className="hub-link">
+              <strong>{p.title}</strong>
+              <span>
+                {p.minutes ? `${p.minutes} min · ` : ""}
+                {p.summary}
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
 
       <section className="section" id="overview">
         <h2>Key ideas</h2>
@@ -66,7 +89,7 @@ export default function LearnAlsTrackPage() {
       </section>
 
       <section className="section" id="curriculum">
-        <h2>Curriculum</h2>
+        <h2>Student curriculum</h2>
         <p className="hint">Follow in order the first time. Jump ahead only if you already know the outcome.</p>
         <ol className="curriculum">
           {LEARN_MODULES.map((m) => (
@@ -117,8 +140,11 @@ export default function LearnAlsTrackPage() {
       </section>
 
       <div className="cta-row" style={{ marginTop: "1.5rem" }}>
-        <Link className="btn btn-primary" href="/learn/als/orient">
-          Start module 01
+        <Link className="btn btn-primary" href="/learn/als/plain/what-is-als">
+          Start plain language
+        </Link>
+        <Link className="btn btn-ghost" href="/learn/als/orient">
+          Student module 01
         </Link>
         <Link className="btn btn-ghost" href="/diseases/als">
           ALS research workspace
