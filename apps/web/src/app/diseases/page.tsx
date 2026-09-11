@@ -25,6 +25,29 @@ export default function ResearchHubPage() {
       <ResearchHubClient />
 
       <section className="section learn-shared">
+        <h2>ALS ready tools</h2>
+        <p className="hint">Deepest workspace today — including the familial gene network.</p>
+        <div className="hub-grid">
+          <Link href="/diseases/als" className="hub-link">
+            <strong>ALS workspace</strong>
+            <span>Overview, proteins, and full tool set</span>
+          </Link>
+          <Link href="/diseases/als/network" className="hub-link">
+            <strong>Gene network</strong>
+            <span>STRING map of familial ALS genes</span>
+          </Link>
+          <Link href="/diseases/als/mechanisms" className="hub-link">
+            <strong>Mechanisms</strong>
+            <span>Prioritize shared routes across PFN1 and TUBA4A</span>
+          </Link>
+          <Link href="/diseases/als/map" className="hub-link">
+            <strong>Disease map</strong>
+            <span>Browse ALS by biology axis</span>
+          </Link>
+        </div>
+      </section>
+
+      <section className="section learn-shared">
         <h2>Shared research labs</h2>
         <p className="hint">Use across diseases once you know the protein and mechanism map.</p>
         <div className="hub-grid">

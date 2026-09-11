@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { AlsWorkspaceNav } from "@/components/AlsWorkspaceNav";
 import { ProteinField } from "@/components/ProteinField";
 import { ALS_FALLBACK } from "@/data/alsFallback";
 import { getResearchDisease, RESEARCH_DISEASES } from "@/data/researchHub";
@@ -167,8 +168,8 @@ export default async function DiseaseHubPage({ params }: Props) {
             <Link className="btn btn-primary" href="/diseases/als/mechanisms">
               Mechanisms
             </Link>
-            <Link className="btn btn-ghost" href="/mechanism-first">
-              Mechanism first
+            <Link className="btn btn-ghost" href="/diseases/als/network">
+              Gene network
             </Link>
             <Link className="btn btn-ghost" href="/diseases">
               All diseases
@@ -179,6 +180,8 @@ export default async function DiseaseHubPage({ params }: Props) {
           <ProteinField variant="panel" />
         </div>
       </header>
+
+      <AlsWorkspaceNav active="hub" />
 
       <section className="section">
         <h2>Start here</h2>

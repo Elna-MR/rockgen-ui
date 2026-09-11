@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { AlsMechanismPrioritization } from "@/components/AlsMechanismPrioritization";
+import { AlsWorkspaceNav } from "@/components/AlsWorkspaceNav";
 import { mechanismReportMarkdownUrl } from "@/lib/api";
 
 export default function AlsMechanismsPage() {
@@ -7,9 +8,9 @@ export default function AlsMechanismsPage() {
   return (
     <main className="page page-dossier">
       <p className="eyebrow">
-        <Link href="/diseases/als">ALS</Link> · Mechanisms
+        <Link href="/diseases">Research</Link> · <Link href="/diseases/als">ALS</Link> · Mechanisms
       </p>
-      <header className="dossier-header" style={{ marginBottom: "1.5rem" }}>
+      <header className="dossier-header" style={{ marginBottom: "1rem" }}>
         <div>
           <h1>Mechanism prioritization</h1>
           <p className="lede">
@@ -21,6 +22,7 @@ export default function AlsMechanismsPage() {
           Download report
         </a>
       </header>
+      <AlsWorkspaceNav active="mechanisms" />
       <AlsMechanismPrioritization markdownUrl={reportUrl} />
     </main>
   );

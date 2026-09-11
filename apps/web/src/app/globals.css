@@ -1724,6 +1724,17 @@ a {
   margin: 0 0 1.25rem;
 }
 
+.als-tabs {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+@media (max-width: 1100px) {
+  .als-tabs {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+
 .struct-tab {
   display: flex;
   flex-direction: column;
@@ -1789,7 +1800,8 @@ a {
 }
 
 @media (max-width: 720px) {
-  .struct-tabs {
+  .struct-tabs,
+  .als-tabs {
     grid-template-columns: 1fr;
   }
 }

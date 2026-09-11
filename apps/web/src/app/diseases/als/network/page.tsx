@@ -1,6 +1,7 @@
 import { readFile } from "fs/promises";
 import path from "path";
 import Link from "next/link";
+import { AlsWorkspaceNav } from "@/components/AlsWorkspaceNav";
 import { FalsNetworkGraph, type FalsGraph } from "@/components/FalsNetworkGraph";
 
 async function loadGraph(): Promise<FalsGraph> {
@@ -33,6 +34,7 @@ export default async function AlsNetworkPage() {
         </p>
       </header>
 
+      <AlsWorkspaceNav active="network" />
       <FalsNetworkGraph graph={graph} />
 
       <section className="section" style={{ marginTop: "1.5rem" }}>

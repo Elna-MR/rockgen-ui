@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AlsWorkspaceNav } from "@/components/AlsWorkspaceNav";
 import { BiomarkerIntelligenceSection } from "@/components/BiomarkerIntelligence";
 import { MutationBiomarkerMap } from "@/components/MutationBiomarkerMap";
 import { MutationIntelligenceSection } from "@/components/MutationIntelligence";
@@ -22,7 +23,7 @@ export default async function AlsEvidencePage() {
   return (
     <main className="page page-dossier">
       <p className="eyebrow">
-        <Link href="/diseases/als">ALS</Link> · Mutations &amp; biomarkers
+        <Link href="/diseases">Research</Link> · <Link href="/diseases/als">ALS</Link> · Evidence
       </p>
       <header className="hub-hero" style={{ paddingBottom: "0.5rem" }}>
         <h1>Mutations &amp; biomarkers</h1>
@@ -31,6 +32,8 @@ export default async function AlsEvidencePage() {
           both should come from the knowledge graph.
         </p>
       </header>
+
+      <AlsWorkspaceNav active="evidence" />
 
       {error ? (
         <p className="error">{error}</p>

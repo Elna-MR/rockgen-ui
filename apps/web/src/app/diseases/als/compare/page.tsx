@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AlsWorkspaceNav } from "@/components/AlsWorkspaceNav";
 import {
   getDiseaseProteinCompare,
   mechanismReportMarkdownUrl,
@@ -31,7 +32,7 @@ export default async function AlsCrossProteinComparePage({ searchParams }: Props
   return (
     <main className="page page-dossier">
       <p className="eyebrow">
-        <Link href="/diseases/als">ALS</Link> · Pathway compare
+        <Link href="/diseases">Research</Link> · <Link href="/diseases/als">ALS</Link> · Pathway compare
       </p>
       <header className="dossier-header">
         <div>
@@ -56,6 +57,8 @@ export default async function AlsCrossProteinComparePage({ searchParams }: Props
           </div>
         </div>
       </header>
+
+      <AlsWorkspaceNav active="compare" />
 
       <section className="section">
         <h2>Similarity verdict</h2>
