@@ -3222,6 +3222,71 @@ i.chem-swatch.chem-special {
 }
 
 /* —— Familial ALS STRING network —— */
+.fals-stage {
+  position: relative;
+}
+
+.fals-tooltip {
+  position: absolute;
+  z-index: 3;
+  width: min(220px, 70%);
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: 0 8px 24px rgba(26, 43, 51, 0.12);
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: var(--ink);
+  pointer-events: none;
+}
+
+.fals-pipeline-note {
+  margin: 0 0 0.85rem;
+  padding: 0.65rem 0.75rem;
+  border-left: 3px solid var(--accent);
+  background: var(--accent-soft);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.fals-neighbor-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.75rem 0 0;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.fals-neighbor-btn {
+  width: 100%;
+  text-align: left;
+  display: grid;
+  gap: 0.15rem;
+  padding: 0.55rem 0.65rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+.fals-neighbor-btn:hover {
+  border-color: rgba(74, 139, 134, 0.45);
+  background: var(--accent-soft);
+}
+
+.fals-neighbor-btn strong {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+}
+
+.fals-neighbor-btn span {
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+}
+
 .fals-lead {
   margin: 0;
 }
@@ -3367,6 +3432,7 @@ i.chem-swatch.chem-special {
 }
 
 .fals-stage {
+  position: relative;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background:

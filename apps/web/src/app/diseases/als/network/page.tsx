@@ -23,8 +23,8 @@ export default async function AlsNetworkPage() {
       <header className="hub-hero" style={{ paddingBottom: "0.75rem" }}>
         <h1>Familial ALS gene network</h1>
         <p className="lede">
-          STRING interaction map across familial ALS genes. Use confidence and gene bars to change
-          which connections stay visible, then click a gene for details and a local neighborhood map.
+          Curated familial ALS interactions with therapeutic programme notes. Use confidence bars and
+          Programmes only, hover for pipeline text, click for gene notes and the neighborhood map.
         </p>
         <p className="meta-pill">
           {graph.meta.source} · {graph.meta.network_type} · score ≥ {graph.meta.required_score} ·{" "}
@@ -40,17 +40,18 @@ export default async function AlsNetworkPage() {
         <h2>How to read this</h2>
         <ul className="learn-fact-list">
           <li>
-            Edges are STRING evidence weights, not clinical causality. Thick edges mean stronger
-            support. Move Min confidence or a gene&apos;s connection bar to prune or restore links.
+            Edges are hand-curated confidence bands (not a raw STRING dump). Thick edges mean
+            stronger support. Move Min confidence or a gene&apos;s connection bar to prune or restore
+            links.
           </li>
           <li>
             Click a gene for programmes (when curated), familial share, and a local gene-map of
             neighbors at the current filters.
           </li>
           <li>
-            Rebuild with{" "}
-            <code>scripts/fals_string_network.py --physical</code> (writes{" "}
-            <code>apps/web/public/data/fals-network.json</code>).
+            Optional: rebuild alternate STRING edges with{" "}
+            <code>scripts/fals_string_network.py</code>. Programme notes are curated and change over
+            time.
           </li>
           <li>Educational research aid only — not a diagnosis or treatment tool.</li>
         </ul>

@@ -11,6 +11,7 @@ import {
 } from "d3";
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
+  geneHoverText,
   getGeneDetail,
   MODULE_COLOR,
   MODULE_LABEL,
@@ -65,11 +66,14 @@ export function FalsNetworkGraph({ graph }: Props) {
   const wrapRef = useRef<HTMLDivElement | null>(null);
   const [activeMod, setActiveMod] = useState<string | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
-  const [minConfidence, setMinConfidence] = useState(0.4);
+  const [minConfidence, setMinConfidence] = useState(0.5);
   const [minFamilialPct, setMinFamilialPct] = useState(0);
   /** Per-gene connection emphasis 0–100; lower hides weaker edges for that gene. */
   const [geneBars, setGeneBars] = useState<Record<string, number>>({});
   const [detailOpen, setDetailOpen] = useState(true);
+  const [programmesOnly, setProgrammesOnly] = useState(false);
+  const [hoverId, setHoverId] = useState<string | null>(null);
+  const [tooltip, setTooltip] = useState<{ x: number; y: number; text: string } | null>(null);
 
   const modules = useMemo(() => {
     const set = new Set(graph.nodes.map((n) => n.mod));
@@ -82,6 +86,7 @@ export function FalsNetworkGraph({ graph }: Props) {
   const visible = useMemo(() => {
     let nodes = graph.nodes.filter((n) => n.f >= minFamilialPct);
     if (activeMod) nodes = nodes.filter((n) => n.mod === activeMod);
+    if (programmesOnly) nodes = nodes.filter((n) => primaryProgrammeStatus(n.id));
     const ids = new Set(nodes.map((n) => n.id));
 
     const links = graph.links.filter((l) => {
@@ -106,9 +111,10 @@ export function FalsNetworkGraph({ graph }: Props) {
     if (selectedId) linked.add(selectedId);
     nodes = nodes.filter((n) => linked.has(n.id) || n.f >= Math.max(minFamilialPct, 1));
 
+    // When programmes-only, keep edges among programme genes; dimming handled in render.
     return { nodes, links };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [graph, activeMod, minConfidence, minFamilialPct, geneBars, selectedId]);
+  }, [graph, activeMod, minConfidence, minFamilialPct, geneBars, selectedId, programmesOnly]);
 
   const selected = useMemo(
     () => graph.nodes.find((n) => n.id === selectedId) || null,
@@ -168,6 +174,31 @@ export function FalsNetworkGraph({ graph }: Props) {
         event.stopPropagation();
         setSelectedId(d.id);
         setDetailOpen(true);
+      })
+      .on("mouseenter", (event, d) => {
+        setHoverId(d.id);
+        const rect = wrap.getBoundingClientRect();
+        setTooltip({
+          x: Math.min(rect.width - 240, Math.max(8, event.clientX - rect.left + 12)),
+          y: Math.max(8, event.clientY - rect.top - 8),
+          text: geneHoverText(d.id, d.f),
+        });
+      })
+      .on("mousemove", (event) => {
+        const rect = wrap.getBoundingClientRect();
+        setTooltip((prev) =>
+          prev
+            ? {
+                ...prev,
+                x: Math.min(rect.width - 240, Math.max(8, event.clientX - rect.left + 12)),
+                y: Math.max(8, event.clientY - rect.top - 8),
+              }
+            : prev
+        );
+      })
+      .on("mouseleave", () => {
+        setHoverId(null);
+        setTooltip(null);
       });
 
     node
@@ -182,7 +213,10 @@ export function FalsNetworkGraph({ graph }: Props) {
         const st = primaryProgrammeStatus(d.id);
         return st ? STATUS_COLOR[st] : "transparent";
       })
-      .attr("stroke-width", 2.5);
+      .attr("stroke-width", 2.5)
+      .attr("stroke-dasharray", (d) =>
+        primaryProgrammeStatus(d.id) === "preclinical" ? "3 3" : null
+      );
 
     node
       .append("circle")
@@ -258,6 +292,28 @@ export function FalsNetworkGraph({ graph }: Props) {
         })
     );
 
+    const neighborIds = new Set<string>();
+    if (hoverId) {
+      for (const l of links) {
+        const a = typeof l.source === "string" ? l.source : l.source.id;
+        const b = typeof l.target === "string" ? l.target : l.target.id;
+        if (a === hoverId) neighborIds.add(b);
+        if (b === hoverId) neighborIds.add(a);
+      }
+      neighborIds.add(hoverId);
+    }
+
+    node.style("opacity", (d) => {
+      if (!hoverId) return 1;
+      return neighborIds.has(d.id) ? 1 : 0.15;
+    });
+    link.style("opacity", (d) => {
+      if (!hoverId) return 1;
+      const a = typeof d.source === "string" ? d.source : d.source.id;
+      const b = typeof d.target === "string" ? d.target : d.target.id;
+      return a === hoverId || b === hoverId ? 1 : 0.06;
+    });
+
     simulation.on("tick", () => {
       link
         .attr("x1", (d) => (d.source as SimNode).x ?? 0)
@@ -277,14 +333,17 @@ export function FalsNetworkGraph({ graph }: Props) {
       svg.selectAll("*").remove();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [visible, selectedId]);
+  }, [visible, selectedId, hoverId]);
 
   function resetFilters() {
-    setMinConfidence(0.4);
+    setMinConfidence(0.5);
     setMinFamilialPct(0);
     setGeneBars({});
     setActiveMod(null);
     setSelectedId(null);
+    setProgrammesOnly(false);
+    setHoverId(null);
+    setTooltip(null);
   }
 
   function setSelectedBar(value: number) {
@@ -300,9 +359,10 @@ export function FalsNetworkGraph({ graph }: Props) {
     <div className="fals-network">
       <div className="fals-controls">
         <p className="hint fals-lead">
-          Edge thickness is STRING interaction confidence. Bars under genes show connection emphasis —
-          raise or lower them (or use the sliders) to change which links stay visible. Ringed nodes have
-          a named drug programme.
+          Node size is approximate share of familial ALS cases; colour is functional module; edge
+          thickness is curated interaction confidence. Ringed nodes have a named drug candidate —
+          hover for programmes, click for notes and the local gene map. Bars change which links stay
+          visible.
         </p>
 
         <div className="fals-sliders">
@@ -310,8 +370,8 @@ export function FalsNetworkGraph({ graph }: Props) {
             <span>Min confidence</span>
             <input
               type="range"
-              min={0}
-              max={1}
+              min={0.4}
+              max={0.9}
               step={0.05}
               value={minConfidence}
               onChange={(e) => setMinConfidence(Number(e.target.value))}
@@ -330,6 +390,13 @@ export function FalsNetworkGraph({ graph }: Props) {
             />
             <strong>{minFamilialPct.toFixed(1)}%</strong>
           </label>
+          <button
+            type="button"
+            className={`btn btn-ghost ${programmesOnly ? "chip-active" : ""}`}
+            onClick={() => setProgrammesOnly((v) => !v)}
+          >
+            Programmes only
+          </button>
           <button type="button" className="btn btn-ghost" onClick={resetFilters}>
             Reset
           </button>
@@ -358,6 +425,11 @@ export function FalsNetworkGraph({ graph }: Props) {
 
       <div className="fals-stage" ref={wrapRef}>
         <svg ref={svgRef} className="fals-svg" role="img" aria-label="Familial ALS gene interaction network" />
+        {tooltip && (
+          <div className="fals-tooltip" style={{ left: tooltip.x, top: tooltip.y }}>
+            {tooltip.text}
+          </div>
+        )}
       </div>
 
       <div className="fals-legend">
@@ -400,6 +472,11 @@ export function FalsNetworkGraph({ graph }: Props) {
               <p className="article-body" style={{ marginBottom: "0.85rem" }}>
                 {detail.summary}
               </p>
+              {detail.hoverNote && (
+                <p className="fals-pipeline-note">
+                  <strong>Pipeline note:</strong> {detail.hoverNote}
+                </p>
+              )}
 
               <ul className="learn-fact-list">
                 <li>
@@ -507,6 +584,29 @@ export function FalsNetworkGraph({ graph }: Props) {
                     </text>
                   )}
                 </svg>
+                {neighbors.length > 0 && (
+                  <ul className="fals-neighbor-list">
+                    {neighbors.map((n) => {
+                      const meta = graph.nodes.find((g) => g.id === n.id);
+                      const note = getGeneDetail(n.id);
+                      return (
+                        <li key={n.id}>
+                          <button type="button" className="fals-neighbor-btn" onClick={() => setSelectedId(n.id)}>
+                            <strong>{n.id}</strong>
+                            <span>
+                              conf {n.w.toFixed(2)}
+                              {meta ? ` · ~${meta.f}%` : ""}
+                              {primaryProgrammeStatus(n.id)
+                                ? ` · ${STATUS_LABEL[primaryProgrammeStatus(n.id)!]}`
+                                : ""}
+                            </span>
+                            <span className="hint">{note.summary}</span>
+                          </button>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                )}
               </div>
             </>
           )}
