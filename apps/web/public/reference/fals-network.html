@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Familial ALS gene network with therapeutic programmes</title>
+<style>
+:root{
+--text-primary:#0b0b0b; --text-secondary:#52514e;
+--surface:#fcfcfb; --card:#ffffff;
+--border:rgba(11,11,11,.12); --border-strong:rgba(11,11,11,.22);
+--radius:8px; --node-halo:#fcfcfb; --edge:#c3c2b7;
+}
+@media (prefers-color-scheme: dark){
+:root{
+--text-primary:#f0efec; --text-secondary:#c3c2b7;
+--surface:#1a1a19; --card:#232322;
+--border:rgba(255,255,255,.12); --border-strong:rgba(255,255,255,.22);
+--node-halo:#1a1a19; --edge:#5a5a56;
+}
+}
+*{box-sizing:border-box}
+body{
+margin:0; padding:1.25rem 1rem 2rem;
+background:var(--surface); color:var(--text-primary);
+font-family:ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+font-size:16px; line-height:1.7;
+}
+main{max-width:720px;margin:0 auto}
+h1{font-size:22px;font-weight:500;margin:0 0 .35rem;letter-spacing:-.01em}
+p.sub{margin:0 0 1.5rem;color:var(--text-secondary);font-size:14px;max-width:62ch}
+.ctl{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:13px;color:var(--text-secondary);margin:0 0 10px}
+button{font:inherit;font-size:13px;padding:5px 12px;border:.5px solid var(--border-strong);
+background:transparent;color:var(--text-primary);border-radius:var(--radius);cursor:pointer}
+button:hover{background:var(--card)}
+button:active{transform:scale(.98)}
+button:focus-visible,input:focus-visible{outline:2px solid #2a78d6;outline-offset:2px}
+input[type=range]{accent-color:#2a78d6}
+.lg{display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:var(--text-secondary);margin:10px 0 0}
+.lg span{display:flex;align-items:center;gap:5px}
+.sw{width:10px;height:10px;border-radius:2px;display:inline-block}
+.rg{width:12px;height:12px;border-radius:50%;display:inline-block;border:2px solid}
+#tt{position:absolute;pointer-events:none;opacity:0;background:var(--card);
+border:.5px solid var(--border-strong);border-radius:var(--radius);padding:8px 11px;
+font-size:12px;line-height:1.5;color:var(--text-primary);transition:opacity .12s;width:220px;z-index:2}
+.nd{cursor:pointer}
+footer{margin-top:2rem;padding-top:1.25rem;border-top:.5px solid var(--border);
+font-size:13px;color:var(--text-secondary);max-width:62ch}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+</style>
+</head>
+<body>
+<main>
+<h1>Familial ALS gene network with therapeutic programmes</h1>
+<p class="sub">Node size is approximate share of familial ALS cases, colour is functional module, edge thickness is curated interaction confidence. Ringed nodes have a named drug candidate &mdash; hover any node to see its programmes.</p>
+
+<h2 class="sr-only">Force-directed graph of 46 familial ALS genes annotated with therapeutic programmes.</h2>
+<div class="ctl">
+<label for="thr">Min confidence</label>
+<input type="range" id="thr" min="0.4" max="0.9" step="0.05" value="0.5" style="flex:1;min-width:110px">
+<span id="thrv" style="min-width:30px;text-align:right;color:var(--text-primary)">0.50</span>
+<button type="button" id="dro">Programmes only</button>
+<button type="button" id="rst">Reset</button>
+</div>
+<div id="net" style="position:relative;width:100%"><div id="tt"></div></div>
+<div class="lg">
+<span><i class="sw" style="background:#2a78d6"></i>RNA</span>
+<span><i class="sw" style="background:#eb6834"></i>Proteostasis</span>
+<span><i class="sw" style="background:#1baf7a"></i>Cytoskeleton</span>
+<span><i class="sw" style="background:#eda100"></i>Mitochondria, lipid</span>
+<span><i class="sw" style="background:#6250d6"></i>DNA damage</span>
+<span><i class="sw" style="background:#898781"></i>Modifier</span>
+</div>
+<div class="lg" style="margin-top:6px">
+<span><i class="rg" style="border-color:#008300"></i>Approved</span>
+<span><i class="rg" style="border-color:#2a78d6"></i>In clinic</span>
+<span><i class="rg" style="border-color:#898781;border-style:dashed"></i>Preclinical</span>
+<span><i class="rg" style="border-color:#d03b3b"></i>Discontinued</span>
+</div>
+
+<footer>
+Edges are hand-curated from documented physical and functional interactions, not a STRING or BioGRID download; the weights are confidence bands, not STRING combined scores. Use the companion script <code>fals_string_network.py</code> to replace the edge set with real scores. Pipeline status is current as of 5 September 2026 and changes quickly. Educational only — not medical advice.
+</footer>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script>
+function sendPrompt(t){console.log(t);}
+const MOD={rna:'#2a78d6',pro:'#eb6834',cyt:'#1baf7a',mit:'#eda100',ddr:'#6250d6',oth:'#898781'};
+const RING={approved:'#008300',clinic:'#2a78d6',pre:'#898781',dead:'#d03b3b'};
+const DRUG={
+SOD1:['approved','Tofersen (Qalsody) — Biogen/Ionis, intrathecal ASO. Approved 2023; phase 3 ATLAS in presymptomatic carriers ongoing.'],
+FUS:['clinic','Ulefnersen (ION363) — Ionis/Otsuka, intrathecal ASO. Phase 3 FUSION fully enrolled, readout 2H 2026.'],
+STMN2:['clinic','QRL-201 — QurAlis, splice-switching ASO. Phase 1/2 ANQUR, 69 dosed; phase 3 planned 2027.'],
+SARM1:['clinic','NB-4746, NB-9402 — Nura Bio; LY3873862 — Lilly; SIR2501 — Sironax. Oral inhibitors, phase 1b/2a.'],
+TARDBP:['clinic','VTx-002 — VectorY, AAV intrabody, phase 1/2. ATLX-1282 — Alchemab/Lilly. PMN267 — ProMIS, preclinical. n-Lorem n-of-1 ASOs.'],
+UNC13A:['clinic','QRL-204 / LY4256984 — QurAlis to Lilly, splice-switching ASO. Phase 1.'],
+CHCHD10:['clinic','nL-CHCHD-001, nL18576 — n-Lorem personalised ASOs. 13 patients treated.'],
+SIGMAR1:['clinic','Pridopidine — Prilenia, oral sigma-1 agonist. HEALEY primary endpoint missed; subgroup signal, phase 3 planned.'],
+C9orf72:['dead','BIIB078 and WVE-004 both discontinued. PBFT02 — Passage Bio, AAV progranulin, phase 1/2 in C9-FTD. Base editing preclinical.'],
+ATXN2:['dead','BIIB105 (ION541) — Biogen/Ionis. Terminated 2024: target engaged, no NfL or clinical effect.'],
+TBK1:['pre','PPM1A-targeting ASOs — QurAlis. Preclinical, restoring TBK1 activity indirectly.']};
+const N=[['TARDBP','rna',4.5],['FUS','rna',4.5],['MATR3','rna',0.5],['HNRNPA1','rna',0.3],['HNRNPA2B1','rna',0.2],['TAF15','rna',0.2],['EWSR1','rna',0.2],['ANXA11','rna',1.0],['TIA1','rna',0.3],['ATXN2','rna',1.5],['GLE1','rna',0.2],['ARPP21','rna',0.2],
+['C9orf72','pro',35],['SQSTM1','pro',1.0],['OPTN','pro',0.8],['TBK1','pro',1.5],['VCP','pro',1.0],['UBQLN2','pro',0.8],['CHMP2B','pro',0.2],['VAPB','pro',0.3],['DNAJC7','pro',0.4],
+['PFN1','cyt',0.5],['KIF5A','cyt',1.5],['TUBA4A','cyt',0.5],['DCTN1','cyt',0.3],['NEFH','cyt',0.3],['PRPH','cyt',0.2],['ALS2','cyt',0.3],['SPG11','cyt',0.3],
+['SOD1','mit',17.5],['CHCHD10','mit',0.5],['FIG4','mit',0.3],['SIGMAR1','mit',0.3],['ANG','mit',0.4],['SPTLC1','mit',0.2],['GLT8D1','mit',0.2],['DAO','mit',0.2],['CAV1','mit',0.2],['ERBB4','mit',0.2],
+['NEK1','ddr',2.0],['CCNF','ddr',0.8],['CFAP410','ddr',0.4],['SETX','ddr',0.4],
+['UNC13A','oth',0.1],['STMN2','oth',0.1],['SARM1','oth',0.2]].map(d=>({id:d[0],mod:d[1],f:d[2]}));
+const E=[['TARDBP','FUS',.90],['TARDBP','HNRNPA1',.88],['TARDBP','HNRNPA2B1',.82],['TARDBP','MATR3',.85],['TARDBP','ATXN2',.86],['TARDBP','STMN2',.80],['TARDBP','UNC13A',.78],['TARDBP','TIA1',.72],['TARDBP','ANXA11',.68],['TARDBP','DNAJC7',.70],['TARDBP','CHCHD10',.60],['TARDBP','CCNF',.62],['TARDBP','PFN1',.55],['TARDBP','ARPP21',.45],
+['FUS','TAF15',.93],['FUS','EWSR1',.92],['TAF15','EWSR1',.90],['FUS','HNRNPA1',.78],['FUS','MATR3',.70],['FUS','SETX',.66],['FUS','GLE1',.52],
+['HNRNPA1','HNRNPA2B1',.91],['HNRNPA1','TIA1',.74],['HNRNPA1','UBQLN2',.60],['ATXN2','TIA1',.76],['ANXA11','TIA1',.58],
+['SQSTM1','TBK1',.93],['OPTN','TBK1',.94],['SQSTM1','OPTN',.82],['SQSTM1','UBQLN2',.80],['SQSTM1','VCP',.78],['VCP','UBQLN2',.86],['VCP','CHMP2B',.74],['CHMP2B','SPG11',.62],['SQSTM1','SOD1',.70],['OPTN','SOD1',.66],['UBQLN2','OPTN',.64],
+['C9orf72','SQSTM1',.76],['C9orf72','OPTN',.68],['C9orf72','TBK1',.72],['C9orf72','ATXN2',.50],['VCP','VAPB',.55],['VCP','CCNF',.68],['CCNF','SQSTM1',.60],['VCP','FIG4',.48],['DNAJC7','SQSTM1',.55],
+['KIF5A','TUBA4A',.84],['DCTN1','TUBA4A',.86],['KIF5A','DCTN1',.74],['NEFH','PRPH',.88],['NEFH','DCTN1',.70],['PFN1','TUBA4A',.58],['PFN1','DCTN1',.54],['PFN1','VCP',.48],['ALS2','SPG11',.62],['ALS2','DCTN1',.50],['SPG11','FIG4',.60],['KIF5A','NEFH',.58],['SARM1','STMN2',.72],['SARM1','NEFH',.48],
+['SOD1','CHCHD10',.64],['SOD1','ANG',.55],['SOD1','DAO',.50],['SIGMAR1','VAPB',.78],['SIGMAR1','CHCHD10',.52],['SPTLC1','VAPB',.48],['ANG','TIA1',.60],['CAV1','ERBB4',.66],['CAV1','PFN1',.46],['GLT8D1','SOD1',.44],['ERBB4','SQSTM1',.45],
+['NEK1','CFAP410',.90],['NEK1','SETX',.55],['CCNF','NEK1',.52],['SETX','CFAP410',.42]].map(d=>({source:d[0],target:d[1],w:d[2]}));
+const W=680,H=640;
+const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const R=d=>5+Math.sqrt(d.f)*3.6;
+const svg=d3.select('#net').append('svg').attr('viewBox',`0 0 ${W} ${H}`).attr('width','100%')
+.attr('role','img').attr('aria-label','Familial ALS gene interaction network annotated with drug programmes');
+const gl=svg.append('g'),gn=svg.append('g'),tt=document.getElementById('tt');
+const adj={};E.forEach(e=>{(adj[e.source]=adj[e.source]||new Set()).add(e.target);(adj[e.target]=adj[e.target]||new Set()).add(e.source);});
+const link=gl.selectAll('line').data(E).join('line').attr('stroke',css('--edge'))
+.attr('stroke-linecap','round').attr('stroke-width',d=>0.5+d.w*3);
+const node=gn.selectAll('g').data(N).join('g').attr('class','nd');
+node.filter(d=>DRUG[d.id]).append('circle').attr('r',d=>R(d)+5).attr('fill','none')
+.attr('stroke',d=>RING[DRUG[d.id][0]]).attr('stroke-width',2)
+.attr('stroke-dasharray',d=>DRUG[d.id][0]==='pre'?'3 3':null);
+node.append('circle').attr('r',R).attr('fill',d=>MOD[d.mod])
+.attr('stroke',css('--node-halo')).attr('stroke-width',1.5);
+node.append('text').text(d=>d.id).attr('text-anchor','middle')
+.attr('dy',d=>R(d)+(DRUG[d.id]?16:11)).attr('font-size',11)
+.attr('fill','var(--text-primary)').style('pointer-events','none');
+const sim=d3.forceSimulation(N)
+.force('link',d3.forceLink(E).id(d=>d.id).distance(d=>120-d.w*60).strength(d=>d.w*0.7))
+.force('charge',d3.forceManyBody().strength(-240))
+.force('center',d3.forceCenter(W/2,H/2))
+.force('collide',d3.forceCollide(d=>R(d)+18));
+sim.on('tick',()=>{
+N.forEach(d=>{d.x=Math.max(40,Math.min(W-40,d.x));d.y=Math.max(24,Math.min(H-28,d.y));});
+link.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);
+node.attr('transform',d=>`translate(${d.x},${d.y})`);
+});
+node.call(d3.drag()
+.on('start',(ev,d)=>{if(!ev.active)sim.alphaTarget(0.3).restart();d.fx=d.x;d.fy=d.y;})
+.on('drag',(ev,d)=>{d.fx=ev.x;d.fy=ev.y;})
+.on('end',(ev,d)=>{if(!ev.active)sim.alphaTarget(0);d.fx=null;d.fy=null;}));
+function focus(id){
+if(!id){node.style('opacity',1);link.style('opacity',1);return;}
+const s=adj[id]||new Set();
+node.style('opacity',d=>d.id===id||s.has(d.id)?1:0.15);
+link.style('opacity',d=>d.source.id===id||d.target.id===id?1:0.06);
+}
+node.on('mouseenter',(ev,d)=>{
+focus(d.id);
+const k=DRUG[d.id];
+tt.innerHTML=`<b>${d.id}</b> · ~${d.f<0.15?'&lt;0.1':d.f}% of fALS<br>`+
+(k?k[1]:'<span style="color:var(--text-secondary)">No disclosed programme.</span>');
+tt.style.opacity=1;
+const r=document.getElementById('net').getBoundingClientRect(),b=ev.currentTarget.getBoundingClientRect();
+tt.style.left=Math.min(r.width-232,Math.max(0,b.left-r.left+16))+'px';
+tt.style.top=Math.max(0,b.top-r.top-10)+'px';
+}).on('mouseleave',()=>{focus(null);tt.style.opacity=0;})
+.on('click',(ev,d)=>sendPrompt('Development status of programmes targeting '+d.id+' in ALS'));
+const thr=document.getElementById('thr'),thrv=document.getElementById('thrv');
+thr.addEventListener('input',()=>{
+const v=+thr.value;thrv.textContent=v.toFixed(2);
+link.style('display',d=>d.w>=v?null:'none');
+sim.force('link').links(E.filter(d=>d.w>=v));
+sim.alpha(0.5).restart();
+});
+document.getElementById('dro').addEventListener('click',()=>{
+node.style('opacity',d=>DRUG[d.id]?1:0.12);link.style('opacity',0.08);
+});
+document.getElementById('rst').addEventListener('click',()=>{
+thr.value='0.5'; thrv.textContent='0.50';
+link.style('display',null);
+sim.force('link').links(E);
+focus(null);sim.alpha(0.6).restart();
+});
+</script>
+</body>
+</html>

@@ -1795,6 +1795,18 @@ a {
   background: #080d13;
 }
 
+.page-fals-network .struct-tool-frame,
+.page-fals-network .struct-tool-iframe {
+  background: #fcfcfb;
+  min-height: min(88vh, 58rem);
+  height: min(88vh, 58rem);
+}
+
+.page-fals-network .struct-tool-iframe {
+  height: min(88vh, 58rem);
+}
+
+
 .mut-gate-actions {
   margin-top: 0.9rem;
 }
