@@ -64,7 +64,7 @@ export const RESEARCH_DISEASES: ResearchDisease[] = [
     ],
     mechanisms: ["Protein aggregation", "Cytoskeleton stress", "Axonal transport"],
     researchNotes: [
-      "Deep tools live here today — mechanisms, map, compare, and evidence.",
+      "Deep tools live here today — mechanisms, map, gene network, compare, and evidence.",
       "Program focus proteins are PFN1 and TUBA4A; other panel proteins stay secondary.",
       "Structure explorer and Ask work across the catalog from this workspace.",
     ],
@@ -79,6 +79,12 @@ export const RESEARCH_DISEASES: ResearchDisease[] = [
         title: "Disease map",
         summary: "Browse ALS by biology axis (cytoskeleton, RNA, proteostasis…).",
         href: "/diseases/als/map",
+        status: "ready",
+      },
+      {
+        title: "Gene network",
+        summary: "Familial ALS STRING interactions by functional module.",
+        href: "/diseases/als/network",
         status: "ready",
       },
       {

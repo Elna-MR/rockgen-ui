@@ -195,6 +195,10 @@ export default async function DiseaseHubPage({ params }: Props) {
             <strong>Disease map</strong>
             <span>Browse ALS by biology axis (cytoskeleton, RNA, proteostasis…).</span>
           </Link>
+          <Link href="/diseases/als/network" className="hub-link">
+            <strong>Gene network</strong>
+            <span>Familial ALS STRING interactions by functional module.</span>
+          </Link>
           <Link href="/diseases/als/compare" className="hub-link">
             <strong>Pathway compare</strong>
             <span>Side-by-side causal paths for PFN1 vs TUBA4A.</span>

@@ -1,0 +1,984 @@
+{
+  "meta": {
+    "source": "STRING",
+    "species": 9606,
+    "network_type": "physical",
+    "required_score": 400,
+    "weight": "combined_score",
+    "retrieved": "2026-09-11"
+  },
+  "nodes": [
+    {
+      "id": "ALS2",
+      "mod": "cyt",
+      "f": 0.3,
+      "string_name": "ALS2",
+      "degree": 2
+    },
+    {
+      "id": "ANG",
+      "mod": "mit",
+      "f": 0.4,
+      "string_name": "ANG",
+      "degree": 0
+    },
+    {
+      "id": "ANXA11",
+      "mod": "rna",
+      "f": 1.0,
+      "string_name": "ANXA11",
+      "degree": 1
+    },
+    {
+      "id": "ARPP21",
+      "mod": "rna",
+      "f": 0.2,
+      "string_name": "ARPP21",
+      "degree": 0
+    },
+    {
+      "id": "ATXN2",
+      "mod": "rna",
+      "f": 1.5,
+      "string_name": "ATXN2",
+      "degree": 3
+    },
+    {
+      "id": "C9orf72",
+      "mod": "pro",
+      "f": 35.0,
+      "string_name": "C9orf72",
+      "degree": 1
+    },
+    {
+      "id": "CAV1",
+      "mod": "mit",
+      "f": 0.2,
+      "string_name": "CAV1",
+      "degree": 3
+    },
+    {
+      "id": "CCNF",
+      "mod": "ddr",
+      "f": 0.8,
+      "string_name": "CCNF",
+      "degree": 3
+    },
+    {
+      "id": "CFAP410",
+      "mod": "ddr",
+      "f": 0.4,
+      "string_name": "CFAP410",
+      "degree": 2
+    },
+    {
+      "id": "CHCHD10",
+      "mod": "mit",
+      "f": 0.5,
+      "string_name": "CHCHD10",
+      "degree": 0
+    },
+    {
+      "id": "CHMP2B",
+      "mod": "pro",
+      "f": 0.2,
+      "string_name": "CHMP2B",
+      "degree": 0
+    },
+    {
+      "id": "DAO",
+      "mod": "mit",
+      "f": 0.2,
+      "string_name": "DAO",
+      "degree": 0
+    },
+    {
+      "id": "DCTN1",
+      "mod": "cyt",
+      "f": 0.3,
+      "string_name": "DCTN1",
+      "degree": 3
+    },
+    {
+      "id": "DNAJC7",
+      "mod": "pro",
+      "f": 0.4,
+      "string_name": "DNAJC7",
+      "degree": 1
+    },
+    {
+      "id": "ERBB4",
+      "mod": "mit",
+      "f": 0.2,
+      "string_name": "ERBB4",
+      "degree": 0
+    },
+    {
+      "id": "EWSR1",
+      "mod": "rna",
+      "f": 0.2,
+      "string_name": "EWSR1",
+      "degree": 4
+    },
+    {
+      "id": "FIG4",
+      "mod": "mit",
+      "f": 0.3,
+      "string_name": "FIG4",
+      "degree": 0
+    },
+    {
+      "id": "FUS",
+      "mod": "rna",
+      "f": 4.5,
+      "string_name": "FUS",
+      "degree": 11
+    },
+    {
+      "id": "GLE1",
+      "mod": "rna",
+      "f": 0.2,
+      "string_name": "GLE1",
+      "degree": 0
+    },
+    {
+      "id": "GLT8D1",
+      "mod": "mit",
+      "f": 0.2,
+      "string_name": "GLT8D1",
+      "degree": 0
+    },
+    {
+      "id": "HNRNPA1",
+      "mod": "rna",
+      "f": 0.3,
+      "string_name": "HNRNPA1",
+      "degree": 7
+    },
+    {
+      "id": "HNRNPA2B1",
+      "mod": "rna",
+      "f": 0.2,
+      "string_name": "HNRNPA2B1",
+      "degree": 7
+    },
+    {
+      "id": "KIF5A",
+      "mod": "cyt",
+      "f": 1.5,
+      "string_name": "KIF5A",
+      "degree": 1
+    },
+    {
+      "id": "MATR3",
+      "mod": "rna",
+      "f": 0.5,
+      "string_name": "MATR3",
+      "degree": 4
+    },
+    {
+      "id": "NEFH",
+      "mod": "cyt",
+      "f": 0.3,
+      "string_name": "NEFH",
+      "degree": 1
+    },
+    {
+      "id": "NEK1",
+      "mod": "ddr",
+      "f": 2.0,
+      "string_name": "NEK1",
+      "degree": 2
+    },
+    {
+      "id": "OPTN",
+      "mod": "pro",
+      "f": 0.8,
+      "string_name": "OPTN",
+      "degree": 6
+    },
+    {
+      "id": "PFN1",
+      "mod": "cyt",
+      "f": 0.5,
+      "string_name": "PFN1",
+      "degree": 0
+    },
+    {
+      "id": "PRPH",
+      "mod": "cyt",
+      "f": 0.2,
+      "string_name": "PRPH",
+      "degree": 1
+    },
+    {
+      "id": "SARM1",
+      "mod": "oth",
+      "f": 0.2,
+      "string_name": "SARM1",
+      "degree": 0
+    },
+    {
+      "id": "SETX",
+      "mod": "ddr",
+      "f": 0.4,
+      "string_name": "SETX",
+      "degree": 0
+    },
+    {
+      "id": "SIGMAR1",
+      "mod": "mit",
+      "f": 0.3,
+      "string_name": "SIGMAR1",
+      "degree": 0
+    },
+    {
+      "id": "SOD1",
+      "mod": "mit",
+      "f": 17.5,
+      "string_name": "SOD1",
+      "degree": 4
+    },
+    {
+      "id": "SPG11",
+      "mod": "cyt",
+      "f": 0.3,
+      "string_name": "SPG11",
+      "degree": 0
+    },
+    {
+      "id": "SPTLC1",
+      "mod": "mit",
+      "f": 0.2,
+      "string_name": "SPTLC1",
+      "degree": 0
+    },
+    {
+      "id": "SQSTM1",
+      "mod": "pro",
+      "f": 1.0,
+      "string_name": "SQSTM1",
+      "degree": 8
+    },
+    {
+      "id": "STMN2",
+      "mod": "oth",
+      "f": 0.05,
+      "string_name": "STMN2",
+      "degree": 0
+    },
+    {
+      "id": "TAF15",
+      "mod": "rna",
+      "f": 0.2,
+      "string_name": "TAF15",
+      "degree": 2
+    },
+    {
+      "id": "TARDBP",
+      "mod": "rna",
+      "f": 4.5,
+      "string_name": "TARDBP",
+      "degree": 12
+    },
+    {
+      "id": "TBK1",
+      "mod": "pro",
+      "f": 1.5,
+      "string_name": "TBK1",
+      "degree": 4
+    },
+    {
+      "id": "TIA1",
+      "mod": "rna",
+      "f": 0.3,
+      "string_name": "TIA1",
+      "degree": 4
+    },
+    {
+      "id": "TUBA4A",
+      "mod": "cyt",
+      "f": 0.5,
+      "string_name": "TUBA4A",
+      "degree": 0
+    },
+    {
+      "id": "UBQLN2",
+      "mod": "pro",
+      "f": 0.8,
+      "string_name": "UBQLN2",
+      "degree": 5
+    },
+    {
+      "id": "UNC13A",
+      "mod": "oth",
+      "f": 0.05,
+      "string_name": "UNC13A",
+      "degree": 0
+    },
+    {
+      "id": "VAPB",
+      "mod": "pro",
+      "f": 0.3,
+      "string_name": "VAPB",
+      "degree": 0
+    },
+    {
+      "id": "VCP",
+      "mod": "pro",
+      "f": 1.0,
+      "string_name": "VCP",
+      "degree": 6
+    }
+  ],
+  "links": [
+    {
+      "source": "TARDBP",
+      "target": "VCP",
+      "w": 0.412,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.361,
+      "database": 0.0,
+      "textmining": 0.119
+    },
+    {
+      "source": "CCNF",
+      "target": "TARDBP",
+      "w": 0.457,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.457,
+      "database": 0.0,
+      "textmining": 0.0
+    },
+    {
+      "source": "OPTN",
+      "target": "TARDBP",
+      "w": 0.587,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.076,
+      "database": 0.0,
+      "textmining": 0.572
+    },
+    {
+      "source": "SQSTM1",
+      "target": "TARDBP",
+      "w": 0.744,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.457,
+      "database": 0.0,
+      "textmining": 0.548
+    },
+    {
+      "source": "TARDBP",
+      "target": "UBQLN2",
+      "w": 0.746,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.365,
+      "database": 0.0,
+      "textmining": 0.617
+    },
+    {
+      "source": "SOD1",
+      "target": "TARDBP",
+      "w": 0.75,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.0,
+      "database": 0.0,
+      "textmining": 0.75
+    },
+    {
+      "source": "TARDBP",
+      "target": "TIA1",
+      "w": 0.864,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.042,
+      "database": 0.0,
+      "textmining": 0.864
+    },
+    {
+      "source": "ATXN2",
+      "target": "TARDBP",
+      "w": 0.897,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.446,
+      "database": 0.0,
+      "textmining": 0.822
+    },
+    {
+      "source": "MATR3",
+      "target": "TARDBP",
+      "w": 0.979,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.457,
+      "database": 0.0,
+      "textmining": 0.964
+    },
+    {
+      "source": "HNRNPA1",
+      "target": "TARDBP",
+      "w": 0.98,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.377,
+      "database": 0.0,
+      "textmining": 0.969
+    },
+    {
+      "source": "HNRNPA2B1",
+      "target": "TARDBP",
+      "w": 0.985,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.457,
+      "database": 0.0,
+      "textmining": 0.973
+    },
+    {
+      "source": "FUS",
+      "target": "TARDBP",
+      "w": 0.993,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.457,
+      "database": 0.0,
+      "textmining": 0.987
+    },
+    {
+      "source": "DNAJC7",
+      "target": "FUS",
+      "w": 0.455,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.455,
+      "database": 0.0,
+      "textmining": 0.0
+    },
+    {
+      "source": "FUS",
+      "target": "TAF15",
+      "w": 0.463,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.464,
+      "database": 0.0,
+      "textmining": 0.0
+    },
+    {
+      "source": "ATXN2",
+      "target": "FUS",
+      "w": 0.643,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.0,
+      "database": 0.0,
+      "textmining": 0.643
+    },
+    {
+      "source": "FUS",
+      "target": "MATR3",
+      "w": 0.683,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.313,
+      "database": 0.0,
+      "textmining": 0.557
+    },
+    {
+      "source": "FUS",
+      "target": "OPTN",
+      "w": 0.711,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.192,
+      "database": 0.0,
+      "textmining": 0.658
+    },
+    {
+      "source": "FUS",
+      "target": "UBQLN2",
+      "w": 0.743,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.292,
+      "database": 0.0,
+      "textmining": 0.652
+    },
+    {
+      "source": "EWSR1",
+      "target": "FUS",
+      "w": 0.871,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.457,
+      "database": 0.0,
+      "textmining": 0.773
+    },
+    {
+      "source": "FUS",
+      "target": "SOD1",
+      "w": 0.902,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.0,
+      "database": 0.0,
+      "textmining": 0.902
+    },
+    {
+      "source": "FUS",
+      "target": "HNRNPA1",
+      "w": 0.921,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.464,
+      "database": 0.4,
+      "textmining": 0.776
+    },
+    {
+      "source": "FUS",
+      "target": "HNRNPA2B1",
+      "w": 0.97,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.464,
+      "database": 0.4,
+      "textmining": 0.916
+    },
+    {
+      "source": "NEFH",
+      "target": "PRPH",
+      "w": 0.9,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.0,
+      "database": 0.9,
+      "textmining": 0.0
+    },
+    {
+      "source": "ALS2",
+      "target": "CFAP410",
+      "w": 0.653,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.653,
+      "database": 0.0,
+      "textmining": 0.0
+    },
+    {
+      "source": "ALS2",
+      "target": "NEK1",
+      "w": 0.769,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.655,
+      "database": 0.0,
+      "textmining": 0.359
+    },
+    {
+      "source": "OPTN",
+      "target": "SOD1",
+      "w": 0.463,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.457,
+      "database": 0.0,
+      "textmining": 0.053
+    },
+    {
+      "source": "SOD1",
+      "target": "SQSTM1",
+      "w": 0.751,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.191,
+      "database": 0.0,
+      "textmining": 0.705
+    },
+    {
+      "source": "C9orf72",
+      "target": "TBK1",
+      "w": 0.505,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.292,
+      "database": 0.0,
+      "textmining": 0.33
+    },
+    {
+      "source": "SQSTM1",
+      "target": "TBK1",
+      "w": 0.613,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.457,
+      "database": 0.0,
+      "textmining": 0.318
+    },
+    {
+      "source": "HNRNPA2B1",
+      "target": "TBK1",
+      "w": 0.631,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.0,
+      "database": 0.0,
+      "textmining": 0.631
+    },
+    {
+      "source": "OPTN",
+      "target": "TBK1",
+      "w": 0.998,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.96,
+      "database": 0.0,
+      "textmining": 0.972
+    },
+    {
+      "source": "CAV1",
+      "target": "SQSTM1",
+      "w": 0.457,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.457,
+      "database": 0.0,
+      "textmining": 0.0
+    },
+    {
+      "source": "CAV1",
+      "target": "HNRNPA2B1",
+      "w": 0.587,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.0,
+      "database": 0.0,
+      "textmining": 0.587
+    },
+    {
+      "source": "CAV1",
+      "target": "VCP",
+      "w": 0.607,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.457,
+      "database": 0.0,
+      "textmining": 0.306
+    },
+    {
+      "source": "HNRNPA1",
+      "target": "TIA1",
+      "w": 0.403,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.042,
+      "database": 0.0,
+      "textmining": 0.403
+    },
+    {
+      "source": "HNRNPA1",
+      "target": "UBQLN2",
+      "w": 0.555,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.292,
+      "database": 0.0,
+      "textmining": 0.398
+    },
+    {
+      "source": "EWSR1",
+      "target": "HNRNPA1",
+      "w": 0.601,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.377,
+      "database": 0.0,
+      "textmining": 0.386
+    },
+    {
+      "source": "HNRNPA1",
+      "target": "MATR3",
+      "w": 0.745,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.457,
+      "database": 0.0,
+      "textmining": 0.549
+    },
+    {
+      "source": "HNRNPA1",
+      "target": "HNRNPA2B1",
+      "w": 0.976,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.573,
+      "database": 0.4,
+      "textmining": 0.915
+    },
+    {
+      "source": "UBQLN2",
+      "target": "VCP",
+      "w": 0.48,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.208,
+      "database": 0.0,
+      "textmining": 0.371
+    },
+    {
+      "source": "OPTN",
+      "target": "UBQLN2",
+      "w": 0.735,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.122,
+      "database": 0.0,
+      "textmining": 0.711
+    },
+    {
+      "source": "HNRNPA2B1",
+      "target": "TIA1",
+      "w": 0.414,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.042,
+      "database": 0.0,
+      "textmining": 0.414
+    },
+    {
+      "source": "HNRNPA2B1",
+      "target": "MATR3",
+      "w": 0.518,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.43,
+      "database": 0.0,
+      "textmining": 0.19
+    },
+    {
+      "source": "CCNF",
+      "target": "VCP",
+      "w": 0.457,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.457,
+      "database": 0.0,
+      "textmining": 0.0
+    },
+    {
+      "source": "SQSTM1",
+      "target": "VCP",
+      "w": 0.464,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.329,
+      "database": 0.0,
+      "textmining": 0.233
+    },
+    {
+      "source": "DCTN1",
+      "target": "VCP",
+      "w": 0.733,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.0,
+      "database": 0.0,
+      "textmining": 0.733
+    },
+    {
+      "source": "DCTN1",
+      "target": "SQSTM1",
+      "w": 0.499,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.0,
+      "database": 0.5,
+      "textmining": 0.0
+    },
+    {
+      "source": "DCTN1",
+      "target": "KIF5A",
+      "w": 0.499,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.0,
+      "database": 0.5,
+      "textmining": 0.0
+    },
+    {
+      "source": "OPTN",
+      "target": "SQSTM1",
+      "w": 0.962,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.438,
+      "database": 0.0,
+      "textmining": 0.936
+    },
+    {
+      "source": "CCNF",
+      "target": "SQSTM1",
+      "w": 0.457,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.457,
+      "database": 0.0,
+      "textmining": 0.0
+    },
+    {
+      "source": "CFAP410",
+      "target": "NEK1",
+      "w": 0.933,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.571,
+      "database": 0.0,
+      "textmining": 0.851
+    },
+    {
+      "source": "ANXA11",
+      "target": "EWSR1",
+      "w": 0.457,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.458,
+      "database": 0.0,
+      "textmining": 0.0
+    },
+    {
+      "source": "EWSR1",
+      "target": "TAF15",
+      "w": 0.445,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.445,
+      "database": 0.0,
+      "textmining": 0.0
+    },
+    {
+      "source": "ATXN2",
+      "target": "TIA1",
+      "w": 0.713,
+      "neighborhood": 0.0,
+      "fusion": 0.0,
+      "cooccurence": 0.0,
+      "coexpression": 0.0,
+      "experiments": 0.0,
+      "database": 0.0,
+      "textmining": 0.713
+    }
+  ]
+}
