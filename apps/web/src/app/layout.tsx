@@ -47,7 +47,7 @@ export default function RootLayout({
               RockGen
             </Link>
             <nav className="nav">
-              <Link href="/mechanism-first">Mechanism first</Link>
+              <Link href="/biology-first">Biology first</Link>
               <Link href="/learn">Learn</Link>
               <Link href="/proteins/explore">Structures</Link>
               <Link href="/diseases">Research</Link>

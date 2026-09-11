@@ -59,9 +59,9 @@ export default function ResearchHubPage() {
             <strong>Ask a review</strong>
             <span>Structured scientific Q&amp;A with citations</span>
           </Link>
-          <Link href="/mechanism-first" className="hub-link">
-            <strong>Mechanism first</strong>
-            <span>Prioritize routes before molecule design</span>
+          <Link href="/biology-first" className="hub-link">
+            <strong>Biology first</strong>
+            <span>See the disease map before designing molecules</span>
           </Link>
           <Link href="/learn" className="hub-link">
             <strong>Learning hub</strong>

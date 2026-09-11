@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 
-/** Legacy URL — page is now Mechanism first. */
+/** Legacy How it works URL. */
 export default function HowItWorksRedirect() {
-  redirect("/mechanism-first");
+  redirect("/biology-first");
 }

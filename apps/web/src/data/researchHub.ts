@@ -239,9 +239,9 @@ export const RESEARCH_DISEASES: ResearchDisease[] = [
         status: "ready",
       },
       {
-        title: "Mechanism first",
-        summary: "Rank biology before molecule design.",
-        href: "/mechanism-first",
+        title: "Biology first",
+        summary: "See the disease map before designing molecules.",
+        href: "/biology-first",
         status: "ready",
       },
       {
