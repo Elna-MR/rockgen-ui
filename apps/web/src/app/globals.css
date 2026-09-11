@@ -3220,6 +3220,127 @@ i.chem-swatch.chem-special {
 }
 
 /* —— Familial ALS STRING network —— */
+.fals-lead {
+  margin: 0;
+}
+
+.fals-sliders {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem 1.25rem;
+  align-items: center;
+}
+
+.fals-slider {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+}
+
+.fals-slider span {
+  white-space: nowrap;
+}
+
+.fals-slider em {
+  font-style: normal;
+  color: var(--ink-muted);
+  font-size: 0.8rem;
+}
+
+.fals-slider input[type="range"] {
+  width: min(12rem, 36vw);
+  accent-color: var(--accent);
+}
+
+.fals-slider strong {
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+  min-width: 2.6rem;
+}
+
+.fals-gene-bar {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 0.85rem 0 1rem;
+  padding: 0.75rem 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--accent-soft);
+}
+
+.fals-gene-bar span {
+  flex: 1 1 100%;
+  margin-bottom: 0.35rem;
+}
+
+.fals-detail-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 0.65rem;
+}
+
+.fals-detail-actions {
+  display: flex;
+  gap: 0.35rem;
+  flex-shrink: 0;
+}
+
+.fals-drop {
+  margin-top: 0.25rem;
+}
+
+.fals-programmes h4,
+.fals-gene-map h4 {
+  margin: 0.85rem 0 0.4rem;
+  font-size: 0.95rem;
+}
+
+.fals-programmes ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.fals-programmes li {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  gap: 0.45rem;
+  align-items: baseline;
+  font-size: 0.88rem;
+}
+
+.fals-prog-dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 99px;
+  display: inline-block;
+}
+
+.fals-mini-map {
+  width: 100%;
+  max-width: 28rem;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, rgba(74,139,134,0.05), transparent);
+}
+
+.fals-legend-ring {
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 99px;
+  background: transparent !important;
+  border: 2px solid;
+  box-sizing: border-box;
+}
+
 
 .fals-network {
   display: grid;

@@ -23,9 +23,8 @@ export default async function AlsNetworkPage() {
       <header className="hub-hero" style={{ paddingBottom: "0.75rem" }}>
         <h1>Familial ALS gene network</h1>
         <p className="lede">
-          STRING interaction map across familial ALS genes, colored by functional module. Prefer the
-          physical subnetwork for mechanistic reading; text-mining alone can over-connect co-mentioned
-          genes.
+          STRING interaction map across familial ALS genes. Use confidence and gene bars to change
+          which connections stay visible, then click a gene for details and a local neighborhood map.
         </p>
         <p className="meta-pill">
           {graph.meta.source} · {graph.meta.network_type} · score ≥ {graph.meta.required_score} ·{" "}
@@ -42,7 +41,11 @@ export default async function AlsNetworkPage() {
         <ul className="learn-fact-list">
           <li>
             Edges are STRING evidence weights, not clinical causality. Thick edges mean stronger
-            database/experiment support in this export.
+            support. Move Min confidence or a gene&apos;s connection bar to prune or restore links.
+          </li>
+          <li>
+            Click a gene for programmes (when curated), familial share, and a local gene-map of
+            neighbors at the current filters.
           </li>
           <li>
             Rebuild with{" "}

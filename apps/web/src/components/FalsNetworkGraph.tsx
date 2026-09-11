@@ -10,6 +10,14 @@ import {
   select,
 } from "d3";
 import { useEffect, useMemo, useRef, useState } from "react";
+import {
+  getGeneDetail,
+  MODULE_COLOR,
+  MODULE_LABEL,
+  primaryProgrammeStatus,
+  STATUS_COLOR,
+  STATUS_LABEL,
+} from "@/data/falsGeneMeta";
 
 export type FalsNode = {
   id: string;
@@ -41,24 +49,6 @@ export type FalsGraph = {
   links: FalsLink[];
 };
 
-const MODULE_LABEL: Record<string, string> = {
-  rna: "RNA metabolism",
-  pro: "Proteostasis / autophagy",
-  cyt: "Cytoskeleton / transport",
-  mit: "Mitochondria / metabolism",
-  ddr: "DNA damage / cell cycle",
-  oth: "Other / modifiers",
-};
-
-const MODULE_COLOR: Record<string, string> = {
-  rna: "#5c7a8f",
-  pro: "#4a8b86",
-  cyt: "#7a6f5c",
-  mit: "#6a8f7a",
-  ddr: "#6b7c8a",
-  oth: "#8497a7",
-};
-
 type SimNode = FalsNode & { x?: number; y?: number; fx?: number | null; fy?: number | null };
 type SimLink = {
   source: string | SimNode;
@@ -74,22 +64,67 @@ export function FalsNetworkGraph({ graph }: Props) {
   const svgRef = useRef<SVGSVGElement | null>(null);
   const wrapRef = useRef<HTMLDivElement | null>(null);
   const [activeMod, setActiveMod] = useState<string | null>(null);
-  const [selected, setSelected] = useState<FalsNode | null>(null);
-  const [hideOrphans, setHideOrphans] = useState(true);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [minConfidence, setMinConfidence] = useState(0.4);
+  const [minFamilialPct, setMinFamilialPct] = useState(0);
+  /** Per-gene connection emphasis 0–100; lower hides weaker edges for that gene. */
+  const [geneBars, setGeneBars] = useState<Record<string, number>>({});
+  const [detailOpen, setDetailOpen] = useState(true);
 
   const modules = useMemo(() => {
     const set = new Set(graph.nodes.map((n) => n.mod));
     return Array.from(set).sort();
   }, [graph.nodes]);
 
+  const barFor = (id: string, fallbackF: number) =>
+    geneBars[id] ?? Math.min(100, Math.max(5, fallbackF * 2.2));
+
   const visible = useMemo(() => {
-    let nodes = graph.nodes;
-    if (hideOrphans) nodes = nodes.filter((n) => n.degree > 0);
+    let nodes = graph.nodes.filter((n) => n.f >= minFamilialPct);
     if (activeMod) nodes = nodes.filter((n) => n.mod === activeMod);
     const ids = new Set(nodes.map((n) => n.id));
-    const links = graph.links.filter((l) => ids.has(l.source) && ids.has(l.target));
+
+    const links = graph.links.filter((l) => {
+      if (!ids.has(l.source) || !ids.has(l.target)) return false;
+      if (l.w < minConfidence) return false;
+      const src = graph.nodes.find((n) => n.id === l.source);
+      const tgt = graph.nodes.find((n) => n.id === l.target);
+      if (!src || !tgt) return false;
+      // Gene bars act as local connection gates: edge must clear both genes' bar thresholds.
+      const needA = barFor(src.id, src.f) / 100;
+      const needB = barFor(tgt.id, tgt.f) / 100;
+      const gate = Math.min(needA, needB);
+      return l.w >= gate * 0.35 + minConfidence * 0.65;
+    });
+
+    const linked = new Set<string>();
+    for (const l of links) {
+      linked.add(l.source);
+      linked.add(l.target);
+    }
+    // Keep selected gene even if temporarily isolated after filtering.
+    if (selectedId) linked.add(selectedId);
+    nodes = nodes.filter((n) => linked.has(n.id) || n.f >= Math.max(minFamilialPct, 1));
+
     return { nodes, links };
-  }, [graph, activeMod, hideOrphans]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [graph, activeMod, minConfidence, minFamilialPct, geneBars, selectedId]);
+
+  const selected = useMemo(
+    () => graph.nodes.find((n) => n.id === selectedId) || null,
+    [graph.nodes, selectedId]
+  );
+
+  const neighbors = useMemo(() => {
+    if (!selected) return [] as { id: string; w: number }[];
+    return visible.links
+      .filter((l) => l.source === selected.id || l.target === selected.id)
+      .map((l) => ({
+        id: l.source === selected.id ? l.target : l.source,
+        w: l.w,
+      }))
+      .sort((a, b) => b.w - a.w);
+  }, [selected, visible.links]);
 
   useEffect(() => {
     const svgEl = svgRef.current;
@@ -97,7 +132,7 @@ export function FalsNetworkGraph({ graph }: Props) {
     if (!svgEl || !wrap) return;
 
     const width = wrap.clientWidth || 900;
-    const height = Math.max(420, Math.min(640, Math.round(width * 0.62)));
+    const height = Math.max(460, Math.min(680, Math.round(width * 0.64)));
 
     const svg = select(svgEl);
     svg.selectAll("*").remove();
@@ -118,8 +153,8 @@ export function FalsNetworkGraph({ graph }: Props) {
       .selectAll("line")
       .data(links)
       .join("line")
-      .attr("stroke", "rgba(26,43,51,0.18)")
-      .attr("stroke-width", (d) => 0.6 + d.w * 3.5);
+      .attr("stroke", "rgba(26,43,51,0.2)")
+      .attr("stroke-width", (d) => 0.7 + d.w * 4);
 
     const node = g
       .append("g")
@@ -129,21 +164,62 @@ export function FalsNetworkGraph({ graph }: Props) {
       .join("g")
       .attr("class", "fals-node")
       .style("cursor", "pointer")
-      .on("click", (_event, d) => setSelected(d));
+      .on("click", (event, d) => {
+        event.stopPropagation();
+        setSelectedId(d.id);
+        setDetailOpen(true);
+      });
 
     node
       .append("circle")
-      .attr("r", (d) => 6 + Math.sqrt(Math.max(d.f, 0.05)) * 3.2)
+      .attr("class", "fals-node-ring")
+      .attr("r", (d) => {
+        const base = 7 + Math.sqrt(Math.max(d.f, 0.05)) * 3.4;
+        return primaryProgrammeStatus(d.id) ? base + 3.5 : 0;
+      })
+      .attr("fill", "none")
+      .attr("stroke", (d) => {
+        const st = primaryProgrammeStatus(d.id);
+        return st ? STATUS_COLOR[st] : "transparent";
+      })
+      .attr("stroke-width", 2.5);
+
+    node
+      .append("circle")
+      .attr("r", (d) => 7 + Math.sqrt(Math.max(d.f, 0.05)) * 3.4)
       .attr("fill", (d) => MODULE_COLOR[d.mod] || MODULE_COLOR.oth)
-      .attr("fill-opacity", 0.88)
-      .attr("stroke", "#fff")
-      .attr("stroke-width", 1.5);
+      .attr("fill-opacity", (d) => (selectedId === d.id ? 1 : 0.9))
+      .attr("stroke", (d) => (selectedId === d.id ? "#1a2b33" : "#fff"))
+      .attr("stroke-width", (d) => (selectedId === d.id ? 2.25 : 1.4));
+
+    // Frequency / connection bar under each gene
+    node.each(function (d) {
+      const el = select(this);
+      const r = 7 + Math.sqrt(Math.max(d.f, 0.05)) * 3.4;
+      const barW = 28;
+      const pct = barFor(d.id, d.f);
+      el.append("rect")
+        .attr("x", -barW / 2)
+        .attr("y", r + 4)
+        .attr("width", barW)
+        .attr("height", 4)
+        .attr("rx", 2)
+        .attr("fill", "rgba(26,43,51,0.12)");
+      el.append("rect")
+        .attr("class", "fals-node-bar-fill")
+        .attr("x", -barW / 2)
+        .attr("y", r + 4)
+        .attr("width", (barW * pct) / 100)
+        .attr("height", 4)
+        .attr("rx", 2)
+        .attr("fill", MODULE_COLOR[d.mod] || MODULE_COLOR.oth);
+    });
 
     node
       .append("text")
       .text((d) => d.id)
       .attr("x", 0)
-      .attr("y", (d) => -(8 + Math.sqrt(Math.max(d.f, 0.05)) * 3.2))
+      .attr("y", (d) => -(10 + Math.sqrt(Math.max(d.f, 0.05)) * 3.4))
       .attr("text-anchor", "middle")
       .attr("font-size", 10)
       .attr("fill", "#1a2b33")
@@ -154,14 +230,14 @@ export function FalsNetworkGraph({ graph }: Props) {
         "link",
         forceLink<SimNode, SimLink>(links)
           .id((d) => d.id)
-          .distance((d) => 70 + (1 - d.w) * 90)
-          .strength((d) => 0.2 + d.w * 0.55)
+          .distance((d) => 65 + (1 - d.w) * 100)
+          .strength((d) => 0.18 + d.w * 0.6)
       )
-      .force("charge", forceManyBody().strength(-220))
+      .force("charge", forceManyBody().strength(-240))
       .force("center", forceCenter(width / 2, height / 2))
       .force(
         "collide",
-        forceCollide<SimNode>().radius((d) => 14 + Math.sqrt(Math.max(d.f, 0.05)) * 3.2)
+        forceCollide<SimNode>().radius((d) => 18 + Math.sqrt(Math.max(d.f, 0.05)) * 3.4)
       );
 
     node.call(
@@ -191,15 +267,74 @@ export function FalsNetworkGraph({ graph }: Props) {
       node.attr("transform", (d) => `translate(${d.x ?? 0},${d.y ?? 0})`);
     });
 
+    const onBg = () => {
+      /* keep selection; only clear via panel */
+    };
+    svg.on("click", onBg);
+
     return () => {
       simulation.stop();
       svg.selectAll("*").remove();
     };
-  }, [visible]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [visible, selectedId]);
+
+  function resetFilters() {
+    setMinConfidence(0.4);
+    setMinFamilialPct(0);
+    setGeneBars({});
+    setActiveMod(null);
+    setSelectedId(null);
+  }
+
+  function setSelectedBar(value: number) {
+    if (!selected) return;
+    setGeneBars((prev) => ({ ...prev, [selected.id]: value }));
+  }
+
+  const detail = selected ? getGeneDetail(selected.id) : null;
+  const selectedBar = selected ? barFor(selected.id, selected.f) : 50;
+  const status = selected ? primaryProgrammeStatus(selected.id) : null;
 
   return (
     <div className="fals-network">
       <div className="fals-controls">
+        <p className="hint fals-lead">
+          Edge thickness is STRING interaction confidence. Bars under genes show connection emphasis —
+          raise or lower them (or use the sliders) to change which links stay visible. Ringed nodes have
+          a named drug programme.
+        </p>
+
+        <div className="fals-sliders">
+          <label className="fals-slider">
+            <span>Min confidence</span>
+            <input
+              type="range"
+              min={0}
+              max={1}
+              step={0.05}
+              value={minConfidence}
+              onChange={(e) => setMinConfidence(Number(e.target.value))}
+            />
+            <strong>{minConfidence.toFixed(2)}</strong>
+          </label>
+          <label className="fals-slider">
+            <span>Min familial %</span>
+            <input
+              type="range"
+              min={0}
+              max={20}
+              step={0.5}
+              value={minFamilialPct}
+              onChange={(e) => setMinFamilialPct(Number(e.target.value))}
+            />
+            <strong>{minFamilialPct.toFixed(1)}%</strong>
+          </label>
+          <button type="button" className="btn btn-ghost" onClick={resetFilters}>
+            Reset
+          </button>
+        </div>
+
         <div className="chip-row">
           <button
             type="button"
@@ -219,14 +354,6 @@ export function FalsNetworkGraph({ graph }: Props) {
             </button>
           ))}
         </div>
-        <label className="fals-toggle hint">
-          <input
-            type="checkbox"
-            checked={hideOrphans}
-            onChange={(e) => setHideOrphans(e.target.checked)}
-          />
-          Hide unconnected genes at this score
-        </label>
       </div>
 
       <div className="fals-stage" ref={wrapRef}>
@@ -240,28 +367,149 @@ export function FalsNetworkGraph({ graph }: Props) {
             {MODULE_LABEL[m] || m}
           </span>
         ))}
-        <span className="hint">Node size ≈ familial frequency · edge thickness ≈ STRING weight</span>
+        {(Object.keys(STATUS_LABEL) as Array<keyof typeof STATUS_LABEL>).map((s) => (
+          <span key={s} className="fals-legend-item">
+            <i className="fals-legend-ring" style={{ borderColor: STATUS_COLOR[s] }} />
+            {STATUS_LABEL[s]}
+          </span>
+        ))}
       </div>
 
-      {selected && (
-        <aside className="fals-detail" aria-live="polite">
-          <h3>{selected.id}</h3>
-          <p className="hint">{MODULE_LABEL[selected.mod] || selected.mod}</p>
-          <ul className="learn-fact-list">
-            <li>
-              Approximate familial share: <strong>{selected.f}%</strong> (order-of-magnitude;
-              population-dependent)
-            </li>
-            <li>
-              Degree in this view: <strong>{selected.degree}</strong>
-            </li>
-            {selected.string_name && selected.string_name !== selected.id && (
-              <li>STRING preferred name: {selected.string_name}</li>
-            )}
-          </ul>
-          <button type="button" className="btn btn-ghost" onClick={() => setSelected(null)}>
-            Clear selection
-          </button>
+      {selected && detail && (
+        <aside className={`fals-detail fals-drop ${detailOpen ? "open" : ""}`} aria-live="polite">
+          <div className="fals-detail-head">
+            <div>
+              <h3>{selected.id}</h3>
+              <p className="hint">
+                {detail.fullName}
+                {detail.locus ? ` · ${detail.locus}` : ""}
+              </p>
+            </div>
+            <div className="fals-detail-actions">
+              <button type="button" className="btn btn-ghost" onClick={() => setDetailOpen((v) => !v)}>
+                {detailOpen ? "Collapse" : "Expand"}
+              </button>
+              <button type="button" className="btn btn-ghost" onClick={() => setSelectedId(null)}>
+                Close
+              </button>
+            </div>
+          </div>
+
+          {detailOpen && (
+            <>
+              <p className="article-body" style={{ marginBottom: "0.85rem" }}>
+                {detail.summary}
+              </p>
+
+              <ul className="learn-fact-list">
+                <li>
+                  Approximate familial share: <strong>~{selected.f}%</strong> of fALS
+                  (order-of-magnitude; population-dependent)
+                </li>
+                <li>
+                  Module: <strong>{MODULE_LABEL[selected.mod] || selected.mod}</strong>
+                </li>
+                <li>
+                  Visible neighbors at current filters: <strong>{neighbors.length}</strong>
+                </li>
+                {status && (
+                  <li>
+                    Programme status:{" "}
+                    <strong style={{ color: STATUS_COLOR[status] }}>{STATUS_LABEL[status]}</strong>
+                  </li>
+                )}
+              </ul>
+
+              <label className="fals-slider fals-gene-bar">
+                <span>
+                  Connection bar for {selected.id}
+                  <em> — raise to keep more edges, lower to prune weaker links</em>
+                </span>
+                <input
+                  type="range"
+                  min={5}
+                  max={100}
+                  step={1}
+                  value={selectedBar}
+                  onChange={(e) => setSelectedBar(Number(e.target.value))}
+                />
+                <strong>{Math.round(selectedBar)}%</strong>
+              </label>
+
+              {detail.programmes && detail.programmes.length > 0 && (
+                <div className="fals-programmes">
+                  <h4>Programmes</h4>
+                  <ul>
+                    {detail.programmes.map((p) => (
+                      <li key={p.name}>
+                        <span
+                          className="fals-prog-dot"
+                          style={{ background: STATUS_COLOR[p.status] }}
+                        />
+                        <strong>{p.name}</strong>
+                        <span className="hint">
+                          {STATUS_LABEL[p.status]}
+                          {p.note ? ` — ${p.note}` : ""}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              <div className="fals-gene-map">
+                <h4>Gene map — {selected.id} neighborhood</h4>
+                <p className="hint">Local interaction map at the current confidence / bar settings.</p>
+                <svg viewBox="0 0 360 200" className="fals-mini-map" aria-label={`${selected.id} neighbor map`}>
+                  <circle cx="180" cy="100" r="18" fill={MODULE_COLOR[selected.mod]} />
+                  <text x="180" y="104" textAnchor="middle" fontSize="9" fill="#fff" fontWeight="700">
+                    {selected.id}
+                  </text>
+                  {neighbors.slice(0, 8).map((n, i) => {
+                    const angle = (-Math.PI / 2) + (i / Math.max(neighbors.length, 1)) * Math.PI * 2;
+                    const x = 180 + Math.cos(angle) * 110;
+                    const y = 100 + Math.sin(angle) * 70;
+                    const meta = graph.nodes.find((g) => g.id === n.id);
+                    return (
+                      <g key={n.id}>
+                        <line
+                          x1="180"
+                          y1="100"
+                          x2={x}
+                          y2={y}
+                          stroke="rgba(26,43,51,0.25)"
+                          strokeWidth={0.8 + n.w * 3}
+                        />
+                        <circle
+                          cx={x}
+                          cy={y}
+                          r="11"
+                          fill={MODULE_COLOR[meta?.mod || "oth"]}
+                          style={{ cursor: "pointer" }}
+                          onClick={() => setSelectedId(n.id)}
+                        />
+                        <text
+                          x={x}
+                          y={y - 16}
+                          textAnchor="middle"
+                          fontSize="8"
+                          fill="#1a2b33"
+                          fontWeight="600"
+                        >
+                          {n.id}
+                        </text>
+                      </g>
+                    );
+                  })}
+                  {neighbors.length === 0 && (
+                    <text x="180" y="160" textAnchor="middle" fontSize="10" fill="#8497a7">
+                      No neighbors at this filter — lower confidence or raise this gene&apos;s bar
+                    </text>
+                  )}
+                </svg>
+              </div>
+            </>
+          )}
         </aside>
       )}
     </div>
