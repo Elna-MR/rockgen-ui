@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { InverseFoldEnrichment } from "@/components/InverseFoldEnrichment";
 import { StructureExplorer } from "@/components/StructureExplorer";
 
 type Props = { searchParams: Promise<{ q?: string }> };
@@ -29,6 +30,7 @@ export default async function StructureExplorePage({ searchParams }: Props) {
         </p>
       </header>
       <StructureExplorer catalog={ALS_CATALOG} initialQuery={initialQuery} />
+      <InverseFoldEnrichment />
     </main>
   );
 }

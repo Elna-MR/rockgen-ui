@@ -1325,6 +1325,12 @@ a {
   pointer-events: none;
 }
 
+.inverse-fold-enrichment {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+
 .hub-link strong {
   font-size: 1.05rem;
 }

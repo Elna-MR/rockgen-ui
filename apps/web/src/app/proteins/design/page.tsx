@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { InverseFoldEnrichment } from "@/components/InverseFoldEnrichment";
 import { StructureToolFrame } from "@/components/StructureToolFrame";
 import { StructureWorkspaceNav } from "@/components/StructureWorkspaceNav";
 
@@ -24,6 +25,7 @@ export default async function PeptideDesignPage({ searchParams }: Props) {
       </header>
       <StructureWorkspaceNav active="design" query={query} />
       <StructureToolFrame src={src} title="Peptide binder design" />
+      <InverseFoldEnrichment />
     </main>
   );
 }
