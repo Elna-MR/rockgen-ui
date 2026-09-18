@@ -60,7 +60,7 @@ export default function ResearchHubPage() {
             <span>Structured scientific Q&amp;A with citations</span>
           </Link>
           <Link href="/biology-first" className="hub-link">
-            <strong>Biology first</strong>
+            <strong>Biology</strong>
             <span>See the disease map before designing molecules</span>
           </Link>
           <Link href="/learn" className="hub-link">

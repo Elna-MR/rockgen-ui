@@ -6,12 +6,12 @@ export default function BiologyFirstPage() {
   return (
     <main className="page approach-page approach-page-visual">
       <p className="eyebrow">
-        <Link href="/">Home</Link> · Biology first
+        <Link href="/">Home</Link> · Biology
       </p>
 
       <header className="science-hero approach-hero">
         <div className="approach-hero-copy">
-          <h1>Biology first</h1>
+          <h1>Biology</h1>
           <p className="science-thesis">
             See how disease proteins fail and which shared routes matter before designing molecules.
           </p>
@@ -43,7 +43,7 @@ export default function BiologyFirstPage() {
       </section>
 
       <section className="science-section">
-        <h2>Biology first vs jumping to molecules</h2>
+        <h2>Biology vs jumping to molecules</h2>
         <div className="contrast-split">
           <article className="contrast-panel">
             <p className="eyebrow">Molecule-first</p>
@@ -54,7 +54,7 @@ export default function BiologyFirstPage() {
             </p>
           </article>
           <article className="contrast-panel contrast-panel-accent">
-            <p className="eyebrow">Biology first</p>
+            <p className="eyebrow">Biology</p>
             <h3>Rank the disease map first</h3>
             <p>
               Start from proteins, alleles, and evidence. Compare shared vs unique routes across

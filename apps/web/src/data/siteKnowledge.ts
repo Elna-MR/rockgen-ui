@@ -54,11 +54,11 @@ function buildCorpus(): KnowledgeChunk[] {
     ),
     chunk(
       "site-biology-first",
-      "Biology first",
+      "Biology",
       "/biology-first",
       "Site",
-      "Biology first means see how disease proteins fail and which shared routes matter before designing molecules. A mechanism is a shared biological failure route such as protein aggregation, cytoskeleton stress, mitochondrial dysfunction, or axonal transport. Molecule-first jumps to compounds; biology-first ranks the disease map first. Working chain: gene & protein → alleles & structure → mechanisms → evidence → design later.",
-      ["biology first", "approach", "mechanism", "molecule"],
+      "Biology means see how disease proteins fail and which shared routes matter before designing molecules. A mechanism is a shared biological failure route such as protein aggregation, cytoskeleton stress, mitochondrial dysfunction, or axonal transport. Molecule-first jumps to compounds; biology ranks the disease map first. Working chain: gene & protein → alleles & structure → mechanisms → evidence → design later.",
+      ["biology", "biology first", "approach", "mechanism", "molecule"],
     ),
     chunk(
       "site-structures",

@@ -14,7 +14,7 @@ const STARTERS = [
   "What is ALS?",
   "Where is the gene network?",
   "How do I use Structure explorer?",
-  "What is biology first?",
+  "What is Biology?",
   "Tell me about SOD1 programmes",
 ];
 

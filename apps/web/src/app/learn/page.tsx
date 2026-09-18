@@ -41,7 +41,7 @@ export default function LearnHubPage() {
             <span>Search PDB folds and mutation sites</span>
           </Link>
           <Link href="/biology-first" className="hub-link">
-            <strong>Biology first</strong>
+            <strong>Biology</strong>
             <span>See the disease map before designing molecules</span>
           </Link>
         </div>
