@@ -206,12 +206,31 @@ export function SiteChatbot() {
 
       <button
         type="button"
-        className="site-chat-fab"
+        className={`site-chat-fab ${open ? "site-chat-fab-close" : ""}`}
         aria-expanded={open}
         aria-controls={open ? panelId : undefined}
         onClick={() => setOpen((v) => !v)}
       >
-        {open ? "Close" : "Ask"}
+        {open ? (
+          "Close"
+        ) : (
+          <>
+            <svg
+              className="site-chat-fab-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M5 6.5A2.5 2.5 0 0 1 7.5 4h9A2.5 2.5 0 0 1 19 6.5v7A2.5 2.5 0 0 1 16.5 16H10l-4 3.2V16H7.5A2.5 2.5 0 0 1 5 13.5v-7Z"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinejoin="round"
+              />
+            </svg>
+            Ask RockGen
+          </>
+        )}
       </button>
     </div>
   );
