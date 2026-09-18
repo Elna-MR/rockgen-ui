@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DM_Sans, IBM_Plex_Mono, Source_Serif_4 } from "next/font/google";
 import Link from "next/link";
 import { SiteAtmosphere } from "@/components/SiteAtmosphere";
+import { SiteChatbot } from "@/components/SiteChatbot";
 import "./globals.css";
 
 // Pages call the live API — never prerender against a missing build-time host.
@@ -58,6 +59,7 @@ export default function RootLayout({
             Educational — not medical advice. Care decisions belong with your clinical team.
           </footer>
         </div>
+        <SiteChatbot />
       </body>
     </html>
   );

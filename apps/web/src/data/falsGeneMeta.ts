@@ -479,6 +479,11 @@ const DETAILS: Record<string, GeneDetail> = {
   },
 };
 
+/** All curated fALS gene ids (notes + programme blurbs). */
+export function curatedGeneIds(): string[] {
+  return [...new Set([...Object.keys(DETAILS), ...Object.keys(PROGRAMME_BLURB)])].sort();
+}
+
 export function getGeneDetail(id: string): GeneDetail {
   const base = DETAILS[id];
   const prog = PROGRAMME_BLURB[id];
