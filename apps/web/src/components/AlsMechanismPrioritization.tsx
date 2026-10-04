@@ -106,7 +106,32 @@ export function AlsMechanismPrioritization({ markdownUrl }: Props) {
       .catch(() => undefined);
   }, []);
 
-  if (error) return <p className="error">{error}</p>;
+  if (error) {
+    return (
+      <section className="section">
+        <h2>Mechanism overview</h2>
+        <p className="hint">
+          Live prioritization API is offline. Use the curated compare and map tools meanwhile.
+        </p>
+        <ul className="learn-fact-list">
+          <li>PFN1 and TUBA4A both implicate cytoskeleton stress and axonal transport.</li>
+          <li>Aggregation is stronger for PFN1; microtubule instability is stronger for TUBA4A.</li>
+          <li>Prioritize shared routes before designing molecules.</li>
+        </ul>
+        <div className="cta-row" style={{ marginTop: "1rem" }}>
+          <Link className="btn btn-primary" href="/diseases/als/compare">
+            Open compare
+          </Link>
+          <Link className="btn btn-ghost" href="/diseases/als/map">
+            Disease map
+          </Link>
+          <a className="btn btn-ghost" href={markdownUrl}>
+            Download report
+          </a>
+        </div>
+      </section>
+    );
+  }
   if (!data) return <p className="hint">Loading mechanism prioritization…</p>;
 
   const { comparison, shared_graph, opportunities, definition_of_done } = data;

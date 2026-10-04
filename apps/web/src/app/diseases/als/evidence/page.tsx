@@ -36,7 +36,9 @@ export default async function AlsEvidencePage() {
       <AlsWorkspaceNav active="evidence" />
 
       {error ? (
-        <p className="error">{error}</p>
+        <p className="hint">
+          Live mutation intelligence is offline. Biomarker notes below still apply.
+        </p>
       ) : (
         <MutationIntelligenceSection
           mutations={mutations}

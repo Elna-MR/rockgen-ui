@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { AlsWorkspaceNav } from "@/components/AlsWorkspaceNav";
+import { ALS_COMPARE_FALLBACK } from "@/data/alsMechanismFallback";
 import {
   getDiseaseProteinCompare,
   mechanismReportMarkdownUrl,
@@ -11,20 +12,13 @@ type Props = { searchParams: Promise<{ ids?: string }> };
 export default async function AlsCrossProteinComparePage({ searchParams }: Props) {
   const sp = await searchParams;
   const ids = sp.ids || "P07737,P68366";
-  let cmp: ProteinCompare | null = null;
-  let error: string | null = null;
+  let cmp: ProteinCompare = ALS_COMPARE_FALLBACK;
+  let offline = false;
   try {
     cmp = await getDiseaseProteinCompare("als", ids);
-  } catch (e) {
-    error = e instanceof Error ? e.message : "Failed to load comparison";
-  }
-
-  if (error || !cmp) {
-    return (
-      <main className="page page-dossier">
-        <p className="error">{error ?? "Not found"}</p>
-      </main>
-    );
+  } catch {
+    offline = true;
+    cmp = ALS_COMPARE_FALLBACK;
   }
 
   const [a, b] = cmp.proteins;
@@ -43,6 +37,11 @@ export default async function AlsCrossProteinComparePage({ searchParams }: Props
           <p className="lede">
             Shared and unique disease mechanisms, different paths, same ALS endpoint.
           </p>
+          {offline && (
+            <p className="hint" style={{ marginTop: "0.5rem" }}>
+              Showing curated offline compare. Live graph API is not connected.
+            </p>
+          )}
         </div>
         <div className="status-pill">
           <span className="eyebrow">Mechanism similarity</span>
