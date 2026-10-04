@@ -13,12 +13,16 @@ export default async function AlsCrossProteinComparePage({ searchParams }: Props
   const sp = await searchParams;
   const ids = sp.ids || "P07737,P68366";
   let cmp: ProteinCompare = ALS_COMPARE_FALLBACK;
-  let offline = false;
-  try {
-    cmp = await getDiseaseProteinCompare("als", ids);
-  } catch {
-    offline = true;
-    cmp = ALS_COMPARE_FALLBACK;
+  const apiConfigured = Boolean(process.env.NEXT_PUBLIC_API_URL);
+  let offline = !apiConfigured;
+  if (apiConfigured) {
+    try {
+      cmp = await getDiseaseProteinCompare("als", ids);
+      offline = false;
+    } catch {
+      offline = true;
+      cmp = ALS_COMPARE_FALLBACK;
+    }
   }
 
   const [a, b] = cmp.proteins;

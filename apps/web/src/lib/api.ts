@@ -1,14 +1,18 @@
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
 async function apiGet<T>(path: string): Promise<T> {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 4000);
   let res: Response;
   try {
     res = await fetch(`${API_URL}${path}`, {
       cache: "no-store",
-      signal: AbortSignal.timeout(4000),
+      signal: controller.signal,
     });
   } catch {
     throw new Error("API unavailable");
+  } finally {
+    clearTimeout(timer);
   }
   if (!res.ok) {
     throw new Error(`API ${path} failed: ${res.status}`);

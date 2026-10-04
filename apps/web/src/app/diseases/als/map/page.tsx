@@ -10,17 +10,21 @@ import { getDiseaseMechanismMap, getDiseaseMechanismMatrix } from "@/lib/api";
 export default async function AlsMapPage() {
   let map = ALS_MECHANISM_MAP_FALLBACK;
   let matrix = ALS_MECHANISM_MATRIX_FALLBACK;
-  let offline = false;
+  const apiConfigured = Boolean(process.env.NEXT_PUBLIC_API_URL);
+  let offline = !apiConfigured;
 
-  try {
-    const [liveMap, liveMatrix] = await Promise.all([
-      getDiseaseMechanismMap("als"),
-      getDiseaseMechanismMatrix("als"),
-    ]);
-    map = liveMap;
-    matrix = liveMatrix;
-  } catch {
-    offline = true;
+  if (apiConfigured) {
+    try {
+      const [liveMap, liveMatrix] = await Promise.all([
+        getDiseaseMechanismMap("als"),
+        getDiseaseMechanismMatrix("als"),
+      ]);
+      map = liveMap;
+      matrix = liveMatrix;
+      offline = false;
+    } catch {
+      offline = true;
+    }
   }
 
   return (
