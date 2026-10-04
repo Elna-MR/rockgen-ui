@@ -3254,6 +3254,54 @@ i.chem-swatch.chem-special {
 }
 
 .learn-hub-note,
+.research-cite {
+  margin-top: 0.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.research-cite-list {
+  list-style: none;
+  margin: 0.85rem 0 0;
+  padding: 0;
+}
+
+.research-cite-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.research-cite-list strong {
+  font-size: 1.02rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.research-cite-meta {
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+}
+
+.research-cite-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  margin-top: 0.35rem;
+}
+
+.research-cite-links a {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--accent-ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.research-cite-links a:hover {
+  color: var(--accent);
+}
+
 .learn-shared {
   margin-top: 1.5rem;
 }
