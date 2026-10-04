@@ -1,21 +1,21 @@
 :root {
-  /* Clinical research palette: cool paper, slate ink, restrained teal */
-  --bg-0: #f3f5f7;
-  --bg-1: #e7ebf0;
-  --bg-2: #dce2e8;
-  --ink: #142028;
-  --ink-muted: #5a6670;
-  --accent: #3f7a76;
-  --accent-soft: rgba(63, 122, 118, 0.1);
-  --accent-ink: #244844;
-  --line: rgba(20, 32, 40, 0.1);
+  /* Neural membrane: cool lab paper, deep slate, CSF / axon teal-blue */
+  --bg-0: #f2f5f7;
+  --bg-1: #e6ebf0;
+  --bg-2: #dbe2e8;
+  --ink: #12202a;
+  --ink-muted: #5b6872;
+  --accent: #2f6f7a;
+  --accent-soft: rgba(47, 111, 122, 0.1);
+  --accent-ink: #1e4a52;
+  --line: rgba(18, 32, 42, 0.1);
   --surface: #ffffff;
   --surface-soft: rgba(255, 255, 255, 0.86);
   --warn: #9a7428;
   --danger: #a83838;
   --radius: 6px;
   --radius-sm: 4px;
-  --shadow-soft: 0 1px 0 rgba(20, 32, 40, 0.04), 0 12px 32px rgba(20, 32, 40, 0.06);
+  --shadow-soft: 0 1px 0 rgba(18, 32, 42, 0.04), 0 12px 32px rgba(18, 32, 42, 0.06);
   /* next/font faces (html) + fallbacks */
   --font-sans: var(--font-sans-face), "Manrope", "Segoe UI", sans-serif;
   --font-display: var(--font-display-face), "Newsreader", "Times New Roman", serif;
@@ -40,9 +40,9 @@ body {
   line-height: 1.55;
   letter-spacing: -0.011em;
   background:
-    radial-gradient(900px 480px at 8% -8%, rgba(63, 122, 118, 0.07) 0%, transparent 58%),
-    radial-gradient(720px 420px at 100% 0%, rgba(70, 95, 115, 0.05) 0%, transparent 52%),
-    linear-gradient(180deg, #f7f9fa 0%, var(--bg-0) 48%, #eef1f4 100%);
+    radial-gradient(900px 480px at 8% -8%, rgba(47, 111, 122, 0.08) 0%, transparent 58%),
+    radial-gradient(720px 420px at 100% 0%, rgba(55, 80, 100, 0.05) 0%, transparent 52%),
+    linear-gradient(180deg, #f6f8fa 0%, var(--bg-0) 48%, #eef2f4 100%);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -192,18 +192,18 @@ a {
 }
 
 .btn-primary:hover {
-  background: #356864;
-  box-shadow: 0 2px 8px rgba(63, 122, 118, 0.28);
+  background: #275c66;
+  box-shadow: 0 2px 8px rgba(47, 111, 122, 0.28);
 }
 
 .btn-ghost {
-  border-color: rgba(20, 32, 40, 0.16);
+  border-color: rgba(18, 32, 42, 0.16);
   color: var(--ink);
   background: rgba(255, 255, 255, 0.55);
 }
 
 .btn-ghost:hover {
-  border-color: rgba(63, 122, 118, 0.45);
+  border-color: rgba(47, 111, 122, 0.45);
   color: var(--accent-ink);
   background: var(--surface);
 }
@@ -485,7 +485,7 @@ a {
 
 .badge-in_vitro {
   color: var(--accent-ink);
-  border-color: rgba(74, 139, 134, 0.45);
+  border-color: rgba(47, 111, 122, 0.45);
 }
 
 .badge-animal {
@@ -624,7 +624,7 @@ a {
 }
 
 .status-pill {
-  border: 1px solid rgba(74, 139, 134, 0.28);
+  border: 1px solid rgba(47, 111, 122, 0.28);
   padding: 0.85rem 1rem;
   border-radius: var(--radius);
   min-width: 12rem;
@@ -786,7 +786,7 @@ a {
 }
 
 .aa.region-actin {
-  background: rgba(74, 139, 134, 0.16);
+  background: rgba(47, 111, 122, 0.16);
 }
 
 .aa.region-plp {
@@ -921,7 +921,7 @@ a {
 .ev-tag.ev-measured-experimentally,
 .ev-tag.ev-mixed-evidence {
   color: var(--accent-ink);
-  border-color: rgba(74, 139, 134, 0.4);
+  border-color: rgba(47, 111, 122, 0.4);
 }
 
 .ev-tag.ev-observed-in-animals {
@@ -1024,7 +1024,7 @@ a {
 
 .support-tag-supported {
   color: var(--accent);
-  border-color: rgba(74, 139, 134, 0.45);
+  border-color: rgba(47, 111, 122, 0.45);
 }
 
 .support-tag-broadly_supported {
@@ -1245,7 +1245,7 @@ a {
 .overlap-panel {
   margin-top: 1.25rem;
   padding: 1rem 1.1rem;
-  border: 1px solid rgba(74, 139, 134, 0.35);
+  border: 1px solid rgba(47, 111, 122, 0.35);
   border-radius: var(--radius);
   background: var(--accent-soft);
 }
@@ -1304,7 +1304,7 @@ a {
 }
 
 .path-tile:hover {
-  border-color: rgba(63, 122, 118, 0.4);
+  border-color: rgba(47, 111, 122, 0.4);
   background: #fbfcfc;
   box-shadow: 0 2px 0 rgba(20, 32, 40, 0.03), 0 14px 36px rgba(20, 32, 40, 0.08);
 }
@@ -1325,7 +1325,7 @@ a {
 }
 
 .path-tile-primary {
-  border-color: rgba(63, 122, 118, 0.32);
+  border-color: rgba(47, 111, 122, 0.32);
   background: linear-gradient(180deg, #ffffff 0%, #f7faf9 100%);
 }
 
@@ -1357,7 +1357,7 @@ a {
 }
 
 .hub-link:hover {
-  border-color: rgba(74, 139, 134, 0.45);
+  border-color: rgba(47, 111, 122, 0.45);
   background: var(--accent-soft);
   transform: translateY(-1px);
 }
@@ -1725,7 +1725,7 @@ a {
 }
 
 .contrast-panel-accent {
-  border-color: rgba(74, 139, 134, 0.35);
+  border-color: rgba(47, 111, 122, 0.35);
   background: linear-gradient(180deg, var(--accent-soft), var(--surface));
 }
 
@@ -1834,12 +1834,12 @@ a {
 }
 
 .struct-tab:hover {
-  border-color: rgba(74, 139, 134, 0.45);
+  border-color: rgba(47, 111, 122, 0.45);
   color: var(--accent-ink);
 }
 
 .struct-tab.active {
-  border-color: rgba(74, 139, 134, 0.55);
+  border-color: rgba(47, 111, 122, 0.55);
   background: var(--accent-soft);
   color: var(--accent-ink);
 }
@@ -2024,7 +2024,7 @@ a {
 }
 
 .explorer-result.active {
-  border-color: rgba(74, 139, 134, 0.45);
+  border-color: rgba(47, 111, 122, 0.45);
   background: var(--accent-soft);
 }
 
@@ -2106,7 +2106,7 @@ a {
 }
 
 .chem-aa-patch {
-  background: rgba(74, 139, 134, 0.12);
+  background: rgba(47, 111, 122, 0.12);
 }
 
 .chem-aa-mut {
@@ -2514,7 +2514,7 @@ i.chem-swatch.chem-special {
   height: min(50vw, 28rem);
   bottom: -6%;
   left: -12%;
-  background: radial-gradient(circle, rgba(74, 139, 134, 0.14), transparent 68%);
+  background: radial-gradient(circle, rgba(47, 111, 122, 0.14), transparent 68%);
   box-shadow: 0 30px 80px rgba(26, 43, 51, 0.08);
   animation: atmShadeDrift 24s ease-in-out infinite alternate-reverse;
   animation-delay: -4s;
@@ -2526,7 +2526,7 @@ i.chem-swatch.chem-special {
   top: 38%;
   left: 28%;
   background: radial-gradient(circle, rgba(90, 120, 140, 0.12), transparent 72%);
-  box-shadow: 0 24px 60px rgba(74, 139, 134, 0.1);
+  box-shadow: 0 24px 60px rgba(47, 111, 122, 0.1);
   animation: atmShadePulse 14s ease-in-out infinite;
   animation-delay: -2s;
 }
@@ -2555,8 +2555,8 @@ i.chem-swatch.chem-special {
   height: min(48vw, 28rem);
   top: -8%;
   right: -6%;
-  background: radial-gradient(circle, rgba(74, 139, 134, 0.28), transparent 68%);
-  box-shadow: 0 0 80px rgba(74, 139, 134, 0.12);
+  background: radial-gradient(circle, rgba(47, 111, 122, 0.28), transparent 68%);
+  box-shadow: 0 0 80px rgba(47, 111, 122, 0.12);
 }
 
 .atm-orb-2 {
@@ -2575,7 +2575,7 @@ i.chem-swatch.chem-special {
   height: min(30vw, 16rem);
   top: 42%;
   left: 42%;
-  background: radial-gradient(circle, rgba(74, 139, 134, 0.14), transparent 72%);
+  background: radial-gradient(circle, rgba(47, 111, 122, 0.14), transparent 72%);
   animation-delay: -10s;
   animation-duration: 18s;
 }
@@ -2607,7 +2607,7 @@ i.chem-swatch.chem-special {
 }
 
 .atm-path-mid {
-  stroke: rgba(74, 139, 134, 0.14);
+  stroke: rgba(47, 111, 122, 0.14);
   stroke-width: 16;
 }
 
@@ -2649,7 +2649,7 @@ i.chem-swatch.chem-special {
 }
 
 .atm-dna-strand-b {
-  stroke: rgba(74, 139, 134, 0.12);
+  stroke: rgba(47, 111, 122, 0.12);
 }
 
 .atm-dna-rungs {
@@ -2840,6 +2840,16 @@ i.chem-swatch.chem-special {
 .home-stage-copy .cta-row {
   gap: 0.65rem;
 }
+
+.home-paths {
+  margin-top: 0.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.home-paths .path-grid {
+  margin-top: 0;
+}
+
 
 .home-stage-visual {
   position: relative;
@@ -3353,7 +3363,7 @@ i.chem-swatch.chem-special {
 }
 
 .fals-neighbor-btn:hover {
-  border-color: rgba(74, 139, 134, 0.45);
+  border-color: rgba(47, 111, 122, 0.45);
   background: var(--accent-soft);
 }
 
@@ -3516,7 +3526,7 @@ i.chem-swatch.chem-special {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background:
-    radial-gradient(ellipse 70% 55% at 50% 40%, rgba(74, 139, 134, 0.06), transparent 70%),
+    radial-gradient(ellipse 70% 55% at 50% 40%, rgba(47, 111, 122, 0.06), transparent 70%),
     var(--surface);
   overflow: hidden;
   min-height: 26rem;
@@ -3608,7 +3618,7 @@ i.chem-swatch.chem-special {
   align-items: center;
   gap: 0.45rem;
   border: 2px solid #fff;
-  background: #3f7a76;
+  background: #2f6f7a;
   color: #fff;
   font-family: var(--font-sans);
   font-size: 0.95rem;
@@ -3623,7 +3633,7 @@ i.chem-swatch.chem-special {
 }
 
 .site-chat-fab:hover {
-  background: #356864;
+  background: #275c66;
 }
 
 .site-chat-fab-icon {
@@ -3705,7 +3715,7 @@ i.chem-swatch.chem-special {
 .site-chat-user {
   align-self: flex-end;
   background: var(--accent-soft);
-  border-color: rgba(74, 139, 134, 0.25);
+  border-color: rgba(47, 111, 122, 0.25);
 }
 
 .site-chat-assistant {
@@ -3783,7 +3793,7 @@ i.chem-swatch.chem-special {
 }
 
 .site-chat-starter:hover:not(:disabled) {
-  border-color: rgba(74, 139, 134, 0.45);
+  border-color: rgba(47, 111, 122, 0.45);
   color: var(--ink);
 }
 
@@ -3814,7 +3824,7 @@ i.chem-swatch.chem-special {
 }
 
 .site-chat-form textarea:focus {
-  outline: 2px solid rgba(74, 139, 134, 0.35);
+  outline: 2px solid rgba(47, 111, 122, 0.35);
   outline-offset: 1px;
 }
 

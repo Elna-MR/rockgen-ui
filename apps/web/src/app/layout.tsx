@@ -31,7 +31,7 @@ const mono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   title: "ProtScope: neurodegeneration research",
   description:
-    "Map disease proteins and shared mechanisms across ALS, Parkinson’s, Alzheimer’s, and related biology, before designing drugs. Learn tracks and evidence workspaces.",
+    "Disease proteins and shared mechanisms across neurodegeneration, before designing molecules.",
 };
 
 export default function RootLayout({
@@ -59,10 +59,7 @@ export default function RootLayout({
           <footer className="site-footer">
             <div className="site-footer-inner">
               <span className="site-footer-brand">ProtScope</span>
-              <p>
-                Educational resource for neurodegeneration biology. Not medical advice. Care
-                decisions belong with your clinical team.
-              </p>
+              <p>Educational only. Not medical advice.</p>
             </div>
           </footer>
         </div>

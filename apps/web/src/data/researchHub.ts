@@ -40,7 +40,7 @@ export const RESEARCH_DISEASES: ResearchDisease[] = [
     synopsis:
       "Full mechanism-first workspace: prioritize shared routes across PFN1 and TUBA4A, map biology axes, compare pathways, and review mutation-biomarker evidence.",
     category: "Motor neuron",
-    accent: "#4a8b86",
+    accent: "#2f6f7a",
     status: "ready",
     focus: ["PFN1", "TUBA4A", "Mechanism prioritization"],
     proteins: [

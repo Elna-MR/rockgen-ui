@@ -12,10 +12,9 @@ type Msg = {
 
 const STARTERS = [
   "What is ALS?",
-  "Where is the gene network?",
-  "How do I use Structure explorer?",
-  "What is Biology?",
-  "Tell me about SOD1 programmes",
+  "Gene network",
+  "Structure explorer",
+  "SOD1 programmes",
 ];
 
 function renderAnswer(text: string) {
@@ -44,8 +43,7 @@ export function SiteChatbot() {
   const [messages, setMessages] = useState<Msg[]>([
     {
       role: "assistant",
-      content:
-        "Hi, I search ProtScope’s Learn, Research, Structure, and gene-network material. Ask where to go or what a page covers. Not medical advice.",
+      content: "Ask about Learn, Research, Structures, or genes. Not medical advice.",
     },
   ]);
   const listRef = useRef<HTMLDivElement>(null);
@@ -196,9 +194,9 @@ export function SiteChatbot() {
             </button>
           </form>
           <p className="site-chat-footnote">
-            Answers from indexed ProtScope pages ·{" "}
+            Site pages only ·{" "}
             <Link href="/ask" onClick={() => setOpen(false)}>
-              Scientific review (Ask)
+              Scientific review
             </Link>
           </p>
         </section>

@@ -101,9 +101,9 @@ export function SiteAtmosphere() {
       >
         <defs>
           <linearGradient id="atm-fold" x1="80" y1="120" x2="820" y2="560" gradientUnits="userSpaceOnUse">
-            <stop stopColor="#4a8b86" stopOpacity="0.22" />
+            <stop stopColor="#2f6f7a" stopOpacity="0.22" />
             <stop offset="0.55" stopColor="#6a9aaf" stopOpacity="0.12" />
-            <stop offset="1" stopColor="#4a8b86" stopOpacity="0.06" />
+            <stop offset="1" stopColor="#2f6f7a" stopOpacity="0.06" />
           </linearGradient>
           <filter id="atm-soft" x="-10%" y="-10%" width="120%" height="120%">
             <feGaussianBlur stdDeviation="1.2" />
@@ -135,7 +135,7 @@ export function SiteAtmosphere() {
           strokeWidth="1.75"
           strokeLinecap="round"
         />
-        <g className="atm-nodes" fill="#4a8b86">
+        <g className="atm-nodes" fill="#2f6f7a">
           <circle className="atm-node n1" cx="160" cy="300" r="3.2" opacity="0.3" />
           <circle className="atm-node n3" cx="340" cy="310" r="3.4" opacity="0.32" />
           <circle className="atm-node n5" cx="540" cy="240" r="3" opacity="0.28" />

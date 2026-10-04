@@ -43,7 +43,7 @@ export const LEARN_DISEASES: LearnDisease[] = [
     summary:
       "A progressive motor-neuron disease. Learn how genes, protein shape, and shared mechanisms connect, then practice in ProtScope tools.",
     category: "Motor neuron",
-    accent: "#4a8b86",
+    accent: "#2f6f7a",
     status: "ready",
     minutes: "~75 min",
     modules: 8,

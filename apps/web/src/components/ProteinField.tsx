@@ -17,9 +17,9 @@ export function ProteinField({ variant = "hero", className = "" }: Props) {
     >
       <defs>
         <linearGradient id={`${id}-line`} x1="40" y1="80" x2="600" y2="340" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#4a8b86" stopOpacity="0.7" />
+          <stop stopColor="#2f6f7a" stopOpacity="0.7" />
           <stop offset="0.5" stopColor="#5c8a9a" stopOpacity="0.45" />
-          <stop offset="1" stopColor="#4a8b86" stopOpacity="0.25" />
+          <stop offset="1" stopColor="#2f6f7a" stopOpacity="0.25" />
         </linearGradient>
         <filter id={`${id}-blur`} x="-20%" y="-20%" width="140%" height="140%">
           <feGaussianBlur stdDeviation="12" />
@@ -42,7 +42,7 @@ export function ProteinField({ variant = "hero", className = "" }: Props) {
         cy="280"
         rx="100"
         ry="70"
-        fill="#4a8b86"
+        fill="#2f6f7a"
         fillOpacity="0.08"
         filter={`url(#${id}-blur)`}
       />
@@ -71,7 +71,7 @@ export function ProteinField({ variant = "hero", className = "" }: Props) {
            C228 185, 252 185, 270 220
            C288 255, 312 255, 330 220
            C348 185, 372 185, 390 220"
-        stroke="#4a8b86"
+        stroke="#2f6f7a"
         strokeOpacity="0.4"
         strokeWidth="2"
         strokeLinecap="round"
@@ -87,14 +87,14 @@ export function ProteinField({ variant = "hero", className = "" }: Props) {
       <path
         className="pf-trace"
         d="M90 255 C180 160, 270 320, 380 230 S530 145, 580 225"
-        stroke="#2a5552"
+        stroke="#1e4a52"
         strokeOpacity="0.18"
         strokeWidth="1"
         strokeLinecap="round"
         strokeDasharray="3 7"
       />
 
-      <g className="pf-residues" fill="#4a8b86">
+      <g className="pf-residues" fill="#2f6f7a">
         <circle className="pf-res pf-res-1" cx="110" cy="200" r="3.5" />
         <circle className="pf-res pf-res-2" cx="210" cy="220" r="3" />
         <circle className="pf-res pf-res-3" cx="300" cy="235" r="3.8" />
@@ -103,7 +103,7 @@ export function ProteinField({ variant = "hero", className = "" }: Props) {
         <circle className="pf-res pf-res-6" cx="560" cy="210" r="3" />
       </g>
 
-      <g className="pf-helix" stroke="#4a8b86" strokeOpacity="0.18" strokeWidth="1" fill="none">
+      <g className="pf-helix" stroke="#2f6f7a" strokeOpacity="0.18" strokeWidth="1" fill="none">
         <ellipse className="pf-ring pf-ring-1" cx="300" cy="225" rx="28" ry="11" />
         <ellipse className="pf-ring pf-ring-2" cx="300" cy="225" rx="40" ry="16" />
       </g>

@@ -13,13 +13,9 @@ export default function BiologyFirstPage() {
         <div className="approach-hero-copy">
           <h1>Biology</h1>
           <p className="science-thesis">
-            See how disease proteins fail and which shared routes matter before designing molecules.
+            See how disease proteins fail, and which shared routes matter, before molecules.
           </p>
-          <p className="lede">
-            ProtScope is an educational and research workspace for neurodegeneration: ALS, Parkinson’s,
-            Alzheimer’s, Huntington’s, FTD, and related biology. It does not invent drugs or replace
-            clinical care.
-          </p>
+          <p className="lede">Educational workspace for neurodegeneration biology. Not medical advice.</p>
         </div>
         <div className="approach-hero-visual" aria-hidden="true">
           <ProteinField variant="panel" />
