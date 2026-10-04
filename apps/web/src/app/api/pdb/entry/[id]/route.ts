@@ -18,7 +18,7 @@ export async function GET(_req: NextRequest, ctx: { params: Promise<{ id: string
 
   try {
     const entryRes = await fetch(`https://data.rcsb.org/rest/v1/core/entry/${pdbId}`, {
-      headers: { "User-Agent": "RockGenStructureExplorer/1.0" },
+      headers: { "User-Agent": "ProtScopeStructureExplorer/1.0" },
       next: { revalidate: 86400 },
     });
     if (!entryRes.ok) {
@@ -32,7 +32,7 @@ export async function GET(_req: NextRequest, ctx: { params: Promise<{ id: string
     const polymers: Polymer[] = [];
     for (const eid of polymerEntityIds) {
       const polyRes = await fetch(`https://data.rcsb.org/rest/v1/core/polymer_entity/${pdbId}/${eid}`, {
-        headers: { "User-Agent": "RockGenStructureExplorer/1.0" },
+        headers: { "User-Agent": "ProtScopeStructureExplorer/1.0" },
         next: { revalidate: 86400 },
       });
       if (!polyRes.ok) continue;

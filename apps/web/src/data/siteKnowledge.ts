@@ -1,5 +1,5 @@
 /**
- * Searchable corpus built from RockGen website material (Learn, Research, guides, genes).
+ * Searchable corpus built from ProtScope website material (Learn, Research, guides, genes).
  * Used by the site chatbot — answers stay grounded in these chunks + page links.
  */
 
@@ -46,11 +46,11 @@ function buildCorpus(): KnowledgeChunk[] {
   out.push(
     chunk(
       "site-home",
-      "RockGen home",
+      "ProtScope home",
       "/",
       "Site",
-      "RockGen is an educational and research workspace for neurodegeneration. Map disease proteins and shared mechanisms across ALS, Parkinson’s, Alzheimer’s, Huntington’s, FTD and related biology before designing drugs. Learn tracks and evidence workspaces. Not medical advice.",
-      ["rockgen", "home", "about", "what is"],
+      "ProtScope is an educational and research workspace for neurodegeneration. Map disease proteins and shared mechanisms across ALS, Parkinson’s, Alzheimer’s, Huntington’s, FTD and related biology before designing drugs. Learn tracks and evidence workspaces. Not medical advice.",
+      ["protscope", "rockgen", "home", "about", "what is"],
     ),
     chunk(
       "site-biology-first",
@@ -212,7 +212,7 @@ function buildCorpus(): KnowledgeChunk[] {
       "Educational — not medical advice",
       "/learn/als/plain/questions",
       "Site",
-      "RockGen is educational research material only. It does not diagnose, prognose, or prescribe treatment. Care decisions belong with your clinical team and trusted ALS clinics.",
+      "ProtScope is educational research material only. It does not diagnose, prognose, or prescribe treatment. Care decisions belong with your clinical team and trusted ALS clinics.",
       ["disclaimer", "medical", "advice", "treatment", "diagnosis"],
     ),
   );

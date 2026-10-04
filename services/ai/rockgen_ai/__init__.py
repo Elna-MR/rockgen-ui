@@ -1,4 +1,4 @@
-"""RockGen AI — evidence Q&A helpers."""
+"""ProtScope AI — evidence Q&A helpers."""
 
 from rockgen_ai.qa import STARTER_QUESTIONS, answer_question
 

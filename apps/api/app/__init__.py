@@ -1,1 +1,1 @@
-"""RockGen API application package."""
+"""ProtScope API application package."""

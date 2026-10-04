@@ -28,7 +28,7 @@ async def lifespan(_app: FastAPI):
 def create_app() -> FastAPI:
     settings = get_settings()
     app = FastAPI(
-        title="RockGen API",
+        title="ProtScope API",
         description="Scientific knowledge platform for disease and protein programs",
         version="0.1.0",
         lifespan=lifespan,

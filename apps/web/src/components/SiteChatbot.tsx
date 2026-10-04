@@ -45,7 +45,7 @@ export function SiteChatbot() {
     {
       role: "assistant",
       content:
-        "Hi — I search RockGen’s Learn, Research, Structure, and gene-network material. Ask where to go or what a page covers. Not medical advice.",
+        "Hi — I search ProtScope’s Learn, Research, Structure, and gene-network material. Ask where to go or what a page covers. Not medical advice.",
     },
   ]);
   const listRef = useRef<HTMLDivElement>(null);
@@ -109,12 +109,12 @@ export function SiteChatbot() {
         <section
           id={panelId}
           className="site-chat-panel"
-          aria-label="RockGen site guide chat"
+          aria-label="ProtScope site guide chat"
         >
           <header className="site-chat-header">
             <div>
               <p className="site-chat-kicker">Site guide</p>
-              <h2>Ask RockGen</h2>
+              <h2>Ask ProtScope</h2>
             </div>
             <button
               type="button"
@@ -196,7 +196,7 @@ export function SiteChatbot() {
             </button>
           </form>
           <p className="site-chat-footnote">
-            Answers from indexed RockGen pages ·{" "}
+            Answers from indexed ProtScope pages ·{" "}
             <Link href="/ask" onClick={() => setOpen(false)}>
               Scientific review (Ask)
             </Link>
@@ -228,7 +228,7 @@ export function SiteChatbot() {
                 strokeLinejoin="round"
               />
             </svg>
-            Ask RockGen
+            Ask ProtScope
           </>
         )}
       </button>

@@ -163,7 +163,7 @@ export const RESEARCH_DISEASES: ResearchDisease[] = [
       },
       {
         title: "ALS mechanisms (contrast)",
-        summary: "See how RockGen prioritizes shared routes in a ready disease.",
+        summary: "See how ProtScope prioritizes shared routes in a ready disease.",
         href: "/diseases/als/mechanisms",
         status: "ready",
       },

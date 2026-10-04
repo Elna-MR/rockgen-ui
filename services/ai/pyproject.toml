@@ -1,7 +1,7 @@
 [project]
 name = "rockgen-ai"
 version = "0.1.0"
-description = "RockGen evidence-backed AI scientist helpers"
+description = "ProtScope evidence-backed AI scientist helpers"
 requires-python = ">=3.12"
 dependencies = [
   "httpx>=0.28.0",

@@ -1,7 +1,7 @@
 [project]
 name = "rockgen-ingestion"
 version = "0.1.0"
-description = "RockGen external data ingestion adapters"
+description = "ProtScope external data ingestion adapters"
 requires-python = ">=3.12"
 dependencies = [
   "httpx>=0.28.0",

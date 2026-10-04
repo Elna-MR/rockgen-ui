@@ -271,13 +271,13 @@ const DETAILS: Record<string, GeneDetail> = {
     id: "PFN1",
     fullName: "Profilin-1",
     locus: "17p13.2",
-    summary: "Actin dynamics; RockGen program focus protein with alleles such as G118V.",
+    summary: "Actin dynamics; ProtScope program focus protein with alleles such as G118V.",
   },
   TUBA4A: {
     id: "TUBA4A",
     fullName: "Tubulin alpha-4A",
     locus: "2q35",
-    summary: "Microtubule subunit; axonal transport and cytoskeleton stress context. RockGen program focus protein.",
+    summary: "Microtubule subunit; axonal transport and cytoskeleton stress context. ProtScope program focus protein.",
   },
   OPTN: {
     id: "OPTN",

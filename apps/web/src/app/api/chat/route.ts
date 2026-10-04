@@ -68,10 +68,10 @@ async function polishWithOpenAI(
   }));
 
   const system = [
-    "You are RockGen’s site guide chatbot.",
+    "You are ProtScope’s site guide chatbot.",
     "Answer ONLY using the provided website context chunks.",
     "Prefer short, clear paragraphs. Include 1–3 markdown links to relevant href paths (e.g. /diseases/als/network).",
-    "If the context is insufficient, say so and suggest which RockGen areas to open.",
+    "If the context is insufficient, say so and suggest which ProtScope areas to open.",
     "Never invent papers, drugs, dosages, or personal medical advice.",
     "Always end with one line: Educational only — not medical advice.",
   ].join(" ");

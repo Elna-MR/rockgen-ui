@@ -20,7 +20,7 @@ export default async function PeptideDesignPage({ searchParams }: Props) {
         <p className="lede">
           Complement-style binder design at a mutation site: surface accessibility, chemical
           subsites, and scored peptide hypotheses — from your interface / complex HTML, inside
-          RockGen.
+          ProtScope.
         </p>
       </header>
       <StructureWorkspaceNav active="design" query={query} />

@@ -35,7 +35,7 @@ export function BiomarkerIntelligenceSection() {
               <strong>Clinical maturity:</strong> {b.clinicalMaturity}
             </p>
             <p className="hint">
-              <strong>RockGen connection:</strong> {b.rockgenConnection}
+              <strong>ProtScope connection:</strong> {b.protscopeConnection}
             </p>
             <p className="hint">
               Linked mutation context: {b.linkedMutation}

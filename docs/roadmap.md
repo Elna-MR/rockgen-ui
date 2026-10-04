@@ -1,6 +1,6 @@
 # Roadmap
 
-RockGen is the scientific operating system that AI models, experiments, and therapeutic programs run on.
+ProtScope is the scientific operating system that AI models, experiments, and therapeutic programs run on.
 
 **Pivot (locked):** Build the **scientific backend** before more React. Organize by **scientific domain services**, not UI panels. The UI is a client.
 

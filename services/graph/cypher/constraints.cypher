@@ -1,4 +1,4 @@
-// Biological knowledge graph constraints — RockGen Phase 1
+// Biological knowledge graph constraints — ProtScope Phase 1
 CREATE CONSTRAINT disease_slug IF NOT EXISTS
 FOR (d:Disease) REQUIRE d.slug IS UNIQUE;
 

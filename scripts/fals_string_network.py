@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Build a familial-ALS gene interaction network from STRING and emit graph.json
-in the shape consumed by the RockGen D3 force-directed viewer at
+in the shape consumed by the ProtScope D3 force-directed viewer at
 /diseases/als/network (apps/web/public/data/fals-network.json).
 
 Usage

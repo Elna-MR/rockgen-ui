@@ -118,7 +118,7 @@ def _template_answer(question: str, context: dict) -> str:
     evidence = context.get("evidence") or []
 
     if "unproven" in q or "not proven" in q or "remain" in q:
-        lines = ["Based on the RockGen evidence graph, these points remain weakly supported or unvalidated:"]
+        lines = ["Based on the ProtScope evidence graph, these points remain weakly supported or unvalidated:"]
         for u in context.get("unproven") or []:
             lines.append(f"- {u.get('claim')} (topic: {u.get('topic')})")
         if len(lines) == 1:
@@ -165,7 +165,7 @@ def _template_answer(question: str, context: dict) -> str:
     # default: why dangerous
     claim_lines = [f"- {c.get('claim')} [{c.get('evidence_summary')}]" for c in claims]
     return (
-        f"In the RockGen knowledge graph, {context.get('mutation_key')} is linked along the path:\n"
+        f"In the ProtScope knowledge graph, {context.get('mutation_key')} is linked along the path:\n"
         f"{chain_txt}\n\n"
         "Major claims with evidence types:\n"
         + ("\n".join(claim_lines) if claim_lines else "- No claims linked yet; run `make ingest-pfn1`.")
@@ -175,7 +175,7 @@ def _template_answer(question: str, context: dict) -> str:
 
 def _openai_answer(question: str, context: dict, api_key: str) -> str:
     system = (
-        "You are RockGen's evidence scientist. Answer ONLY using the JSON context. "
+        "You are ProtScope's evidence scientist. Answer ONLY using the JSON context. "
         "Cite paper ids (pmid:...) when making claims. "
         "Distinguish computational vs experimental vs animal vs human_genetic evidence. "
         "Explicitly call out what is unproven. Do not invent papers or results."

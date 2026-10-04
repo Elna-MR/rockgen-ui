@@ -2,7 +2,7 @@
 
 **Status:** Phase 1
 
-FastAPI gateway over the RockGen knowledge graph.
+FastAPI gateway over the ProtScope knowledge graph.
 
 ```bash
 cd apps/api

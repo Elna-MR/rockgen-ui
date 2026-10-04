@@ -178,7 +178,7 @@ export const UNDERSTAND_PAGES: GuideArticle[] = [
     paragraphs: [
       "Researchers collect clues from many places: genetics in families, lab experiments, animals, and (where available) human studies. Not every clue is equally strong. Good programs label what is supported and what is still uncertain.",
       "A growing approach is to map shared disease mechanisms first — the common failure routes — across genes. That helps prioritise what is worth intervening on before designing new drugs.",
-      "RockGen’s research tools follow that order: understand proteins and mechanisms, review evidence carefully, and only later move toward therapy design. Patients and families can read the plain-language guides; scientists use the deeper ALS workspace.",
+      "ProtScope’s research tools follow that order: understand proteins and mechanisms, review evidence carefully, and only later move toward therapy design. Patients and families can read the plain-language guides; scientists use the deeper ALS workspace.",
       "Clinical trials and approved medicines (when they exist) are decided through medical and regulatory pathways. This website does not recommend treatments.",
     ],
     next: [
@@ -218,7 +218,7 @@ export const LEARN_GUIDES: GuideArticle[] = [
     minutes: 10,
     paragraphs: [
       "Start with the clinical picture (motor neuron loss), then ask which molecular failures could produce it. Many genes can contribute; they often overlap on mechanisms such as aggregation, cytoskeleton stress, or transport problems.",
-      "RockGen’s program proteins for deep tools today are PFN1 and TUBA4A. Use them as case studies — not as the whole disease.",
+      "ProtScope’s program proteins for deep tools today are PFN1 and TUBA4A. Use them as case studies — not as the whole disease.",
       "When you open research pages later, open one tool at a time: overview → compare or map → Ask. Progressive disclosure keeps trust: show only what you need for the current decision.",
     ],
     checks: [

@@ -11,7 +11,7 @@ npm run dev
 ```
 
 Routes:
-- `/` — RockGen home
+- `/` — ProtScope home
 - `/diseases` — disease list
 - `/diseases/als` — ALS dashboard
 - `/proteins/P07737` — PFN1 workspace

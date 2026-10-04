@@ -18,7 +18,7 @@ export const PROTEIN_FALLBACK: Record<string, ProteinDetail> = {
     name: "Profilin-1",
     length: 140,
     function:
-      "Actin-binding protein involved in cytoskeletal dynamics. ALS-linked alleles (e.g. G118V) are a RockGen case study for misfolding and aggregation hypotheses.",
+      "Actin-binding protein involved in cytoskeletal dynamics. ALS-linked alleles (e.g. G118V) are a ProtScope case study for misfolding and aggregation hypotheses.",
     gene: { symbol: "PFN1", name: "profilin 1" },
     mutations: [
       {
@@ -38,7 +38,7 @@ export const PROTEIN_FALLBACK: Record<string, ProteinDetail> = {
     symbol: "TUBA4A",
     name: "Tubulin alpha-4A chain",
     function:
-      "Alpha-tubulin isoform contributing to microtubules. Studied in RockGen alongside PFN1 for shared vs unique ALS mechanism routes.",
+      "Alpha-tubulin isoform contributing to microtubules. Studied in ProtScope alongside PFN1 for shared vs unique ALS mechanism routes.",
     gene: { symbol: "TUBA4A", name: "tubulin alpha 4a" },
   },
   P00441: {

@@ -16,7 +16,7 @@ export default function BiologyFirstPage() {
             See how disease proteins fail and which shared routes matter before designing molecules.
           </p>
           <p className="lede">
-            RockGen is an educational and research workspace for neurodegeneration: ALS, Parkinson’s,
+            ProtScope is an educational and research workspace for neurodegeneration: ALS, Parkinson’s,
             Alzheimer’s, Huntington’s, FTD, and related biology. It does not invent drugs or replace
             clinical care.
           </p>
@@ -113,7 +113,7 @@ export default function BiologyFirstPage() {
           <article className="pillar">
             <h3>Trust requires limits</h3>
             <p>
-              Biomarkers can reflect injury without proving one mutation’s mechanism. RockGen labels
+              Biomarkers can reflect injury without proving one mutation’s mechanism. ProtScope labels
               confidence and gaps on purpose.
             </p>
           </article>

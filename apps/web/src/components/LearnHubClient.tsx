@@ -101,7 +101,7 @@ export function LearnHubClient() {
       </div>
 
       <p className="hint learn-hub-note">
-        Showing {LEARN_DISEASES.length} neurodegeneration tracks. ALS is the deepest RockGen path
+        Showing {LEARN_DISEASES.length} neurodegeneration tracks. ALS is the deepest ProtScope path
         today; others are concise student primers that link into shared tools.
       </p>
     </div>

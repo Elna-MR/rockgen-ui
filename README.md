@@ -1,4 +1,4 @@
-# RockGen Scientific Platform
+# ProtScope Scientific Platform
 
 The scientific operating system for disease programs, protein intelligence, and evidence-backed therapeutic research.
 

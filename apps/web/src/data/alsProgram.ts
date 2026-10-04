@@ -28,7 +28,7 @@ export const ALS_BIOMARKER_INTEL = [
     pfn1Specific: false,
     clinicalMaturity: "Used in research and clinical studies; moderate maturity",
     clinicalStage: "research_and_clinical_studies",
-    rockgenConnection:
+    protscopeConnection:
       "Potential outcome / progression marker for ALS programs, but not a direct marker of PFN1 misfolding or aggregation.",
     linkedMutation: "PFN1:G118V (program context — not a validated causal NfL driver)",
     linkedTrial: "NCT02655497 (program catalog)",

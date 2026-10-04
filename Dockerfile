@@ -1,4 +1,4 @@
-# RockGen API — build from monorepo root (needs services/* path deps)
+# ProtScope API — build from monorepo root (needs services/* path deps)
 FROM python:3.12-slim-bookworm
 
 COPY --from=ghcr.io/astral-sh/uv:0.8.4 /uv /usr/local/bin/uv

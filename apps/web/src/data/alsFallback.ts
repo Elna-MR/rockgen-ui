@@ -5,7 +5,7 @@ export const ALS_FALLBACK: DiseaseDetail = {
   slug: "als",
   name: "Amyotrophic lateral sclerosis",
   synopsis:
-    "A progressive motor-neuron disease. RockGen maps program proteins (PFN1, TUBA4A) and shared mechanisms before molecule design.",
+    "A progressive motor-neuron disease. ProtScope maps program proteins (PFN1, TUBA4A) and shared mechanisms before molecule design.",
   protein_count: 5,
   proteins: [
     { uniprot_id: "P07737", symbol: "PFN1", name: "Profilin-1" },

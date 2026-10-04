@@ -1,7 +1,7 @@
 [project]
 name = "rockgen-disease"
 version = "0.1.0"
-description = "RockGen Disease Intelligence Engine — graph-backed scientific dossiers"
+description = "ProtScope Disease Intelligence Engine — graph-backed scientific dossiers"
 requires-python = ">=3.12"
 dependencies = [
   "pydantic>=2.10.0",

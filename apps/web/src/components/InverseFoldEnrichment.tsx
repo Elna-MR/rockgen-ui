@@ -7,12 +7,12 @@ export function InverseFoldEnrichment() {
     <section className="section inverse-fold-enrichment" aria-labelledby="after-fold-heading">
       <h2 id="after-fold-heading">After you understand the fold…</h2>
       <p className="lede" style={{ maxWidth: "42rem" }}>
-        RockGen starts with mechanisms and structure. A later step is{" "}
+        ProtScope starts with mechanisms and structure. A later step is{" "}
         <strong>inverse folding</strong>: given a backbone, propose amino acid sequences that could
         adopt it — refining the whole sequence together, not one residue at a time.
       </p>
       <p className="hint">
-        Research prototype context only. Live generation is not wired into RockGen yet; use the
+        Research prototype context only. Live generation is not wired into ProtScope yet; use the
         preprint and code when you have a GPU / local setup. Not medical advice.
       </p>
       <div className="hub-grid" style={{ marginTop: "1rem" }}>
@@ -35,7 +35,7 @@ export function InverseFoldEnrichment() {
           <span>microsoft/InverseFoldDir — run redesign offline or on your own backend</span>
         </a>
         <div className="hub-link hub-link-muted" aria-disabled="true">
-          <strong>In RockGen · Soon</strong>
+          <strong>In ProtScope · Soon</strong>
           <span>Full-sequence / site inpainting from the Structure lab when GPU inference is available</span>
         </div>
       </div>

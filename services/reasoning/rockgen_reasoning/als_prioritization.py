@@ -400,7 +400,7 @@ def render_prioritization_report_markdown(ws: dict[str, Any]) -> str:
         f"- **Investigate first:** {d['investigate_first']['title']} — {d['investigate_first']['why']}",
         "",
         "---",
-        "*RockGen Disease Mechanism Engine — prioritization workspace.*",
+        "*ProtScope Disease Mechanism Engine — prioritization workspace.*",
         "",
     ]
     return "\n".join(lines)

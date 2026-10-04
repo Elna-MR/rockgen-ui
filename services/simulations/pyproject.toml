@@ -1,7 +1,7 @@
 [project]
 name = "rockgen-simulations"
 version = "0.1.0"
-description = "RockGen Protein Dynamics Engine"
+description = "ProtScope Protein Dynamics Engine"
 requires-python = ">=3.12"
 dependencies = []
 

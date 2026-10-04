@@ -88,7 +88,7 @@ function escapeRe(s: string): string {
 export function answerFromChunks(question: string, chunks: ScoredChunk[]): string {
   if (!chunks.length) {
     return (
-      "I couldn’t find matching pages in RockGen’s indexed material for that. " +
+      "I couldn’t find matching pages in ProtScope’s indexed material for that. " +
       "Try asking about ALS Learn tracks, the gene network, Structure explorer, Biology, or a gene like SOD1 or PFN1. " +
       "This helper only searches site content — it is not medical advice."
     );

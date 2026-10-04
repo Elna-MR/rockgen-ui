@@ -13,7 +13,7 @@ type Hit = {
 async function entrySummary(pdbId: string, score: number): Promise<Hit | null> {
   try {
     const res = await fetch(`https://data.rcsb.org/rest/v1/core/entry/${pdbId}`, {
-      headers: { "User-Agent": "RockGenStructureExplorer/1.0" },
+      headers: { "User-Agent": "ProtScopeStructureExplorer/1.0" },
       next: { revalidate: 3600 },
     });
     if (!res.ok) return null;
@@ -46,7 +46,7 @@ export async function GET(req: NextRequest) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "User-Agent": "RockGenStructureExplorer/1.0",
+        "User-Agent": "ProtScopeStructureExplorer/1.0",
       },
       body: JSON.stringify({
         query: {

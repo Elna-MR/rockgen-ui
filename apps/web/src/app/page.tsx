@@ -7,7 +7,7 @@ export default function HomePage() {
       <section className="home-stage">
         <div className="home-stage-copy">
           <p className="eyebrow">Neurodegeneration biology workspace</p>
-          <h1>RockGen</h1>
+          <h1>ProtScope</h1>
           <p className="science-thesis">
             Learn and research disease proteins across ALS, Parkinson’s, Alzheimer’s, and related
             biology — mechanisms before molecules.

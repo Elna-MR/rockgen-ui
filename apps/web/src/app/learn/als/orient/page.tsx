@@ -32,7 +32,7 @@ export default function LearnAlsOrientPage() {
         </li>
         <li>
           <strong>Evidence has types.</strong> Computation, cell assays, animals, and human genetics
-          are not equal — RockGen labels the mix.
+          are not equal — ProtScope labels the mix.
         </li>
         <li>
           <strong>Prioritize before designing drugs.</strong> Rank mechanisms to investigate; molecule

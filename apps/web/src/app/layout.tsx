@@ -28,7 +28,7 @@ const mono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "RockGen — neurodegeneration research",
+  title: "ProtScope — neurodegeneration research",
   description:
     "Map disease proteins and shared mechanisms across ALS, Parkinson’s, Alzheimer’s, and related biology — before designing drugs. Learn tracks and evidence workspaces.",
 };
@@ -45,7 +45,7 @@ export default function RootLayout({
         <div className="shell">
           <header className="topbar">
             <Link href="/" className="brand">
-              RockGen
+              ProtScope
             </Link>
             <nav className="nav">
               <Link href="/biology-first">Biology</Link>

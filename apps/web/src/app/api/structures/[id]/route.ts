@@ -39,7 +39,7 @@ export async function GET(_req: NextRequest, ctx: { params: Promise<{ id: string
   for (const url of urls) {
     try {
       const res = await fetch(url, {
-        headers: { "User-Agent": "RockGenStructureProxy/1.0" },
+        headers: { "User-Agent": "ProtScopeStructureProxy/1.0" },
         next: { revalidate: 86400 },
       });
       if (!res.ok) {

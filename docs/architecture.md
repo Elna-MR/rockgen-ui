@@ -34,7 +34,7 @@ Knowledge Graph (Neo4j)  ← source of truth
 
 ## Why Neo4j first
 
-Biology is relationships. RockGen is **mechanism-centric**: Disease → DiseaseAxis → Mechanism ← Protein, with mutations, pathways, biomarkers, and trials attached. A graph is the source of truth; documents and vectors are secondary indexes for RAG later.
+Biology is relationships. ProtScope is **mechanism-centric**: Disease → DiseaseAxis → Mechanism ← Protein, with mutations, pathways, biomarkers, and trials attached. A graph is the source of truth; documents and vectors are secondary indexes for RAG later.
 
 ## Core graph model
 

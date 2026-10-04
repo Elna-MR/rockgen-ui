@@ -1,7 +1,7 @@
 [project]
 name = "rockgen-graph"
 version = "0.1.0"
-description = "RockGen Neo4j knowledge graph schema, seed, and queries"
+description = "ProtScope Neo4j knowledge graph schema, seed, and queries"
 requires-python = ">=3.12"
 dependencies = [
   "neo4j>=5.27.0",

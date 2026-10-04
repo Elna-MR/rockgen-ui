@@ -65,7 +65,7 @@ web:
 	fi
 
 dig:
-	@echo "=== RockGen module map ==="
+	@echo "=== ProtScope module map ==="
 	@find apps services packages docs infra -maxdepth 2 -type d | sort
 
 lint:

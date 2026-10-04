@@ -182,5 +182,5 @@ def dynamics_report_markdown(report: dict[str, Any]) -> str:
     ]
     for step in report["pipeline"]:
         lines.append(f"1. {step}")
-    lines += ["", "---", "*RockGen Protein Dynamics Engine (PoC).*", ""]
+    lines += ["", "---", "*ProtScope Protein Dynamics Engine (PoC).*", ""]
     return "\n".join(lines)

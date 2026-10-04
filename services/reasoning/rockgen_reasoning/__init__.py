@@ -1,4 +1,4 @@
-"""RockGen Scientific Review Engine."""
+"""ProtScope Scientific Review Engine."""
 
 from rockgen_reasoning.engine import review
 from rockgen_reasoning.schemas import STARTER_QUESTIONS

@@ -1,4 +1,4 @@
-"""RockGen knowledge graph package."""
+"""ProtScope knowledge graph package."""
 
 from rockgen_graph.client import get_driver, close_driver
 from rockgen_graph import queries

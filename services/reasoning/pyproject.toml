@@ -1,7 +1,7 @@
 [project]
 name = "rockgen-reasoning"
 version = "0.1.0"
-description = "RockGen Scientific Review Engine — deterministic evidence ranking and review"
+description = "ProtScope Scientific Review Engine — deterministic evidence ranking and review"
 requires-python = ">=3.12"
 dependencies = [
   "httpx>=0.28.0",
