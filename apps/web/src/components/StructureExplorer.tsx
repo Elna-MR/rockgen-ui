@@ -98,7 +98,7 @@ function shortMethod(m: string) {
 }
 
 function formatReleased(iso: string | null) {
-  if (!iso) return "—";
+  if (!iso) return ", ";
   return iso.slice(0, 10);
 }
 
@@ -275,7 +275,7 @@ export function StructureExplorer({ catalog, initialQuery }: Props) {
               <code>G118V</code> to highlight a site.
             </>
           ) : (
-            <>Type a protein name, PDB id, or ALS mutation — or pick a shortcut below.</>
+            <>Type a protein name, PDB id, or ALS mutation, or pick a shortcut below.</>
           )}
         </p>
 
@@ -505,7 +505,7 @@ export function StructureExplorer({ catalog, initialQuery }: Props) {
                       </p>
 
                       <h3>
-                        Sequence — chain {chainLabel} — click any residue to find it in 3D
+                        Sequence, chain {chainLabel}, click any residue to find it in 3D
                       </h3>
                       <div className="chem-seq">
                         {sequence.split("").map((aa, i) => {
@@ -577,7 +577,7 @@ export function StructureExplorer({ catalog, initialQuery }: Props) {
                       <h3>Secondary structure</h3>
                       <p className="article-body">
                         Helices, strands, and loops appear in the cartoon on the right (colour runs N→C).
-                        Residue-level DSSP assignment is not computed here yet — use the 3D view to read
+                        Residue-level DSSP assignment is not computed here yet, use the 3D view to read
                         secondary elements visually.
                       </p>
                       {chem && (
@@ -633,7 +633,7 @@ export function StructureExplorer({ catalog, initialQuery }: Props) {
                         Method: {entry.method}
                         {entry.resolution != null ? ` · ${Number(entry.resolution).toFixed(2)} Å` : ""}
                         {focusWindow
-                          ? ` · Local patch ${focusWindow.start}–${focusWindow.end}`
+                          ? ` · Local patch ${focusWindow.start}-${focusWindow.end}`
                           : ""}
                       </p>
                     </section>
@@ -660,7 +660,7 @@ export function StructureExplorer({ catalog, initialQuery }: Props) {
                           <strong>
                             {entry.assembly_mass_kda != null
                               ? `${Number(entry.assembly_mass_kda).toFixed(1)} kDa`
-                              : "—"}
+                              : ", "}
                           </strong>
                           <span>Assembly mass</span>
                         </div>

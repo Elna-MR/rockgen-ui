@@ -5,7 +5,7 @@ export function ComparisonPanel() {
     <section className="section">
       <h2>Wild-type vs G118V</h2>
       <p className="hint">
-        Predictions are labeled separately from experimental and animal observations — they must not
+        Predictions are labeled separately from experimental and animal observations, they must not
         look like proven facts.
       </p>
       <div className="table-wrap">

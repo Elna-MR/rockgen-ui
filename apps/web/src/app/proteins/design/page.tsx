@@ -19,7 +19,7 @@ export default async function PeptideDesignPage({ searchParams }: Props) {
         <h1>Peptide design</h1>
         <p className="lede">
           Complement-style binder design at a mutation site: surface accessibility, chemical
-          subsites, and scored peptide hypotheses — from your interface / complex HTML, inside
+          subsites, and scored peptide hypotheses, from your interface / complex HTML, inside
           ProtScope.
         </p>
       </header>

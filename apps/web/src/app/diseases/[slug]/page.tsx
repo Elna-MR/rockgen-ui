@@ -156,12 +156,12 @@ export default async function DiseaseHubPage({ params }: Props) {
           <p className="learn-disease-kicker">Motor neuron · Full workspace</p>
           <h1>ALS</h1>
           <p className="science-thesis science-thesis-compact">
-            Shared mechanisms across program proteins — then prioritize what to study next.
+            Shared mechanisms across program proteins, then prioritize what to study next.
           </p>
           <p className="lede">{disease.synopsis}</p>
           {offline && (
             <p className="hint" style={{ marginTop: "0.65rem" }}>
-              Live graph catalog is offline — showing the local ALS panel so you can keep navigating.
+              Live graph catalog is offline, showing the local ALS panel so you can keep navigating.
             </p>
           )}
           <div className="cta-row" style={{ marginTop: "1.25rem" }}>
@@ -188,11 +188,11 @@ export default async function DiseaseHubPage({ params }: Props) {
         <div className="hub-grid">
           <Link href="/diseases/als/mechanisms" className="hub-link">
             <strong>Mechanisms</strong>
-            <span>What is shared between PFN1 and TUBA4A — and what to investigate first.</span>
+            <span>What is shared between PFN1 and TUBA4A, and what to investigate first.</span>
           </Link>
           <Link href="/proteins/explore" className="hub-link">
             <strong>Structure explorer</strong>
-            <span>Search a protein — primary chemistry through 3D and assembly.</span>
+            <span>Search a protein, primary chemistry through 3D and assembly.</span>
           </Link>
           <Link href="/diseases/als/map" className="hub-link">
             <strong>Disease map</strong>
@@ -223,7 +223,7 @@ export default async function DiseaseHubPage({ params }: Props) {
 
       <section className="section">
         <h2>Program proteins</h2>
-        <p className="hint">Open one protein at a time — overview first, tools second.</p>
+        <p className="hint">Open one protein at a time, overview first, tools second.</p>
         <div className="hub-grid hub-grid-compact">
           {focus.map((p) => (
             <Link key={p.uniprot_id} href={`/proteins/${p.uniprot_id}`} className="hub-link">
@@ -251,7 +251,7 @@ export default async function DiseaseHubPage({ params }: Props) {
 
       <p className="hint" style={{ marginTop: "1.5rem" }}>
         New here? Start with{" "}
-        <Link href="/learn">Learn</Link> — disease primers and the ALS track — or browse{" "}
+        <Link href="/learn">Learn</Link>, disease primers and the ALS track, or browse{" "}
         <Link href="/diseases">all research diseases</Link>.
       </p>
     </main>

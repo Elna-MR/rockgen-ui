@@ -21,7 +21,7 @@ export async function POST(req: Request) {
 
   const message = (body.message || "").trim();
   if (message.length < 2 || message.length > 2000) {
-    return NextResponse.json({ error: "Message must be 2–2000 characters." }, { status: 400 });
+    return NextResponse.json({ error: "Message must be 2-2000 characters." }, { status: 400 });
   }
 
   const hits = searchSiteKnowledge(message, 6);
@@ -70,10 +70,10 @@ async function polishWithOpenAI(
   const system = [
     "You are ProtScope’s site guide chatbot.",
     "Answer ONLY using the provided website context chunks.",
-    "Prefer short, clear paragraphs. Include 1–3 markdown links to relevant href paths (e.g. /diseases/als/network).",
+    "Prefer short, clear paragraphs. Include 1-3 markdown links to relevant href paths (e.g. /diseases/als/network).",
     "If the context is insufficient, say so and suggest which ProtScope areas to open.",
     "Never invent papers, drugs, dosages, or personal medical advice.",
-    "Always end with one line: Educational only — not medical advice.",
+    "Always end with one line: Educational only, not medical advice.",
   ].join(" ");
 
   const recent = history

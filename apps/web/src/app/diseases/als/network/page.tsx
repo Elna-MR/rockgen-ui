@@ -53,7 +53,7 @@ export default async function AlsNetworkPage() {
             <code>scripts/fals_string_network.py</code>. Programme notes are curated and change over
             time.
           </li>
-          <li>Educational research aid only — not a diagnosis or treatment tool.</li>
+          <li>Educational research aid only, not a diagnosis or treatment tool.</li>
         </ul>
       </section>
 

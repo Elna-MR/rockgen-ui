@@ -32,7 +32,7 @@ export default async function ProteinStructurePage({ params }: Props) {
       <header className="page-header" style={{ marginBottom: "0.85rem" }}>
         <h1>Structure explorer</h1>
         <p className="lede">
-          PDB search seeded from this protein — inspect primary→quaternary detail, then open the
+          PDB search seeded from this protein, inspect primary→quaternary detail, then open the
           mutation inspector or peptide design tools for the same site.
         </p>
       </header>

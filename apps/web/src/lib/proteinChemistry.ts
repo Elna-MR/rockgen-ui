@@ -23,7 +23,7 @@ const AA_MASS: Record<string, number> = {
   V: 117.15,
 };
 
-/** Kyte–Doolittle hydrophobicity */
+/** Kyte-Doolittle hydrophobicity */
 const AA_HYDRO: Record<string, number> = {
   A: 1.8,
   R: -4.5,

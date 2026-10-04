@@ -1,6 +1,6 @@
-/** ALS program intelligence — biomarker panels only.
+/** ALS program intelligence, biomarker panels only.
  * Mutation cards are served by Disease Intelligence Engine
- * (`GET /v1/intelligence/...`) — do not reintroduce static mutation twins here.
+ * (`GET /v1/intelligence/...`), do not reintroduce static mutation twins here.
  */
 
 export type EdgeSupport = "supported" | "broadly_supported" | "not_directly_validated" | "hypothetical";
@@ -23,14 +23,14 @@ export const ALS_BIOMARKER_INTEL = [
     specimen: ["Serum", "Plasma", "CSF"],
     whatItTellsUs:
       "Higher levels generally indicate greater axonal / neuronal damage.",
-    diseaseSpecificity: "Low — also elevated in other neurological diseases",
+    diseaseSpecificity: "Low, also elevated in other neurological diseases",
     proteinSpecificity: "Not PFN1-specific",
     pfn1Specific: false,
     clinicalMaturity: "Used in research and clinical studies; moderate maturity",
     clinicalStage: "research_and_clinical_studies",
     protscopeConnection:
       "Potential outcome / progression marker for ALS programs, but not a direct marker of PFN1 misfolding or aggregation.",
-    linkedMutation: "PFN1:G118V (program context — not a validated causal NfL driver)",
+    linkedMutation: "PFN1:G118V (program context, not a validated causal NfL driver)",
     linkedTrial: "NCT02655497 (program catalog)",
   },
 ];

@@ -1,5 +1,5 @@
 /**
- * ALS public guide content — plain language for patients/families,
+ * ALS public guide content, plain language for patients/families,
  * structured learning for students. Not medical advice.
  */
 
@@ -40,12 +40,12 @@ export type LearnModule = {
   kind: "read" | "practice" | "tool";
 };
 
-/** Ordered student curriculum — progressive disclosure like lab training */
+/** Ordered student curriculum, progressive disclosure like lab training */
 export const LEARN_MODULES: LearnModule[] = [
   {
     id: "m1",
     number: 1,
-    title: "Orient — ALS in five ideas",
+    title: "Orient: ALS in five ideas",
     minutes: "5 min",
     outcome: "Tell the disease story without jargon.",
     href: "/learn/als/orient",
@@ -81,7 +81,7 @@ export const LEARN_MODULES: LearnModule[] = [
   {
     id: "m5",
     number: 5,
-    title: "Practice — Ask a review",
+    title: "Practice: Ask a review",
     minutes: "10 min",
     outcome: "Run one structured question on G118V aggregation.",
     href: "/learn/practice/ask-review",
@@ -99,7 +99,7 @@ export const LEARN_MODULES: LearnModule[] = [
   {
     id: "m7",
     number: 7,
-    title: "Practice — Compare alleles",
+    title: "Practice: Compare alleles",
     minutes: "10 min",
     outcome: "Name the most disruptive allele and one caution.",
     href: "/learn/practice/compare-pfn1",
@@ -108,7 +108,7 @@ export const LEARN_MODULES: LearnModule[] = [
   {
     id: "m8",
     number: 8,
-    title: "Practice — Disease map",
+    title: "Practice: Disease map",
     minutes: "10 min",
     outcome: "Navigate by biology axis, not gene list.",
     href: "/learn/practice/disease-map",
@@ -125,7 +125,7 @@ export const UNDERSTAND_PAGES: GuideArticle[] = [
     audience: "patient",
     minutes: 4,
     paragraphs: [
-      "ALS (amyotrophic lateral sclerosis) is a disease of the motor neurons — the nerve cells that tell your muscles to move. As those cells fail, muscles weaken and waste. People often notice changes in walking, hand strength, speech, or swallowing.",
+      "ALS (amyotrophic lateral sclerosis) is a disease of the motor neurons, the nerve cells that tell your muscles to move. As those cells fail, muscles weaken and waste. People often notice changes in walking, hand strength, speech, or swallowing.",
       "ALS is progressive, which means it usually worsens over time. How fast it moves, and which body regions it affects first, differs from person to person.",
       "Most cases are not clearly inherited. A smaller share (familial ALS) runs in families and can involve a change in one of several genes. Either way, the day-to-day challenges can feel similar: mobility, communication, breathing support, and care planning.",
       "This site explains the biology researchers study. It is educational, not a diagnosis or a treatment plan. Decisions about care belong with your clinical team.",
@@ -143,9 +143,9 @@ export const UNDERSTAND_PAGES: GuideArticle[] = [
     minutes: 5,
     paragraphs: [
       "Think of a motor neuron as a long wire from the spinal cord (or brain) out to a muscle. When the wire works, the muscle contracts on command. In ALS, those wires are damaged and eventually die.",
-      "Without a healthy signal, the muscle gets less use and shrinks (atrophy). That is why weakness appears — not because someone is “out of shape,” but because the connection is breaking.",
+      "Without a healthy signal, the muscle gets less use and shrinks (atrophy). That is why weakness appears, not because someone is “out of shape,” but because the connection is breaking.",
       "Inside cells, many jobs must stay in balance: building and folding proteins, clearing junk, shipping cargo along the neuron’s long axon, and keeping the cell’s scaffolding stable. When those jobs fail, motor neurons are especially vulnerable because they are large and busy.",
-      "Researchers group those failures into biological “routes” or mechanisms — shared ways different genes can harm the same cells. Understanding routes helps science decide what to study next; it does not mean a drug already exists for every route.",
+      "Researchers group those failures into biological “routes” or mechanisms, shared ways different genes can harm the same cells. Understanding routes helps science decide what to study next; it does not mean a drug already exists for every route.",
     ],
     next: [
       { label: "Genes and proteins", href: "/learn/als/plain/genes-and-proteins" },
@@ -154,14 +154,14 @@ export const UNDERSTAND_PAGES: GuideArticle[] = [
   },
   {
     slug: "genes-and-proteins",
-    title: "Genes and proteins — a gentle guide",
+    title: "Genes and proteins: a gentle guide",
     summary: "Why you hear names like PFN1 or TUBA4A without the lab jargon.",
     audience: "patient",
     minutes: 5,
     paragraphs: [
       "A gene is an instruction. A protein is the worker built from that instruction. In some families with ALS, a spelling change (mutation) in a gene can change how a protein behaves.",
-      "PFN1 (profilin-1) helps with the cell’s actin scaffold — part of the inner framework. Some PFN1 changes are linked to a rare familial form of ALS. Scientists study whether the changed protein folds badly or clumps (aggregates).",
-      "TUBA4A is part of microtubules — another piece of the cell’s framework, important for shipping materials along the long motor neuron. Some TUBA4A changes are also linked to ALS.",
+      "PFN1 (profilin-1) helps with the cell’s actin scaffold, part of the inner framework. Some PFN1 changes are linked to a rare familial form of ALS. Scientists study whether the changed protein folds badly or clumps (aggregates).",
+      "TUBA4A is part of microtubules, another piece of the cell’s framework, important for shipping materials along the long motor neuron. Some TUBA4A changes are also linked to ALS.",
       "You do not need both names to live with ALS. They matter to researchers comparing how different proteins can reach similar problems. Your clinician can discuss whether genetic testing is relevant for your family.",
     ],
     next: [
@@ -177,13 +177,13 @@ export const UNDERSTAND_PAGES: GuideArticle[] = [
     minutes: 5,
     paragraphs: [
       "Researchers collect clues from many places: genetics in families, lab experiments, animals, and (where available) human studies. Not every clue is equally strong. Good programs label what is supported and what is still uncertain.",
-      "A growing approach is to map shared disease mechanisms first — the common failure routes — across genes. That helps prioritise what is worth intervening on before designing new drugs.",
+      "A growing approach is to map shared disease mechanisms first, the common failure routes, across genes. That helps prioritise what is worth intervening on before designing new drugs.",
       "ProtScope’s research tools follow that order: understand proteins and mechanisms, review evidence carefully, and only later move toward therapy design. Patients and families can read the plain-language guides; scientists use the deeper ALS workspace.",
       "Clinical trials and approved medicines (when they exist) are decided through medical and regulatory pathways. This website does not recommend treatments.",
     ],
     next: [
       { label: "Common questions", href: "/learn/als/plain/questions" },
-      { label: "For students — ALS curriculum", href: "/learn/als#curriculum" },
+      { label: "For students: ALS curriculum", href: "/learn/als#curriculum" },
     ],
   },
   {
@@ -193,7 +193,7 @@ export const UNDERSTAND_PAGES: GuideArticle[] = [
     audience: "patient",
     minutes: 6,
     paragraphs: [
-      "Is ALS one disease? Clinically it is one syndrome with shared features, but biology can differ — different genes and routes can lead to similar symptoms.",
+      "Is ALS one disease? Clinically it is one syndrome with shared features, but biology can differ, different genes and routes can lead to similar symptoms.",
       "If a gene is “involved,” does that explain my ALS? Only sometimes. Many people with ALS have no clear genetic finding with today’s tests. A research gene name on a website is not your personal diagnosis.",
       "What is a biomarker like NfL? It is a measurement that can reflect nerve injury. It is not a full explanation of why ALS started, and it is interpreted by clinicians in context.",
       "Can this site tell me my prognosis or treatment? No. Use it to understand ideas and research framing. Care, prognosis, and treatment decisions stay with your medical team and trusted ALS clinics.",
@@ -218,7 +218,7 @@ export const LEARN_GUIDES: GuideArticle[] = [
     minutes: 10,
     paragraphs: [
       "Start with the clinical picture (motor neuron loss), then ask which molecular failures could produce it. Many genes can contribute; they often overlap on mechanisms such as aggregation, cytoskeleton stress, or transport problems.",
-      "ProtScope’s program proteins for deep tools today are PFN1 and TUBA4A. Use them as case studies — not as the whole disease.",
+      "ProtScope’s program proteins for deep tools today are PFN1 and TUBA4A. Use them as case studies, not as the whole disease.",
       "When you open research pages later, open one tool at a time: overview → compare or map → Ask. Progressive disclosure keeps trust: show only what you need for the current decision.",
     ],
     checks: [
@@ -234,13 +234,13 @@ export const LEARN_GUIDES: GuideArticle[] = [
   {
     slug: "evidence",
     title: "How to read evidence without drowning",
-    summary: "Claims, support types, confidence — and what biomarkers are not.",
+    summary: "Claims, support types, confidence, and what biomarkers are not.",
     audience: "student",
     minutes: 10,
     paragraphs: [
       "Write a claim first (“G118V increases aggregation”), then check what backs it: computation, cells, animals, human genetics. Mix matters for confidence.",
       "Biomarkers like NfL often measure injury broadly. They are not automatic proof of a named mutation’s mechanism in one person.",
-      "Ask in the research tools keeps rankings deterministic and citation-linked so you can trust the skeleton of an answer while you learn — the model may polish wording; it should not invent papers.",
+      "Ask in the research tools keeps rankings deterministic and citation-linked so you can trust the skeleton of an answer while you learn, the model may polish wording; it should not invent papers.",
     ],
     checks: [
       "What is the difference between a claim and a paper?",
@@ -259,9 +259,9 @@ export const LEARN_GUIDES: GuideArticle[] = [
     audience: "student",
     minutes: 12,
     paragraphs: [
-      "PFN1 touches actin; TUBA4A is a tubulin. Both speak to cytoskeleton and cellular architecture — a bridge into shared ALS mechanisms.",
+      "PFN1 touches actin; TUBA4A is a tubulin. Both speak to cytoskeleton and cellular architecture, a bridge into shared ALS mechanisms.",
       "Compare alleles on the protein pages to see which changes look more disruptive. Use pathway compare to see shared vs unique routes.",
-      "Dynamics (PFN1) is a learning report of conformational ideas — demos today, richer simulation backends later. Treat scores as study priorities, not diagnoses.",
+      "Dynamics (PFN1) is a learning report of conformational ideas, demos today, richer simulation backends later. Treat scores as study priorities, not diagnoses.",
     ],
     checks: [
       "What cellular “job” does PFN1 mainly touch vs TUBA4A?",
@@ -321,7 +321,7 @@ export const PRACTICE: PracticeExercise[] = [
     steps: [
       "Open PFN1 compare from the protein overview.",
       "Read the most-disruptive verdict.",
-      "Write one caution: scores prioritise study — they do not diagnose patients.",
+      "Write one caution: scores prioritise study, they do not diagnose patients.",
     ],
     reflect: [
       "Most disruptive allele (name + one reason).",
@@ -344,7 +344,7 @@ export const PRACTICE: PracticeExercise[] = [
     reflect: [
       "Claim you tested.",
       "Evidence types present (list).",
-      "Confidence label shown — do you agree? Why?",
+      "Confidence label shown, do you agree? Why?",
     ],
     openHref: "/ask",
     openLabel: "Open Ask",

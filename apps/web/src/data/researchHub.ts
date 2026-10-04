@@ -1,4 +1,4 @@
-/** Research hub — multi-disease workspaces (deep tools for ALS; growing primers elsewhere). */
+/** Research hub, multi-disease workspaces (deep tools for ALS; growing primers elsewhere). */
 
 export type ResearchProtein = {
   symbol: string;
@@ -38,7 +38,7 @@ export const RESEARCH_DISEASES: ResearchDisease[] = [
     shortName: "ALS",
     tagline: "Motor neurons · cytoskeleton · aggregation",
     synopsis:
-      "Full mechanism-first workspace: prioritize shared routes across PFN1 and TUBA4A, map biology axes, compare pathways, and review mutation–biomarker evidence.",
+      "Full mechanism-first workspace: prioritize shared routes across PFN1 and TUBA4A, map biology axes, compare pathways, and review mutation-biomarker evidence.",
     category: "Motor neuron",
     accent: "#4a8b86",
     status: "ready",
@@ -64,14 +64,14 @@ export const RESEARCH_DISEASES: ResearchDisease[] = [
     ],
     mechanisms: ["Protein aggregation", "Cytoskeleton stress", "Axonal transport"],
     researchNotes: [
-      "Deep tools live here today — mechanisms, map, gene network, compare, and evidence.",
+      "Deep tools live here today, mechanisms, map, gene network, compare, and evidence.",
       "Program focus proteins are PFN1 and TUBA4A; other panel proteins stay secondary.",
       "Structure explorer and Ask work across the catalog from this workspace.",
     ],
     tools: [
       {
         title: "Mechanisms",
-        summary: "What is shared between PFN1 and TUBA4A — and what to investigate first.",
+        summary: "What is shared between PFN1 and TUBA4A, and what to investigate first.",
         href: "/diseases/als/mechanisms",
         status: "ready",
       },
@@ -101,7 +101,7 @@ export const RESEARCH_DISEASES: ResearchDisease[] = [
       },
       {
         title: "Structure explorer",
-        summary: "Search a protein — primary chemistry through 3D and assembly.",
+        summary: "Search a protein, primary chemistry through 3D and assembly.",
         href: "/proteins/explore",
         status: "ready",
       },
@@ -150,14 +150,14 @@ export const RESEARCH_DISEASES: ResearchDisease[] = [
     ],
     tools: [
       {
-        title: "Structure lab — α-synuclein",
+        title: "Structure lab: α-synuclein",
         summary: "Open PDB hits and inspect fold / construct limits.",
         href: "/proteins/explore?q=alpha-synuclein",
         status: "ready",
       },
       {
         title: "Ask a review",
-        summary: "Structured Q&A — label claim vs evidence type.",
+        summary: "Structured Q&A, label claim vs evidence type.",
         href: "/ask",
         status: "ready",
       },
@@ -175,7 +175,7 @@ export const RESEARCH_DISEASES: ResearchDisease[] = [
       },
       {
         title: "Disease map",
-        summary: "Biology-axis map for Parkinson’s — coming as the graph grows.",
+        summary: "Biology-axis map for Parkinson’s, coming as the graph grows.",
         href: "/diseases/parkinsons",
         status: "soon",
       },
@@ -221,13 +221,13 @@ export const RESEARCH_DISEASES: ResearchDisease[] = [
     ],
     mechanisms: ["Amyloid cascade hypotheses", "Tau pathology", "Synapse and network failure"],
     researchNotes: [
-      "Plaques and tangles are landmarks — causation is still debated in layers.",
+      "Plaques and tangles are landmarks, causation is still debated in layers.",
       "Use shared evidence literacy and structure search while AD-specific maps grow.",
       "Do not treat research tiles as clinical guidance.",
     ],
     tools: [
       {
-        title: "Structure lab — tau",
+        title: "Structure lab: tau",
         summary: "Search deposited structures related to tau / microtubule context.",
         href: "/proteins/explore?q=tau",
         status: "ready",
@@ -252,7 +252,7 @@ export const RESEARCH_DISEASES: ResearchDisease[] = [
       },
       {
         title: "Pathway compare",
-        summary: "AD-specific compare views — expanding with the catalog.",
+        summary: "AD-specific compare views, expanding with the catalog.",
         href: "/diseases/alzheimers",
         status: "soon",
       },
@@ -292,13 +292,13 @@ export const RESEARCH_DISEASES: ResearchDisease[] = [
       "Selective neuronal vulnerability",
     ],
     researchNotes: [
-      "Genetics is unusually central compared with most ALS cases — still mechanism-first.",
+      "Genetics is unusually central compared with most ALS cases, still mechanism-first.",
       "Knowing HTT is not the same as having a therapy design.",
       "Shared labs (structure, Ask) are the active tools until HD maps land.",
     ],
     tools: [
       {
-        title: "Structure lab — huntingtin",
+        title: "Structure lab: huntingtin",
         summary: "Find deposited constructs and note coverage limits.",
         href: "/proteins/explore?q=huntingtin",
         status: "ready",
@@ -317,7 +317,7 @@ export const RESEARCH_DISEASES: ResearchDisease[] = [
       },
       {
         title: "Mechanism prioritization",
-        summary: "HD-specific ranking — coming as the workspace deepens.",
+        summary: "HD-specific ranking, coming as the workspace deepens.",
         href: "/diseases/huntingtons",
         status: "soon",
       },
@@ -330,7 +330,7 @@ export const RESEARCH_DISEASES: ResearchDisease[] = [
     shortName: "FTD",
     tagline: "Behaviour / language · TDP-43 · tau",
     synopsis:
-      "Spectrum workspace for behaviour and language network biology — TDP-43, tau, and ALS–FTD genetics. Deep tools expand while shared labs stay open.",
+      "Spectrum workspace for behaviour and language network biology, TDP-43, tau, and ALS-FTD genetics. Deep tools expand while shared labs stay open.",
     category: "Dementia",
     accent: "#6b7c8a",
     status: "growing",
@@ -349,18 +349,18 @@ export const RESEARCH_DISEASES: ResearchDisease[] = [
       {
         symbol: "C9orf72",
         name: "C9orf72",
-        role: "Hexanucleotide expansion linking ALS–FTD spectrum",
+        role: "Hexanucleotide expansion linking ALS-FTD spectrum",
       },
     ],
-    mechanisms: ["TDP-43 proteinopathy", "Tau pathology", "ALS–FTD spectrum genetics"],
+    mechanisms: ["TDP-43 proteinopathy", "Tau pathology", "ALS-FTD spectrum genetics"],
     researchNotes: [
-      "FTD is not one disease — subtypes matter for mechanism stories.",
+      "FTD is not one disease, subtypes matter for mechanism stories.",
       "ALS and FTD can share genes and protein pathology without being identical.",
       "Use the ALS ready workspace as a contrast for spectrum thinking.",
     ],
     tools: [
       {
-        title: "Structure lab — TDP-43",
+        title: "Structure lab: TDP-43",
         summary: "Practice PDB search with a spectrum protein.",
         href: "/proteins/explore?q=TDP-43",
         status: "ready",
@@ -385,7 +385,7 @@ export const RESEARCH_DISEASES: ResearchDisease[] = [
       },
       {
         title: "Disease map",
-        summary: "FTD biology-axis map — expanding with the catalog.",
+        summary: "FTD biology-axis map, expanding with the catalog.",
         href: "/diseases/ftd",
         status: "soon",
       },

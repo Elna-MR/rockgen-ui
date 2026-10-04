@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-/** Module 01 — kept as a short orient lesson inside the ALS track. */
+/** Module 01: kept as a short orient lesson inside the ALS track. */
 export default function LearnAlsOrientPage() {
   return (
     <main className="page hub-page">
@@ -32,7 +32,7 @@ export default function LearnAlsOrientPage() {
         </li>
         <li>
           <strong>Evidence has types.</strong> Computation, cell assays, animals, and human genetics
-          are not equal — ProtScope labels the mix.
+          are not equal, ProtScope labels the mix.
         </li>
         <li>
           <strong>Prioritize before designing drugs.</strong> Rank mechanisms to investigate; molecule

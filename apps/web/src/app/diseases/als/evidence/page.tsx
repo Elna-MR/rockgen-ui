@@ -28,7 +28,7 @@ export default async function AlsEvidencePage() {
       <header className="hub-hero" style={{ paddingBottom: "0.5rem" }}>
         <h1>Mutations &amp; biomarkers</h1>
         <p className="lede">
-          Mutation cards answer “what drives mechanism?” Biomarkers answer “how do we measure?” —
+          Mutation cards answer “what drives mechanism?” Biomarkers answer “how do we measure?” , 
           both should come from the knowledge graph.
         </p>
       </header>

@@ -1,4 +1,4 @@
-/** Student learning hub — multi-disease tiles and short informational tracks. */
+/** Student learning hub, multi-disease tiles and short informational tracks. */
 
 export type LearnProtein = {
   symbol: string;
@@ -41,7 +41,7 @@ export const LEARN_DISEASES: LearnDisease[] = [
     shortName: "ALS",
     tagline: "Motor neurons · cytoskeleton · aggregation",
     summary:
-      "A progressive motor-neuron disease. Learn how genes, protein shape, and shared mechanisms connect — then practice in ProtScope tools.",
+      "A progressive motor-neuron disease. Learn how genes, protein shape, and shared mechanisms connect, then practice in ProtScope tools.",
     category: "Motor neuron",
     accent: "#4a8b86",
     status: "ready",
@@ -70,12 +70,12 @@ export const LEARN_DISEASES: LearnDisease[] = [
     mechanisms: ["Protein aggregation", "Cytoskeleton stress", "Axonal transport"],
     keyFacts: [
       "Different genes can land on overlapping failure routes.",
-      "Evidence types are not equal — label computation vs cells vs genetics.",
+      "Evidence types are not equal, label computation vs cells vs genetics.",
       "Prioritize mechanisms before designing molecules.",
     ],
     track: [
       {
-        title: "Orient — ALS in five ideas",
+        title: "Orient: ALS in five ideas",
         kind: "read",
         minutes: "5 min",
         href: "/learn/als/orient",
@@ -130,7 +130,7 @@ export const LEARN_DISEASES: LearnDisease[] = [
     ],
     mechanisms: ["α-Synuclein aggregation", "Mitochondrial dysfunction", "Impaired autophagy"],
     keyFacts: [
-      "Motor symptoms often reflect dopamine pathway injury — biology is broader than tremor.",
+      "Motor symptoms often reflect dopamine pathway injury, biology is broader than tremor.",
       "Genetic forms (e.g. SNCA, LRRK2, PRKN) teach mechanism diversity.",
       "Protein clumping and clearance failure are recurring themes across neurodegeneration.",
     ],
@@ -200,7 +200,7 @@ export const LEARN_DISEASES: LearnDisease[] = [
     ],
     mechanisms: ["Amyloid cascade hypotheses", "Tau pathology", "Synapse and network failure"],
     keyFacts: [
-      "Plaques and tangles are landmarks — causation is still debated in layers.",
+      "Plaques and tangles are landmarks, causation is still debated in layers.",
       "Genetic risk (including APOE) is not destiny and is not a personal diagnosis tool here.",
       "Compare how protein misfolding themes echo ALS and Parkinson’s without equating the diseases.",
     ],
@@ -261,7 +261,7 @@ export const LEARN_DISEASES: LearnDisease[] = [
     mechanisms: ["Toxic gain-of-function protein species", "Transcriptional dysregulation", "Selective neuronal vulnerability"],
     keyFacts: [
       "Inheritance pattern makes genetics unusually central compared with most ALS cases.",
-      "Expansion size is a teaching tool for genotype–phenotype thinking.",
+      "Expansion size is a teaching tool for genotype-phenotype thinking.",
       "Still mechanism-first: knowing HTT is not the same as having a therapy design.",
     ],
     track: [
@@ -316,12 +316,12 @@ export const LEARN_DISEASES: LearnDisease[] = [
       {
         symbol: "C9orf72",
         name: "C9orf72",
-        role: "Hexanucleotide expansion linking ALS–FTD spectrum",
+        role: "Hexanucleotide expansion linking ALS-FTD spectrum",
       },
     ],
-    mechanisms: ["TDP-43 proteinopathy", "Tau pathology", "ALS–FTD spectrum genetics"],
+    mechanisms: ["TDP-43 proteinopathy", "Tau pathology", "ALS-FTD spectrum genetics"],
     keyFacts: [
-      "FTD is not one disease — subtypes matter for mechanism stories.",
+      "FTD is not one disease, subtypes matter for mechanism stories.",
       "ALS and FTD can share genes and protein pathology without being identical.",
       "Student goal: map spectrum thinking, not memorise every subtype.",
     ],

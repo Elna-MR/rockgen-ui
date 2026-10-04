@@ -14,7 +14,7 @@ export default function AlsMechanismsPage() {
         <div>
           <h1>Mechanism prioritization</h1>
           <p className="lede">
-            Which ALS mechanisms are shared by PFN1 and TUBA4A — and which intervention to study
+            Which ALS mechanisms are shared by PFN1 and TUBA4A, and which intervention to study
             first?
           </p>
         </div>

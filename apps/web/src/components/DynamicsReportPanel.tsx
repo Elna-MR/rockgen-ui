@@ -55,7 +55,7 @@ export function DynamicsReportPanel() {
 
   return (
     <section className="section" id="dynamics">
-      <h2>Protein Dynamics — PFN1 G118V</h2>
+      <h2>Protein Dynamics, PFN1 G118V</h2>
       <p className="hint">
         Frames are conformational samples over time (a movie of atomic coordinates), not a million
         screenshots. We store trajectories/features/clusters; images render only for selected

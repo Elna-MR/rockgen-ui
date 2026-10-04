@@ -68,7 +68,7 @@ export function FalsNetworkGraph({ graph }: Props) {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [minConfidence, setMinConfidence] = useState(0.5);
   const [minFamilialPct, setMinFamilialPct] = useState(0);
-  /** Per-gene connection emphasis 0–100; lower hides weaker edges for that gene. */
+  /** Per-gene connection emphasis 0-100; lower hides weaker edges for that gene. */
   const [geneBars, setGeneBars] = useState<Record<string, number>>({});
   const [detailOpen, setDetailOpen] = useState(true);
   const [programmesOnly, setProgrammesOnly] = useState(false);
@@ -360,7 +360,7 @@ export function FalsNetworkGraph({ graph }: Props) {
       <div className="fals-controls">
         <p className="hint fals-lead">
           Node size is approximate share of familial ALS cases; colour is functional module; edge
-          thickness is curated interaction confidence. Ringed nodes have a named drug candidate —
+          thickness is curated interaction confidence. Ringed nodes have a named drug candidate , 
           hover for programmes, click for notes and the local gene map. Bars change which links stay
           visible.
         </p>
@@ -500,7 +500,7 @@ export function FalsNetworkGraph({ graph }: Props) {
               <label className="fals-slider fals-gene-bar">
                 <span>
                   Connection bar for {selected.id}
-                  <em> — raise to keep more edges, lower to prune weaker links</em>
+                  <em>, raise to keep more edges, lower to prune weaker links</em>
                 </span>
                 <input
                   type="range"
@@ -526,7 +526,7 @@ export function FalsNetworkGraph({ graph }: Props) {
                         <strong>{p.name}</strong>
                         <span className="hint">
                           {STATUS_LABEL[p.status]}
-                          {p.note ? ` — ${p.note}` : ""}
+                          {p.note ? `, ${p.note}` : ""}
                         </span>
                       </li>
                     ))}
@@ -535,7 +535,7 @@ export function FalsNetworkGraph({ graph }: Props) {
               )}
 
               <div className="fals-gene-map">
-                <h4>Gene map — {selected.id} neighborhood</h4>
+                <h4>Gene map, {selected.id} neighborhood</h4>
                 <p className="hint">Local interaction map at the current confidence / bar settings.</p>
                 <svg viewBox="0 0 360 200" className="fals-mini-map" aria-label={`${selected.id} neighbor map`}>
                   <circle cx="180" cy="100" r="18" fill={MODULE_COLOR[selected.mod]} />
@@ -580,7 +580,7 @@ export function FalsNetworkGraph({ graph }: Props) {
                   })}
                   {neighbors.length === 0 && (
                     <text x="180" y="160" textAnchor="middle" fontSize="10" fill="#8497a7">
-                      No neighbors at this filter — lower confidence or raise this gene&apos;s bar
+                      No neighbors at this filter, lower confidence or raise this gene&apos;s bar
                     </text>
                   )}
                 </svg>

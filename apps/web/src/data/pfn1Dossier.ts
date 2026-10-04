@@ -75,7 +75,7 @@ export const PFN1_ANNOTATIONS = {
       id: "AF-P07737-F1",
       label: "AlphaFold",
       kind: "alphafold" as const,
-      // Bundled locally — AlphaFold CDN path changed (v6) and blocked in-browser CORS
+      // Bundled locally, AlphaFold CDN path changed (v6) and blocked in-browser CORS
       url: "/structures/AF-P07737-F1.pdb",
       fallbackUrls: [
         "/api/structures/AF-P07737-F1",
@@ -139,7 +139,7 @@ export const PFN1_COMPARISON: ComparisonRow[] = [
   },
   {
     property: "Actin interaction",
-    wildType: "Normal profilin–actin function",
+    wildType: "Normal profilin-actin function",
     mutant: "Potentially disrupted / context-dependent",
     evidenceLabel: "not yet validated",
     confidence: "Low",
@@ -195,7 +195,7 @@ export const PFN1_PATHWAY: PathwayStep[] = [
     label: "Oligomerization",
     claimTopic: "aggregation",
     support: "hypothesis",
-    description: "Likely intermediate toward aggregates — sparsely indexed as a discrete claim.",
+    description: "Likely intermediate toward aggregates, sparsely indexed as a discrete claim.",
   },
   {
     id: "aggregation",
@@ -289,7 +289,7 @@ export const PFN1_EXPERIMENTS = [
     evidenceTopics: ["aggregation"],
   },
   {
-    title: "Investigate PFN1–ACTB interaction under G118V",
+    title: "Investigate PFN1-ACTB interaction under G118V",
     why: "Graph records INTERACTS_WITH ACTB; functional impact remains under-validated",
     expected: "Binding / co-localization readouts",
     priority: "Medium" as const,

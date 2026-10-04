@@ -321,7 +321,7 @@ export function mechanismReportMarkdownUrl(
   return `${API_URL}/v1/diseases/${slug}/mechanism-report?a=${a}&b=${b}&format=markdown`;
 }
 
-/** Disease Intelligence Engine — graph-backed scientific dossiers */
+/** Disease Intelligence Engine, graph-backed scientific dossiers */
 
 export type MutationIntelCard = {
   key: string;

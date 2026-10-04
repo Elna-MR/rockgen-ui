@@ -24,7 +24,7 @@ export function SequenceViewer({ sequence }: Props) {
   }, []);
 
   if (!sequence) {
-    return <p className="empty">Sequence not loaded — run make ingest-pfn1</p>;
+    return <p className="empty">Sequence not loaded, run make ingest-pfn1</p>;
   }
 
   const chunks: string[] = [];

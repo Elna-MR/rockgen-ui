@@ -56,56 +56,56 @@ export const PROGRAMME_BLURB: Record<
   SOD1: {
     status: "approved",
     blurb:
-      "Tofersen (Qalsody) — Biogen/Ionis, intrathecal ASO. Approved 2023; phase 3 ATLAS in presymptomatic carriers ongoing.",
+      "Tofersen (Qalsody), Biogen/Ionis, intrathecal ASO. Approved 2023; phase 3 ATLAS in presymptomatic carriers ongoing.",
   },
   FUS: {
     status: "clinic",
     blurb:
-      "Ulefnersen (ION363) — Ionis/Otsuka, intrathecal ASO. Phase 3 FUSION fully enrolled, readout 2H 2026.",
+      "Ulefnersen (ION363), Ionis/Otsuka, intrathecal ASO. Phase 3 FUSION fully enrolled, readout 2H 2026.",
   },
   STMN2: {
     status: "clinic",
     blurb:
-      "QRL-201 — QurAlis, splice-switching ASO. Phase 1/2 ANQUR, 69 dosed; phase 3 planned 2027.",
+      "QRL-201, QurAlis, splice-switching ASO. Phase 1/2 ANQUR, 69 dosed; phase 3 planned 2027.",
   },
   SARM1: {
     status: "clinic",
     blurb:
-      "NB-4746, NB-9402 — Nura Bio; LY3873862 — Lilly; SIR2501 — Sironax. Oral inhibitors, phase 1b/2a.",
+      "NB-4746, NB-9402, Nura Bio; LY3873862, Lilly; SIR2501, Sironax. Oral inhibitors, phase 1b/2a.",
   },
   TARDBP: {
     status: "clinic",
     blurb:
-      "VTx-002 — VectorY, AAV intrabody, phase 1/2. ATLX-1282 — Alchemab/Lilly. PMN267 — ProMIS, preclinical. n-Lorem n-of-1 ASOs.",
+      "VTx-002, VectorY, AAV intrabody, phase 1/2. ATLX-1282, Alchemab/Lilly. PMN267, ProMIS, preclinical. n-Lorem n-of-1 ASOs.",
   },
   UNC13A: {
     status: "clinic",
     blurb:
-      "QRL-204 / LY4256984 — QurAlis to Lilly, splice-switching ASO. Phase 1.",
+      "QRL-204 / LY4256984, QurAlis to Lilly, splice-switching ASO. Phase 1.",
   },
   CHCHD10: {
     status: "clinic",
-    blurb: "nL-CHCHD-001, nL18576 — n-Lorem personalised ASOs. 13 patients treated.",
+    blurb: "nL-CHCHD-001, nL18576, n-Lorem personalised ASOs. 13 patients treated.",
   },
   SIGMAR1: {
     status: "clinic",
     blurb:
-      "Pridopidine — Prilenia, oral sigma-1 agonist. HEALEY primary endpoint missed; subgroup signal, phase 3 planned.",
+      "Pridopidine, Prilenia, oral sigma-1 agonist. HEALEY primary endpoint missed; subgroup signal, phase 3 planned.",
   },
   C9orf72: {
     status: "discontinued",
     blurb:
-      "BIIB078 and WVE-004 both discontinued. PBFT02 — Passage Bio, AAV progranulin, phase 1/2 in C9-FTD. Base editing preclinical.",
+      "BIIB078 and WVE-004 both discontinued. PBFT02, Passage Bio, AAV progranulin, phase 1/2 in C9-FTD. Base editing preclinical.",
   },
   ATXN2: {
     status: "discontinued",
     blurb:
-      "BIIB105 (ION541) — Biogen/Ionis. Terminated 2024: target engaged, no NfL or clinical effect.",
+      "BIIB105 (ION541), Biogen/Ionis. Terminated 2024: target engaged, no NfL or clinical effect.",
   },
   TBK1: {
     status: "preclinical",
     blurb:
-      "PPM1A-targeting ASOs — QurAlis. Preclinical, restoring TBK1 activity indirectly.",
+      "PPM1A-targeting ASOs, QurAlis. Preclinical, restoring TBK1 activity indirectly.",
   },
 };
 
@@ -118,8 +118,8 @@ const DETAILS: Record<string, GeneDetail> = {
       "Most common genetic cause of fALS / FTD in European ancestry. Hexanucleotide repeat expansion; RNA foci and DPR proteinopathy themes.",
     hoverNote: PROGRAMME_BLURB.C9orf72.blurb,
     programmes: [
-      { name: "BIIB078", status: "discontinued", note: "ASO — discontinued" },
-      { name: "WVE-004", status: "discontinued", note: "ASO — discontinued" },
+      { name: "BIIB078", status: "discontinued", note: "ASO, discontinued" },
+      { name: "WVE-004", status: "discontinued", note: "ASO, discontinued" },
       {
         name: "PBFT02",
         status: "clinic",
@@ -181,7 +181,7 @@ const DETAILS: Record<string, GeneDetail> = {
       {
         name: "BIIB105 (ION541)",
         status: "discontinued",
-        note: "Biogen/Ionis — terminated 2024",
+        note: "Biogen/Ionis, terminated 2024",
       },
     ],
   },
@@ -189,7 +189,7 @@ const DETAILS: Record<string, GeneDetail> = {
     id: "STMN2",
     fullName: "Stathmin-2",
     locus: "8q21.13",
-    summary: "TDP-43–regulated axon-related transcript; emerging ALS therapeutic target.",
+    summary: "TDP-43-regulated axon-related transcript; emerging ALS therapeutic target.",
     hoverNote: PROGRAMME_BLURB.STMN2.blurb,
     programmes: [
       {
@@ -263,7 +263,7 @@ const DETAILS: Record<string, GeneDetail> = {
       {
         name: "PPM1A-targeting ASOs",
         status: "preclinical",
-        note: "QurAlis — restore TBK1 activity indirectly",
+        note: "QurAlis, restore TBK1 activity indirectly",
       },
     ],
   },
@@ -289,7 +289,7 @@ const DETAILS: Record<string, GeneDetail> = {
     id: "SQSTM1",
     fullName: "Sequestosome-1 / p62",
     locus: "5q35.3",
-    summary: "Selective autophagy receptor; frequent teaching link between proteostasis and ALS–FTD spectrum.",
+    summary: "Selective autophagy receptor; frequent teaching link between proteostasis and ALS-FTD spectrum.",
   },
   VCP: {
     id: "VCP",
@@ -319,7 +319,7 @@ const DETAILS: Record<string, GeneDetail> = {
     id: "HNRNPA1",
     fullName: "Heterogeneous nuclear ribonucleoprotein A1",
     locus: "12q13.13",
-    summary: "RNA splicing / RNP granule biology; overlaps ALS–MSP spectrum themes.",
+    summary: "RNA splicing / RNP granule biology; overlaps ALS-MSP spectrum themes.",
   },
   HNRNPA2B1: {
     id: "HNRNPA2B1",
@@ -343,7 +343,7 @@ const DETAILS: Record<string, GeneDetail> = {
     id: "ANXA11",
     fullName: "Annexin A11",
     locus: "10q22.3",
-    summary: "Membrane trafficking / RNA granule–adjacent ALS genetics.",
+    summary: "Membrane trafficking / RNA granule-adjacent ALS genetics.",
   },
   TIA1: {
     id: "TIA1",
@@ -361,7 +361,7 @@ const DETAILS: Record<string, GeneDetail> = {
     id: "CHMP2B",
     fullName: "Charged multivesicular body protein 2B",
     locus: "3p11.2",
-    summary: "ESCRT-III / endolysosomal trafficking; FTD–ALS spectrum genetics.",
+    summary: "ESCRT-III / endolysosomal trafficking; FTD-ALS spectrum genetics.",
   },
   VAPB: {
     id: "VAPB",
@@ -519,5 +519,5 @@ export function geneHoverText(id: string, familialPct: number): string {
   const detail = getGeneDetail(id);
   const pct = familialPct < 0.15 ? "<0.1" : String(familialPct);
   const note = detail.hoverNote || "No disclosed programme.";
-  return `${id} · ~${pct}% of fALS — ${note}`;
+  return `${id} · ~${pct}% of fALS, ${note}`;
 }

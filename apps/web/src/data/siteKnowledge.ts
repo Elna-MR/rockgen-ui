@@ -1,6 +1,6 @@
 /**
  * Searchable corpus built from ProtScope website material (Learn, Research, guides, genes).
- * Used by the site chatbot — answers stay grounded in these chunks + page links.
+ * Used by the site chatbot, answers stay grounded in these chunks + page links.
  */
 
 import {
@@ -65,7 +65,7 @@ function buildCorpus(): KnowledgeChunk[] {
       "Structure explorer",
       "/proteins/explore",
       "Structures",
-      "Search by protein, PDB id, or ALS mutation. Inspect substitutions in 3D chemistry or jump to peptide binder design. Related tools: mutation inspector (/proteins/inspect) and peptide design (/proteins/design). After you understand the fold, Inverse FoldDir is a research idea for proposing sequences given a backbone — preprint and code linked on Structure pages; live generation is not wired in yet.",
+      "Search by protein, PDB id, or ALS mutation. Inspect substitutions in 3D chemistry or jump to peptide binder design. Related tools: mutation inspector (/proteins/inspect) and peptide design (/proteins/design). After you understand the fold, Inverse FoldDir is a research idea for proposing sequences given a backbone, preprint and code linked on Structure pages; live generation is not wired in yet.",
       ["structure", "pdb", "fold", "3d", "inverse fold", "inversefolddir", "mutation"],
     ),
     chunk(
@@ -73,7 +73,7 @@ function buildCorpus(): KnowledgeChunk[] {
       "Ask scientific review",
       "/ask",
       "Research",
-      "Ask runs an evidence-weighted scientific review for PFN1/G118V. Confidence is calculated in code from the graph—not invented by a model. Use starter questions about structure, misfolding, aggregation, animal or clinical evidence, gaps, and next experiments.",
+      "Ask runs an evidence-weighted scientific review for PFN1/G118V. Confidence is calculated in code from the graph, not invented by a model. Use starter questions about structure, misfolding, aggregation, animal or clinical evidence, gaps, and next experiments.",
       ["ask", "review", "evidence", "pfn1", "g118v", "confidence"],
     ),
     chunk(
@@ -209,7 +209,7 @@ function buildCorpus(): KnowledgeChunk[] {
   out.push(
     chunk(
       "disclaimer",
-      "Educational — not medical advice",
+      "Educational, not medical advice",
       "/learn/als/plain/questions",
       "Site",
       "ProtScope is educational research material only. It does not diagnose, prognose, or prescribe treatment. Care decisions belong with your clinical team and trusted ALS clinics.",

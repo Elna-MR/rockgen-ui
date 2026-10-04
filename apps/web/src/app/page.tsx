@@ -10,7 +10,7 @@ export default function HomePage() {
           <h1>ProtScope</h1>
           <p className="science-thesis">
             Learn and research disease proteins across ALS, Parkinson’s, Alzheimer’s, and related
-            biology — mechanisms before molecules.
+            biology, mechanisms before molecules.
           </p>
           <p className="lede">
             Plain-language tracks for families and students. Citation-aware tools for researchers.
@@ -34,7 +34,7 @@ export default function HomePage() {
       <section className="science-band" aria-labelledby="different-heading">
         <h2 id="different-heading">What you get</h2>
         <p className="hint">
-          Built for serious biology storytelling — without drowning you in a dashboard.
+          Built for serious biology storytelling, without drowning you in a dashboard.
         </p>
         <div className="pillar-grid">
           <article className="pillar">
@@ -43,7 +43,7 @@ export default function HomePage() {
             </div>
             <h3>Mechanisms first</h3>
             <p>
-              Shared failure routes across genes — aggregation, cytoskeleton, transport — before any
+              Shared failure routes across genes, aggregation, cytoskeleton, transport, before any
               molecule design.
             </p>
           </article>
@@ -71,7 +71,7 @@ export default function HomePage() {
             </div>
             <h3>One decision at a time</h3>
             <p>
-              Progressive tools — overview, compare, map, Ask — so the next step stays clear and
+              Progressive tools, overview, compare, map, Ask, so the next step stays clear and
               trustworthy.
             </p>
           </article>
@@ -85,7 +85,7 @@ export default function HomePage() {
             <p className="eyebrow">Students &amp; families</p>
             <h2>Learning hub</h2>
             <p>
-              Disease tiles with plain language and student tracks — ALS, Parkinson’s, Alzheimer’s,
+              Disease tiles with plain language and student tracks, ALS, Parkinson’s, Alzheimer’s,
               and more.
             </p>
           </Link>

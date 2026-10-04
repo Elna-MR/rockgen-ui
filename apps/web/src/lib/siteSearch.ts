@@ -90,7 +90,7 @@ export function answerFromChunks(question: string, chunks: ScoredChunk[]): strin
     return (
       "I couldn’t find matching pages in ProtScope’s indexed material for that. " +
       "Try asking about ALS Learn tracks, the gene network, Structure explorer, Biology, or a gene like SOD1 or PFN1. " +
-      "This helper only searches site content — it is not medical advice."
+      "This helper only searches site content, it is not medical advice."
     );
   }
 
@@ -107,13 +107,13 @@ export function answerFromChunks(question: string, chunks: ScoredChunk[]): strin
     lines.push("");
     lines.push("Related pages on this site:");
     for (const e of extras) {
-      lines.push(`• ${e.title} — ${e.href}`);
+      lines.push(`• ${e.title}, ${e.href}`);
     }
   }
 
   lines.push("");
   lines.push(
-    "Educational only — not a diagnosis or treatment recommendation. Open the linked pages for the full text.",
+    "Educational only, not a diagnosis or treatment recommendation. Open the linked pages for the full text.",
   );
 
   // light question-type framing

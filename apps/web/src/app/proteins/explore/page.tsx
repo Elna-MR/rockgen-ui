@@ -4,7 +4,7 @@ import { StructureExplorer } from "@/components/StructureExplorer";
 
 type Props = { searchParams: Promise<{ q?: string }> };
 
-/** Local ALS panel — avoids blocking Structures on a down Neo4j/API catalog. */
+/** Local ALS panel, avoids blocking Structures on a down Neo4j/API catalog. */
 const ALS_CATALOG = [
   { uniprot_id: "P07737", symbol: "PFN1", name: "Profilin-1" },
   { uniprot_id: "P68366", symbol: "TUBA4A", name: "Tubulin alpha-4A chain" },

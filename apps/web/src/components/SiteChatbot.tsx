@@ -45,7 +45,7 @@ export function SiteChatbot() {
     {
       role: "assistant",
       content:
-        "Hi — I search ProtScope’s Learn, Research, Structure, and gene-network material. Ask where to go or what a page covers. Not medical advice.",
+        "Hi, I search ProtScope’s Learn, Research, Structure, and gene-network material. Ask where to go or what a page covers. Not medical advice.",
     },
   ]);
   const listRef = useRef<HTMLDivElement>(null);
@@ -89,8 +89,8 @@ export function SiteChatbot() {
           role: "assistant",
           content:
             e instanceof Error
-              ? `Sorry — ${e.message}. Try again in a moment.`
-              : "Sorry — something went wrong.",
+              ? `Sorry, ${e.message}. Try again in a moment.`
+              : "Sorry, something went wrong.",
         },
       ]);
     } finally {

@@ -45,7 +45,7 @@ export default async function ProteinDossierPage({ params }: Props) {
       <header className="dossier-header">
         <div>
           <h1>{protein.symbol} evidence</h1>
-          <p className="lede">Detailed panels — use overview + workspace links when you need less.</p>
+          <p className="lede">Detailed panels, use overview + workspace links when you need less.</p>
         </div>
         <Link className="btn btn-ghost" href={`/proteins/${id}`}>
           ← Quiet overview

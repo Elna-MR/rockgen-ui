@@ -6,7 +6,7 @@ type Props = {
   matrix: MechanismMatrix;
 };
 
-/** Panel-wide disease map + matrix (after PFN1–TUBA4A prioritization). */
+/** Panel-wide disease map + matrix (after PFN1-TUBA4A prioritization). */
 export function AlsDiseaseMap({ map, matrix }: Props) {
   return (
     <>

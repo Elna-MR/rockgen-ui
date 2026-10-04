@@ -63,7 +63,7 @@ function MixBar({ mix }: { mix: Record<string, number> }) {
         return (
           <li key={key}>
             <span>{label}</span>
-            <span className="mix-marks">{n > 0 ? "✓".repeat(Math.min(n, 3)) : "—"}</span>
+            <span className="mix-marks">{n > 0 ? "✓".repeat(Math.min(n, 3)) : ", "}</span>
             <span className="hint">{n}</span>
           </li>
         );
@@ -130,7 +130,7 @@ export function AskPanel() {
       <h2>Scientific review</h2>
       <p className="hint">
         Evidence-weighted reviewer for PFN1/G118V. Confidence is calculated in code from the
-        graph—not invented by a model.
+        graph, not invented by a model.
       </p>
 
       <div className="ask-search">
@@ -195,7 +195,7 @@ export function AskPanel() {
             <div>
               <h3>Confidence</h3>
               <p className="confidence-score">
-                {result.confidence} / 100 — {result.confidence_label}
+                {result.confidence} / 100, {result.confidence_label}
               </p>
               <button type="button" className="chip" onClick={() => setShowCalc((v) => !v)}>
                 {showCalc ? "Hide calculation" : "How this was calculated"}

@@ -173,11 +173,11 @@ export function AlsMechanismPrioritization({ markdownUrl }: Props) {
           </table>
         </div>
         <p className="confidence-score" style={{ marginTop: "1rem" }}>
-          Strongest combined evidence: <strong>{comparison.strongest_combined.mechanism}</strong> —{" "}
+          Strongest combined evidence: <strong>{comparison.strongest_combined.mechanism}</strong> , {" "}
           {comparison.strongest_combined.why}
         </p>
         <p>
-          Investigate first: <strong>{comparison.first_intervention.title}</strong> —{" "}
+          Investigate first: <strong>{comparison.first_intervention.title}</strong> , {" "}
           {comparison.first_intervention.why}
         </p>
       </section>
@@ -255,7 +255,7 @@ export function AlsMechanismPrioritization({ markdownUrl }: Props) {
         {review && (
           <>
             <p className="confidence-score">
-              Confidence: {review.confidence} — {review.confidence_label}
+              Confidence: {review.confidence}, {review.confidence_label}
             </p>
             <p>
               <strong>Conclusion:</strong> {review.conclusion}
@@ -310,7 +310,7 @@ export function AlsMechanismPrioritization({ markdownUrl }: Props) {
                 <ul className="gap-list">
                   {review.therapeutic_implications.map((t) => (
                     <li key={t.title}>
-                      <strong>{t.title}</strong> ({t.priority}) — {t.summary}
+                      <strong>{t.title}</strong> ({t.priority}), {t.summary}
                     </li>
                   ))}
                 </ul>

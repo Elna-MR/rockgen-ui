@@ -9,7 +9,7 @@ export function InverseFoldEnrichment() {
       <p className="lede" style={{ maxWidth: "42rem" }}>
         ProtScope starts with mechanisms and structure. A later step is{" "}
         <strong>inverse folding</strong>: given a backbone, propose amino acid sequences that could
-        adopt it — refining the whole sequence together, not one residue at a time.
+        adopt it, refining the whole sequence together, not one residue at a time.
       </p>
       <p className="hint">
         Research prototype context only. Live generation is not wired into ProtScope yet; use the
@@ -32,7 +32,7 @@ export function InverseFoldEnrichment() {
           rel="noopener noreferrer"
         >
           <strong>Code &amp; model weights</strong>
-          <span>microsoft/InverseFoldDir — run redesign offline or on your own backend</span>
+          <span>microsoft/InverseFoldDir, run redesign offline or on your own backend</span>
         </a>
         <div className="hub-link hub-link-muted" aria-disabled="true">
           <strong>In ProtScope · Soon</strong>

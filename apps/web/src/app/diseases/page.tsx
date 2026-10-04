@@ -12,7 +12,7 @@ export default function ResearchHubPage() {
         <div>
           <h1>Research hub</h1>
           <p className="lede">
-            Disease workspaces for ALS, Parkinson’s, Alzheimer’s, Huntington’s, and FTD —
+            Disease workspaces for ALS, Parkinson’s, Alzheimer’s, Huntington’s, and FTD , 
             mechanisms, proteins, structures, and evidence tools. Open one disease at a time.
           </p>
           <p className="meta-pill">Mechanism-first · citation-aware · not medical advice</p>
@@ -26,7 +26,7 @@ export default function ResearchHubPage() {
 
       <section className="section learn-shared">
         <h2>ALS ready tools</h2>
-        <p className="hint">Deepest workspace today — including the familial gene network.</p>
+        <p className="hint">Deepest workspace today, including the familial gene network.</p>
         <div className="hub-grid">
           <Link href="/diseases/als" className="hub-link">
             <strong>ALS workspace</strong>

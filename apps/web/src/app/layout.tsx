@@ -5,7 +5,7 @@ import { SiteAtmosphere } from "@/components/SiteAtmosphere";
 import { SiteChatbot } from "@/components/SiteChatbot";
 import "./globals.css";
 
-// Pages call the live API — never prerender against a missing build-time host.
+// Pages call the live API, never prerender against a missing build-time host.
 export const dynamic = "force-dynamic";
 
 const sans = DM_Sans({
@@ -28,9 +28,9 @@ const mono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ProtScope — neurodegeneration research",
+  title: "ProtScope: neurodegeneration research",
   description:
-    "Map disease proteins and shared mechanisms across ALS, Parkinson’s, Alzheimer’s, and related biology — before designing drugs. Learn tracks and evidence workspaces.",
+    "Map disease proteins and shared mechanisms across ALS, Parkinson’s, Alzheimer’s, and related biology, before designing drugs. Learn tracks and evidence workspaces.",
 };
 
 export default function RootLayout({
@@ -56,7 +56,7 @@ export default function RootLayout({
           </header>
           {children}
           <footer className="site-footer">
-            Educational — not medical advice. Care decisions belong with your clinical team.
+            Educational, not medical advice. Care decisions belong with your clinical team.
           </footer>
         </div>
         <SiteChatbot />

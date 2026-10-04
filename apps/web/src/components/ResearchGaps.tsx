@@ -27,7 +27,7 @@ export function ResearchGaps() {
     <section className="section">
       <h2>What remains unknown</h2>
       <p className="hint">
-        Explicit open questions — one of the strongest features of a scientific operating system.
+        Explicit open questions, one of the strongest features of a scientific operating system.
       </p>
       <ul className="gap-list">
         {unique.map((g) => (
@@ -42,7 +42,7 @@ export function ExperimentCards() {
   return (
     <section className="section">
       <h2>Suggested experiments</h2>
-      <p className="hint">Graph- and gap-grounded suggestions — not unconstrained LLM inventiveness.</p>
+      <p className="hint">Graph- and gap-grounded suggestions, not unconstrained LLM inventiveness.</p>
       <div className="grid exp-grid">
         {PFN1_EXPERIMENTS.map((exp) => (
           <article key={exp.title} className="exp-card">

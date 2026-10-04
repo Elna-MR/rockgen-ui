@@ -1,4 +1,4 @@
-/** Minimal protein motif — thin backbone, helix, residue nodes. */
+/** Minimal protein motif, thin backbone, helix, residue nodes. */
 type Props = {
   variant?: "hero" | "panel" | "ambient";
   className?: string;

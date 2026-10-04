@@ -53,7 +53,7 @@ export default async function ProteinOverviewPage({ params }: Props) {
         {functionText && <p className="hint">{functionText}</p>}
         {offline && (
           <p className="hint" style={{ marginTop: "0.55rem" }}>
-            Live protein API is offline — showing a local summary. Structure tools still work.
+            Live protein API is offline, showing a local summary. Structure tools still work.
           </p>
         )}
       </header>
@@ -110,7 +110,7 @@ export default async function ProteinOverviewPage({ params }: Props) {
             {protein.mutations.slice(0, 8).map((m) => (
               <li key={m.key}>
                 <strong>{m.hgvs_p || m.key}</strong>
-                {m.significance ? ` — ${m.significance}` : ""}
+                {m.significance ? `, ${m.significance}` : ""}
               </li>
             ))}
           </ul>

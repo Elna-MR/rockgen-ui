@@ -17,7 +17,7 @@ export default async function AlsMapPage() {
         </p>
         <header className="hub-hero" style={{ paddingBottom: "0.5rem" }}>
           <h1>ALS by biology</h1>
-          <p className="lede">Browse proteins through disease axes — not gene lists alone.</p>
+          <p className="lede">Browse proteins through disease axes, not gene lists alone.</p>
         </header>
         <AlsWorkspaceNav active="map" />
         <AlsDiseaseMap map={map} matrix={matrix} />

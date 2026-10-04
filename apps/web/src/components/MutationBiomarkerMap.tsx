@@ -18,7 +18,7 @@ export function MutationBiomarkerMap() {
     <section className="section" id="mutation-biomarker-map">
       <h2>Mutation-to-biomarker map</h2>
       <p className="hint">
-        Do not treat mutations and biomarkers as unrelated lists — but also do not imply unproven
+        Do not treat mutations and biomarkers as unrelated lists, but also do not imply unproven
         links. Edge labels show what evidence actually supports.
       </p>
       <div className="mb-map">

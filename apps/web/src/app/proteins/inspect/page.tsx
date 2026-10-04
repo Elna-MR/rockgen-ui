@@ -19,7 +19,7 @@ export default async function MutationInspectPage({ searchParams }: Props) {
         <h1>Mutation inspector</h1>
         <p className="lede">
           Check the wild-type letter against UniProt, map the site onto a crystal structure, then
-          measure burial, packing neighbours, and local clashes — the Substitution tool from your
+          measure burial, packing neighbours, and local clashes, the Substitution tool from your
           HTML pack, inside ProtScope.
         </p>
       </header>

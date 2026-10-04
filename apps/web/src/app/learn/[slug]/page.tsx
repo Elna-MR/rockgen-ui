@@ -78,7 +78,7 @@ export default async function LearnDiseasePage({ params }: Props) {
 
       <section className="section">
         <h2>Learning track</h2>
-        <p className="hint">Short path for this disease — then reuse shared ProtScope labs.</p>
+        <p className="hint">Short path for this disease, then reuse shared ProtScope labs.</p>
         <ol className="curriculum">
           {disease.track.map((step, i) => (
             <li key={step.title}>

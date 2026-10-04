@@ -31,7 +31,7 @@ export function MutationIntelligenceSection({ mutations, sourceNote }: Props) {
     <section className="section" id="mutations">
       <h2>Mutation intelligence</h2>
       <p className="hint">
-        Cards are built by the Disease Intelligence Engine from Neo4j claims and evidence — not a
+        Cards are built by the Disease Intelligence Engine from Neo4j claims and evidence, not a
         static UI twin.
       </p>
       <div className="intel-grid">
@@ -74,7 +74,7 @@ export function MutationIntelligenceSection({ mutations, sourceNote }: Props) {
                 {MIX_LABELS.map(([key, label]) => (
                   <li key={key}>
                     <span>{label}</span>
-                    <span className="mix-marks">{mix[key] ? "✓" : "—"}</span>
+                    <span className="mix-marks">{mix[key] ? "✓" : ", "}</span>
                   </li>
                 ))}
               </ul>
@@ -82,7 +82,7 @@ export function MutationIntelligenceSection({ mutations, sourceNote }: Props) {
               <p className="confidence-score">
                 Confidence:{" "}
                 {m.confidence_score != null
-                  ? `${m.confidence_score} — ${m.confidence_label || "—"}`
+                  ? `${m.confidence_score}, ${m.confidence_label || "—"}`
                   : m.confidence_label || "Insufficient"}
               </p>
               <p className="hint">

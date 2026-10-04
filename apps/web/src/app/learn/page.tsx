@@ -12,7 +12,7 @@ export default function LearnHubPage() {
         <div>
           <h1>Learning hub</h1>
           <p className="lede">
-            Search and open disease tracks for students — ALS, Parkinson’s, Alzheimer’s, and related
+            Search and open disease tracks for students, ALS, Parkinson’s, Alzheimer’s, and related
             neurodegenerative biology. Each tile links proteins, mechanisms, and practice tools.
           </p>
           <p className="meta-pill">Mechanism-first · not medical advice · start with one disease</p>

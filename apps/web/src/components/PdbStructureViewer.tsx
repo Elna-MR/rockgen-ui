@@ -100,7 +100,7 @@ export function PdbStructureViewer({
         viewer.render();
         setReady(true);
         setStatus(
-          `Showing chain ${chain} — asymmetric unit as deposited. Drag to rotate, scroll to zoom.`,
+          `Showing chain ${chain}, asymmetric unit as deposited. Drag to rotate, scroll to zoom.`,
         );
       } catch (e) {
         if (!cancelled) setStatus(e instanceof Error ? e.message : "Failed to load");
@@ -131,13 +131,13 @@ export function PdbStructureViewer({
         { cartoon: { color: "#f59e0b" }, stick: { color: "#fbbf24", radius: 0.28 } },
       );
       viewer.zoomTo({ chain: c, resi: highlightResi });
-      setStatus(`Focused on ${c}${highlightResi} — mutation / selected site.`);
+      setStatus(`Focused on ${c}${highlightResi}, mutation / selected site.`);
     } else if (focusWindow) {
       viewer.zoomTo({ chain: c, resi: `${focusWindow.start}-${focusWindow.end}` });
-      setStatus(`Showing local patch ${focusWindow.start}–${focusWindow.end} on chain ${c}.`);
+      setStatus(`Showing local patch ${focusWindow.start}-${focusWindow.end} on chain ${c}.`);
     } else {
       setStatus(
-        `Showing chain ${chain} — asymmetric unit as deposited. Drag to rotate, scroll to zoom.`,
+        `Showing chain ${chain}, asymmetric unit as deposited. Drag to rotate, scroll to zoom.`,
       );
     }
     viewer.render();

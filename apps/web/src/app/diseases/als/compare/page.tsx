@@ -41,7 +41,7 @@ export default async function AlsCrossProteinComparePage({ searchParams }: Props
             <span className="dossier-sub"> vs {b.symbol}</span>
           </h1>
           <p className="lede">
-            Shared and unique disease mechanisms — different paths, same ALS endpoint.
+            Shared and unique disease mechanisms, different paths, same ALS endpoint.
           </p>
         </div>
         <div className="status-pill">
@@ -162,7 +162,7 @@ export default async function AlsCrossProteinComparePage({ searchParams }: Props
         <ul className="gap-list">
           {cmp.shared_biomarkers.map((bm) => (
             <li key={bm.id}>
-              <strong>{bm.name}</strong> — {bm.note}
+              <strong>{bm.name}</strong>, {bm.note}
             </li>
           ))}
         </ul>

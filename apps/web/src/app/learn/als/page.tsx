@@ -19,7 +19,7 @@ export default function LearnAlsTrackPage() {
           <h1>{disease.shortName}</h1>
           <p className="science-thesis science-thesis-compact">{disease.tagline}</p>
           <p className="lede">
-            One ALS learning home for families and students — plain-language primers, then the deeper
+            One ALS learning home for families and students, plain-language primers, then the deeper
             curriculum and practice labs. Educational only; not medical advice.
           </p>
           <p className="meta-pill">
@@ -34,7 +34,7 @@ export default function LearnAlsTrackPage() {
       <section className="section" id="plain-language">
         <h2>Plain language</h2>
         <p className="hint">
-          Start here if you are new to ALS biology — written for families and first-time readers.
+          Start here if you are new to ALS biology, written for families and first-time readers.
         </p>
         <div className="hub-grid">
           {UNDERSTAND_PAGES.map((p) => (
@@ -132,7 +132,7 @@ export default function LearnAlsTrackPage() {
             <Link key={p.slug} href={`/learn/practice/${p.slug}`} className="hub-link">
               <strong>{p.title}</strong>
               <span>
-                {p.level === "intro" ? "Intro" : "Next"} · {p.minutes} min — {p.goal}
+                {p.level === "intro" ? "Intro" : "Next"} · {p.minutes} min, {p.goal}
               </span>
             </Link>
           ))}

@@ -156,12 +156,12 @@ export function assessMutationSite(
     verdict = "yes";
     headline = `${mut.label} sits in a relatively polar local window.`;
     detail =
-      "Neighborhood chemistry is not a deep hydrophobic core — a candidate surface/interface site to inspect in 3D (Complement-style first gate).";
+      "Neighborhood chemistry is not a deep hydrophobic core, a candidate surface/interface site to inspect in 3D (Complement-style first gate).";
   } else if (windowGravy > 0.8 && hydrophobic >= charged + polar + 2) {
     verdict = "partial";
     headline = `${mut.label} sits in a hydrophobic-leaning window.`;
     detail =
-      "Local GRAVY is high — often buried or packing-critical. Confirm exposure in the 3D view.";
+      "Local GRAVY is high, often buried or packing-critical. Confirm exposure in the 3D view.";
   } else {
     verdict = "partial";
     headline = `${mut.label} maps to the deposited sequence.`;

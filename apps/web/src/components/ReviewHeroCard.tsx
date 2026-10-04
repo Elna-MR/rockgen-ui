@@ -44,7 +44,7 @@ export function ReviewHeroCard() {
               : review.conclusion}
           </h2>
           <p className="confidence-score">
-            Confidence {review.confidence} — {review.confidence_label}
+            Confidence {review.confidence}, {review.confidence_label}
           </p>
           <p className="lede">{review.summary}</p>
 
