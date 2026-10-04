@@ -228,7 +228,7 @@ export function SiteChatbot() {
                 strokeLinejoin="round"
               />
             </svg>
-            Ask ProtScope
+            Ask
           </>
         )}
       </button>

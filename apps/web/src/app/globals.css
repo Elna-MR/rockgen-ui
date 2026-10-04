@@ -1,22 +1,24 @@
 :root {
-  /* Mellow lab — cool mist, slate ink, soft sage (Benchling / clinical calm) */
-  --bg-0: #f4f6f8;
-  --bg-1: #e8ecf0;
-  --bg-2: #dde3e8;
-  --ink: #1a2b33;
-  --ink-muted: #5c6b73;
-  --accent: #4a8b86;
-  --accent-soft: rgba(74, 139, 134, 0.11);
-  --accent-ink: #2a5552;
-  --line: rgba(26, 43, 51, 0.1);
+  /* Clinical research palette: cool paper, slate ink, restrained teal */
+  --bg-0: #f3f5f7;
+  --bg-1: #e7ebf0;
+  --bg-2: #dce2e8;
+  --ink: #142028;
+  --ink-muted: #5a6670;
+  --accent: #3f7a76;
+  --accent-soft: rgba(63, 122, 118, 0.1);
+  --accent-ink: #244844;
+  --line: rgba(20, 32, 40, 0.1);
   --surface: #ffffff;
-  --surface-soft: rgba(255, 255, 255, 0.78);
-  --warn: #a67c2d;
-  --danger: #b33a3a;
-  --radius: 4px;
-  /* next/font faces (html) + fallbacks — one stack site-wide */
-  --font-sans: var(--font-sans-face), "DM Sans", system-ui, sans-serif;
-  --font-display: var(--font-display-face), "Source Serif 4", Georgia, serif;
+  --surface-soft: rgba(255, 255, 255, 0.86);
+  --warn: #9a7428;
+  --danger: #a83838;
+  --radius: 6px;
+  --radius-sm: 4px;
+  --shadow-soft: 0 1px 0 rgba(20, 32, 40, 0.04), 0 12px 32px rgba(20, 32, 40, 0.06);
+  /* next/font faces (html) + fallbacks */
+  --font-sans: var(--font-sans-face), "Manrope", "Segoe UI", sans-serif;
+  --font-display: var(--font-display-face), "Newsreader", "Times New Roman", serif;
   --font-mono: var(--font-mono-face), "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
@@ -34,11 +36,15 @@ body {
 body {
   color: var(--ink);
   font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.55;
+  letter-spacing: -0.011em;
   background:
-    radial-gradient(880px 420px at 6% -6%, rgba(74, 139, 134, 0.09) 0%, transparent 55%),
-    radial-gradient(640px 380px at 96% 4%, rgba(90, 120, 140, 0.06) 0%, transparent 50%),
-    linear-gradient(180deg, #f8fafb 0%, var(--bg-0) 42%, #eef1f4 100%);
+    radial-gradient(900px 480px at 8% -8%, rgba(63, 122, 118, 0.07) 0%, transparent 58%),
+    radial-gradient(720px 420px at 100% 0%, rgba(70, 95, 115, 0.05) 0%, transparent 52%),
+    linear-gradient(180deg, #f7f9fa 0%, var(--bg-0) 48%, #eef1f4 100%);
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 button,
@@ -76,32 +82,65 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.25rem 2rem;
+  gap: 1.5rem;
+  padding: 0.95rem clamp(1.25rem, 3vw, 2.25rem);
   border-bottom: 1px solid var(--line);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(14px) saturate(1.1);
   position: sticky;
   top: 0;
   z-index: 10;
-  background: rgba(248, 250, 251, 0.9);
-  animation: fadeDown 0.6s ease both;
+  background: rgba(247, 249, 250, 0.88);
+  animation: fadeDown 0.55s ease both;
 }
 
 .brand {
   font-family: var(--font-sans);
-  font-size: 1.35rem;
+  font-size: 1.15rem;
   font-weight: 700;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+}
+
+.brand:hover {
+  color: var(--accent-ink);
 }
 
 .nav {
   display: flex;
-  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.15rem 1.35rem;
   color: var(--ink-muted);
-  font-size: 0.925rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.nav a {
+  position: relative;
+  padding: 0.25rem 0;
+  transition: color 0.15s ease;
+}
+
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s ease;
 }
 
 .nav a:hover {
-  color: var(--accent);
+  color: var(--ink);
+}
+
+.nav a:hover::after {
+  transform: scaleX(1);
 }
 
 .hero {
@@ -135,37 +174,38 @@ a {
 .btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.4rem;
-  padding: 0.7rem 1.15rem;
-  border-radius: var(--radius);
-  font-size: 0.95rem;
+  padding: 0.72rem 1.2rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
   border: 1px solid transparent;
-  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
-}
-
-.btn:hover {
-  transform: translateY(-1px);
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
 }
 
 .btn-primary {
   background: var(--accent);
   color: #ffffff;
-  font-weight: 600;
+  box-shadow: 0 1px 0 rgba(20, 32, 40, 0.06);
 }
 
 .btn-primary:hover {
-  background: #3d7772;
+  background: #356864;
+  box-shadow: 0 2px 8px rgba(63, 122, 118, 0.28);
 }
 
 .btn-ghost {
-  border-color: var(--line);
+  border-color: rgba(20, 32, 40, 0.16);
   color: var(--ink);
-  background: transparent;
+  background: rgba(255, 255, 255, 0.55);
 }
 
 .btn-ghost:hover {
-  border-color: var(--accent);
-  color: var(--accent);
+  border-color: rgba(63, 122, 118, 0.45);
+  color: var(--accent-ink);
+  background: var(--surface);
 }
 
 .page {
@@ -181,25 +221,28 @@ a {
 }
 
 .eyebrow {
-  color: var(--accent);
-  font-size: 0.8rem;
-  letter-spacing: 0.12em;
+  color: var(--accent-ink);
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  margin-bottom: 0.55rem;
+  margin-bottom: 0.65rem;
 }
 
 .page-header h1 {
   font-family: var(--font-sans);
-  font-size: clamp(1.85rem, 3.8vw, 2.45rem);
-  font-weight: 600;
-  letter-spacing: -0.025em;
-  margin-bottom: 0.5rem;
+  font-size: clamp(1.9rem, 3.6vw, 2.5rem);
+  font-weight: 650;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+  margin-bottom: 0.55rem;
 }
 
 .lede {
   color: var(--ink-muted);
-  max-width: 40rem;
-  line-height: 1.5;
+  max-width: 38rem;
+  font-size: 1.02rem;
+  line-height: 1.6;
 }
 
 .section {
@@ -1251,39 +1294,39 @@ a {
 .path-tile {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  padding: 1.35rem 1.4rem;
+  gap: 0.55rem;
+  padding: 1.45rem 1.5rem;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--surface);
-  box-shadow: 0 1px 2px rgba(26, 43, 51, 0.04);
-  transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: var(--shadow-soft);
+  transition: border-color 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
 }
 
 .path-tile:hover {
-  border-color: rgba(74, 139, 134, 0.4);
-  background: var(--accent-soft);
-  transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(26, 43, 51, 0.06);
+  border-color: rgba(63, 122, 118, 0.4);
+  background: #fbfcfc;
+  box-shadow: 0 2px 0 rgba(20, 32, 40, 0.03), 0 14px 36px rgba(20, 32, 40, 0.08);
 }
 
 .path-tile h2 {
   font-family: var(--font-sans);
-  font-size: 1.35rem;
-  font-weight: 600;
+  font-size: 1.3rem;
+  font-weight: 650;
+  letter-spacing: -0.025em;
   margin: 0;
 }
 
 .path-tile p:last-child {
   color: var(--ink-muted);
   font-size: 0.925rem;
-  line-height: 1.45;
+  line-height: 1.5;
   margin: 0;
 }
 
 .path-tile-primary {
-  border-color: rgba(74, 139, 134, 0.35);
-  box-shadow: 0 1px 2px rgba(74, 139, 134, 0.06);
+  border-color: rgba(63, 122, 118, 0.32);
+  background: linear-gradient(180deg, #ffffff 0%, #f7faf9 100%);
 }
 
 .hub-quiet {
@@ -1509,11 +1552,33 @@ a {
 
 .site-footer {
   margin-top: auto;
-  padding: 1.25rem 2rem 1.75rem;
+  padding: 1.75rem clamp(1.25rem, 3vw, 2.25rem) 2rem;
   border-top: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.site-footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.65rem 1.5rem;
+}
+
+.site-footer-brand {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+
+.site-footer p {
+  margin: 0;
   color: var(--ink-muted);
   font-size: 0.8rem;
-  text-align: center;
+  line-height: 1.45;
+  max-width: 40rem;
 }
 
 @media (max-width: 640px) {
@@ -1556,13 +1621,14 @@ a {
 }
 
 .science-thesis {
-  font-family: var(--font-sans);
-  font-size: clamp(1.05rem, 2.1vw, 1.28rem);
-  font-weight: 500;
+  font-family: var(--font-display);
+  font-size: clamp(1.12rem, 2.15vw, 1.35rem);
+  font-weight: 450;
+  font-style: italic;
   line-height: 1.45;
-  letter-spacing: -0.01em;
-  max-width: 36rem;
-  margin-bottom: 0.85rem;
+  letter-spacing: -0.015em;
+  max-width: 34rem;
+  margin-bottom: 0.95rem;
   color: var(--ink);
 }
 
@@ -1605,28 +1671,30 @@ a {
 .pillar-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin-top: 1.25rem;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
 }
 
 .pillar {
-  padding: 1.15rem 1.2rem 1.25rem;
-  border-top: 2px solid var(--accent);
-  background: linear-gradient(180deg, var(--surface), transparent);
+  padding: 0 0 0.25rem;
+  border-top: 1px solid var(--line);
+  padding-top: 1.15rem;
+  background: transparent;
 }
 
 .pillar h3 {
   font-family: var(--font-sans);
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin: 0 0 0.45rem;
+  font-size: 1.05rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  margin: 0.85rem 0 0.4rem;
 }
 
 .pillar p {
   margin: 0;
   color: var(--ink-muted);
   font-size: 0.9rem;
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 .contrast-split {
@@ -2740,10 +2808,10 @@ i.chem-swatch.chem-special {
 .home-stage {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-  gap: 1.5rem 2rem;
+  gap: 1.75rem 2.5rem;
   align-items: center;
-  margin: 0 0 2.75rem;
-  min-height: min(62vh, 34rem);
+  margin: 0.25rem 0 3.25rem;
+  min-height: min(64vh, 36rem);
   position: relative;
 }
 
@@ -2755,11 +2823,22 @@ i.chem-swatch.chem-special {
 
 .home-stage-copy h1 {
   font-family: var(--font-sans);
-  font-size: clamp(2.4rem, 6vw, 3.6rem);
+  font-size: clamp(2.75rem, 6.5vw, 4rem);
   font-weight: 700;
-  letter-spacing: -0.035em;
-  line-height: 1.02;
-  margin-bottom: 0.85rem;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+  margin-bottom: 1rem;
+  color: var(--ink);
+}
+
+.home-stage-copy .lede {
+  margin-bottom: 1.65rem;
+  font-size: 1rem;
+  max-width: 32rem;
+}
+
+.home-stage-copy .cta-row {
+  gap: 0.65rem;
 }
 
 .home-stage-visual {
@@ -2907,12 +2986,7 @@ i.chem-swatch.chem-special {
 
 .path-tile,
 .pillar {
-  transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
-}
-
-.path-tile:hover,
-.pillar:hover {
-  transform: translateY(-2px);
+  transition: border-color 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
 }
 
 @keyframes pfDraw {

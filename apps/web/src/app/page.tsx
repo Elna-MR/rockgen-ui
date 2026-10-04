@@ -9,11 +9,11 @@ export default function HomePage() {
           <p className="eyebrow">Neurodegeneration biology workspace</p>
           <h1>ProtScope</h1>
           <p className="science-thesis">
-            Learn and research disease proteins across ALS, Parkinson’s, Alzheimer’s, and related
-            biology, mechanisms before molecules.
+            Understand disease proteins and shared mechanisms across ALS, Parkinson’s, Alzheimer’s,
+            and related biology, before designing molecules.
           </p>
           <p className="lede">
-            Plain-language tracks for families and students. Citation-aware tools for researchers.
+            Clear learning paths for students and families. Evidence-aware tools for researchers.
             One disease, one decision at a time.
           </p>
           <div className="cta-row">
@@ -43,8 +43,8 @@ export default function HomePage() {
             </div>
             <h3>Mechanisms first</h3>
             <p>
-              Shared failure routes across genes, aggregation, cytoskeleton, transport, before any
-              molecule design.
+              Shared failure routes across genes: aggregation, cytoskeleton, and transport, ranked
+              before molecule design.
             </p>
           </article>
           <article className="pillar">
@@ -57,8 +57,8 @@ export default function HomePage() {
             </div>
             <h3>Evidence that travels</h3>
             <p>
-              Claims stay tied to evidence type and confidence: computation, cells, animals, human
-              genetics.
+              Claims stay tied to evidence type and confidence: computation, cells, animals, and
+              human genetics.
             </p>
           </article>
           <article className="pillar">
@@ -71,8 +71,8 @@ export default function HomePage() {
             </div>
             <h3>One decision at a time</h3>
             <p>
-              Progressive tools, overview, compare, map, Ask, so the next step stays clear and
-              trustworthy.
+              Progressive tools for overview, compare, map, and Ask, so the next step stays clear
+              and trustworthy.
             </p>
           </article>
         </div>
@@ -85,7 +85,7 @@ export default function HomePage() {
             <p className="eyebrow">Students &amp; families</p>
             <h2>Learning hub</h2>
             <p>
-              Disease tiles with plain language and student tracks, ALS, Parkinson’s, Alzheimer’s,
+              Disease tiles with plain language and student tracks for ALS, Parkinson’s, Alzheimer’s,
               and more.
             </p>
           </Link>

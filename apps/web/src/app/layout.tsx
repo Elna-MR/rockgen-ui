@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DM_Sans, IBM_Plex_Mono, Source_Serif_4 } from "next/font/google";
+import { IBM_Plex_Mono, Manrope, Newsreader } from "next/font/google";
 import Link from "next/link";
 import { SiteAtmosphere } from "@/components/SiteAtmosphere";
 import { SiteChatbot } from "@/components/SiteChatbot";
@@ -8,16 +8,17 @@ import "./globals.css";
 // Pages call the live API, never prerender against a missing build-time host.
 export const dynamic = "force-dynamic";
 
-const sans = DM_Sans({
+const sans = Manrope({
   subsets: ["latin"],
   variable: "--font-sans-face",
   display: "swap",
 });
 
-const display = Source_Serif_4({
+const display = Newsreader({
   subsets: ["latin"],
   variable: "--font-display-face",
   display: "swap",
+  style: ["normal", "italic"],
 });
 
 const mono = IBM_Plex_Mono({
@@ -47,7 +48,7 @@ export default function RootLayout({
             <Link href="/" className="brand">
               ProtScope
             </Link>
-            <nav className="nav">
+            <nav className="nav" aria-label="Primary">
               <Link href="/biology-first">Biology</Link>
               <Link href="/learn">Learn</Link>
               <Link href="/proteins/explore">Structures</Link>
@@ -56,7 +57,13 @@ export default function RootLayout({
           </header>
           {children}
           <footer className="site-footer">
-            Educational, not medical advice. Care decisions belong with your clinical team.
+            <div className="site-footer-inner">
+              <span className="site-footer-brand">ProtScope</span>
+              <p>
+                Educational resource for neurodegeneration biology. Not medical advice. Care
+                decisions belong with your clinical team.
+              </p>
+            </div>
           </footer>
         </div>
         <SiteChatbot />
