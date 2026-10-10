@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" role="img" aria-hidden="true">
+  <!-- ProtScope mark: compact mineral ribbon fold (matches site hero) -->
+  <rect x="2" y="2" width="44" height="44" rx="11" fill="#121418" stroke="#c4b8a5" stroke-opacity="0.5" stroke-width="1.4"/>
+
+  <!-- Soft aura -->
+  <circle cx="24" cy="24" r="15" fill="#6f8798" fill-opacity="0.1"/>
+
+  <!-- Outer helix ribbon (bronze) -->
+  <path
+    d="M15 31
+       C14 24, 17.5 17, 23.5 16
+       C29.5 15, 33.5 19.5 31.5 24.5
+       C29.5 29.5 34 33.5 38 30.5
+       C41.5 28, 41 22, 36.5 18.5
+       C32 15, 25.5 15, 21 18.5
+       C16.5 22, 15 27.5 17 32
+       C19 36.5 24.5 37.5 29 34.5"
+    stroke="#e8e0d4"
+    stroke-width="2.35"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    opacity="0.95"
+  />
+
+  <!-- Inner coil (slate) -->
+  <path
+    d="M20.5 28
+       C20 24.5, 22.5 21.5, 26 22.5
+       C29.5 23.5, 30.5 27, 28 29.5
+       C25.5 32, 28.5 34.5 32 32.5"
+    stroke="#8a9eae"
+    stroke-width="1.9"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <!-- Beta sheet arrows -->
+  <path d="M22.5 24.5 L28 21.8 L26.5 26.8 Z" fill="#6f8798" opacity="0.85"/>
+  <path d="M25 28.5 L30.5 25.8 L29 30.8 Z" fill="#8a9eae" opacity="0.55"/>
+
+  <!-- Residue nodes -->
+  <circle cx="23.5" cy="16" r="1.45" fill="#f0ebe3"/>
+  <circle cx="36.5" cy="18.5" r="1.25" fill="#c4b8a5"/>
+  <circle cx="29" cy="34.5" r="1.3" fill="#9eb0be"/>
+</svg>

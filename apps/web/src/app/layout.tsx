@@ -31,7 +31,7 @@ const mono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   title: "ProtScope: neurodegeneration research",
   description:
-    "Disease proteins and shared mechanisms across neurodegeneration, before designing molecules.",
+    "Educational research workspace for neurodegenerative disease: map disease proteins, pathogenic variants, and shared pathological pathways before proposing therapeutics.",
 };
 
 export default function RootLayout({
@@ -46,7 +46,17 @@ export default function RootLayout({
         <div className="shell">
           <header className="topbar">
             <Link href="/" className="brand">
-              ProtScope
+              <img
+                className="brand-mark"
+                src="/brand/protscope-mark.jpg?v=4"
+                alt=""
+                width={32}
+                height={32}
+              />
+              <span className="brand-name">
+                <span className="brand-name-prot">Prot</span>
+                <span className="brand-name-scope">Scope</span>
+              </span>
             </Link>
             <nav className="nav" aria-label="Primary">
               <Link href="/biology-first">Biology</Link>
@@ -58,7 +68,19 @@ export default function RootLayout({
           {children}
           <footer className="site-footer">
             <div className="site-footer-inner">
-              <span className="site-footer-brand">ProtScope</span>
+              <span className="site-footer-brand">
+                <img
+                  className="brand-mark brand-mark-sm"
+                  src="/brand/protscope-mark.jpg?v=4"
+                  alt=""
+                  width={20}
+                  height={20}
+                />
+                <span className="brand-name">
+                  <span className="brand-name-prot">Prot</span>
+                  <span className="brand-name-scope">Scope</span>
+                </span>
+              </span>
               <p>Educational only. Not medical advice.</p>
             </div>
           </footer>

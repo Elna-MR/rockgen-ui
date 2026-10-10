@@ -38,35 +38,39 @@ export const RESEARCH_DISEASES: ResearchDisease[] = [
     shortName: "ALS",
     tagline: "Motor neurons · cytoskeleton · aggregation",
     synopsis:
-      "Full mechanism-first workspace: prioritize shared routes across PFN1 and TUBA4A, map biology axes, compare pathways, and review mutation-biomarker evidence.",
+      "Deepest mechanism-first workspace for ALS: prioritize shared pathological routes across PFN1 and TUBA4A, map biology axes, compare pathways, and review mutation and biomarker evidence before therapeutic ideation.",
     category: "Motor neuron",
-    accent: "#2f6f7a",
+    accent: "#c4b8a5",
     status: "ready",
     focus: ["PFN1", "TUBA4A", "Mechanism prioritization"],
     proteins: [
       {
         symbol: "PFN1",
         name: "Profilin-1",
-        role: "Actin dynamics; ALS-linked alleles such as G118V",
+        role: "Actin-binding regulator; ALS-linked missense variants (e.g. G118V) associate with cytoskeletal stress and aggregation propensity.",
         href: "/proteins/P07737",
       },
       {
         symbol: "TUBA4A",
         name: "Tubulin alpha-4A",
-        role: "Microtubules and axonal transport context",
+        role: "α-Tubulin isoform; rare ALS variants can impair microtubule dynamics and axonal transport.",
         href: "/proteins/P68366",
       },
       {
         symbol: "SOD1",
-        name: "Superoxide dismutase",
-        role: "Classic familial ALS protein case study",
+        name: "Cu/Zn superoxide dismutase",
+        role: "Classic familial ALS proteinopathy case: toxic gain-of-function misfolding and aggregation.",
       },
     ],
-    mechanisms: ["Protein aggregation", "Cytoskeleton stress", "Axonal transport"],
+    mechanisms: [
+      "Protein misfolding and aggregation",
+      "Cytoskeletal and axonal transport stress",
+      "Proteostasis and clearance failure",
+    ],
     researchNotes: [
-      "Deep tools live here today, mechanisms, map, gene network, compare, and evidence.",
-      "Program focus proteins are PFN1 and TUBA4A; other panel proteins stay secondary.",
-      "Structure explorer and Ask work across the catalog from this workspace.",
+      "Ready tools today: mechanisms, disease map, gene network, pathway compare, and evidence.",
+      "Primary program proteins are PFN1 and TUBA4A; other panel proteins remain secondary context.",
+      "Structure explorer and Ask are available across the catalog from this workspace.",
     ],
     tools: [
       {
@@ -120,33 +124,37 @@ export const RESEARCH_DISEASES: ResearchDisease[] = [
     shortName: "Parkinson’s",
     tagline: "Dopamine neurons · α-synuclein · mitochondria",
     synopsis:
-      "Growing research workspace for α-synuclein, LRRK2, and mitochondrial quality-control hypotheses. Shared labs (structures, Ask) are available while disease-specific maps expand.",
+      "Growing research workspace for synucleinopathy, LRRK2 signalling, and mitochondrial quality-control pathways. Shared structure and review labs are available while Parkinson-specific maps expand.",
     category: "Movement",
-    accent: "#6a8f7a",
+    accent: "#6f8798",
     status: "growing",
     focus: ["SNCA", "LRRK2", "Mitochondria"],
     proteins: [
       {
         symbol: "SNCA",
         name: "α-Synuclein",
-        role: "Presynaptic protein; Lewy-body / aggregation focus",
+        role: "Presynaptic protein; pathological aggregates form Lewy bodies/neurites; gene dosage and missense variants raise risk.",
       },
       {
         symbol: "LRRK2",
         name: "Leucine-rich repeat kinase 2",
-        role: "Kinase signalling and trafficking hypotheses",
+        role: "Kinase/GTPase; pathogenic activating variants link trafficking and autophagy pathways to familial Parkinson’s.",
       },
       {
         symbol: "PRKN",
         name: "Parkin",
-        role: "Mitophagy and quality-control pathways",
+        role: "E3 ligase for mitophagy; loss-of-function variants cause early-onset recessive Parkinson’s.",
       },
     ],
-    mechanisms: ["α-Synuclein aggregation", "Mitochondrial dysfunction", "Impaired autophagy"],
+    mechanisms: [
+      "α-Synuclein aggregation (synucleinopathy)",
+      "Mitochondrial dysfunction and mitophagy failure",
+      "Impaired autophagy–lysosomal clearance",
+    ],
     researchNotes: [
       "Disease-specific map and mechanism prioritization are still expanding.",
       "Use structure search and Ask with Parkinson’s protein names today.",
-      "Compare mechanism language with the ALS ready workspace without equating the diseases.",
+      "Compare pathway language with the ALS workspace without equating the diseases.",
     ],
     tools: [
       {
@@ -197,33 +205,37 @@ export const RESEARCH_DISEASES: ResearchDisease[] = [
     shortName: "Alzheimer’s",
     tagline: "Memory circuits · amyloid · tau",
     synopsis:
-      "Growing research framing for APP/Aβ, tau, and network failure. Mechanism-first tools expand here while shared structure and review labs stay available.",
+      "Growing research framing for amyloid-β, tau tangle pathology, and synaptic/network failure. Shared structure and evidence labs stay available while Alzheimer-specific maps expand.",
     category: "Dementia",
-    accent: "#5c7a8f",
+    accent: "#8a7a64",
     status: "growing",
     focus: ["APP / Aβ", "MAPT / tau", "Synapse loss"],
     proteins: [
       {
         symbol: "APP",
         name: "Amyloid precursor protein",
-        role: "Source of amyloid-β peptides discussed in plaques",
+        role: "Processed to amyloid-β peptides; familial mutations inform amyloid cascade models and plaque pathology.",
       },
       {
         symbol: "MAPT",
-        name: "Tau (microtubule-associated)",
-        role: "Neurofibrillary tangle biology and axonal integrity",
+        name: "Tau (microtubule-associated protein tau)",
+        role: "Hyperphosphorylated misfolded tau forms neurofibrillary tangles and tracks clinical progression.",
       },
       {
         symbol: "APOE",
         name: "Apolipoprotein E",
-        role: "Major genetic risk context for late-onset disease",
+        role: "APOE ε4 is the strongest common genetic risk factor for late-onset disease; modulates Aβ clearance and lipid biology.",
       },
     ],
-    mechanisms: ["Amyloid cascade hypotheses", "Tau pathology", "Synapse and network failure"],
+    mechanisms: [
+      "Amyloid-β accumulation and plaque pathology",
+      "Tau hyperphosphorylation and tangle pathology",
+      "Synaptic and network failure",
+    ],
     researchNotes: [
-      "Plaques and tangles are landmarks, causation is still debated in layers.",
+      "Plaques and tangles are neuropathological landmarks; causal order remains actively studied.",
       "Use shared evidence literacy and structure search while AD-specific maps grow.",
-      "Do not treat research tiles as clinical guidance.",
+      "Research tiles are not clinical guidance or personal risk tools.",
     ],
     tools: [
       {
@@ -274,26 +286,26 @@ export const RESEARCH_DISEASES: ResearchDisease[] = [
     shortName: "Huntington’s",
     tagline: "HTT · polyglutamine · neuronal vulnerability",
     synopsis:
-      "Clear genotype → protein → circuit case for research framing. PolyQ expansion length is a teaching and modelling axis while HD-specific graphs grow.",
+      "Clear genotype → toxic protein → selective vulnerability case. Pathogenic CAG/polyglutamine expansion in HTT is the modelling axis while Huntington-specific graphs grow.",
     category: "Genetic ND",
-    accent: "#7a6f5c",
+    accent: "#c4b8a5",
     status: "growing",
     focus: ["HTT", "PolyQ", "Striatum"],
     proteins: [
       {
         symbol: "HTT",
         name: "Huntingtin",
-        role: "Polyglutamine expansion length correlates with onset patterns",
+        role: "Pathogenic polyglutamine expansion generates toxic gain-of-function species; longer expansions generally associate with earlier onset.",
       },
     ],
     mechanisms: [
-      "Toxic gain-of-function protein species",
-      "Transcriptional dysregulation",
-      "Selective neuronal vulnerability",
+      "Toxic gain-of-function polyglutamine protein species",
+      "Transcriptional and proteostasis dysregulation",
+      "Selective striatal and cortical vulnerability",
     ],
     researchNotes: [
-      "Genetics is unusually central compared with most ALS cases, still mechanism-first.",
-      "Knowing HTT is not the same as having a therapy design.",
+      "Genetics is unusually central compared with most ALS cases; still mechanism-first.",
+      "Knowing HTT biology is not the same as having a therapy design.",
       "Shared labs (structure, Ask) are the active tools until HD maps land.",
     ],
     tools: [
@@ -330,32 +342,36 @@ export const RESEARCH_DISEASES: ResearchDisease[] = [
     shortName: "FTD",
     tagline: "Behaviour / language · TDP-43 · tau",
     synopsis:
-      "Spectrum workspace for behaviour and language network biology, TDP-43, tau, and ALS-FTD genetics. Deep tools expand while shared labs stay open.",
+      "Spectrum workspace for frontotemporal neurodegeneration: TDP-43 and tau proteinopathies, plus ALS–FTD genetics such as C9orf72. Deep tools expand while shared labs stay open.",
     category: "Dementia",
-    accent: "#6b7c8a",
+    accent: "#9a958c",
     status: "growing",
     focus: ["TARDBP", "MAPT", "C9orf72"],
     proteins: [
       {
         symbol: "TARDBP",
         name: "TDP-43",
-        role: "RNA-binding protein; overlap with ALS pathology themes",
+        role: "Nuclear RNA-binding protein; cytoplasmic aggregation and nuclear clearance define a major FTD/ALS proteinopathy.",
       },
       {
         symbol: "MAPT",
         name: "Tau",
-        role: "Tauopathic FTD subtypes",
+        role: "Defines tauopathic FTD subtypes (FTLD-tau) via mutations and tau inclusions.",
       },
       {
         symbol: "C9orf72",
         name: "C9orf72",
-        role: "Hexanucleotide expansion linking ALS-FTD spectrum",
+        role: "GGGGCC repeat expansion commonly links ALS and FTD through RNA, DPR protein, and haploinsufficiency models.",
       },
     ],
-    mechanisms: ["TDP-43 proteinopathy", "Tau pathology", "ALS-FTD spectrum genetics"],
+    mechanisms: [
+      "TDP-43 proteinopathy",
+      "Tau pathology (FTLD-tau)",
+      "ALS–FTD spectrum genetics (including C9orf72)",
+    ],
     researchNotes: [
-      "FTD is not one disease, subtypes matter for mechanism stories.",
-      "ALS and FTD can share genes and protein pathology without being identical.",
+      "FTD is not one disease; clinical and molecular subtypes change the mechanism story.",
+      "ALS and FTD can share genes and protein pathology without being clinically identical.",
       "Use the ALS ready workspace as a contrast for spectrum thinking.",
     ],
     tools: [

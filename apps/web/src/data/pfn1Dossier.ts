@@ -24,7 +24,7 @@ export const PFN1_ANNOTATIONS = {
         [59, 74],
         [119, 125],
       ] as [number, number][],
-      color: "#2f6f7a",
+      color: "#6f8798",
     },
     {
       id: "pocket",
@@ -164,59 +164,67 @@ export type PathwayStep = {
 export const PFN1_PATHWAY: PathwayStep[] = [
   {
     id: "mutation",
-    label: "G118V mutation",
+    label: "G118V substitution",
     claimTopic: "structural_change",
     support: "experimental",
-    description: "ALS-linked amino-acid substitution in PFN1.",
+    description:
+      "Pathogenic missense variant replacing glycine with valine at residue 118 in profilin-1; linked to familial ALS.",
   },
   {
     id: "flexibility",
     label: "Reduced local flexibility",
     claimTopic: "structural_change",
     support: "computational",
-    description: "Molecular dynamics / biophysical inference near the substitution.",
+    description:
+      "Molecular-dynamics and biophysical models suggest altered backbone dynamics near the substitution site.",
   },
   {
     id: "instability",
-    label: "Structural instability",
+    label: "Local structural instability",
     claimTopic: "structural_change",
     support: "computational",
-    description: "Local instability inferred from computational and biophysical work.",
+    description:
+      "Computational and biophysical work infers reduced local stability that may favor non-native conformers.",
   },
   {
     id: "misfolding",
     label: "Misfolding",
     claimTopic: "misfolding",
     support: "experimental",
-    description: "Conformational / solubility changes reported in cellular studies.",
+    description:
+      "Cellular studies report conformational and solubility changes consistent with profilin misfolding.",
   },
   {
     id: "oligomerization",
     label: "Oligomerization",
     claimTopic: "aggregation",
     support: "hypothesis",
-    description: "Likely intermediate toward aggregates, sparsely indexed as a discrete claim.",
+    description:
+      "Proposed intermediate assemblies on the path to larger aggregates; sparsely indexed as a discrete claim.",
   },
   {
     id: "aggregation",
     label: "Aggregation",
     claimTopic: "aggregation",
     support: "experimental",
-    description: "Elevated aggregation propensity with multi-modality support.",
+    description:
+      "Elevated aggregation propensity supported across biochemical and cellular readouts.",
   },
   {
     id: "mn-stress",
     label: "Motor-neuron stress",
     claimTopic: "aggregation",
     support: "hypothesis",
-    description: "Cellular / organism context between aggregates and motor-neuron injury.",
+    description:
+      "Working model linking aggregated or dysfunctional profilin to cytoskeletal stress and motor-neuron injury.",
   },
   {
     id: "als",
-    label: "ALS pathology",
+    label: "ALS association",
     claimTopic: "aggregation",
     support: "experimental",
-    description: "Human genetic association of PFN1 variants with familial ALS (ClinVar / literature).",
+    description:
+      "Human genetic association of PFN1 variants with familial ALS (literature and ClinVar-indexed reports).",
   },
 ];
 

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { ProteinField } from "@/components/ProteinField";
+import { DiseaseFoldThumb } from "@/components/DiseaseFoldThumb";
 import {
   RESEARCH_DISEASES,
   searchResearchDiseases,
@@ -16,9 +16,6 @@ function DiseaseTile({ d }: { d: ResearchDisease }) {
       className="learn-tile"
       style={{ ["--tile-accent" as string]: d.accent }}
     >
-      <div className="learn-tile-visual" aria-hidden="true">
-        <ProteinField variant="panel" />
-      </div>
       <div className="learn-tile-body">
         <div className="learn-tile-top">
           <span className="learn-tile-cat">{d.category}</span>
@@ -26,7 +23,10 @@ function DiseaseTile({ d }: { d: ResearchDisease }) {
             {d.status === "ready" ? "Full workspace" : "Growing"}
           </span>
         </div>
-        <h2>{d.shortName}</h2>
+        <div className="learn-tile-heading">
+          <h2>{d.shortName}</h2>
+          <DiseaseFoldThumb slug={d.slug} />
+        </div>
         <p className="learn-tile-tag">{d.tagline}</p>
         <p className="learn-tile-summary">{d.synopsis}</p>
         <ul className="learn-tile-proteins">

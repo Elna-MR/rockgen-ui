@@ -13,9 +13,13 @@ export default function BiologyFirstPage() {
         <div className="approach-hero-copy">
           <h1>Biology</h1>
           <p className="science-thesis">
-            See how disease proteins fail, and which shared routes matter, before molecules.
+            Characterize disease proteins, pathogenic variants, and shared cellular failure
+            pathways before proposing therapeutics.
           </p>
-          <p className="lede">Educational workspace for neurodegeneration biology. Not medical advice.</p>
+          <p className="lede">
+            ProtScope treats neurodegenerative disease as a map of proteins and pathological
+            processes, not a shortcut to drug ideas. Educational only; not medical advice.
+          </p>
         </div>
         <div className="approach-hero-visual" aria-hidden="true">
           <ProteinField variant="panel" />
@@ -25,16 +29,17 @@ export default function BiologyFirstPage() {
       <section className="science-section">
         <h2>What is a disease mechanism?</h2>
         <p className="article-body">
-          A mechanism is a shared biological failure route, for example protein aggregation,
-          cytoskeleton stress, mitochondrial dysfunction, or axonal transport problems. Different
-          genes and diseases can land on overlapping routes. Mapping those routes helps decide what
-          is worth studying next.
+          In this workspace, a mechanism is a shared pathological process that can injure
+          vulnerable neurons, for example protein misfolding and aggregation, cytoskeletal
+          stress, mitochondrial dysfunction, or impaired axonal transport. Different genes and
+          diseases can converge on overlapping routes. Mapping those routes helps decide what is
+          worth studying next.
         </p>
         <p className="article-body">
-          Vulnerable neurons (motor, dopaminergic, cortical, striatal) keep many jobs in balance:
-          folding proteins, clearing junk, shipping cargo, and keeping scaffolding stable. When those
-          jobs fail, researchers ask which failure is primary and which is secondary, across diseases,
-          not only one program.
+          Motor, dopaminergic, cortical, and striatal neurons must keep proteostasis, organelle
+          quality control, cargo transport, and cytoskeletal integrity in balance. When those
+          systems fail, researchers ask which lesion is primary versus secondary, and whether the
+          same pathway appears across diseases rather than in one gene program alone.
         </p>
       </section>
 

@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { ProteinField } from "@/components/ProteinField";
 import { ResearchHubClient } from "@/components/ResearchHubClient";
 
 export default function ResearchHubPage() {
@@ -8,17 +7,15 @@ export default function ResearchHubPage() {
       <p className="eyebrow">
         <Link href="/">Home</Link> · Research
       </p>
-      <header className="hub-hero hub-hero-visual">
+      <header className="hub-hero">
         <div>
           <h1>Research hub</h1>
           <p className="lede">
-            Disease workspaces for ALS, Parkinson’s, Alzheimer’s, Huntington’s, and FTD , 
-            mechanisms, proteins, structures, and evidence tools. Open one disease at a time.
+            Disease workspaces for ALS, Parkinson&apos;s, Alzheimer&apos;s, Huntington&apos;s, and FTD.
+            Open one disease at a time to inspect proteins, pathogenic variants, shared
+            pathological pathways, structures, and evidence tools, without jumping to drug design.
           </p>
           <p className="meta-pill">Mechanism-first · citation-aware · not medical advice</p>
-        </div>
-        <div className="hub-hero-motif" aria-hidden="true">
-          <ProteinField variant="panel" />
         </div>
       </header>
 

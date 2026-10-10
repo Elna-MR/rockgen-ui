@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { LearnHubClient } from "@/components/LearnHubClient";
-import { ProteinField } from "@/components/ProteinField";
 
 export default function LearnHubPage() {
   return (
@@ -8,17 +7,16 @@ export default function LearnHubPage() {
       <p className="eyebrow">
         <Link href="/">Home</Link> · Learn
       </p>
-      <header className="hub-hero hub-hero-visual">
+      <header className="hub-hero">
         <div>
           <h1>Learning hub</h1>
           <p className="lede">
-            Search and open disease tracks for students, ALS, Parkinson’s, Alzheimer’s, and related
-            neurodegenerative biology. Each tile links proteins, mechanisms, and practice tools.
+            Open a disease track to learn how disease-associated proteins, pathogenic variants, and
+            shared pathological pathways connect in ALS, Parkinson&apos;s, Alzheimer&apos;s, and
+            related neurodegenerative conditions. Each tile links proteins, mechanisms, and practice
+            tools without claiming clinical guidance.
           </p>
           <p className="meta-pill">Mechanism-first · not medical advice · start with one disease</p>
-        </div>
-        <div className="hub-hero-motif" aria-hidden="true">
-          <ProteinField variant="panel" />
         </div>
       </header>
 

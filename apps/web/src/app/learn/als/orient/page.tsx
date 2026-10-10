@@ -10,33 +10,35 @@ export default function LearnAlsOrientPage() {
       <header className="hub-hero">
         <h1>ALS in five ideas</h1>
         <p className="lede">
-          Amyotrophic lateral sclerosis damages motor neurons. Many genes can contribute; they often
-          share overlapping biology even when the proteins look different.
+          Amyotrophic lateral sclerosis is a progressive disease of upper and lower motor neurons.
+          Many genes can contribute; their products often converge on overlapping pathological
+          pathways even when the proteins have different normal jobs.
         </p>
-        <p className="meta-pill">~5 min · Outcome: tell the disease story without jargon</p>
+        <p className="meta-pill">~5 min · Outcome: tell the disease story in accurate, plain terms</p>
       </header>
 
       <ol className="learn-list">
         <li>
-          <strong>Genes encode proteins.</strong> In this program you will meet{" "}
-          <Link href="/proteins/P07737">PFN1</Link> (actin / cell framework) and{" "}
-          <Link href="/proteins/P68366">TUBA4A</Link> (microtubules).
+          <strong>Genes encode proteins.</strong> In this track you will meet{" "}
+          <Link href="/proteins/P07737">PFN1</Link> (profilin-1, an actin regulator) and{" "}
+          <Link href="/proteins/P68366">TUBA4A</Link> (an α-tubulin isoform that builds microtubules).
         </li>
         <li>
-          <strong>Mutations change shape and behavior.</strong> Some alleles raise aggregation or
-          stress the cytoskeleton; comparison pages show which change looks most disruptive.
+          <strong>Pathogenic variants can change fold and function.</strong> Some alleles increase
+          aggregation propensity or stress the cytoskeleton; comparison pages highlight which
+          substitutions look most disruptive in current models.
         </li>
         <li>
-          <strong>Mechanisms are the shared language.</strong> Aggregation, cytoskeleton failure, and
-          axonal transport can appear across different proteins.
+          <strong>Mechanisms are the shared language.</strong> Protein misfolding/aggregation,
+          cytoskeletal failure, and impaired axonal transport can appear across different proteins.
         </li>
         <li>
-          <strong>Evidence has types.</strong> Computation, cell assays, animals, and human genetics
-          are not equal, ProtScope labels the mix.
+          <strong>Evidence has types.</strong> Computation, cell assays, animal models, and human
+          genetics are not interchangeable; ProtScope labels the mix.
         </li>
         <li>
-          <strong>Prioritize before designing drugs.</strong> Rank mechanisms to investigate; molecule
-          generation comes later.
+          <strong>Prioritize before designing drugs.</strong> Rank pathological pathways to
+          investigate; molecule design comes later.
         </li>
       </ol>
 
