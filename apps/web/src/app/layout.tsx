@@ -48,7 +48,7 @@ export default function RootLayout({
             <Link href="/" className="brand">
               <img
                 className="brand-mark"
-                src="/brand/protscope-mark.jpg?v=4"
+                src="/brand/protscope-mark.svg?v=5"
                 alt=""
                 width={32}
                 height={32}
@@ -63,6 +63,9 @@ export default function RootLayout({
               <Link href="/learn">Learn</Link>
               <Link href="/proteins/explore">Structures</Link>
               <Link href="/diseases">Research</Link>
+              <Link href="/agentics" title="Lumen — ProtScope agents">
+                Lumen
+              </Link>
             </nav>
           </header>
           {children}
@@ -71,7 +74,7 @@ export default function RootLayout({
               <span className="site-footer-brand">
                 <img
                   className="brand-mark brand-mark-sm"
-                  src="/brand/protscope-mark.jpg?v=4"
+                  src="/brand/protscope-mark.svg?v=5"
                   alt=""
                   width={20}
                   height={20}
@@ -81,7 +84,10 @@ export default function RootLayout({
                   <span className="brand-name-scope">Scope</span>
                 </span>
               </span>
-              <p>Educational only. Not medical advice.</p>
+              <p>
+                Educational only. Not medical advice.{" "}
+                <Link href="/agentics">Lumen</Link>
+              </p>
             </div>
           </footer>
         </div>

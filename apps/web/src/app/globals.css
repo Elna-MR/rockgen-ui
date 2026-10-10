@@ -102,11 +102,11 @@ a {
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 0.65rem;
+  gap: 0.7rem;
   font-family: var(--font-sans);
-  font-size: 1.05rem;
+  font-size: 1.12rem;
   font-weight: 650;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.04em;
   text-transform: none;
   color: #f4f0ea;
   outline: none;
@@ -129,35 +129,48 @@ a {
   line-height: 1;
 }
 
-.brand-name-prot {
-  font-weight: 700;
+.brand-name-prot,
+.brand-name-scope {
+  font-family: var(--font-sans);
+  font-style: normal;
   letter-spacing: -0.04em;
 }
 
+.brand-name-prot {
+  font-weight: 700;
+  color: #f4f0ea;
+}
+
 .brand-name-scope {
-  font-weight: 500;
-  letter-spacing: -0.03em;
-  color: #c4b8a5;
+  font-weight: 700;
+  color: #d2c4b0;
+}
+
+.brand:hover .brand-name-prot {
+  color: #ffffff;
 }
 
 .brand:hover .brand-name-scope {
-  color: #e4ddd2;
+  color: #e8e2d8;
 }
 
 .brand-mark {
-  width: 2rem;
-  height: 2rem;
+  width: 2.15rem;
+  height: 2.15rem;
   flex: 0 0 auto;
   display: block;
-  border-radius: 8px;
-  object-fit: cover;
-  box-shadow: 0 0 0 1px rgba(196, 184, 165, 0.28);
+  border-radius: 10px;
+  object-fit: contain;
+  box-shadow:
+    0 0 0 1px rgba(196, 184, 165, 0.35),
+    0 6px 16px rgba(8, 9, 11, 0.35);
 }
 
 .brand-mark-sm {
-  width: 1.25rem;
-  height: 1.25rem;
-  border-radius: 5px;
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 6px;
+  box-shadow: 0 0 0 1px rgba(196, 184, 165, 0.28);
 }
 
 .nav {
@@ -3114,6 +3127,14 @@ body:has(.learn-hub-page) .atm-protein-bg {
   color: #ffffff;
 }
 
+.home-hero-copy .brand-name-prot,
+.home-hero-copy .brand-name-scope {
+  font-family: var(--font-sans);
+  font-style: normal;
+  font-weight: 750;
+  letter-spacing: -0.05em;
+}
+
 .home-hero-copy .science-thesis {
   font-family: var(--font-display);
   font-style: italic;
@@ -3655,9 +3676,10 @@ body:has(.learn-hub-page) .atm-protein-bg {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
-  filter: saturate(0.92) contrast(1.08) brightness(1.12);
+  padding: 0.12rem;
+  filter: saturate(1.05) contrast(1.12) brightness(1.15);
 }
 
 .disease-fold-label {
@@ -3726,11 +3748,12 @@ body:has(.learn-hub-page) .atm-protein-bg {
 .learn-tile-proteins li {
   font-family: var(--font-mono);
   font-size: 0.72rem;
-  padding: 0.18rem 0.4rem;
-  border: 1px solid var(--line);
+  font-weight: 500;
+  padding: 0.2rem 0.45rem;
+  border: 1px solid rgba(210, 196, 176, 0.55);
   border-radius: var(--radius);
-  color: var(--ink);
-  background: rgba(255, 255, 255, 0.7);
+  color: #1a1d22;
+  background: #e8e2d8;
 }
 
 .learn-tile-meta {
@@ -4388,4 +4411,233 @@ body:has(.learn-hub-page) .atm-protein-bg {
   .site-chat-panel {
     max-height: min(78vh, 32rem);
   }
+}
+
+/* —— Agentics & Beta —— */
+.agentics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16.5rem, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.agentics-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1rem 1.05rem 1.15rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: linear-gradient(165deg, rgba(255, 248, 238, 0.04) 0%, var(--surface) 55%);
+}
+
+.agentics-card-soon {
+  opacity: 0.96;
+}
+
+.agentics-card h3 {
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0.15rem 0 0;
+}
+
+.agentics-card p {
+  margin: 0;
+  font-size: 0.86rem;
+  line-height: 1.45;
+  color: var(--ink-muted);
+  flex: 1;
+}
+
+.agentics-card-top {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.agentics-chip {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.45rem;
+  border-radius: var(--radius);
+  border: 1px solid rgba(232, 226, 216, 0.35);
+  color: #e8e2d8;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.agentics-chip-live {
+  border-color: rgba(210, 196, 176, 0.65);
+  color: #1a1d22;
+  background: #e8e2d8;
+}
+
+.agentics-chip-pro {
+  border-color: rgba(196, 154, 108, 0.7);
+  color: #1a1d22;
+  background: #c49a6c;
+}
+
+.agentics-chip-soon {
+  border-color: rgba(154, 149, 140, 0.45);
+  color: #cfc8bc;
+  background: rgba(154, 149, 140, 0.12);
+}
+
+.agentics-card-link {
+  margin-top: 0.55rem;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--accent-ink);
+  text-decoration: none;
+}
+
+.agentics-card-link:hover {
+  color: #f2ebe1;
+  text-decoration: underline;
+}
+
+.agentics-grounding .article-body {
+  max-width: 42rem;
+}
+
+.beta-table-wrap {
+  overflow-x: auto;
+  margin-top: 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.beta-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+.beta-table th,
+.beta-table td {
+  padding: 0.7rem 0.85rem;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+.beta-table thead th {
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.beta-table tbody th {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.beta-table tbody td {
+  color: var(--ink-muted);
+}
+
+.beta-table tbody tr:last-child th,
+.beta-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.beta-waitlist-section {
+  margin-top: 0.5rem;
+}
+
+.beta-waitlist-form,
+.beta-waitlist-done {
+  max-width: 32rem;
+  padding: 1.25rem 1.35rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: linear-gradient(165deg, rgba(196, 154, 108, 0.08) 0%, var(--surface) 55%);
+}
+
+.beta-waitlist-form h3,
+.beta-waitlist-done h3 {
+  font-family: var(--font-sans);
+  font-size: 1.25rem;
+  margin: 0.2rem 0 0.45rem;
+}
+
+.beta-waitlist-form > p,
+.beta-waitlist-done > p {
+  margin: 0 0 0.85rem;
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+  line-height: 1.45;
+}
+
+.beta-waitlist-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  align-items: center;
+}
+
+.beta-waitlist-row .ask-input {
+  flex: 1 1 14rem;
+  margin: 0;
+  min-width: 0;
+}
+
+.beta-legal {
+  margin-top: 0.25rem;
+}
+
+.home-agentics-cta {
+  margin-top: 0.5rem;
+}
+
+.agent-character-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.65rem;
+}
+
+.lumen-title {
+  font-family: var(--font-sans);
+  letter-spacing: -0.04em;
+}
+
+.lumen-tagline {
+  margin: -0.35rem 0 0.85rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+}
+
+.agentics-page .lumen-lede {
+  max-width: 28rem;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.agentics-companion-focus {
+  margin: 0 !important;
+  font-size: 0.78rem !important;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent-ink) !important;
+}
+
+.site-footer a {
+  color: var(--accent-ink);
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  text-decoration: underline;
 }

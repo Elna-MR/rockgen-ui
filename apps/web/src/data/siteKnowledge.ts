@@ -77,6 +77,22 @@ function buildCorpus(): KnowledgeChunk[] {
       ["ask", "review", "evidence", "pfn1", "g118v", "confidence"],
     ),
     chunk(
+      "site-agentics",
+      "Lumen — ProtScope agents",
+      "/agentics",
+      "Site",
+      "Lumen is ProtScope’s fancy name for its agent layer: ProtScope agents you communicate with for evidence-grounded neurodegeneration research. Live today: Scientific Review (Ask), site guide chatbot, structure explorer, mutation inspector and peptide design UI embeds, and narrow ALS demos. Named Lumen agents in Beta: Meridian (disease and evidence), Helix (protein structure), Allele (variants), and Pulse (biomarkers). Chat not open yet. Paid unlocks may come later; no payment now. Educational only.",
+      ["lumen", "agentics", "agents", "meridian", "helix", "allele", "pulse", "beta", "chat", "protoscope", "waitlist"],
+    ),
+    chunk(
+      "site-beta",
+      "Protoscope Beta",
+      "/beta",
+      "Site",
+      "Protoscope Beta waitlist (linked from Agentics): core ProtScope Learn, Research browse, Structures, and fair-use Ask are free. Agentics is Beta. ProtScope companions (Meridian, Helix, Allele, Pulse) are for future communication. Paid unlocks may come later; no payment collected yet. Educational only; not medical advice.",
+      ["beta", "waitlist", "subscription", "protoscope", "pro", "free", "payment", "agentics"],
+    ),
+    chunk(
       "site-network",
       "Familial ALS gene network",
       "/diseases/als/network",

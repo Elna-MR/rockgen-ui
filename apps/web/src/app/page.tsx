@@ -11,7 +11,10 @@ export default function HomePage() {
         <div className="home-hero-scrim" aria-hidden="true" />
         <div className="home-hero-copy">
           <p className="eyebrow">Neurodegeneration research platform</p>
-          <h1>ProtScope</h1>
+          <h1 className="brand-title">
+            <span className="brand-name-prot">Prot</span>
+            <span className="brand-name-scope">Scope</span>
+          </h1>
           <p className="science-thesis">
             Map disease proteins, pathogenic variants, and shared cellular failure pathways
             before proposing therapeutics.
@@ -76,6 +79,22 @@ export default function HomePage() {
               Separate computational prediction, cell models, genetics, and clinical findings.
             </li>
           </ul>
+        </section>
+
+        <section className="section home-agentics-cta" aria-labelledby="home-agentics-heading">
+          <h2 id="home-agentics-heading">Lumen</h2>
+          <p className="hint">
+            ProtScope agents — evidence-grounded guides for scientific conversation. Live tools
+            today; named agents (Meridian, Helix, Allele, Pulse) open for chat in Beta.
+          </p>
+          <div className="cta-row">
+            <Link className="btn btn-primary" href="/agentics">
+              Meet Lumen
+            </Link>
+            <Link className="btn btn-ghost" href="/beta#waitlist">
+              Join Beta waitlist
+            </Link>
+          </div>
         </section>
       </div>
     </main>
