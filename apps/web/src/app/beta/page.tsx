@@ -12,13 +12,11 @@ export default function BetaPage() {
       <header className="hub-hero">
         <h1>Protoscope™ Beta</h1>
         <p className="science-thesis">
-          Core ProtScope is free in Beta. Agentics companions you can communicate with come next;
-          paid plans are a future option.
+          Core ProtScope is free in Beta. Lumen agents come next; paid plans coming soon.
         </p>
-        <p className="lede">
-          Use Learn, Research browse, Structures, and fair-use Scientific Review without an account
-          today. Named ProtScope companions (Meridian, Helix, Allele, Pulse) are Beta — chat not open
-          yet. No payment collected on this page. Educational only; not medical advice.
+        <p className="lede beta-lede">
+          Free today: Learn, Research, Structures, and fair-use Ask. Lumen agents (Meridian, Helix,
+          Allele, Pulse) are Beta; chat not open yet. No payment on this page. Educational only.
         </p>
         <div className="cta-row">
           <Link className="btn btn-primary" href="/learn">
@@ -53,7 +51,7 @@ export default function BetaPage() {
       </section>
 
       <section className="section" aria-labelledby="beta-pro-heading">
-        <h2 id="beta-pro-heading">Paid plans (future)</h2>
+        <h2 id="beta-pro-heading">Paid plans (coming soon)</h2>
         <p className="hint">
           Optional payment later for deeper Agentics and companion sessions. Not for sale yet —
           join the waitlist.
