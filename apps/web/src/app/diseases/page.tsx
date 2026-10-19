@@ -9,12 +9,12 @@ export default function ResearchHubPage() {
       </p>
       <header className="hub-hero">
         <div>
-          <h1>Research hub</h1>
-          <p className="lede">
-            Disease workspaces for ALS, Parkinson&apos;s, Alzheimer&apos;s, Huntington&apos;s, and FTD.
-            Open one disease at a time to inspect proteins, pathogenic variants, shared
-            pathological pathways, structures, and evidence tools, without jumping to drug design.
+          <p className="lede learninghub-desc">
+            Learninghub™ allows you to explore proteins, genetic variants, and shared biological
+            pathways to understand the proteotoxicities in conditions like ALS, Parkinson&apos;s,
+            Alzheimer&apos;s and other diseases.
           </p>
+          <h1>What protein to ProtScope? Enter here:</h1>
           <p className="meta-pill">Mechanism-first · citation-aware · not medical advice</p>
         </div>
       </header>
@@ -88,7 +88,7 @@ export default function ResearchHubPage() {
             <span>See the disease map before designing molecules</span>
           </Link>
           <Link href="/learn" className="hub-link">
-            <strong>Learning hub</strong>
+            <strong>Learninghub™</strong>
             <span>Student primers for the same diseases</span>
           </Link>
         </div>

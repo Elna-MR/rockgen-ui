@@ -29,9 +29,9 @@ const mono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ProtScope: neurodegeneration research",
+  title: "ProtScope™ — protein folding in health, misfolding in disease",
   description:
-    "Educational research workspace for neurodegenerative disease: map disease proteins, pathogenic variants, and shared pathological pathways before proposing therapeutics.",
+    "ProtScope™ is an AI-powered platform that analyzes proteins from 1-D amino acid sequence to 3-D and quaternary structures.",
 };
 
 export default function RootLayout({
@@ -48,14 +48,17 @@ export default function RootLayout({
             <Link href="/" className="brand">
               <img
                 className="brand-mark"
-                src="/brand/protscope-mark.svg?v=5"
+                src="/brand/protscope-mark.svg?v=6"
                 alt=""
-                width={32}
-                height={32}
+                width={34}
+                height={34}
               />
               <span className="brand-name">
                 <span className="brand-name-prot">Prot</span>
                 <span className="brand-name-scope">Scope</span>
+                <sup className="brand-tm" aria-label="trademark">
+                  ™
+                </sup>
               </span>
             </Link>
             <nav className="nav" aria-label="Primary">
@@ -74,7 +77,7 @@ export default function RootLayout({
               <span className="site-footer-brand">
                 <img
                   className="brand-mark brand-mark-sm"
-                  src="/brand/protscope-mark.svg?v=5"
+                  src="/brand/protscope-mark.svg?v=6"
                   alt=""
                   width={20}
                   height={20}
@@ -82,10 +85,14 @@ export default function RootLayout({
                 <span className="brand-name">
                   <span className="brand-name-prot">Prot</span>
                   <span className="brand-name-scope">Scope</span>
+                  <sup className="brand-tm" aria-label="trademark">
+                    ™
+                  </sup>
                 </span>
               </span>
-              <p>
-                Educational only. Not medical advice.{" "}
+              <p className="site-footer-disclaimer">
+                Educational only, not medical advice. ProtScope™ content does not diagnose or treat
+                disease.{" "}
                 <Link href="/agentics">Lumen</Link>
               </p>
             </div>

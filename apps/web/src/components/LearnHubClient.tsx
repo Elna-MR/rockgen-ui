@@ -47,7 +47,7 @@ export function LearnHubClient() {
     <div className="learn-hub">
       <div className="learn-search">
         <label className="explorer-search-label" htmlFor="learn-search">
-          Search the learning hub
+          What protein to ProtScope? Enter here:
         </label>
         <div className="explorer-search-row">
           <div className="explorer-input-wrap">
@@ -55,7 +55,7 @@ export function LearnHubClient() {
               id="learn-search"
               className="ask-input explorer-input"
               type="search"
-              placeholder="Try ALS, tau, α-synuclein, HTT, motor neuron…"
+              placeholder="Try PFN1, ALS, tau, α-synuclein, HTT…"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               autoComplete="off"

@@ -1,57 +1,58 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-hidden="true">
-  <!-- ProtScope: designed aperture + protein ribbon (high contrast at 32px) -->
+  <!-- ProtScope mark: soft teal scope + copper protein ribbon -->
   <defs>
-    <linearGradient id="ps-bg" x1="8" y1="4" x2="56" y2="60" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#22262e"/>
-      <stop offset="1" stop-color="#101218"/>
+    <linearGradient id="ps-bg" x1="6" y1="4" x2="58" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2a9aad"/>
+      <stop offset="1" stop-color="#1f7a8c"/>
     </linearGradient>
-    <linearGradient id="ps-ribbon" x1="20" y1="42" x2="46" y2="22" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#f4efe6"/>
-      <stop offset="0.5" stop-color="#d2c4b0"/>
-      <stop offset="1" stop-color="#8a9eae"/>
+    <linearGradient id="ps-ribbon" x1="18" y1="44" x2="48" y2="22" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f0c9a8"/>
+      <stop offset="0.55" stop-color="#e8a070"/>
+      <stop offset="1" stop-color="#ffffff"/>
     </linearGradient>
   </defs>
 
-  <rect x="1" y="1" width="62" height="62" rx="15" fill="url(#ps-bg)"/>
-  <rect x="2" y="2" width="60" height="60" rx="14" stroke="#e0d6c8" stroke-opacity="0.55" stroke-width="1.75"/>
+  <rect x="2" y="2" width="60" height="60" rx="18" fill="url(#ps-bg)"/>
+  <rect x="3.25" y="3.25" width="57.5" height="57.5" rx="16.5" stroke="#ffffff" stroke-opacity="0.28" stroke-width="1.5"/>
 
-  <!-- Scope aperture -->
-  <circle cx="32" cy="32" r="20" stroke="#e8e2d8" stroke-width="2.4"/>
-  <circle cx="32" cy="32" r="14.5" stroke="#8a9eae" stroke-width="1.6" stroke-opacity="0.85"/>
+  <!-- Soft inner lens -->
+  <circle cx="32" cy="32" r="18.5" fill="#ffffff" fill-opacity="0.14"/>
+  <circle cx="32" cy="32" r="18.5" stroke="#ffffff" stroke-width="2.2" stroke-opacity="0.92"/>
+  <circle cx="32" cy="32" r="12.8" stroke="#d7f0f4" stroke-width="1.5" stroke-opacity="0.75"/>
 
   <!-- Cardinal ticks -->
-  <g stroke="#f0ebe3" stroke-width="2" stroke-linecap="round">
-    <path d="M32 10.5v4.2"/>
-    <path d="M32 49.3v4.2"/>
-    <path d="M10.5 32h4.2"/>
-    <path d="M49.3 32h4.2"/>
+  <g stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-opacity="0.95">
+    <path d="M32 12.2v3.6"/>
+    <path d="M32 48.2v3.6"/>
+    <path d="M12.2 32h3.6"/>
+    <path d="M48.2 32h3.6"/>
   </g>
 
   <!-- Protein ribbon through lens -->
   <path
-    d="M21.5 42
-       C20.5 35 24.5 27.5 31.5 26.5
-       C38.5 25.5 42.5 31 40 36
-       C37.5 41 42.5 45.5 47 42"
+    d="M21 42
+       C20.2 35.2 24.4 27.8 31.6 26.6
+       C38.8 25.4 43 31.2 40.2 36.2
+       C37.6 40.8 42.6 45.4 47.2 41.8"
     stroke="url(#ps-ribbon)"
-    stroke-width="3.2"
+    stroke-width="3.4"
     stroke-linecap="round"
     stroke-linejoin="round"
   />
   <path
-    d="M25 37.5
-       C24.5 33.5 27.5 30.5 31.5 31.5
-       C35.5 32.5 36.5 36.5 33.5 39
-       C30.5 41.5 33.5 44.5 37.5 42.5"
-    stroke="#6f8798"
+    d="M25.2 37.2
+       C24.8 33.4 27.8 30.6 31.6 31.6
+       C35.4 32.6 36.4 36.4 33.4 38.8
+       C30.6 41.2 33.4 44 37.2 42.2"
+    stroke="#0f5c6a"
+    stroke-opacity="0.55"
     stroke-width="2"
     stroke-linecap="round"
     stroke-linejoin="round"
   />
 
-  <path d="M28.5 33.5 L35 30 L33 36 Z" fill="#9eb0be"/>
-
-  <circle cx="31.5" cy="26.5" r="2" fill="#f7f3ec"/>
-  <circle cx="47" cy="42" r="1.7" fill="#d2c4b0"/>
-  <circle cx="21.5" cy="42" r="1.5" fill="#8a9eae"/>
+  <path d="M28.4 33.4 L35.2 29.8 L33 36.2 Z" fill="#ffffff" fill-opacity="0.9"/>
+  <circle cx="31.6" cy="26.6" r="2.1" fill="#ffffff"/>
+  <circle cx="47.2" cy="41.8" r="1.8" fill="#f0c9a8"/>
+  <circle cx="21" cy="42" r="1.55" fill="#d7f0f4"/>
 </svg>

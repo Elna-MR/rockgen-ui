@@ -51,7 +51,7 @@ export function ResearchHubClient() {
     <div className="learn-hub">
       <div className="learn-search">
         <label className="explorer-search-label" htmlFor="research-search">
-          Search research workspaces
+          What protein to ProtScope? Enter here:
         </label>
         <div className="explorer-search-row">
           <div className="explorer-input-wrap">
@@ -59,7 +59,7 @@ export function ResearchHubClient() {
               id="research-search"
               className="ask-input explorer-input"
               type="search"
-              placeholder="Try ALS, Parkinson’s, tau, α-synuclein, HTT, TDP-43…"
+              placeholder="Try PFN1, ALS, Parkinson’s, tau, α-synuclein, HTT…"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               autoComplete="off"

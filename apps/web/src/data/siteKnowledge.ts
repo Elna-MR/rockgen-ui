@@ -49,7 +49,7 @@ function buildCorpus(): KnowledgeChunk[] {
       "ProtScope home",
       "/",
       "Site",
-      "ProtScope is an educational research platform for neurodegenerative disease. It explains what the site is: a workspace to map disease-associated proteins, pathogenic variants, and shared pathological pathways such as protein misfolding, cytoskeletal stress, axonal transport failure, and mitochondrial dysfunction across ALS, Parkinson’s, Alzheimer’s, Huntington’s, and FTD. Scientific value: prioritize the disease biology map and evidence types before proposing therapeutics. Learn tracks for students and families; research tools for scientists. Not medical advice.",
+      "ProtScope™ is an AI-powered platform that analyzes proteins from 1-D amino acid sequence to 3-D and quaternary structures. Theme: protein folding in health, protein misfolding in disease. Learninghub™ explores proteins, genetic variants, and shared biological pathways to understand proteotoxicities in ALS, Parkinson’s, Alzheimer’s, and related conditions. Learn and Research paths; Lumen agents. Educational only, not medical advice.",
       ["protscope", "rockgen", "home", "about", "what is", "platform", "value"],
     ),
     chunk(

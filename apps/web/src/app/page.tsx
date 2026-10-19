@@ -10,20 +10,21 @@ export default function HomePage() {
         </div>
         <div className="home-hero-scrim" aria-hidden="true" />
         <div className="home-hero-copy">
-          <p className="eyebrow">Neurodegeneration research platform</p>
+          <p className="eyebrow">Protein folding in health, Protein misfolding in disease.</p>
           <h1 className="brand-title">
             <span className="brand-name-prot">Prot</span>
             <span className="brand-name-scope">Scope</span>
+            <sup className="brand-tm" aria-label="trademark">
+              ™
+            </sup>
           </h1>
           <p className="science-thesis">
             Map disease proteins, pathogenic variants, and shared cellular failure pathways
             before proposing therapeutics.
           </p>
           <p className="home-intro">
-            ProtScope is an educational research workspace for neurodegenerative disease.
-            Connect genes and proteins to pathological mechanisms such as protein misfolding,
-            cytoskeletal stress, impaired axonal transport, and mitochondrial dysfunction,
-            then inspect structures and evidence in one place. Educational only, not medical advice.
+            ProtScope™ is an AI-powered platform that analyzes proteins from 1-D amino acid
+            sequence to 3-D and quaternary structures.
           </p>
           <div className="cta-row">
             <Link className="btn btn-primary" href="/learn">

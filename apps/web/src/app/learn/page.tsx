@@ -9,13 +9,12 @@ export default function LearnHubPage() {
       </p>
       <header className="hub-hero">
         <div>
-          <h1>Learning hub</h1>
-          <p className="lede">
-            Open a disease track to learn how disease-associated proteins, pathogenic variants, and
-            shared pathological pathways connect in ALS, Parkinson&apos;s, Alzheimer&apos;s, and
-            related neurodegenerative conditions. Each tile links proteins, mechanisms, and practice
-            tools without claiming clinical guidance.
+          <p className="lede learninghub-desc">
+            Learninghub™ allows you to explore proteins, genetic variants, and shared biological
+            pathways to understand the proteotoxicities in conditions like ALS, Parkinson&apos;s,
+            Alzheimer&apos;s and other diseases.
           </p>
+          <h1>What protein to ProtScope? Enter here:</h1>
           <p className="meta-pill">Mechanism-first · not medical advice · start with one disease</p>
         </div>
       </header>
