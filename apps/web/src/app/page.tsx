@@ -85,8 +85,8 @@ export default function HomePage() {
         <section className="section home-agentics-cta" aria-labelledby="home-agentics-heading">
           <h2 id="home-agentics-heading">Lumen</h2>
           <p className="hint">
-            ProtScope agents — evidence-grounded guides for scientific conversation. Live tools
-            today; named agents (Meridian, Helix, Allele, Pulse) open for chat in Beta.
+            Four agents for disease science. Live tools today. Chat, and BioEmu2 dynamics, come in
+            Beta.
           </p>
           <div className="cta-row">
             <Link className="btn btn-primary" href="/agentics">

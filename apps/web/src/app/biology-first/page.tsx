@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { ProteinField } from "@/components/ProteinField";
 
 /** Explainer: understand disease biology before designing molecules. */
 export default function BiologyFirstPage() {
@@ -13,33 +12,49 @@ export default function BiologyFirstPage() {
         <div className="approach-hero-copy">
           <h1>Biology</h1>
           <p className="science-thesis">
-            Characterize disease proteins, pathogenic variants, and shared cellular failure
-            pathways before proposing therapeutics.
+            Characterize disease by investigating proteins, proteotoxicity, pathogenic variants,
+            and shared cellular pathways involved in disease progression.
           </p>
           <p className="lede">
-            ProtScope treats neurodegenerative disease as a map of proteins and pathological
-            processes, not a shortcut to drug ideas. Educational only; not medical advice.
+            ProtScope™ is a platform where neurodegenerative diseases can be studied by analyzing
+            proteins and pathological processes.
           </p>
         </div>
-        <div className="approach-hero-visual" aria-hidden="true">
-          <ProteinField variant="panel" />
+        <div className="approach-hero-visual approach-hero-visual-strong" aria-hidden="true">
+          <img
+            src="/brand/protscope-hero-ribbon-light.png?v=plate1"
+            alt=""
+            width={640}
+            height={360}
+            draggable={false}
+          />
         </div>
       </header>
 
       <section className="science-section">
-        <h2>What is a disease mechanism?</h2>
+        <h2>What is a disease mechanism, and how to investigate it?</h2>
         <p className="article-body">
-          In this workspace, a mechanism is a shared pathological process that can injure
-          vulnerable neurons, for example protein misfolding and aggregation, cytoskeletal
-          stress, mitochondrial dysfunction, or impaired axonal transport. Different genes and
-          diseases can converge on overlapping routes. Mapping those routes helps decide what is
-          worth studying next.
+          A disease mechanism is a pathological process that can impact an organ, such as the
+          central nervous system, and injure vulnerable neurons. For example, proteotoxicity that
+          includes protein misfolding and aggregation, endoplasmic reticulum stress, cytoskeletal
+          stress, mitochondrial dysfunction, or impaired axonal transport may be involved. Genes
+          and proteins that malfunction in diseases can converge on overlapping routes. Mapping
+          those routes helps in understanding the details and how the events take place within an
+          organ and in the body.
         </p>
         <p className="article-body">
-          Motor, dopaminergic, cortical, and striatal neurons must keep proteostasis, organelle
-          quality control, cargo transport, and cytoskeletal integrity in balance. When those
-          systems fail, researchers ask which lesion is primary versus secondary, and whether the
-          same pathway appears across diseases rather than in one gene program alone.
+          In the nervous system, neurons are specialized for the functions they carry out, such as
+          motor neurons (upper and lower), dopaminergic neurons, cortical neurons, and striatal
+          neurons. They all have machinery that normally keeps organelles working under robust
+          quality control, so they can carry out neurotransmission, cargo transport, and other
+          tasks while maintaining cytoskeletal integrity. When those systems are injured and
+          neuronal integrity and function are affected, neurological symptoms appear in a variety
+          of ways.
+        </p>
+        <p className="article-body">
+          ProtScope™ enables you to investigate these by examining each component, starting from
+          genes and proteins, and conducting AI-powered protein chemistry experiments on this site
+          to discover the mechanism and identify targets.
         </p>
       </section>
 

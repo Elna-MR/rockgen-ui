@@ -75,6 +75,16 @@ export const AGENTICS_LIVE: AgenticsCapability[] = [
   },
 ];
 
+/** Microsoft Research BioEmu2 — structure + dynamics engine (not a chat agent). */
+export const BIOEMU2 = {
+  name: "BioEmu2",
+  href: "https://github.com/microsoft/bioemu2",
+  article:
+    "https://www.linkedin.com/pulse/introducing-bioemu2-jos%C3%A9-jim%C3%A9nez-luna-zblke/",
+  blurb:
+    "Open structure and dynamics model from Microsoft Research (MIT license). ProtScope will use it under Structures to sample folds and motion. Helix explains those ensembles. An emulated pose stays a hypothesis until evidence supports it.",
+} as const;
+
 export const AGENTICS_COMING: AgenticsCapability[] = [
   {
     id: "multi-agent",
@@ -148,7 +158,7 @@ export const PROTOSCOPE_COMPANIONS: ProtScopeCompanion[] = [
     name: "Helix",
     focus: "Protein structure",
     blurb:
-      "Chat about fold, domains, and structural context for disease-associated proteins.",
+      "Chat about fold, domains, and motion. Helix will explain BioEmu2 ensembles when that engine is connected.",
     status: "beta",
   },
   {

@@ -57,7 +57,7 @@ function buildCorpus(): KnowledgeChunk[] {
       "Biology",
       "/biology-first",
       "Site",
-      "Biology-first means characterize how disease proteins and cellular pathways fail before designing molecules. A disease mechanism is a shared pathological process, for example protein misfolding and aggregation, cytoskeletal stress, mitochondrial dysfunction, or impaired axonal transport. Different genes can converge on overlapping routes. Molecule-first jumps to compounds; ProtScope ranks the disease map first. Working chain: gene and protein → alleles and structure → shared mechanisms → evidence → design later.",
+      "Biology on ProtScope characterizes disease by investigating proteins, proteotoxicity, pathogenic variants, and shared cellular pathways involved in disease progression. ProtScope™ is a platform where neurodegenerative diseases can be studied by analyzing proteins and pathological processes. A disease mechanism is a pathological process that can impact an organ, such as the central nervous system, and injure vulnerable neurons — for example proteotoxicity including protein misfolding and aggregation, endoplasmic reticulum stress, cytoskeletal stress, mitochondrial dysfunction, or impaired axonal transport. Genes and proteins can converge on overlapping routes. Neurons (motor, dopaminergic, cortical, striatal) keep organelles under quality control for neurotransmission, cargo transport, and cytoskeletal integrity; injury produces neurological symptoms. ProtScope lets you start from genes and proteins and run AI-powered protein chemistry experiments to discover mechanisms and identify targets.",
       ["biology", "biology first", "approach", "mechanism", "molecule", "pathology"],
     ),
     chunk(

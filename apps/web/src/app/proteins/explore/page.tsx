@@ -28,6 +28,17 @@ export default async function StructureExplorePage({ searchParams }: Props) {
           Search by protein, PDB id, or ALS mutation. From here you can inspect the substitution in
           3D chemistry, or jump to peptide binder design at the same site.
         </p>
+        <p className="hint">
+          Coming:{" "}
+          <a
+            href="https://github.com/microsoft/bioemu2"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            BioEmu2
+          </a>{" "}
+          ensembles for fold and motion, explained by Helix in Lumen.
+        </p>
       </header>
       <StructureExplorer catalog={ALS_CATALOG} initialQuery={initialQuery} />
       <InverseFoldEnrichment />
