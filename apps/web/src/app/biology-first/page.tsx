@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BiologyFoldCycle } from "@/components/BiologyFoldCycle";
 
 /** Explainer: understand disease biology before designing molecules. */
 export default function BiologyFirstPage() {
@@ -20,15 +21,7 @@ export default function BiologyFirstPage() {
             proteins and pathological processes.
           </p>
         </div>
-        <div className="approach-hero-visual approach-hero-visual-strong" aria-hidden="true">
-          <img
-            src="/brand/protscope-hero-ribbon-light.png?v=plate1"
-            alt=""
-            width={640}
-            height={360}
-            draggable={false}
-          />
-        </div>
+        <BiologyFoldCycle />
       </header>
 
       <section className="science-section">

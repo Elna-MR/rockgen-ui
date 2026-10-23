@@ -3511,6 +3511,217 @@ body:has(.learn-hub-page) .atm-protein-bg {
   min-height: 16rem;
 }
 
+.bio-fold {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 0.15rem;
+  min-height: 0;
+}
+
+.bio-fold-stage {
+  position: relative;
+  width: min(100%, 30rem);
+  display: grid;
+  grid-template-areas: "fold" "key";
+  justify-items: center;
+}
+
+.bio-fold-stage::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 8%;
+  width: 72%;
+  height: 22%;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, rgba(26, 43, 52, 0.16), rgba(26, 43, 52, 0) 72%);
+  filter: blur(12px);
+  pointer-events: none;
+}
+
+.bio-fold-part {
+  grid-area: fold;
+  z-index: 1;
+  width: min(100%, 30rem);
+  height: auto;
+  max-height: 22rem;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.bio-fold-stage.is-build .is-left {
+  clip-path: inset(0 48% 0 0);
+  animation: bioMergeLeft 3.4s ease forwards;
+}
+
+.bio-fold-stage.is-build .is-right {
+  clip-path: inset(0 0 0 48%);
+  animation: bioMergeRight 3.4s ease forwards;
+}
+
+.bio-fold-stage.is-build .is-core {
+  animation: bioMergeCore 3.4s ease forwards;
+}
+
+.bio-fold-stage.is-hold .is-left,
+.bio-fold-stage.is-hold .is-right {
+  opacity: 0;
+}
+
+.bio-fold-stage.is-hold .is-core {
+  filter: saturate(1.16) contrast(1.2) brightness(1.05);
+  animation: bioFoldFloat 8s ease-in-out infinite;
+}
+
+.bio-fold-key {
+  grid-area: key;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 0.9rem;
+  margin: -0.15rem 0 0;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.bio-fold-key span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.bio-fold-key i {
+  width: 0.7rem;
+  height: 0.28rem;
+  border-radius: 99px;
+}
+
+.bio-fold-key .is-helix {
+  background: #c4a882;
+}
+
+.bio-fold-key .is-sheet {
+  background: #7f97b0;
+}
+
+.bio-fold figcaption {
+  text-align: center;
+}
+
+.bio-fold-status {
+  margin: 0 0 0.1rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+}
+
+.bio-fold-name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.65rem;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+
+.bio-fold-meter {
+  display: block;
+  width: 6.5rem;
+  height: 2px;
+  margin: 0.55rem auto 0;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.bio-fold-meter::after {
+  content: "";
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--accent);
+  animation-name: bioFoldMeter;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+.bio-fold-meta {
+  margin: 0.15rem 0 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+@keyframes bioFoldFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes bioMergeLeft {
+  0% {
+    opacity: 0;
+    transform: translate(-18%, 8%) scale(0.94);
+    filter: blur(7px);
+  }
+  68% {
+    opacity: 0.9;
+    transform: translate(0, 0) scale(1);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+@keyframes bioMergeRight {
+  0% {
+    opacity: 0;
+    transform: translate(18%, -8%) scale(0.94);
+    filter: blur(7px);
+  }
+  68% {
+    opacity: 0.9;
+    transform: translate(0, 0) scale(1);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+@keyframes bioMergeCore {
+  0% {
+    opacity: 0;
+    transform: scale(0.78);
+    filter: blur(9px) saturate(0.5);
+  }
+  40% {
+    opacity: 0.35;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: saturate(1.16) contrast(1.2) brightness(1.05);
+  }
+}
+
+@keyframes bioFoldMeter {
+  to {
+    width: 100%;
+  }
+}
+
 .biology-questions {
   margin: 0 0 1rem 1.1rem;
   color: var(--ink-muted);
@@ -3702,10 +3913,17 @@ body:has(.learn-hub-page) .atm-protein-bg {
   .protein-field .pf-ring-1,
   .protein-field .pf-ring-2,
   .glyph-nodes i,
-  .glyph-steps i {
+  .glyph-steps i,
+  .bio-fold img,
+  .bio-fold-meter::after {
     animation: none !important;
     transition: none !important;
     transform: none !important;
+  }
+
+  .bio-fold-part.is-left,
+  .bio-fold-part.is-right {
+    display: none;
   }
 
   .protein-field-hero .pf-ribbon-main,
