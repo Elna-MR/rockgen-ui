@@ -115,11 +115,24 @@ export function AskPanel() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ question: q }),
       });
-      if (!res.ok) throw new Error(`Review failed (${res.status})`);
+      if (!res.ok) {
+        throw new Error(
+          res.status >= 500
+            ? "The review service is not responding right now. Your question is still in the box. Please try again in a minute."
+            : "That question could not be reviewed. Try rewording it, or pick one of the starter questions.",
+        );
+      }
       setResult(await res.json());
       setShowCalc(false);
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Review failed");
+      setResult(null);
+      setError(
+        e instanceof TypeError
+          ? "Could not reach the review service. Check your connection and try again."
+          : e instanceof Error
+            ? e.message
+            : "Something went wrong. Please try again.",
+      );
     } finally {
       setLoading(false);
     }
@@ -127,10 +140,11 @@ export function AskPanel() {
 
   return (
     <section className="section ask-panel review-panel">
-      <h2>Scientific review</h2>
+      <h2>PFN1 G118V review</h2>
       <p className="hint">
-        Evidence-weighted reviewer for PFN1/G118V. Confidence is calculated in code from the
-        graph, not invented by a model.
+        Ask covers one variant for now: G118V in profilin-1 (PFN1), linked to ALS. Scores come
+        from a fixed formula, not an AI opinion, and &ldquo;How this was calculated&rdquo; shows
+        every step.
       </p>
 
       <div className="ask-search">

@@ -5121,3 +5121,214 @@ body:has(.learn-hub-page) .atm-protein-bg {
 .site-footer a:hover {
   text-decoration: underline;
 }
+
+/* Partner booking: day and time picker */
+#book {
+  scroll-margin-top: 5.5rem;
+}
+
+.book-card {
+  max-width: 34rem;
+  padding: 1.25rem 1.35rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: linear-gradient(165deg, rgba(31, 122, 140, 0.07) 0%, var(--surface) 55%);
+}
+
+.book-card h3 {
+  font-family: var(--font-sans);
+  font-size: 1.25rem;
+  margin: 0.2rem 0 0.45rem;
+}
+
+.book-card > p {
+  margin: 0 0 0.85rem;
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+  line-height: 1.45;
+}
+
+.book-cal {
+  margin: 0.25rem 0 1rem;
+}
+
+.book-cal-month {
+  margin: 0 0 0.4rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.book-cal-head,
+.book-cal-week {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.35rem;
+}
+
+.book-cal-head {
+  margin-bottom: 0.3rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--ink-muted);
+}
+
+.book-cal-week {
+  margin-bottom: 0.35rem;
+}
+
+.book-cal-day {
+  padding: 0.6rem 0;
+  border: 1px solid rgba(26, 43, 52, 0.2);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.book-cal-day:hover:not(:disabled) {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+}
+
+.book-cal-day.is-selected {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.book-cal-day:disabled {
+  border-color: transparent;
+  background: transparent;
+  color: rgba(26, 43, 52, 0.28);
+  cursor: not-allowed;
+}
+
+.book-slots {
+  margin-bottom: 1rem;
+}
+
+.book-fields label {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.book-fields .ask-input {
+  margin: 0.3rem 0 0.5rem;
+}
+
+.book-done .btn {
+  margin-top: 0.25rem;
+}
+
+/* Partners page */
+.partners-page .hub-hero {
+  margin-bottom: 3rem;
+}
+
+.partners-page .hub-hero .science-thesis {
+  margin-bottom: 0.6rem;
+}
+
+.partners-page .hub-hero .lede {
+  margin-bottom: 1.4rem;
+}
+
+.partners-page .section h2 {
+  margin-bottom: 0.85rem;
+}
+
+.partners-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 0.85rem;
+  margin: 0;
+  padding: 0;
+}
+
+.partners-grid li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 1rem 1.15rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--ink-muted);
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+
+.partners-grid li strong {
+  color: var(--ink);
+  font-size: 1rem;
+}
+
+.partners-table {
+  width: 100%;
+}
+
+.partners-table th[scope="row"] {
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.partners-table td {
+  color: var(--ink-muted);
+}
+
+.status-tag {
+  display: inline-block;
+  padding: 0.12rem 0.55rem;
+  border: 1px solid transparent;
+  border-radius: 99px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.status-tag.is-ready {
+  background: rgba(31, 122, 140, 0.14);
+  border-color: rgba(31, 122, 140, 0.4);
+  color: var(--accent-ink);
+}
+
+.status-tag.is-partial {
+  background: rgba(184, 134, 11, 0.12);
+  border-color: rgba(184, 134, 11, 0.45);
+  color: #7a5a08;
+}
+
+.status-tag.is-not-yet {
+  background: rgba(26, 43, 52, 0.06);
+  border-color: rgba(26, 43, 52, 0.22);
+  color: var(--ink-muted);
+}
+
+.partners-note {
+  max-width: 38rem;
+  margin: 0 0 2rem;
+}
+
+@media (max-width: 40rem) {
+  .partners-table th[scope="row"] {
+    white-space: normal;
+  }
+}
+
+.book-meta {
+  margin: 0 0 1rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-muted);
+}

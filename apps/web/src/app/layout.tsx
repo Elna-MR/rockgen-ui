@@ -94,6 +94,8 @@ export default function RootLayout({
                 Educational only, not medical advice. ProtScope™ content does not diagnose or treat
                 disease.{" "}
                 <Link href="/agentics">Lumen</Link>
+                {" · "}
+                <Link href="/partners">Research partners</Link>
               </p>
             </div>
           </footer>

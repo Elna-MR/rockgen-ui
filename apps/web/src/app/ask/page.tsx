@@ -10,8 +10,8 @@ export default function AskPage() {
       <header className="hub-hero">
         <h1>Ask</h1>
         <p className="lede">
-          Evidence-weighted scientific review. Rankings and citations are deterministic; wording may
-          be polished, not invented.
+          Ask a science question and get a structured review: what the evidence supports, what
+          conflicts with it, and what is still unproven.
         </p>
       </header>
       <AskPanel />
