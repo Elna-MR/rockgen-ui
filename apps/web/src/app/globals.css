@@ -2916,8 +2916,8 @@ body:has(.learn-hub-page) .atm-protein-bg {
   /* Full molecule visible, sized to fill the right hero column */
   width: min(96%, 44rem);
   max-width: 44rem;
-  height: min(62vh, 36rem);
-  min-height: 22rem;
+  height: min(50vh, 28rem);
+  min-height: 20rem;
   margin: 0 auto;
   user-select: none;
   pointer-events: none;
@@ -2960,7 +2960,7 @@ body:has(.learn-hub-page) .atm-protein-bg {
   /* Sits under the molecule with clear space above and below, never against the hero edge. */
   position: relative;
   flex: none;
-  margin: 2.25rem 0 3.25rem;
+  margin: 1.75rem 0 0;
   z-index: 4;
   display: flex;
   flex-direction: column;
@@ -3273,20 +3273,21 @@ body:has(.learn-hub-page) .atm-protein-bg {
   margin: 0 0 2.5rem;
   overflow: hidden;
   display: grid;
+  /* Two equal columns inside the shared gutter; both columns are centered on the same line. */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: 3rem;
   align-items: center;
+  padding: 3.5rem var(--gutter);
   background:
     radial-gradient(ellipse 55% 60% at 72% 45%, rgba(42, 154, 173, 0.14), transparent 62%),
     linear-gradient(165deg, #f7fbfc 0%, #eef5f7 55%, #e4eef2 100%);
 }
 
 .home-hero-visual {
-  position: absolute;
-  top: 4%;
-  left: 50%;
-  /* The fold's right edge lines up with the header links and the cards below. */
-  right: var(--gutter);
-  bottom: 4%;
-  width: auto;
+  position: relative;
+  grid-column: 2;
+  grid-row: 1;
+  width: 100%;
   z-index: 1;
   display: grid;
   place-items: center;
@@ -3306,11 +3307,12 @@ body:has(.learn-hub-page) .atm-protein-bg {
 
 .home-hero-copy {
   position: relative;
+  grid-column: 1;
+  grid-row: 1;
   z-index: 3;
-  /* Text starts at the same left edge as the header logo and the cards below. */
-  max-width: calc(var(--gutter) + 29rem);
+  max-width: 30rem;
   animation: rise 0.75s ease both;
-  padding: 4rem 1rem 3rem var(--gutter);
+  padding: 0;
 }
 
 .home-hero-copy h1 {
