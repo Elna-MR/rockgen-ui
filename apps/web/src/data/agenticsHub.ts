@@ -28,16 +28,17 @@ export const AGENTICS_LIVE: AgenticsCapability[] = [
     id: "chat",
     title: "Site guide chatbot",
     blurb:
-      "Ask how to navigate Learn, Research, Structures, and disease tracks. Retrieval over site knowledge, with optional language polish.",
+      "Ask how to find things on ProtScope. It answers from the site's own content, and the Ask button at the bottom right opens it on every page.",
     status: "live",
     tier: "free",
     href: "/",
-    ctaLabel: "Open site",
+    ctaLabel: "Open the chat",
   },
   {
     id: "structures",
     title: "Structure explorer",
-    blurb: "Search proteins and PDB entries, then open folds in 3D context.",
+    blurb:
+      "Search solved structures, read each level of structure, and see where an ALS change sits on the fold.",
     status: "live",
     tier: "free",
     href: "/proteins/explore",
@@ -47,7 +48,7 @@ export const AGENTICS_LIVE: AgenticsCapability[] = [
     id: "mutation-inspector",
     title: "Mutation inspector",
     blurb:
-      "Client-side tool to inspect substitutions in 3D chemistry. Educational workspace, not a clinical variant classifier.",
+      "Goes deeper than the explorer: pick a substitution and read burial, packing neighbours and local clashes on one solved structure. A reading of the structure, not a stability prediction.",
     status: "live",
     tier: "free",
     href: "/proteins/inspect",
@@ -77,11 +78,11 @@ export const AGENTICS_LIVE: AgenticsCapability[] = [
     id: "als-mutation-intel",
     title: "ALS mutation path & compare",
     blurb:
-      "Narrow live demos for PFN1/TUBA4A mutation paths, compare views, and dynamics PoC inside the ALS research workspace.",
+      "Mutation cards with their evidence, the path from a mutation to a biomarker, and PFN1 versus TUBA4A. The biomarker catalog is the separate explorer.",
     status: "live",
     tier: "free",
     href: "/diseases/als/evidence",
-    ctaLabel: "ALS evidence tools",
+    ctaLabel: "Open evidence",
   },
 ];
 

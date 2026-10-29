@@ -759,6 +759,10 @@ export function StructureExplorer({ catalog, initialQuery }: Props) {
 
                   {tab === "mutation" && (
                     <section className="explorer-panel">
+                      <p className="hint">
+                        This tab shows where the change sits and whether the entry matches. For
+                        burial, packing neighbours and clash checks, open the mutation inspector.
+                      </p>
                       {!(mutation && site) && (
                         <p className="hint">
                           No mutation is selected. Type one such as PFN1-G118V in the search box, then press Search.

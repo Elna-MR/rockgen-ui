@@ -1,4 +1,4 @@
-/** ALS program intelligence, biomarker panels only.
+/** ALS program intelligence: the mutation-to-biomarker map and biomarker gaps. The biomarker catalog lives in the graph.
  * Mutation cards are served by Disease Intelligence Engine
  * (`GET /v1/intelligence/...`), do not reintroduce static mutation twins here.
  */
@@ -11,27 +11,6 @@ export const ALS_MECHANISM = [
   { id: "misfold", label: "Misfolding" },
   { id: "agg", label: "Aggregation" },
   { id: "injury", label: "Neuronal injury" },
-];
-
-export const ALS_BIOMARKER_INTEL = [
-  {
-    id: "nfl-serum",
-    name: "Serum Neurofilament Light Chain (NfL)",
-    biomarkerType: "protein biomarker",
-    purpose: ["Disease progression", "Prognosis", "Neuronal injury tracking"],
-    role: "Disease progression / neuronal injury marker",
-    specimen: ["Serum", "Plasma", "CSF"],
-    whatItTellsUs:
-      "Higher levels generally indicate greater axonal / neuronal damage.",
-    diseaseSpecificity: "Low, also elevated in other neurological diseases",
-    proteinSpecificity: "Not PFN1-specific",
-    pfn1Specific: false,
-    clinicalMaturity: "Used in research and clinical studies; moderate maturity",
-    clinicalStage: "research_and_clinical_studies",
-    protscopeConnection:
-      "Potential outcome / progression marker for ALS programs, but not a direct marker of PFN1 misfolding or aggregation.",
-    linkedMutation: "PFN1:G118V (program context, not a validated causal NfL driver)",
-  },
 ];
 
 export const MUTATION_BIOMARKER_MAP = [

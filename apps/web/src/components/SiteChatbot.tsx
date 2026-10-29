@@ -38,6 +38,13 @@ function renderAnswer(text: string) {
 export function SiteChatbot() {
   const panelId = useId();
   const [open, setOpen] = useState(false);
+
+  // Lets other parts of the site (for example the Lumen page) open the chat.
+  useEffect(() => {
+    const openChat = () => setOpen(true);
+    window.addEventListener("protscope:open-chat", openChat);
+    return () => window.removeEventListener("protscope:open-chat", openChat);
+  }, []);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [messages, setMessages] = useState<Msg[]>([

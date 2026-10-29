@@ -37,7 +37,7 @@ export default async function AlsEvidencePage() {
 
       {error ? (
         <p className="hint">
-          Live mutation intelligence is offline. Biomarker notes below still apply.
+          Live mutation intelligence is offline. The biomarker gaps below still apply.
         </p>
       ) : (
         <MutationIntelligenceSection

@@ -5980,3 +5980,10 @@ button.ss-pill {
 .adv > :last-child {
   margin-bottom: 1rem;
 }
+
+button.lumen-tool {
+  width: 100%;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}

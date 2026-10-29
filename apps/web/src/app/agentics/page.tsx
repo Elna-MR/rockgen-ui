@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { OpenChatCard } from "@/components/OpenChatCard";
 import { AGENTICS_LIVE, BIOEMU2, PROTOSCOPE_COMPANIONS } from "@/data/agenticsHub";
 
 const STEPS = [
@@ -103,7 +104,11 @@ export default function AgenticsPage() {
         </p>
         <ul className="lumen-tools">
           {AGENTICS_LIVE.map((cap) =>
-            cap.href ? (
+            cap.id === "chat" ? (
+              <li key={cap.id}>
+                <OpenChatCard title={cap.title} blurb={cap.blurb} cta={cap.ctaLabel ?? "Open"} />
+              </li>
+            ) : cap.href ? (
               <li key={cap.id}>
                 <Link href={cap.href} className="lumen-tool">
                   <span className="agentics-chip agentics-chip-live">Live</span>
