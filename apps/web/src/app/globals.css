@@ -6004,3 +6004,56 @@ button.ss-pill {
 .lit-results a:hover {
   text-decoration: underline;
 }
+
+/* —— Beta page: two plan cards —— */
+.beta-plans {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin: 1.5rem 0 2rem;
+}
+.beta-plan {
+  padding: 1.25rem 1.5rem 1.4rem;
+  border: 1px solid var(--line, rgba(20, 60, 70, 0.14));
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.72);
+}
+.beta-plan-free {
+  border-color: var(--accent, #1f7a8c);
+  box-shadow: inset 3px 0 0 var(--accent, #1f7a8c);
+}
+.beta-plan-tag {
+  margin: 0 0 0.75rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-ink, #17606e);
+}
+.beta-plan ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.8rem;
+}
+.beta-plan li strong {
+  display: block;
+  font-size: 0.95rem;
+}
+.beta-plan li span {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--ink-muted);
+}
+.beta-plan-link {
+  display: inline-block;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: var(--accent-ink, #17606e);
+}
+@media (max-width: 760px) {
+  .beta-plans {
+    grid-template-columns: 1fr;
+  }
+}
