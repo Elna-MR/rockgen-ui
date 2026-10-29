@@ -2989,6 +2989,9 @@ body:has(.learn-hub-page) .atm-protein-bg {
 }
 
 .mol-hero-source {
+  text-align: center;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
   max-width: 22rem;
   font-size: 0.64rem;
   line-height: 1.35;
@@ -3715,12 +3718,15 @@ body:has(.learn-hub-page) .atm-protein-bg {
 }
 
 .bio-fold-source {
-  margin: 0.25rem 0 0;
-  max-width: 28rem;
+  /* Centered under the name, and long source text wraps instead of running off the edge. */
+  margin: 0.25rem auto 0;
+  max-width: min(28rem, 100%);
   font-size: 0.72rem;
   line-height: 1.4;
   color: var(--ink-muted);
   text-align: center;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
 }
 
 .bio-fold-key .is-helix {
