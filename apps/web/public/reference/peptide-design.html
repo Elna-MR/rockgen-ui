@@ -38,7 +38,7 @@ header{border-bottom:1px solid var(--rule);background:linear-gradient(180deg,#ff
 .chip{background:none;border:1px dashed var(--rule);border-radius:99px;padding:3px 11px;font-family:var(--mono);font-size:11.5px;color:var(--muted);cursor:pointer}
 .chip:hover{color:var(--accent);border-color:var(--accent)}
 main{max-width:1560px;margin:0 auto;padding:22px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);gap:26px;align-items:start}
-@media (max-width:1200px){main{grid-template-columns:1fr}}
+@media (max-width:1200px){main{grid-template-columns:minmax(0,1fr)}}
 .side{position:sticky;top:96px}
 @media (max-width:1200px){.side{position:static}}
 .sec-label{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin:0 0 10px;font-weight:500}
@@ -87,13 +87,13 @@ tr.pick[aria-selected="true"] td{background:var(--panel-2);box-shadow:inset 2px 
 .flags li{display:grid;grid-template-columns:14px 1fr;gap:9px;padding:7px 0;border-top:1px solid var(--rule);font-size:13px;color:var(--muted)}
 .flags li b{color:var(--bone);font-weight:500}
 .disclaimer{font-size:12.5px;color:var(--dim);line-height:1.65;border-top:1px solid var(--rule);padding-top:12px;margin-top:14px}
-#viewport{height:400px;background:#080D13;border:1px solid var(--rule);border-radius:2px;position:relative;overflow:hidden}
+#viewport{height:400px;background:#f4f8fa;border:1px solid var(--rule);border-radius:2px;position:relative;overflow:hidden}
 @media (max-width:640px){#viewport{height:320px}}
 .vctl{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
 .vctl button,.vctl select{background:var(--panel);border:1px solid var(--rule);border-radius:2px;padding:6px 9px;font-family:var(--mono);font-size:11px;cursor:pointer}
 .vctl button[aria-pressed="true"]{border-color:var(--accent);color:var(--accent)}
 .vnote{font-family:var(--mono);font-size:10.5px;color:var(--dim);margin-top:8px;line-height:1.55}
-.loading{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);background:#080D13;z-index:5}
+.loading{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);background:#f4f8fa;z-index:5}
 .empty{border:1px dashed var(--rule);border-radius:2px;padding:44px 26px;color:var(--muted);max-width:68ch}
 .empty h3{font-size:20px;color:var(--bone);margin:0 0 10px;font-weight:500}
 .empty p{margin:0 0 10px;font-size:14px}
@@ -920,6 +920,8 @@ async function initViewer(){
     await ensureNGL();
     S.ngl.stage=new NGL.Stage(vp,{backgroundColor:'#f4f8fa',quality:'medium'});
     window.addEventListener('resize',()=>S.ngl.stage&&S.ngl.stage.handleResize());
+    /* Keep the canvas matched to its box and re-frame the site when the box changes size. */
+    try{ let t; new ResizeObserver(()=>{ if(!S.ngl.stage) return; S.ngl.stage.handleResize(); clearTimeout(t); t=setTimeout(()=>focus(),250); }).observe(vp); }catch(e){}
     S.ngl.comp=await S.ngl.stage.loadFile(new Blob([S.struct.text],{type:'text/plain'}),
       {ext:S.struct.ext,name:S.cand.entryId});
     draw(); $('#vload')?.remove();

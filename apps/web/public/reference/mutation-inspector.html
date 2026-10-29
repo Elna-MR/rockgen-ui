@@ -42,8 +42,8 @@ header{border-bottom:1px solid var(--rule);background:linear-gradient(180deg,#ff
 .chip{background:none;border:1px dashed var(--rule);border-radius:99px;padding:3px 11px;font-family:var(--mono);
   font-size:11.5px;color:var(--muted);cursor:pointer}
 .chip:hover{color:var(--accent);border-color:var(--accent)}
-main{max-width:1500px;margin:0 auto;padding:22px;display:grid;grid-template-columns:1fr minmax(0,430px);gap:26px;align-items:start}
-@media (max-width:1180px){main{grid-template-columns:1fr}}
+main{max-width:1500px;margin:0 auto;padding:22px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,430px);gap:26px;align-items:start}
+@media (max-width:1180px){main{grid-template-columns:minmax(0,1fr)}}
 .sec-label{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin:0 0 10px;font-weight:500}
 .block{margin-bottom:28px}
 /* ---------- signature: the substitution card ---------- */
@@ -112,13 +112,13 @@ tr:last-child td{border-bottom:0}
 /* viewer */
 .side{position:sticky;top:96px}
 @media (max-width:1180px){.side{position:static}}
-#viewport{height:400px;background:#080D13;border:1px solid var(--rule);border-radius:2px;position:relative;overflow:hidden}
+#viewport{height:400px;background:#f4f8fa;border:1px solid var(--rule);border-radius:2px;position:relative;overflow:hidden}
 @media (max-width:640px){#viewport{height:320px}}
 .vctl{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
 .vctl button,.vctl select{background:var(--panel);border:1px solid var(--rule);border-radius:2px;padding:6px 9px;font-family:var(--mono);font-size:11px;cursor:pointer}
 .vctl button[aria-pressed="true"]{border-color:var(--accent);color:var(--accent)}
 .vnote{font-family:var(--mono);font-size:10.5px;color:var(--dim);margin-top:8px;line-height:1.55}
-.loading{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);background:#080D13;z-index:5}
+.loading{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);background:#f4f8fa;z-index:5}
 .err{border:1px solid var(--warn);border-left-width:2px;background:rgba(224,83,63,.07);padding:13px 15px;border-radius:2px;font-size:13.5px;margin-bottom:16px}
 .err b{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--warn);margin-bottom:4px}
 .note{border:1px solid var(--rule);border-left:2px solid var(--caution);background:rgba(232,178,58,.05);padding:12px 15px;border-radius:2px;font-size:13.5px;margin-bottom:16px;color:var(--muted)}
@@ -956,6 +956,8 @@ async function initViewer(){
     await ensureNGL();
     S.ngl.stage = new NGL.Stage(vp, { backgroundColor:'#f4f8fa', quality:'medium' });
     window.addEventListener('resize', () => S.ngl.stage && S.ngl.stage.handleResize());
+    /* Keep the canvas matched to its box and re-frame the site when the box changes size. */
+    try{ let t; new ResizeObserver(() => { if(!S.ngl.stage) return; S.ngl.stage.handleResize(); clearTimeout(t); t = setTimeout(() => focusSite(), 250); }).observe(vp); }catch(e){}
     const blob = new Blob([S.struct.text], { type:'text/plain' });
     S.ngl.comp = await S.ngl.stage.loadFile(blob, { ext:S.struct.ext, name:S.chosen.entryId });
     draw();
