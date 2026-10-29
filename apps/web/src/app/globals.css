@@ -1,4 +1,7 @@
 :root {
+  /* Side gutter that lines the header, hero and footer up with the centered page content.
+     Uses % so it measures the page width and ignores the scrollbar. */
+  --gutter: max(clamp(1.25rem, 3vw, 2.25rem), calc((100% - 1100px) / 2 + 2rem));
   /* Light, inspiring stage — soft dawn mist + living teal (not cerebral charcoal) */
   --bg-0: #f3f7f9;
   --bg-1: #e8f0f3;
@@ -89,7 +92,7 @@ a {
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
-  padding: 0.95rem clamp(1.25rem, 3vw, 2.25rem);
+  padding: 0.95rem var(--gutter);
   border-bottom: 1px solid var(--line);
   backdrop-filter: blur(16px) saturate(1.1);
   position: sticky;
@@ -1663,15 +1666,15 @@ a {
 
 .site-footer {
   margin-top: auto;
-  padding: 1.75rem clamp(1.25rem, 3vw, 2.25rem) 2rem;
+  padding: 1.75rem var(--gutter) 2rem;
   border-top: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.72);
   backdrop-filter: blur(8px);
 }
 
 .site-footer-inner {
-  max-width: 1100px;
-  margin: 0 auto;
+  max-width: none;
+  margin: 0;
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
@@ -3279,9 +3282,9 @@ body:has(.learn-hub-page) .atm-protein-bg {
 .home-hero-visual {
   position: absolute;
   top: 4%;
-  left: 40%;
-  /* On wide screens keep the fold inside the same centered width as the page below. */
-  right: max(2%, calc((100vw - 1180px) / 2));
+  left: 50%;
+  /* The fold's right edge lines up with the header links and the cards below. */
+  right: var(--gutter);
   bottom: 4%;
   width: auto;
   z-index: 1;
@@ -3304,11 +3307,10 @@ body:has(.learn-hub-page) .atm-protein-bg {
 .home-hero-copy {
   position: relative;
   z-index: 3;
-  max-width: 34rem;
-  /* Line up with the centered content below instead of hugging the window edge. */
-  margin-left: max(0px, calc((100vw - 1180px) / 2));
+  /* Text starts at the same left edge as the header logo and the cards below. */
+  max-width: calc(var(--gutter) + 29rem);
   animation: rise 0.75s ease both;
-  padding: 4rem clamp(1.25rem, 4vw, 2.5rem) 3rem;
+  padding: 4rem 1rem 3rem var(--gutter);
 }
 
 .home-hero-copy h1 {
