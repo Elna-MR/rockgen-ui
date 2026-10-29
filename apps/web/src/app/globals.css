@@ -40,16 +40,11 @@
 
 html,
 body {
-  /* Content width shared by the header, hero, cards and footer. The home page widens it. */
-  --site-w: 1100px;
+  /* Content width shared by the header, every page, hero, cards and footer. */
+  --site-w: 1680px;
   /* Side gutter that lines the header, hero and footer up with the centered page content.
      Uses % so it measures the page width and ignores the scrollbar. */
   --gutter: max(2rem, calc((100% - var(--site-w)) / 2 + 2rem));
-}
-
-body:has(.home-page-editorial) {
-  /* Home page uses most of the screen: small side margins, capped on very wide monitors. */
-  --site-w: 1680px;
 }
 
 body {
@@ -710,7 +705,7 @@ a {
 
 .page-dossier {
   padding-top: 1.5rem;
-  max-width: 1180px;
+  max-width: var(--site-w);
 }
 
 .dossier-header {
@@ -1922,7 +1917,7 @@ a {
 /* Structure explorer — Four Levels–style detail, ProtScope light theme */
 
 .page-explorer {
-  max-width: 1320px;
+  max-width: var(--site-w);
 }
 
 .struct-tabs {
@@ -1983,7 +1978,7 @@ a {
 }
 
 .page-struct-tool {
-  max-width: min(1280px, 100%);
+  max-width: min(var(--site-w), 100%);
 }
 
 .struct-tool-frame {
@@ -3265,7 +3260,7 @@ body:has(.learn-hub-page) .atm-protein-bg {
 
 .home-page-visual.page,
 .approach-page-visual.page {
-  max-width: min(1240px, 100%);
+  max-width: min(var(--site-w), 100%);
 }
 
 .home-page-editorial {
@@ -4110,7 +4105,7 @@ body:has(.learn-hub-page) .atm-protein-bg {
 
 .learn-hub-page.page,
 .learn-disease-page.page {
-  max-width: min(1100px, 100%);
+  max-width: min(var(--site-w), 100%);
 }
 
 .learn-hub {
@@ -5979,11 +5974,4 @@ button.ss-pill {
 
 .adv > :last-child {
   margin-bottom: 1rem;
-}
-
-button.lumen-tool {
-  width: 100%;
-  font: inherit;
-  text-align: left;
-  cursor: pointer;
 }

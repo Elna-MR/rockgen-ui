@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { OpenChatCard } from "@/components/OpenChatCard";
-import { AGENTICS_LIVE, BIOEMU2, PROTOSCOPE_COMPANIONS } from "@/data/agenticsHub";
+import { BIOEMU2, PROTOSCOPE_COMPANIONS } from "@/data/agenticsHub";
 
 const STEPS = [
   {
@@ -94,31 +93,6 @@ export default function AgenticsPage() {
               </li>
             );
           })}
-        </ul>
-      </section>
-
-      <section className="section" aria-labelledby="lumen-live-heading">
-        <h2 id="lumen-live-heading">Tools you can use now</h2>
-        <p className="hint">
-          Live today, no waitlist. Each agent page links the tools that cover its topic.
-        </p>
-        <ul className="lumen-tools">
-          {AGENTICS_LIVE.map((cap) =>
-            cap.id === "chat" ? (
-              <li key={cap.id}>
-                <OpenChatCard title={cap.title} blurb={cap.blurb} cta={cap.ctaLabel ?? "Open"} />
-              </li>
-            ) : cap.href ? (
-              <li key={cap.id}>
-                <Link href={cap.href} className="lumen-tool">
-                  <span className="agentics-chip agentics-chip-live">Live</span>
-                  <strong>{cap.title}</strong>
-                  <span className="lumen-tool-blurb">{cap.blurb}</span>
-                  <span className="lumen-tool-cta">{cap.ctaLabel ?? "Open"} &rarr;</span>
-                </Link>
-              </li>
-            ) : null,
-          )}
         </ul>
       </section>
 
