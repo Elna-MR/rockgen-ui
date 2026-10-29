@@ -23,25 +23,18 @@ export default function ResearchHubPage() {
 
       <section className="section research-cite" aria-labelledby="research-cite-heading">
         <h2 id="research-cite-heading">ALS research</h2>
-        <p className="hint">Selected work informing this workspace.</p>
+        <p className="hint">Selected published work informing this workspace.</p>
         <ul className="research-cite-list">
           <li>
-            <strong>Mahmoud Kiaei</strong>
+            <strong>Animal model of PFN1-linked ALS</strong>
             <span className="research-cite-meta">ALS · PFN1 · neurodegeneration</span>
             <div className="research-cite-links">
-              <a
-                href="https://scholar.google.com/citations?user=B4g745MAAAAJ&hl=en"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Google Scholar
-              </a>
               <a
                 href="https://pubmed.ncbi.nlm.nih.gov/28040732/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                PFN1<sup>G118V</sup> ALS mouse model
+                PFN1<sup>G118V</sup> ALS mouse model (PubMed)
               </a>
             </div>
           </li>
