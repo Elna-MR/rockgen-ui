@@ -44,11 +44,12 @@ body {
   --site-w: 1100px;
   /* Side gutter that lines the header, hero and footer up with the centered page content.
      Uses % so it measures the page width and ignores the scrollbar. */
-  --gutter: max(clamp(1.25rem, 3vw, 2.25rem), calc((100% - var(--site-w)) / 2 + 2rem));
+  --gutter: max(2rem, calc((100% - var(--site-w)) / 2 + 2rem));
 }
 
 body:has(.home-page-editorial) {
-  --site-w: 1280px;
+  /* Home page uses most of the screen: small side margins, capped on very wide monitors. */
+  --site-w: 1680px;
 }
 
 body {
@@ -3320,7 +3321,7 @@ body:has(.learn-hub-page) .atm-protein-bg {
   grid-column: 1;
   grid-row: 1;
   z-index: 3;
-  max-width: 30rem;
+  max-width: 34rem;
   animation: rise 0.75s ease both;
   padding: 0;
 }
