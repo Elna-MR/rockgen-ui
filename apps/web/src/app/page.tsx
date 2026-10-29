@@ -25,8 +25,7 @@ export default function HomePage() {
           <p className="home-intro">
             ProtScope™ is a research workspace for neurodegenerative disease proteins. It links
             ALS genes, variants and biomarkers in a knowledge graph with evidence labels, and lets
-            you explore experimentally solved structures. It does not predict structures or
-            diagnose disease.
+            you explore experimentally solved structures.
           </p>
           <div className="cta-row">
             <Link className="btn btn-primary" href="/learn">
