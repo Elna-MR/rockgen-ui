@@ -178,7 +178,7 @@ export const RESEARCH_DISEASES: ResearchDisease[] = [
       {
         title: "Student primer",
         summary: "Concise learning track for Parkinson’s biology.",
-        href: "/learn/parkinsons",
+        href: "/diseases/primers/parkinsons",
         status: "ready",
       },
       {
@@ -259,7 +259,7 @@ export const RESEARCH_DISEASES: ResearchDisease[] = [
       {
         title: "Student primer",
         summary: "Amyloid, tau, and student-safe framing.",
-        href: "/learn/alzheimers",
+        href: "/diseases/primers/alzheimers",
         status: "ready",
       },
       {
@@ -324,7 +324,7 @@ export const RESEARCH_DISEASES: ResearchDisease[] = [
       {
         title: "Student primer",
         summary: "CAG repeats, huntingtin, and key circuits.",
-        href: "/learn/huntingtons",
+        href: "/diseases/primers/huntingtons",
         status: "ready",
       },
       {
@@ -396,7 +396,7 @@ export const RESEARCH_DISEASES: ResearchDisease[] = [
       {
         title: "Student primer",
         summary: "Spectrum, proteins, and ALS overlap.",
-        href: "/learn/ftd",
+        href: "/diseases/primers/ftd",
         status: "ready",
       },
       {

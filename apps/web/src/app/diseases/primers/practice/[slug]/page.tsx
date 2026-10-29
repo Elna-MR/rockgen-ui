@@ -16,7 +16,7 @@ export default async function PracticeExercisePage({ params }: Props) {
   return (
     <main className="page hub-page">
       <p className="eyebrow">
-        <Link href="/learn">Learn</Link> · <Link href="/learn/practice">Practice</Link>
+        <Link href="/diseases">Research</Link> · <Link href="/diseases/primers/practice">Practice</Link>
       </p>
       <header className="hub-hero">
         <h1>{exercise.title}</h1>
@@ -39,8 +39,8 @@ export default async function PracticeExercisePage({ params }: Props) {
         <Link className="btn btn-primary" href={exercise.openHref}>
           {exercise.openLabel}
         </Link>
-        <Link className="btn btn-ghost" href="/learn">
-          Learn hub
+        <Link className="btn btn-ghost" href="/diseases">
+          Research hub
         </Link>
       </div>
 
@@ -56,7 +56,7 @@ export default async function PracticeExercisePage({ params }: Props) {
       )}
 
       <p className="hint" style={{ marginTop: "1.5rem" }}>
-        <Link href="/learn/practice">← All practice</Link>
+        <Link href="/diseases/primers/practice">← All practice</Link>
       </p>
     </main>
   );

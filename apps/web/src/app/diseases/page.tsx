@@ -9,12 +9,12 @@ export default function ResearchHubPage() {
       </p>
       <header className="hub-hero">
         <div>
-          <p className="lede learninghub-desc">
-            Learninghub™ allows you to explore proteins, genetic variants, and shared biological
-            pathways to understand protein misfolding in conditions like ALS, Parkinson&apos;s,
-            Alzheimer&apos;s and other diseases.
+          <h1>Research and learning hub</h1>
+          <p className="lede">
+            Pick a neurodegenerative disease to open its workspace: protein maps, mutation
+            context, structures and cited evidence. Each disease also has a plain-language primer
+            if you are new to the biology.
           </p>
-          <h1>What protein to ProtScope? Enter here:</h1>
           <p className="meta-pill">Mechanism-first · citation-aware · not medical advice</p>
         </div>
       </header>
@@ -64,6 +64,29 @@ export default function ResearchHubPage() {
         </div>
       </section>
 
+      <section className="section learn-shared" id="primers">
+        <h2>New to the biology? Start here</h2>
+        <p className="hint">Student primers, guides and practice. Each disease workspace above also links to its own primer.</p>
+        <div className="hub-grid">
+          <Link href="/diseases/primers/als" className="hub-link">
+            <strong>ALS primer</strong>
+            <span>Plain-language track and student curriculum</span>
+          </Link>
+          <Link href="/diseases/primers/guides/mental-model" className="hub-link">
+            <strong>Mental model</strong>
+            <span>Gene → protein → mechanism → disease</span>
+          </Link>
+          <Link href="/diseases/primers/guides/evidence" className="hub-link">
+            <strong>Read evidence</strong>
+            <span>Claim vs evidence type vs confidence</span>
+          </Link>
+          <Link href="/diseases/primers/practice" className="hub-link">
+            <strong>Practice</strong>
+            <span>Short exercises using the real tools</span>
+          </Link>
+        </div>
+      </section>
+
       <section className="section learn-shared">
         <h2>Shared research labs</h2>
         <p className="hint">Use across diseases once you know the protein and mechanism map.</p>
@@ -79,10 +102,6 @@ export default function ResearchHubPage() {
           <Link href="/biology-first" className="hub-link">
             <strong>Biology</strong>
             <span>Read the biology background for these proteins and pathways</span>
-          </Link>
-          <Link href="/learn" className="hub-link">
-            <strong>Learninghub™</strong>
-            <span>Student primers for the same diseases</span>
           </Link>
         </div>
       </section>

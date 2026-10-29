@@ -16,7 +16,7 @@ export default async function LearnGuidePage({ params }: Props) {
   return (
     <main className="page hub-page">
       <p className="eyebrow">
-        <Link href="/learn">Learn</Link> · <Link href="/learn/guides">Guides</Link>
+        <Link href="/diseases">Research</Link> · <Link href="/diseases/primers/guides">Guides</Link>
       </p>
       <header className="hub-hero">
         <h1>{guide.title}</h1>
@@ -58,7 +58,7 @@ export default async function LearnGuidePage({ params }: Props) {
       )}
 
       <p className="hint" style={{ marginTop: "1.5rem" }}>
-        <Link href="/learn">← Learn hub</Link>
+        <Link href="/diseases">← Research hub</Link>
       </p>
     </main>
   );

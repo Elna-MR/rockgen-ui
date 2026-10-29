@@ -16,7 +16,7 @@ export default async function AlsPlainLanguagePage({ params }: Props) {
   return (
     <main className="page hub-page">
       <p className="eyebrow">
-        <Link href="/learn">Learn</Link> · <Link href="/learn/als">ALS</Link> · Plain language
+        <Link href="/diseases">Research</Link> · <Link href="/diseases/primers/als">ALS</Link> · Plain language
       </p>
       <header className="hub-hero">
         <h1>{page.title}</h1>
@@ -47,9 +47,9 @@ export default async function AlsPlainLanguagePage({ params }: Props) {
       )}
 
       <p className="hint" style={{ marginTop: "1.5rem" }}>
-        <Link href="/learn/als#plain-language">← ALS learn track</Link>
+        <Link href="/diseases/primers/als#plain-language">← ALS primer</Link>
         {" · "}
-        <Link href="/learn">All diseases</Link>
+        <Link href="/diseases">All diseases</Link>
       </p>
     </main>
   );

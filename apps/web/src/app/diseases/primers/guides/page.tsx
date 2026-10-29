@@ -5,7 +5,7 @@ export default function GuidesIndexPage() {
   return (
     <main className="page hub-page">
       <p className="eyebrow">
-        <Link href="/learn">Learn</Link> · Guides
+        <Link href="/diseases">Research</Link> · Guides
       </p>
       <header className="hub-hero">
         <h1>Guides</h1>
@@ -13,7 +13,7 @@ export default function GuidesIndexPage() {
       </header>
       <div className="hub-grid">
         {LEARN_GUIDES.map((g) => (
-          <Link key={g.slug} href={`/learn/guides/${g.slug}`} className="hub-link">
+          <Link key={g.slug} href={`/diseases/primers/guides/${g.slug}`} className="hub-link">
             <strong>{g.title}</strong>
             <span>{g.summary}</span>
           </Link>

@@ -48,7 +48,7 @@ export const LEARN_MODULES: LearnModule[] = [
     title: "Orient: ALS in five ideas",
     minutes: "5 min",
     outcome: "Tell the disease story without jargon.",
-    href: "/learn/als/orient",
+    href: "/diseases/primers/als/orient",
     kind: "read",
   },
   {
@@ -57,7 +57,7 @@ export const LEARN_MODULES: LearnModule[] = [
     title: "Patient lens",
     minutes: "8 min",
     outcome: "Explain ALS to a non-scientist in one sentence.",
-    href: "/learn/practice/patient-view",
+    href: "/diseases/primers/practice/patient-view",
     kind: "practice",
   },
   {
@@ -66,7 +66,7 @@ export const LEARN_MODULES: LearnModule[] = [
     title: "Mental model",
     minutes: "10 min",
     outcome: "Map gene → protein → mechanism → disease.",
-    href: "/learn/guides/mental-model",
+    href: "/diseases/primers/guides/mental-model",
     kind: "read",
   },
   {
@@ -75,7 +75,7 @@ export const LEARN_MODULES: LearnModule[] = [
     title: "Read evidence",
     minutes: "10 min",
     outcome: "Separate claim, evidence type, and confidence.",
-    href: "/learn/guides/evidence",
+    href: "/diseases/primers/guides/evidence",
     kind: "read",
   },
   {
@@ -84,7 +84,7 @@ export const LEARN_MODULES: LearnModule[] = [
     title: "Practice: Ask a review",
     minutes: "10 min",
     outcome: "Run one structured question on G118V aggregation.",
-    href: "/learn/practice/ask-review",
+    href: "/diseases/primers/practice/ask-review",
     kind: "practice",
   },
   {
@@ -93,7 +93,7 @@ export const LEARN_MODULES: LearnModule[] = [
     title: "Protein case study",
     minutes: "12 min",
     outcome: "Contrast PFN1 vs TUBA4A starting points.",
-    href: "/learn/guides/proteins",
+    href: "/diseases/primers/guides/proteins",
     kind: "read",
   },
   {
@@ -102,7 +102,7 @@ export const LEARN_MODULES: LearnModule[] = [
     title: "Practice: Compare alleles",
     minutes: "10 min",
     outcome: "Name the most disruptive allele and one caution.",
-    href: "/learn/practice/compare-pfn1",
+    href: "/diseases/primers/practice/compare-pfn1",
     kind: "practice",
   },
   {
@@ -111,7 +111,7 @@ export const LEARN_MODULES: LearnModule[] = [
     title: "Practice: Disease map",
     minutes: "10 min",
     outcome: "Navigate by biology axis, not gene list.",
-    href: "/learn/practice/disease-map",
+    href: "/diseases/primers/practice/disease-map",
     kind: "practice",
   },
 ];
@@ -131,8 +131,8 @@ export const UNDERSTAND_PAGES: GuideArticle[] = [
       "This site explains the biology researchers study. It is educational, not a diagnosis or a treatment plan. Decisions about care belong with your clinical team.",
     ],
     next: [
-      { label: "What happens in the body?", href: "/learn/als/plain/what-happens" },
-      { label: "Genes and proteins (gentle)", href: "/learn/als/plain/genes-and-proteins" },
+      { label: "What happens in the body?", href: "/diseases/primers/als/plain/what-happens" },
+      { label: "Genes and proteins (gentle)", href: "/diseases/primers/als/plain/genes-and-proteins" },
     ],
   },
   {
@@ -148,8 +148,8 @@ export const UNDERSTAND_PAGES: GuideArticle[] = [
       "Researchers group those failures into biological “routes” or mechanisms, shared ways different genes can harm the same cells. Understanding routes helps science decide what to study next; it does not mean a drug already exists for every route.",
     ],
     next: [
-      { label: "Genes and proteins", href: "/learn/als/plain/genes-and-proteins" },
-      { label: "How science studies ALS", href: "/learn/als/plain/research-today" },
+      { label: "Genes and proteins", href: "/diseases/primers/als/plain/genes-and-proteins" },
+      { label: "How science studies ALS", href: "/diseases/primers/als/plain/research-today" },
     ],
   },
   {
@@ -165,8 +165,8 @@ export const UNDERSTAND_PAGES: GuideArticle[] = [
       "You do not need both names to live with ALS. They matter to researchers comparing how different proteins can reach similar problems. Your clinician can discuss whether genetic testing is relevant for your family.",
     ],
     next: [
-      { label: "Research today", href: "/learn/als/plain/research-today" },
-      { label: "Common questions", href: "/learn/als/plain/questions" },
+      { label: "Research today", href: "/diseases/primers/als/plain/research-today" },
+      { label: "Common questions", href: "/diseases/primers/als/plain/questions" },
     ],
   },
   {
@@ -182,8 +182,8 @@ export const UNDERSTAND_PAGES: GuideArticle[] = [
       "Clinical trials and approved medicines (when they exist) are decided through medical and regulatory pathways. This website does not recommend treatments.",
     ],
     next: [
-      { label: "Common questions", href: "/learn/als/plain/questions" },
-      { label: "For students: ALS curriculum", href: "/learn/als#curriculum" },
+      { label: "Common questions", href: "/diseases/primers/als/plain/questions" },
+      { label: "For students: ALS curriculum", href: "/diseases/primers/als#curriculum" },
     ],
   },
   {
@@ -200,9 +200,9 @@ export const UNDERSTAND_PAGES: GuideArticle[] = [
       "Where do students and researchers go next? Students can follow the Learn path. Researchers open the ALS workspace for proteins, mechanisms, and evidence tools.",
     ],
     next: [
-      { label: "Back to ALS learn track", href: "/learn/als#plain-language" },
-      { label: "ALS student curriculum", href: "/learn/als#curriculum" },
-      { label: "All diseases", href: "/learn" },
+      { label: "Back to ALS primer", href: "/diseases/primers/als#plain-language" },
+      { label: "ALS student curriculum", href: "/diseases/primers/als#curriculum" },
+      { label: "All diseases", href: "/diseases" },
       { label: "ALS research workspace", href: "/diseases/als" },
     ],
   },
@@ -227,8 +227,8 @@ export const LEARN_GUIDES: GuideArticle[] = [
       "Why is “open one tool at a time” better than a single crowded dashboard?",
     ],
     next: [
-      { label: "How to read evidence", href: "/learn/guides/evidence" },
-      { label: "ALS in five ideas", href: "/learn/als/orient" },
+      { label: "How to read evidence", href: "/diseases/primers/guides/evidence" },
+      { label: "ALS in five ideas", href: "/diseases/primers/als/orient" },
     ],
   },
   {
@@ -248,8 +248,8 @@ export const LEARN_GUIDES: GuideArticle[] = [
       "Why might NfL rise without proving a specific PFN1 mechanism?",
     ],
     next: [
-      { label: "Practice: ask a review", href: "/learn/practice/ask-review" },
-      { label: "PFN1 & TUBA4A case study", href: "/learn/guides/proteins" },
+      { label: "Practice: ask a review", href: "/diseases/primers/practice/ask-review" },
+      { label: "PFN1 & TUBA4A case study", href: "/diseases/primers/guides/proteins" },
     ],
   },
   {
@@ -269,7 +269,7 @@ export const LEARN_GUIDES: GuideArticle[] = [
       "What must you never confuse a Protein State Score with?",
     ],
     next: [
-      { label: "Practice: compare PFN1", href: "/learn/practice/compare-pfn1" },
+      { label: "Practice: compare PFN1", href: "/diseases/primers/practice/compare-pfn1" },
       { label: "Open ALS workspace", href: "/diseases/als" },
     ],
   },
@@ -291,7 +291,7 @@ export const PRACTICE: PracticeExercise[] = [
       "Write the five ideas as five short bullets from memory.",
       "Circle the one idea you want to practice next.",
     ],
-    openHref: "/learn/als/orient",
+    openHref: "/diseases/primers/als/orient",
     openLabel: "Open five ideas",
   },
   {
@@ -309,7 +309,7 @@ export const PRACTICE: PracticeExercise[] = [
       "Your one-sentence explanation (plain words only).",
       "One word you would avoid when talking with families.",
     ],
-    openHref: "/learn/als#plain-language",
+    openHref: "/diseases/primers/als#plain-language",
     openLabel: "Open ALS plain language",
   },
   {

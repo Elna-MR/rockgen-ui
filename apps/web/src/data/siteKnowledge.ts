@@ -107,7 +107,7 @@ function buildCorpus(): KnowledgeChunk[] {
       chunk(
         `learn-${d.slug}`,
         `Learn · ${d.shortName}`,
-        `/learn/${d.slug}`,
+        `/diseases/primers/${d.slug}`,
         "Learn",
         `${d.name}. ${d.tagline}. ${d.summary} Focus: ${d.focus.join(", ")}. Mechanisms: ${d.mechanisms.join("; ")}. Key facts: ${d.keyFacts.join(" ")} Status: ${d.status}.`,
         [d.slug, d.shortName, d.name, ...d.searchTerms, ...d.focus],
@@ -118,7 +118,7 @@ function buildCorpus(): KnowledgeChunk[] {
         chunk(
           `learn-protein-${d.slug}-${p.symbol}`,
           `${p.symbol} · ${p.name}`,
-          p.href || `/learn/${d.slug}`,
+          p.href || `/diseases/primers/${d.slug}`,
           "Learn proteins",
           `${p.symbol} (${p.name}) in ${d.shortName}: ${p.role}`,
           [p.symbol, p.name, d.slug],
@@ -157,7 +157,7 @@ function buildCorpus(): KnowledgeChunk[] {
       chunk(
         `plain-${a.slug}`,
         a.title,
-        `/learn/als/plain/${a.slug}`,
+        `/diseases/primers/als/plain/${a.slug}`,
         "Plain language",
         `${a.summary} ${a.paragraphs.join(" ")}`,
         [a.title, a.slug, "patient", "family", "als"],
@@ -170,7 +170,7 @@ function buildCorpus(): KnowledgeChunk[] {
       chunk(
         `guide-${a.slug}`,
         a.title,
-        `/learn/guides/${a.slug}`,
+        `/diseases/primers/guides/${a.slug}`,
         "Student guides",
         `${a.summary} ${a.paragraphs.join(" ")}`,
         [a.title, a.slug, "student", "evidence"],
@@ -196,7 +196,7 @@ function buildCorpus(): KnowledgeChunk[] {
       chunk(
         `practice-${p.slug}`,
         `Practice · ${p.title}`,
-        `/learn/practice/${p.slug}`,
+        `/diseases/primers/practice/${p.slug}`,
         "Practice",
         `${p.title}. Goal: ${p.goal}. Steps: ${p.steps.join(" ")} Reflect: ${p.reflect.join(" ")}`,
         [p.title, p.slug, "practice"],
@@ -226,7 +226,7 @@ function buildCorpus(): KnowledgeChunk[] {
     chunk(
       "disclaimer",
       "Educational, not medical advice",
-      "/learn/als/plain/questions",
+      "/diseases/primers/als/plain/questions",
       "Site",
       "ProtScope is educational research material only. It does not diagnose, prognose, or prescribe treatment. Care decisions belong with your clinical team and trusted ALS clinics.",
       ["disclaimer", "medical", "advice", "treatment", "diagnosis"],

@@ -49,7 +49,7 @@ const LEVEL_HELP: Record<Level, { what: string; tryIt: string }> = {
     tryIt: "Click any letter in the sequence below. The same residue lights up in the 3D view.",
   },
   secondary: {
-    what: "Short stretches of the chain fold into repeating shapes: helices (coils) and sheets (flat strands). The rest are loops.",
+    what: "Short stretches of the chain fold into repeating shapes: helices (coils) and sheets (flat strands). The rest is coil: loops and turns that link them.",
     tryIt: "Click a helix or sheet below to jump to where it starts.",
   },
   tertiary: {
@@ -586,7 +586,7 @@ export function StructureExplorer({ catalog, initialQuery }: Props) {
                           <p className="ss-bar-labels">
                             <span>Helix {Math.round(analysis.composition.h * 100)}%</span>
                             <span>Sheet {Math.round(analysis.composition.s * 100)}%</span>
-                            <span>Loop {Math.round(analysis.composition.c * 100)}%</span>
+                            <span>Coil {Math.round(analysis.composition.c * 100)}%</span>
                           </p>
                           <p className="hint">
                             Chain {analysis.chain}: residues {analysis.firstResi} to {analysis.lastResi}
@@ -747,7 +747,7 @@ export function StructureExplorer({ catalog, initialQuery }: Props) {
                           <p className="ss-bar-labels">
                             <span>Helix {Math.round(analysis.composition.h * 100)}%</span>
                             <span>Sheet {Math.round(analysis.composition.s * 100)}%</span>
-                            <span>Loop {Math.round(analysis.composition.c * 100)}%</span>
+                            <span>Coil {Math.round(analysis.composition.c * 100)}%</span>
                           </p>
                           <h4>
                             {analysis.segments.length} segments

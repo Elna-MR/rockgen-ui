@@ -8,7 +8,7 @@ export default function PracticeIndexPage() {
   return (
     <main className="page hub-page">
       <p className="eyebrow">
-        <Link href="/learn">Learn</Link> · Practice
+        <Link href="/diseases">Research</Link> · Practice
       </p>
       <header className="hub-hero">
         <h1>Practice</h1>
@@ -19,7 +19,7 @@ export default function PracticeIndexPage() {
         <h2>Intro</h2>
         <div className="hub-grid">
           {intro.map((p) => (
-            <Link key={p.slug} href={`/learn/practice/${p.slug}`} className="hub-link">
+            <Link key={p.slug} href={`/diseases/primers/practice/${p.slug}`} className="hub-link">
               <strong>{p.title}</strong>
               <span>{p.goal}</span>
             </Link>
@@ -31,7 +31,7 @@ export default function PracticeIndexPage() {
         <h2>Next</h2>
         <div className="hub-grid">
           {next.map((p) => (
-            <Link key={p.slug} href={`/learn/practice/${p.slug}`} className="hub-link">
+            <Link key={p.slug} href={`/diseases/primers/practice/${p.slug}`} className="hub-link">
               <strong>{p.title}</strong>
               <span>{p.goal}</span>
             </Link>

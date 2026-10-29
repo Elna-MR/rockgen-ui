@@ -5,7 +5,7 @@ export default function LearnAlsOrientPage() {
   return (
     <main className="page hub-page">
       <p className="eyebrow">
-        <Link href="/learn">Learn</Link> · <Link href="/learn/als">ALS</Link> · Module 01
+        <Link href="/diseases">Research</Link> · <Link href="/diseases/primers/als">ALS</Link> · Module 01
       </p>
       <header className="hub-hero">
         <h1>ALS in five ideas</h1>
@@ -51,10 +51,10 @@ export default function LearnAlsOrientPage() {
       </aside>
 
       <div className="cta-row" style={{ marginTop: "2rem" }}>
-        <Link className="btn btn-primary" href="/learn/practice/patient-view">
+        <Link className="btn btn-primary" href="/diseases/primers/practice/patient-view">
           Next: patient lens
         </Link>
-        <Link className="btn btn-ghost" href="/learn/als">
+        <Link className="btn btn-ghost" href="/diseases/primers/als">
           ALS learning track
         </Link>
       </div>

@@ -303,7 +303,7 @@ export function PdbStructureViewer({
             <i style={{ background: SS_COLOR.s }} /> Sheet
           </span>
           <span>
-            <i style={{ background: SS_COLOR.c }} /> Loop
+            <i style={{ background: SS_COLOR.c }} /> Coil / loop
           </span>
           <span>
             <i style={{ background: "#f59e0b" }} /> Selected residue

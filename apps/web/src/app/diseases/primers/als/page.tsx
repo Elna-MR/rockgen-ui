@@ -9,7 +9,7 @@ export default function LearnAlsTrackPage() {
   return (
     <main className="page learn-disease-page">
       <p className="eyebrow">
-        <Link href="/learn">Learn</Link> · ALS
+        <Link href="/diseases">Research</Link> · ALS
       </p>
       <header className="hub-hero hub-hero-visual">
         <div>
@@ -38,7 +38,7 @@ export default function LearnAlsTrackPage() {
         </p>
         <div className="hub-grid">
           {UNDERSTAND_PAGES.map((p) => (
-            <Link key={p.slug} href={`/learn/als/plain/${p.slug}`} className="hub-link">
+            <Link key={p.slug} href={`/diseases/primers/als/plain/${p.slug}`} className="hub-link">
               <strong>{p.title}</strong>
               <span>
                 {p.minutes ? `${p.minutes} min · ` : ""}
@@ -114,7 +114,7 @@ export default function LearnAlsTrackPage() {
         <h2>Guides</h2>
         <div className="hub-grid">
           {LEARN_GUIDES.map((g) => (
-            <Link key={g.slug} href={`/learn/guides/${g.slug}`} className="hub-link">
+            <Link key={g.slug} href={`/diseases/primers/guides/${g.slug}`} className="hub-link">
               <strong>{g.title}</strong>
               <span>
                 {g.minutes ? `${g.minutes} min · ` : ""}
@@ -129,7 +129,7 @@ export default function LearnAlsTrackPage() {
         <h2>Practice lab</h2>
         <div className="hub-grid">
           {PRACTICE.map((p) => (
-            <Link key={p.slug} href={`/learn/practice/${p.slug}`} className="hub-link">
+            <Link key={p.slug} href={`/diseases/primers/practice/${p.slug}`} className="hub-link">
               <strong>{p.title}</strong>
               <span>
                 {p.level === "intro" ? "Intro" : "Next"} · {p.minutes} min, {p.goal}
@@ -140,16 +140,16 @@ export default function LearnAlsTrackPage() {
       </section>
 
       <div className="cta-row" style={{ marginTop: "1.5rem" }}>
-        <Link className="btn btn-primary" href="/learn/als/plain/what-is-als">
+        <Link className="btn btn-primary" href="/diseases/primers/als/plain/what-is-als">
           Start plain language
         </Link>
-        <Link className="btn btn-ghost" href="/learn/als/orient">
+        <Link className="btn btn-ghost" href="/diseases/primers/als/orient">
           Student module 01
         </Link>
         <Link className="btn btn-ghost" href="/diseases/als">
           ALS research workspace
         </Link>
-        <Link className="btn btn-ghost" href="/learn">
+        <Link className="btn btn-ghost" href="/diseases">
           All diseases
         </Link>
       </div>

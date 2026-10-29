@@ -65,7 +65,7 @@ export function BiologyFoldCycle() {
             <i className="is-sheet" aria-hidden="true" /> Sheet
           </span>
           <span>
-            <i className="is-loop" aria-hidden="true" /> Loop
+            <i className="is-loop" aria-hidden="true" /> Coil / loop
           </span>
         </p>
       </div>

@@ -19,7 +19,7 @@ export default function BetaPage() {
           Allele, Pulse) are Beta; chat not open yet. No payment on this page. Educational only.
         </p>
         <div className="cta-row">
-          <Link className="btn btn-primary" href="/learn">
+          <Link className="btn btn-primary" href="/diseases">
             Start free
           </Link>
           <Link className="btn btn-ghost" href="#waitlist">

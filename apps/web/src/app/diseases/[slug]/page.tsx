@@ -111,7 +111,7 @@ export default async function DiseaseHubPage({ params }: Props) {
           >
             Open a ready tool
           </Link>
-          <Link className="btn btn-ghost" href={`/learn/${catalog.slug}`}>
+          <Link className="btn btn-ghost" href={`/diseases/primers/${catalog.slug}`}>
             Student primer
           </Link>
           <Link className="btn btn-ghost" href="/diseases">
@@ -250,8 +250,8 @@ export default async function DiseaseHubPage({ params }: Props) {
       </section>
 
       <p className="hint" style={{ marginTop: "1.5rem" }}>
-        New here? Start with{" "}
-        <Link href="/learn">Learn</Link>, disease primers and the ALS track, or browse{" "}
+        New here? Start with the{" "}
+        <Link href="/diseases#primers">disease primers and the ALS track</Link>, or browse{" "}
         <Link href="/diseases">all research diseases</Link>.
       </p>
     </main>

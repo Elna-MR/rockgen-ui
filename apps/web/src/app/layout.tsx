@@ -63,7 +63,6 @@ export default function RootLayout({
             </Link>
             <nav className="nav" aria-label="Primary">
               <Link href="/biology-first">Biology</Link>
-              <Link href="/learn">Learn</Link>
               <Link href="/proteins/explore">Structures</Link>
               <Link href="/diseases">Research</Link>
               <Link href="/agentics" title="Lumen — ProtScope agents">
@@ -95,7 +94,6 @@ export default function RootLayout({
                 disease.
               </p>
               <nav className="site-footer-links" aria-label="Footer">
-                <Link href="/learn">Learn</Link>
                 <Link href="/diseases">Research</Link>
                 <Link href="/proteins/explore">Structures</Link>
                 <Link href="/agentics">Lumen</Link>

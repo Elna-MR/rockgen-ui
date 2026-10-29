@@ -51,7 +51,7 @@ export function ResearchHubClient() {
     <div className="learn-hub">
       <div className="learn-search">
         <label className="explorer-search-label" htmlFor="research-search">
-          What protein to ProtScope? Enter here:
+          Search by disease, gene, protein or mechanism
         </label>
         <div className="explorer-search-row">
           <div className="explorer-input-wrap">

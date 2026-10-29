@@ -133,7 +133,7 @@ export default function BiologyFirstPage() {
       <section className="science-section science-cta">
         <h2>Continue</h2>
         <div className="cta-row">
-          <Link className="btn btn-primary" href="/learn">
+          <Link className="btn btn-primary" href="/diseases">
             Learning hub
           </Link>
           <Link className="btn btn-ghost" href="/diseases">

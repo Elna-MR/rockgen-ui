@@ -28,11 +28,11 @@ export default function HomePage() {
             you explore experimentally solved structures.
           </p>
           <div className="cta-row">
-            <Link className="btn btn-primary" href="/learn">
-              Learn
+            <Link className="btn btn-primary" href="/diseases">
+              Explore diseases
             </Link>
-            <Link className="btn btn-ghost" href="/diseases">
-              Research
+            <Link className="btn btn-ghost" href="/proteins/explore">
+              Open structures
             </Link>
           </div>
         </div>
@@ -41,7 +41,7 @@ export default function HomePage() {
       <div className="page home-page-body">
         <section className="section home-paths" aria-label="Choose a path">
           <div className="path-grid path-grid-2">
-            <Link href="/learn" className="path-tile path-tile-primary">
+            <Link href="/diseases#primers" className="path-tile path-tile-primary">
               <p className="eyebrow">Learn</p>
               <h2>Students &amp; families</h2>
               <p>
@@ -64,7 +64,7 @@ export default function HomePage() {
           <h2 id="capabilities-heading">What you can do here</h2>
           <ul className="home-capability-list">
             <li>
-              <Link href="/learn">
+              <Link href="/diseases#primers">
                 <strong>Learn disease biology</strong>
                 <span>Follow gene → protein → pathway stories without assuming a therapeutic answer.</span>
                 <em>Start learning →</em>

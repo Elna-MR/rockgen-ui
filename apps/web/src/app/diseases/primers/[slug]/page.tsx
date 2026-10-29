@@ -18,7 +18,7 @@ export default async function LearnDiseasePage({ params }: Props) {
   return (
     <main className="page learn-disease-page">
       <p className="eyebrow">
-        <Link href="/learn">Learn</Link> · {disease.shortName}
+        <Link href="/diseases">Research</Link> · {disease.shortName}
       </p>
       <header className="hub-hero hub-hero-visual">
         <div>
@@ -101,20 +101,20 @@ export default async function LearnDiseasePage({ params }: Props) {
       <aside className="check-panel" aria-label="Study tip">
         <h2>Study tip</h2>
         <p>
-          Compare this disease with <Link href="/learn/als">ALS</Link> using the same vocabulary:
+          Compare this disease with <Link href="/diseases/primers/als">ALS</Link> using the same vocabulary:
           protein → local structure change → shared mechanism → evidence type. Do not treat these
           primers as clinical guidance.
         </p>
       </aside>
 
       <div className="cta-row" style={{ marginTop: "1.75rem" }}>
-        <Link className="btn btn-primary" href={disease.track[0]?.href || "/learn"}>
+        <Link className="btn btn-primary" href={disease.track[0]?.href || "/diseases"}>
           Start this track
         </Link>
         <Link className="btn btn-ghost" href="/proteins/explore">
           Structure lab
         </Link>
-        <Link className="btn btn-ghost" href="/learn">
+        <Link className="btn btn-ghost" href="/diseases">
           All diseases
         </Link>
       </div>
