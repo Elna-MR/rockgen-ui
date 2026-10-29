@@ -20,7 +20,9 @@ export default async function PeptideDesignPage({ searchParams }: Props) {
         <p className="lede">
           Explore peptide binder ideas at a mutation site: surface accessibility, chemical
           subsites, and scored peptide hypotheses. The scores are computational estimates. No
-          peptide here has been tested or shown to bind.
+          peptide here has been tested or shown to bind. To see whether the change itself is
+          disruptive, use the{" "}
+          <Link href={`/proteins/inspect?q=${encodeURIComponent(query)}`}>Mutation inspector</Link>.
         </p>
       </header>
       <StructureWorkspaceNav active="design" query={query} />

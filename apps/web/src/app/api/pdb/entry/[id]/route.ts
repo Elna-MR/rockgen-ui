@@ -7,6 +7,17 @@ type Polymer = {
   uniprot_ids: string[];
   organism?: string;
   type?: string;
+  /** How this chain's residues map onto UniProt positions (from SIFTS via RCSB). */
+  uniprot_alignment: {
+    accession: string;
+    regions: { entity_beg: number; ref_beg: number; length: number }[];
+  }[];
+};
+
+type AlignRaw = {
+  reference_database_name?: string;
+  reference_database_accession?: string;
+  aligned_regions?: { entity_beg_seq_id: number; ref_beg_seq_id: number; length: number }[];
 };
 
 export async function GET(_req: NextRequest, ctx: { params: Promise<{ id: string }> }) {
@@ -51,6 +62,16 @@ export async function GET(_req: NextRequest, ctx: { params: Promise<{ id: string
         uniprot_ids: poly.rcsb_polymer_entity_container_identifiers?.uniprot_ids || [],
         organism: src?.ncbi_scientific_name || src?.scientific_name,
         type: poly.entity_poly?.type,
+        uniprot_alignment: ((poly.rcsb_polymer_entity_align || []) as AlignRaw[])
+          .filter((a) => a.reference_database_name === "UniProt" && a.reference_database_accession)
+          .map((a) => ({
+            accession: a.reference_database_accession as string,
+            regions: (a.aligned_regions || []).map((r) => ({
+              entity_beg: r.entity_beg_seq_id,
+              ref_beg: r.ref_beg_seq_id,
+              length: r.length,
+            })),
+          })),
       });
     }
 

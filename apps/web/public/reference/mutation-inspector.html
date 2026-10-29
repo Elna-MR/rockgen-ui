@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Substitution — a point mutation inspector</title>
+<title>Mutation inspector</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -11,11 +11,11 @@
 /* Same rule as the structure explorer: the interface is monochrome ink,
    and every hue that appears carries chemical or structural meaning. */
 :root{
-  --ink:#0B1118; --panel:#101A24; --panel-2:#16222E; --rule:#22323F;
-  --bone:#E7EEF4; --muted:#8497A7; --dim:#5B6D7C; --accent:#5FD3E0;
-  --helix:#E0533F; --strand:#E8B23A; --coil:#6C8195;
-  --hydrophobic:#C9A227; --polar:#4FB3A5; --acidic:#E0533F; --basic:#6E8FE0; --special:#A97BD1;
-  --warn:#E0533F; --caution:#E8B23A; --ok:#4FB3A5;
+  --ink:#f3f7f9; --panel:#ffffff; --panel-2:#eef4f7; --rule:#d3dee4;
+  --bone:#1a2b34; --muted:#5a6f7a; --dim:#7a8c96; --accent:#1f7a8c;
+  --helix:#c9973f; --strand:#5b7fa6; --coil:#a9b7bf;
+  --hydrophobic:#a67c00; --polar:#2f8f83; --acidic:#c0392b; --basic:#3f66c4; --special:#8a5cb8;
+  --warn:#c0392b; --caution:#b8860b; --ok:#2f8f83;
   --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
   --disp:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;--serif:"Source Serif 4",Georgia,serif;
 }
@@ -24,7 +24,7 @@ html,body{margin:0;padding:0}
 body{background:var(--ink);color:var(--bone);font-family:var(--disp);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
 a{color:var(--accent)} button,input,select{font:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-header{border-bottom:1px solid var(--rule);background:linear-gradient(180deg,#0E1822,#0B1118);position:sticky;top:0;z-index:40}
+header{border-bottom:1px solid var(--rule);background:linear-gradient(180deg,#ffffff,#f3f7f9);position:sticky;top:0;z-index:40}
 .bar{max-width:1500px;margin:0 auto;padding:14px 22px;display:flex;gap:22px;align-items:center;flex-wrap:wrap}
 .brand{font-family:var(--disp);display:flex;flex-direction:column;line-height:1.05}
 .brand b{font-family:var(--disp);font-weight:700;letter-spacing:-.02em;font-size:19px}
@@ -36,7 +36,7 @@ header{border-bottom:1px solid var(--rule);background:linear-gradient(180deg,#0E
 #q:focus{border-color:var(--accent)}
 .btn{background:transparent;border:1px solid var(--rule);border-radius:2px;padding:10px 16px;cursor:pointer;
   font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--bone);transition:.15s}
-.btn:hover{border-color:var(--accent);background:#12212B}
+.btn:hover{border-color:var(--accent);background:#eef4f7}
 .btn.go{border-color:var(--accent);color:var(--accent)}
 .chips{display:flex;gap:6px;flex-wrap:wrap;padding:0 22px 13px;max-width:1500px;margin:0 auto}
 .chip{background:none;border:1px dashed var(--rule);border-radius:99px;padding:3px 11px;font-family:var(--mono);
@@ -92,7 +92,7 @@ tr:last-child td{border-bottom:0}
 .num{text-align:right}
 .delta.up{color:var(--strand)} .delta.dn{color:var(--accent)} .delta.zero{color:var(--dim)}
 .swatch{display:inline-block;width:9px;height:9px;border-radius:1px;margin-right:7px;vertical-align:baseline}
-.bury{height:6px;background:#0A1017;border:1px solid var(--rule);border-radius:2px;overflow:hidden;margin-top:7px}
+.bury{height:6px;background:#ffffff;border:1px solid var(--rule);border-radius:2px;overflow:hidden;margin-top:7px}
 .bury span{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--strand))}
 /* sequence context strip */
 .ctx{font-family:var(--mono);font-size:14px;background:var(--panel);border:1px solid var(--rule);border-radius:2px;padding:14px;overflow-x:auto;white-space:nowrap}
@@ -104,7 +104,7 @@ tr:last-child td{border-bottom:0}
   border:1px solid var(--rule);border-left:2px solid var(--rule);border-radius:2px;padding:9px;margin-bottom:7px;cursor:pointer}
 .cand:hover{border-left-color:var(--accent)}
 .cand[aria-current="true"]{border-left-color:var(--accent);background:var(--panel-2)}
-.cand img{width:52px;height:52px;object-fit:cover;border-radius:2px;background:#0A1017;filter:saturate(.7)}
+.cand img{width:52px;height:52px;object-fit:cover;border-radius:2px;background:#ffffff;filter:saturate(.7)}
 .cand .id{font-family:var(--mono);font-size:12.5px;font-weight:600;color:var(--accent);letter-spacing:.05em}
 .cand .t{font-size:11.5px;color:var(--bone);line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin:1px 0 3px}
 .cand .m{font-family:var(--mono);font-size:10px;color:var(--dim)}
@@ -138,7 +138,7 @@ footer{max-width:1500px;margin:0 auto;padding:28px 22px 44px;border-top:1px soli
 <body>
 <header>
   <div class="bar">
-    <div class="brand"><b>Substitution</b><span>point mutation inspector</span></div>
+    <div class="brand"><b>Mutation inspector</b><span>one substitution, one structure</span></div>
     <div class="searchwrap">
       <input id="q" placeholder="Gene or UniProt accession + mutation — e.g. PFN1-G118V" autocomplete="off" spellcheck="false">
       <button class="btn go" id="goBtn">Analyse</button>
@@ -954,7 +954,7 @@ async function initViewer(){
   const vp = $('#viewport'); if(!vp) return;
   try{
     await ensureNGL();
-    S.ngl.stage = new NGL.Stage(vp, { backgroundColor:'#080D13', quality:'medium' });
+    S.ngl.stage = new NGL.Stage(vp, { backgroundColor:'#f4f8fa', quality:'medium' });
     window.addEventListener('resize', () => S.ngl.stage && S.ngl.stage.handleResize());
     const blob = new Blob([S.struct.text], { type:'text/plain' });
     S.ngl.comp = await S.ngl.stage.loadFile(blob, { ext:S.struct.ext, name:S.chosen.entryId });
@@ -981,7 +981,7 @@ function draw(){
     colorValue:'#5FD3E0', radiusScale:1.5, aspectRatio:1.5 });
   try{
     comp.addRepresentation('label', { sele:`${site} and .CA`, labelType:'format',
-      labelFormat:`${S.mut.wt}${authSeq}\u2192${S.mut.mt}`, color:'#E7EEF4', zOffset:2,
+      labelFormat:`${S.mut.wt}${authSeq}>${S.mut.mt}`, color:'#E7EEF4', zOffset:2,
       attachment:'bottom-center', showBackground:true, backgroundColor:'#0B1118',
       backgroundOpacity:0.7, radiusScale:1.4 });
   }catch(e){ /* older NGL builds lack the format label */ }

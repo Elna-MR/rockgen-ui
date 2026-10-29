@@ -96,6 +96,11 @@ type SearchHit = {
   resolution: number | null;
 };
 
+type UniprotAlignment = {
+  accession: string;
+  regions: { entity_beg: number; ref_beg: number; length: number }[];
+};
+
 type EntryDetail = {
   pdb_id: string;
   title: string;
@@ -112,6 +117,7 @@ type EntryDetail = {
     uniprot_ids: string[];
     organism?: string;
     type?: string;
+    uniprot_alignment?: UniprotAlignment[];
   }>;
   primary: {
     entity_id: string;
@@ -119,6 +125,7 @@ type EntryDetail = {
     sequence: string;
     uniprot_ids: string[];
     organism?: string;
+    uniprot_alignment?: UniprotAlignment[];
   } | null;
   rcsb_url: string;
 };
@@ -146,7 +153,7 @@ function formatReleased(iso: string | null) {
 
 export function StructureExplorer({ catalog, initialQuery }: Props) {
   const [query, setQuery] = useState(initialQuery || "PFN1-G118V");
-  const [mutation, setMutation] = useState<ParsedMutation | null>(() =>
+  const [mutationQuery, setMutation] = useState<ParsedMutation | null>(() =>
     parseMutationQuery(initialQuery || "PFN1-G118V"),
   );
   const [hits, setHits] = useState<SearchHit[]>([]);
@@ -227,8 +234,6 @@ export function StructureExplorer({ catalog, initialQuery }: Props) {
         if (!res.ok) throw new Error(data.error || `Entry failed (${res.status})`);
         if (!cancelled) {
           setEntry(data);
-          const mut = parseMutationQuery(query);
-          if (mut?.pos) setActiveResi(mut.pos);
         }
       } catch (e) {
         if (!cancelled) setError(e instanceof Error ? e.message : "Failed to load entry");
@@ -244,7 +249,7 @@ export function StructureExplorer({ catalog, initialQuery }: Props) {
 
   // In a complex the first chain is often a partner (e.g. actin in a profilin-actin entry).
   // Prefer the chain that maps to the protein the user asked about.
-  const targetUniprot = mutation?.uniprot ?? matchedGene?.uniprot ?? null;
+  const targetUniprot = mutationQuery?.uniprot ?? matchedGene?.uniprot ?? null;
   useEffect(() => {
     setAnalysis(null);
   }, [selectedId]);
@@ -273,6 +278,32 @@ export function StructureExplorer({ catalog, initialQuery }: Props) {
     if (analysis && numberingOk) for (const r of analysis.residues) m.set(r.resi, r.ss);
     return m;
   }, [analysis, numberingOk]);
+  // Mutation numbers are UniProt positions. Structures often start later (for example without the
+  // first methionine), so map the position onto this entry's residue numbering before using it.
+  const mutation = useMemo(() => {
+    if (!mutationQuery) return null;
+    const accession = mutationQuery.uniprot ?? primary?.uniprot_ids?.[0] ?? null;
+    const regions = primary?.uniprot_alignment?.find((a) => a.accession === accession)?.regions;
+    let pos = mutationQuery.pos;
+    if (regions && regions.length > 0) {
+      const r = regions.find(
+        (x) => mutationQuery.pos >= x.ref_beg && mutationQuery.pos < x.ref_beg + x.length,
+      );
+      pos = r ? r.entity_beg + (mutationQuery.pos - r.ref_beg) : -1;
+    }
+    return { ...mutationQuery, pos, uniprotPos: mutationQuery.pos };
+  }, [mutationQuery, primary]);
+  const offsetNote =
+    mutation && mutation.pos > 0 && mutation.pos !== mutation.uniprotPos
+      ? ` In this structure that residue is number ${mutation.pos}.`
+      : "";
+
+  useEffect(() => {
+    if (entry && mutation && mutation.pos > 0) setActiveResi(mutation.pos);
+    // run when the entry or the mapped position changes
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [entry?.pdb_id, mutation?.pos]);
+
   const chem = useMemo(() => (sequence ? chemistrySummary(sequence) : null), [sequence]);
   const site = useMemo(
     () => (sequence && mutation ? assessMutationSite(sequence, mutation) : null),
@@ -525,7 +556,7 @@ export function StructureExplorer({ catalog, initialQuery }: Props) {
                 {mutation && site && (
                   <p>
                     The change <strong>{mutation.label}</strong> swaps {AA_NAME[mutation.wt] ?? mutation.wt} for{" "}
-                    {AA_NAME[mutation.mt] ?? mutation.mt} at position {mutation.pos}.{" "}
+                    {AA_NAME[mutation.mt] ?? mutation.mt} at position {mutation.uniprotPos}.{offsetNote}{" "}
                     {site.observedWt === mutation.mt
                       ? `This entry already contains ${AA_NAME[mutation.mt] ?? mutation.mt}, so it shows the changed protein.`
                       : site.observedWt === mutation.wt

@@ -3,17 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Complement — peptide binder design against a mutation site</title>
+<title>Peptide design — binder ideas at a mutation site</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#0B1118;--panel:#101A24;--panel-2:#16222E;--rule:#22323F;
-  --bone:#E7EEF4;--muted:#8497A7;--dim:#5B6D7C;--accent:#5FD3E0;
-  --helix:#E0533F;--strand:#E8B23A;--coil:#6C8195;
-  --hydrophobic:#C9A227;--polar:#4FB3A5;--acidic:#E0533F;--basic:#6E8FE0;--special:#A97BD1;
-  --warn:#E0533F;--caution:#E8B23A;--ok:#4FB3A5;
+  --ink:#f3f7f9;--panel:#ffffff;--panel-2:#eef4f7;--rule:#d3dee4;
+  --bone:#1a2b34;--muted:#5a6f7a;--dim:#7a8c96;--accent:#1f7a8c;
+  --helix:#c9973f;--strand:#5b7fa6;--coil:#a9b7bf;
+  --hydrophobic:#a67c00;--polar:#2f8f83;--acidic:#c0392b;--basic:#3f66c4;--special:#8a5cb8;
+  --warn:#c0392b;--caution:#b8860b;--ok:#2f8f83;
   --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
   --disp:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;--serif:"Source Serif 4",Georgia,serif;
 }
@@ -21,7 +21,7 @@
 body{background:var(--ink);color:var(--bone);font-family:var(--disp);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
 a{color:var(--accent)} button,input,select{font:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-header{border-bottom:1px solid var(--rule);background:linear-gradient(180deg,#0E1822,#0B1118);position:sticky;top:0;z-index:40}
+header{border-bottom:1px solid var(--rule);background:linear-gradient(180deg,#ffffff,#f3f7f9);position:sticky;top:0;z-index:40}
 .bar{max-width:1560px;margin:0 auto;padding:14px 22px;display:flex;gap:20px;align-items:center;flex-wrap:wrap}
 .brand{font-family:var(--disp);display:flex;flex-direction:column;line-height:1.05}
 .brand b{font-family:var(--disp);font-weight:700;letter-spacing:-.02em;font-size:19px}
@@ -31,7 +31,7 @@ header{border-bottom:1px solid var(--rule);background:linear-gradient(180deg,#0E
 #q::placeholder{color:var(--dim);text-transform:none}
 #q:focus{border-color:var(--accent)}
 .btn{background:transparent;border:1px solid var(--rule);border-radius:2px;padding:9px 15px;cursor:pointer;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--bone);transition:.15s}
-.btn:hover{border-color:var(--accent);background:#12212B}
+.btn:hover{border-color:var(--accent);background:#eef4f7}
 .btn.go{border-color:var(--accent);color:var(--accent)}
 .btn.sm{padding:5px 10px;font-size:11px}
 .chips{display:flex;gap:6px;flex-wrap:wrap;padding:0 22px 13px;max-width:1560px;margin:0 auto}
@@ -109,7 +109,7 @@ footer{max-width:1560px;margin:0 auto;padding:26px 22px 44px;border-top:1px soli
 <body>
 <header>
   <div class="bar">
-    <div class="brand"><b>Complement</b><span>peptide binder design · mutation sites</span></div>
+    <div class="brand"><b>Peptide design</b><span>binder ideas at a mutation site</span></div>
     <div class="searchwrap">
       <input id="q" placeholder="Target — e.g. PFN1-G118V" autocomplete="off" spellcheck="false">
       <button class="btn go" id="goBtn">Design</button>
@@ -918,7 +918,7 @@ async function initViewer(){
   const vp=$('#viewport'); if(!vp)return;
   try{
     await ensureNGL();
-    S.ngl.stage=new NGL.Stage(vp,{backgroundColor:'#080D13',quality:'medium'});
+    S.ngl.stage=new NGL.Stage(vp,{backgroundColor:'#f4f8fa',quality:'medium'});
     window.addEventListener('resize',()=>S.ngl.stage&&S.ngl.stage.handleResize());
     S.ngl.comp=await S.ngl.stage.loadFile(new Blob([S.struct.text],{type:'text/plain'}),
       {ext:S.struct.ext,name:S.cand.entryId});
