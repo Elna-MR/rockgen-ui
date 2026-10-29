@@ -1,7 +1,5 @@
 :root {
-  /* Side gutter that lines the header, hero and footer up with the centered page content.
-     Uses % so it measures the page width and ignores the scrollbar. */
-  --gutter: max(clamp(1.25rem, 3vw, 2.25rem), calc((100% - 1100px) / 2 + 2rem));
+
   /* Light, inspiring stage — soft dawn mist + living teal (not cerebral charcoal) */
   --bg-0: #f3f7f9;
   --bg-1: #e8f0f3;
@@ -41,6 +39,18 @@
 }
 
 html,
+body {
+  /* Content width shared by the header, hero, cards and footer. The home page widens it. */
+  --site-w: 1100px;
+  /* Side gutter that lines the header, hero and footer up with the centered page content.
+     Uses % so it measures the page width and ignores the scrollbar. */
+  --gutter: max(clamp(1.25rem, 3vw, 2.25rem), calc((100% - var(--site-w)) / 2 + 2rem));
+}
+
+body:has(.home-page-editorial) {
+  --site-w: 1280px;
+}
+
 body {
   min-height: 100%;
 }
@@ -312,7 +322,7 @@ a {
 
 .page {
   padding: 2rem;
-  max-width: 1100px;
+  max-width: var(--site-w);
   width: 100%;
   margin: 0 auto;
   animation: rise 0.55s ease both;
@@ -3262,7 +3272,7 @@ body:has(.learn-hub-page) .atm-protein-bg {
 }
 
 .home-page-body.page {
-  max-width: min(1100px, 100%);
+  max-width: min(var(--site-w), 100%);
   margin: 0 auto;
   padding-top: 0.5rem;
 }
