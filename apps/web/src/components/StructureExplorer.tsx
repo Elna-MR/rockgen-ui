@@ -293,10 +293,6 @@ export function StructureExplorer({ catalog, initialQuery }: Props) {
     }
     return { ...mutationQuery, pos, uniprotPos: mutationQuery.pos };
   }, [mutationQuery, primary]);
-  const offsetNote =
-    mutation && mutation.pos > 0 && mutation.pos !== mutation.uniprotPos
-      ? ` In this structure that residue is number ${mutation.pos}.`
-      : "";
 
   useEffect(() => {
     if (entry && mutation && mutation.pos > 0) setActiveResi(mutation.pos);
@@ -543,33 +539,28 @@ export function StructureExplorer({ catalog, initialQuery }: Props) {
                   {tab === "overview" && (
                     <section className="explorer-panel">
               <section className="plain-words" aria-label="In plain words">
-                <p className="eyebrow">In plain words</p>
                 <p>
-                  {matchedGene ? matchedGene.symbol : "This protein"} is a chain of{" "}
-                  {sequence.length || "…"} amino acids
-                  {primary?.organism ? ` from ${primary.organism}` : ""}. This structure ({entry.pdb_id}) was
-                  solved by {shortMethod(entry.method)}.
+                  {matchedGene ? matchedGene.symbol : "This protein"}: {sequence.length || "…"} amino
+                  acids{primary?.organism ? `, ${primary.organism}` : ""}. {entry.pdb_id}, solved by{" "}
+                  {shortMethod(entry.method)}.
                   {analysis
-                    ? ` About ${Math.round(analysis.composition.h * 100)}% of the chain forms helices, ${Math.round(analysis.composition.s * 100)}% forms sheets and ${Math.round(analysis.composition.c * 100)}% is loops.`
+                    ? ` ${Math.round(analysis.composition.h * 100)}% helix, ${Math.round(analysis.composition.s * 100)}% sheet, ${Math.round(analysis.composition.c * 100)}% coil.`
                     : ""}
                 </p>
                 {mutation && site && (
                   <p>
-                    The change <strong>{mutation.label}</strong> swaps {AA_NAME[mutation.wt] ?? mutation.wt} for{" "}
-                    {AA_NAME[mutation.mt] ?? mutation.mt} at position {mutation.uniprotPos}.{offsetNote}{" "}
+                    <strong>{mutation.label}</strong> is position {mutation.uniprotPos}
+                    {mutation.pos > 0 && mutation.pos !== mutation.uniprotPos ? ` (residue ${mutation.pos} here)` : ""}.{" "}
                     {site.observedWt === mutation.mt
-                      ? `This entry already contains ${AA_NAME[mutation.mt] ?? mutation.mt}, so it shows the changed protein.`
+                      ? "This entry shows the changed amino acid."
                       : site.observedWt === mutation.wt
-                        ? `This entry shows the normal ${AA_NAME[mutation.wt] ?? mutation.wt}.`
-                        : "This entry has a different amino acid there, so its numbering may differ."}
+                        ? "This entry shows the normal amino acid."
+                        : "Numbering may differ in this entry."}
                     {analysis?.selected && numberingOk
-                      ? ` In 3D that spot sits in ${analysis.selected.ss === "h" ? "a helix" : analysis.selected.ss === "s" ? "a sheet" : "a loop"}, with ${analysis.selected.neighbours10} other residues close by.`
+                      ? ` It sits in ${analysis.selected.ss === "h" ? "a helix" : analysis.selected.ss === "s" ? "a sheet" : "a coil"}.`
                       : ""}
                   </p>
                 )}
-                <p className="hint">
-                  This describes shape only. It does not say whether a change causes disease.
-                </p>
               </section>
                       {analysis && (
                         <section className="struct-facts" aria-label="Measured from the 3D structure">

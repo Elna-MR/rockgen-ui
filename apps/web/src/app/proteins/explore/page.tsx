@@ -46,38 +46,11 @@ export default async function StructureExplorePage({ searchParams }: Props) {
       </header>
       <StructureExplorer catalog={ALS_CATALOG} initialQuery={initialQuery} />
       <section className="structures-limits" aria-labelledby="structures-limits-heading">
-        <h2 id="structures-limits-heading">What this page can and cannot tell you</h2>
+        <h2 id="structures-limits-heading">Good to know</h2>
         <ul>
-          <li>
-            <strong>Known ALS genes</strong> (PFN1, TUBA4A, SOD1, FUS, TARDBP) search by UniProt
-            accession, so every result is the human protein. Other searches are free text and can
-            return other species.
-          </li>
-          <li>
-            <strong>Resolution</strong> shows how finely a structure was measured. Lower is better.
-            NMR models have no resolution value.
-          </li>
-          <li>
-            <strong>The site check uses sequence only.</strong> It estimates whether a residue sits
-            in a polar or hydrophobic neighbourhood. It does not measure burial or predict whether
-            a mutation causes disease. Confirm in 3D.
-          </li>
-          <li>
-            <strong>Numbering</strong> follows UniProt. A PDB entry can number residues
-            differently, so the page warns when the residue or protein does not match.
-          </li>
-          <li>
-            <strong>Coming:</strong>{" "}
-            <a
-              href="https://github.com/microsoft/bioemu2"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              BioEmu2
-            </a>{" "}
-            ensembles for fold and motion, explained by Helix in{" "}
-            <Link href="/agentics">Lumen</Link>. Not live yet.
-          </li>
+          <li>Known ALS genes return the human protein. Other searches can return other species.</li>
+          <li>Residue numbers follow UniProt. The page warns if the PDB entry numbers differently.</li>
+          <li>Shape only: this does not say whether a change causes disease.</li>
         </ul>
       </section>
       <InverseFoldEnrichment />
