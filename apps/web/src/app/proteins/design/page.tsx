@@ -18,9 +18,9 @@ export default async function PeptideDesignPage({ searchParams }: Props) {
       <header className="page-header" style={{ marginBottom: "0.85rem" }}>
         <h1>Peptide design</h1>
         <p className="lede">
-          Complement-style binder design at a mutation site: surface accessibility, chemical
-          subsites, and scored peptide hypotheses, from your interface / complex HTML, inside
-          ProtScope.
+          Explore peptide binder ideas at a mutation site: surface accessibility, chemical
+          subsites, and scored peptide hypotheses. The scores are computational estimates. No
+          peptide here has been tested or shown to bind.
         </p>
       </header>
       <StructureWorkspaceNav active="design" query={query} />

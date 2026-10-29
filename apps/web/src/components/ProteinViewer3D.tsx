@@ -196,7 +196,7 @@ export function ProteinViewer3D() {
           <>
             {" "}
             · selected: <strong>{selected.label}</strong> ({selected.bindingRegion},{" "}
-            {selected.evidenceStrength}) ·{" "}
+            {selected.evidenceStrength} curated rating) ·{" "}
             <Link href={`/proteins/P07737/compare#${selected.key.replace(":", "-")}`}>
               Open mutation review
             </Link>

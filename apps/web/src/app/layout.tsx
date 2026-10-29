@@ -31,7 +31,7 @@ const mono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   title: "ProtScope™ — protein folding in health, misfolding in disease",
   description:
-    "ProtScope™ is an AI-powered platform that analyzes proteins from 1-D amino acid sequence to 3-D and quaternary structures.",
+    "ProtScope™ is a research workspace for neurodegenerative disease proteins. It links ALS genes, variants and biomarkers in a knowledge graph with evidence labels, and lets you explore experimentally solved protein structures and sequence chemistry. It does not predict structures or diagnose disease.",
 };
 
 export default function RootLayout({
@@ -92,11 +92,16 @@ export default function RootLayout({
               </span>
               <p className="site-footer-disclaimer">
                 Educational only, not medical advice. ProtScope™ content does not diagnose or treat
-                disease.{" "}
-                <Link href="/agentics">Lumen</Link>
-                {" · "}
-                <Link href="/partners">Research partners</Link>
+                disease.
               </p>
+              <nav className="site-footer-links" aria-label="Footer">
+                <Link href="/learn">Learn</Link>
+                <Link href="/diseases">Research</Link>
+                <Link href="/proteins/explore">Structures</Link>
+                <Link href="/agentics">Lumen</Link>
+                <Link href="/partners">Research partners</Link>
+                <Link href="/beta">Beta</Link>
+              </nav>
             </div>
           </footer>
         </div>

@@ -75,7 +75,7 @@ export const LEARN_DISEASES: LearnDisease[] = [
     keyFacts: [
       "Different ALS genes can converge on overlapping pathological routes.",
       "Evidence strength differs: genetics, cells, animals, and computation are not interchangeable.",
-      "Map mechanisms and vulnerable cell biology before designing molecules.",
+      "Map mechanisms and vulnerable cell biology before any therapeutic work.",
     ],
     track: [
       {
@@ -108,12 +108,12 @@ export const LEARN_DISEASES: LearnDisease[] = [
     shortName: "Parkinson’s",
     tagline: "Dopaminergic neurons · α-synuclein · mitochondria",
     summary:
-      "Parkinson’s disease is a neurodegenerative movement disorder featuring progressive loss of nigrostriatal dopaminergic neurons and α-synuclein–rich Lewy pathology. Learn how SNCA, LRRK2, and mitophagy genes such as PRKN frame distinct but overlapping disease pathways.",
+      "Parkinson’s disease is a neurodegenerative movement disorder featuring progressive loss of nigrostriatal dopaminergic neurons and α-synuclein–rich Lewy pathology in most cases. Learn how SNCA, LRRK2, and mitophagy genes such as PRKN frame distinct but overlapping disease pathways.",
     category: "Movement",
     accent: "#6f8798",
     status: "growing",
     minutes: "~25 min",
-    modules: 4,
+    modules: 3,
     focus: ["SNCA", "LRRK2", "Mitochondria"],
     proteins: [
       {
@@ -129,7 +129,7 @@ export const LEARN_DISEASES: LearnDisease[] = [
       {
         symbol: "PRKN",
         name: "Parkin",
-        role: "E3 ubiquitin ligase that tags damaged mitochondria for mitophagy. Loss-of-function variants cause early-onset recessive Parkinson’s via mitochondrial quality-control failure.",
+        role: "E3 ubiquitin ligase that tags damaged mitochondria for mitophagy. Loss-of-function variants cause early-onset recessive Parkinson’s. Defective mitochondrial quality control (mitophagy) is the leading proposed mechanism, and Lewy pathology is often absent in PRKN-related disease.",
       },
     ],
     mechanisms: [
@@ -187,7 +187,7 @@ export const LEARN_DISEASES: LearnDisease[] = [
     accent: "#8a7a64",
     status: "growing",
     minutes: "~25 min",
-    modules: 4,
+    modules: 3,
     focus: ["APP / Aβ", "MAPT / tau", "Synapse loss"],
     proteins: [
       {
@@ -198,7 +198,7 @@ export const LEARN_DISEASES: LearnDisease[] = [
       {
         symbol: "MAPT",
         name: "Tau (microtubule-associated protein tau)",
-        role: "Stabilizes axonal microtubules. Hyperphosphorylated, misfolded tau forms neurofibrillary tangles and correlates closely with clinical progression.",
+        role: "Stabilizes axonal microtubules. Hyperphosphorylated, misfolded tau forms neurofibrillary tangles. Tangle burden relates to cognitive decline more closely than amyloid plaque burden does, though the relationship varies between people.",
       },
       {
         symbol: "APOE",
@@ -260,14 +260,14 @@ export const LEARN_DISEASES: LearnDisease[] = [
     category: "Genetic ND",
     accent: "#c4b8a5",
     status: "growing",
-    minutes: "~20 min",
+    minutes: "~23 min",
     modules: 3,
     focus: ["HTT", "PolyQ", "Striatum"],
     proteins: [
       {
         symbol: "HTT",
         name: "Huntingtin",
-        role: "Large scaffolding protein. Pathogenic CAG/polyglutamine expansion generates toxic gain-of-function species; longer expansions generally associate with earlier clinical onset.",
+        role: "Large scaffolding protein. Pathogenic CAG/polyglutamine expansion generates toxic gain-of-function species; longer expansions generally associate with earlier onset, but length alone cannot tell an individual when symptoms will start.",
       },
     ],
     mechanisms: [
@@ -278,7 +278,7 @@ export const LEARN_DISEASES: LearnDisease[] = [
     keyFacts: [
       "Inheritance and expansion length make genetics unusually central compared with most ALS cases.",
       "Expansion size is a teaching tool for genotype–phenotype relationships.",
-      "Knowing HTT biology is not the same as having a therapy design.",
+      "Knowing HTT biology is not the same as having a therapy. Decisions about genetic testing belong with a genetic counsellor.",
     ],
     track: [
       {
@@ -311,11 +311,11 @@ export const LEARN_DISEASES: LearnDisease[] = [
     shortName: "FTD",
     tagline: "Behaviour / language · TDP-43 · tau",
     summary:
-      "Frontotemporal dementia is a clinical spectrum of neurodegeneration affecting frontal and temporal networks that support behaviour, personality, and language. Proteinopathies include TDP-43 and tau; genetics such as C9orf72 link parts of the FTD–ALS spectrum.",
+      "Frontotemporal dementia is a clinical spectrum of neurodegeneration affecting frontal and temporal networks that support behaviour, personality, and language. Proteinopathies include TDP-43, tau and FUS; genetics such as C9orf72 link parts of the FTD–ALS spectrum.",
     category: "Dementia",
     accent: "#9a958c",
     status: "growing",
-    minutes: "~20 min",
+    minutes: "~23 min",
     modules: 3,
     focus: ["TARDBP", "MAPT", "C9orf72"],
     proteins: [

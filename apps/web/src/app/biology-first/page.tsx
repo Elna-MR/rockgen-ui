@@ -45,9 +45,10 @@ export default function BiologyFirstPage() {
           of ways.
         </p>
         <p className="article-body">
-          ProtScope™ enables you to investigate these by examining each component, starting from
-          genes and proteins, and conducting AI-powered protein chemistry experiments on this site
-          to discover the mechanism and identify targets.
+          ProtScope™ lets you investigate these by examining each component, starting from genes
+          and proteins: review the evidence for each link, compare shared pathways, and inspect
+          deposited structures and variants. This helps you form hypotheses. It does not
+          establish a disease mechanism or identify a drug target on its own.
         </p>
       </section>
 

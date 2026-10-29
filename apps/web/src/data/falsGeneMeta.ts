@@ -61,7 +61,7 @@ export const PROGRAMME_BLURB: Record<
   FUS: {
     status: "clinic",
     blurb:
-      "Ulefnersen (ION363), Ionis/Otsuka, intrathecal ASO. Phase 3 FUSION fully enrolled, readout 2H 2026.",
+      "Ulefnersen (ION363), Ionis/Otsuka, intrathecal ASO. Phase 3 FUSION met its primary endpoint in company-announced topline results (Sept 2026). Full data and regulatory review are pending. Not approved.",
   },
   STMN2: {
     status: "clinic",
@@ -71,31 +71,31 @@ export const PROGRAMME_BLURB: Record<
   SARM1: {
     status: "clinic",
     blurb:
-      "NB-4746, NB-9402, Nura Bio; LY3873862, Lilly; SIR2501, Sironax. Oral inhibitors, phase 1b/2a.",
+      "Oral SARM1 inhibitors in early clinical development: NB-4746 and NB-9402 (Nura Bio), LY3873862 (Lilly), SIR2501 (Sironax, lead use chemotherapy-induced neuropathy). Stages differ by drug.",
   },
   TARDBP: {
     status: "clinic",
     blurb:
-      "VTx-002, VectorY, AAV intrabody, phase 1/2. ATLX-1282, Alchemab/Lilly. PMN267, ProMIS, preclinical. n-Lorem n-of-1 ASOs.",
+      "VTx-002 (VectorY), an AAV intrabody in a phase 1/2 trial. PMN267 (ProMIS) is preclinical. TARDBP-mutation ALS is rare, while TDP-43 pathology occurs in most ALS.",
   },
   UNC13A: {
     status: "clinic",
     blurb:
-      "QRL-204 / LY4256984, QurAlis to Lilly, splice-switching ASO. Phase 1.",
+      "QRL-204, QurAlis (licensed to Lilly in 2024), splice-switching ASO. Preclinical when licensed; no clinical status confirmed here.",
   },
   CHCHD10: {
     status: "clinic",
-    blurb: "nL-CHCHD-001, nL18576, n-Lorem personalised ASOs. 13 patients treated.",
+    blurb: "Personalised ASOs (n-Lorem) given to a small number of CHCHD10 patients under individual-patient programmes, not a clinical trial. Efficacy is unproven.",
   },
   SIGMAR1: {
     status: "clinic",
     blurb:
-      "Pridopidine, Prilenia, oral sigma-1 agonist. HEALEY primary endpoint missed; subgroup signal, phase 3 planned.",
+      "Pridopidine (Prilenia), oral sigma-1 receptor agonist, tested in sporadic ALS, not in SIGMAR1-mutation carriers. HEALEY phase 2 missed its primary endpoint; a subgroup signal was post hoc. Check ClinicalTrials.gov for phase 3 status.",
   },
   C9orf72: {
     status: "discontinued",
     blurb:
-      "BIIB078 and WVE-004 both discontinued. PBFT02, Passage Bio, AAV progranulin, phase 1/2 in C9-FTD. Base editing preclinical.",
+      "BIIB078 and WVE-004 (C9orf72-repeat ASOs) were discontinued. Other approaches continue, for example PBFT02 (Passage Bio), an AAV progranulin therapy in a phase 1/2 trial for C9orf72 FTD.",
   },
   ATXN2: {
     status: "discontinued",
@@ -152,9 +152,7 @@ const DETAILS: Record<string, GeneDetail> = {
     hoverNote: PROGRAMME_BLURB.TARDBP.blurb,
     programmes: [
       { name: "VTx-002", status: "clinic", note: "VectorY AAV intrabody, phase 1/2" },
-      { name: "ATLX-1282", status: "clinic", note: "Alchemab/Lilly" },
       { name: "PMN267", status: "preclinical", note: "ProMIS" },
-      { name: "n-Lorem n-of-1 ASOs", status: "clinic" },
     ],
   },
   FUS: {
@@ -167,7 +165,7 @@ const DETAILS: Record<string, GeneDetail> = {
       {
         name: "Ulefnersen (ION363)",
         status: "clinic",
-        note: "Ionis/Otsuka ASO. Phase 3 FUSION; readout 2H 2026",
+        note: "Ionis/Otsuka ASO. Phase 3 FUSION topline positive (Sept 2026, company-reported); not approved",
       },
     ],
   },
@@ -219,9 +217,9 @@ const DETAILS: Record<string, GeneDetail> = {
     hoverNote: PROGRAMME_BLURB.UNC13A.blurb,
     programmes: [
       {
-        name: "QRL-204 / LY4256984",
-        status: "clinic",
-        note: "QurAlis to Lilly splice-switching ASO, phase 1",
+        name: "QRL-204",
+        status: "preclinical",
+        note: "QurAlis, licensed to Lilly 2024; clinical status not confirmed",
       },
     ],
   },
@@ -235,7 +233,7 @@ const DETAILS: Record<string, GeneDetail> = {
       {
         name: "nL-CHCHD-001 / nL18576",
         status: "clinic",
-        note: "n-Lorem personalised ASOs",
+        note: "n-Lorem individual-patient ASOs, not a trial",
       },
     ],
   },

@@ -116,7 +116,7 @@ export const ALS_MECHANISM_MATRIX_FALLBACK: MechanismMatrix = {
     symbol: META[uniprot_id].symbol,
     levels: { ...levels },
   })),
-  disclaimer: "Curated offline panel. Connect the API for live graph-backed levels.",
+  disclaimer: "Hand-curated qualitative ratings (high, medium, low), not measured or literature-derived scores.",
 };
 
 export const ALS_MECHANISM_MAP_FALLBACK: DiseaseMechanismMap = {

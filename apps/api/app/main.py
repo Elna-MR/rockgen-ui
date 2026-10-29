@@ -15,6 +15,8 @@ from app.routers import (
     mechanisms,
     dynamics,
     intelligence,
+    biomarkers,
+    pulse,
 )
 from rockgen_graph.client import close_driver
 
@@ -43,6 +45,8 @@ def create_app() -> FastAPI:
     )
     app.include_router(health.router)
     app.include_router(intelligence.router, prefix="/v1")
+    app.include_router(biomarkers.router, prefix="/v1")
+    app.include_router(pulse.router, prefix="/v1")
     app.include_router(mechanisms.router, prefix="/v1")
     app.include_router(dynamics.router, prefix="/v1")
     app.include_router(diseases.router, prefix="/v1")

@@ -35,6 +35,31 @@ const GENE_SEARCH: Record<string, string> = {
   C9ORF72: "C9orf72",
 };
 
+/** Human UniProt accession for each ALS gene; mutation numbering follows these sequences. */
+export const GENE_UNIPROT: Record<string, { uniprot: string; symbol: string }> = {
+  PFN1: { uniprot: "P07737", symbol: "PFN1" },
+  TUBA4A: { uniprot: "P68366", symbol: "TUBA4A" },
+  SOD1: { uniprot: "P00441", symbol: "SOD1" },
+  FUS: { uniprot: "P35637", symbol: "FUS" },
+  TARDBP: { uniprot: "Q13148", symbol: "TARDBP" },
+};
+
+export const ALS_UNIPROTS = new Set(Object.values(GENE_UNIPROT).map((g) => g.uniprot));
+
+const NAME_TO_GENE: Record<string, string> = {
+  PROFILIN: "PFN1",
+  PROFILIN1: "PFN1",
+  TUBULINALPHA4A: "TUBA4A",
+  SUPEROXIDEDISMUTASE1: "SOD1",
+  TDP43: "TARDBP",
+};
+
+/** Resolve a gene symbol or common protein name to a human ALS gene, or null. */
+export function alsGeneFor(term: string): { uniprot: string; symbol: string } | null {
+  const key = term.toUpperCase().replace(/[^A-Z0-9]/g, "");
+  return GENE_UNIPROT[key] ?? GENE_UNIPROT[NAME_TO_GENE[key] ?? ""] ?? null;
+}
+
 export type ParsedMutation = {
   target: string;
   pdbId: string | null;
@@ -43,6 +68,8 @@ export type ParsedMutation = {
   pos: number;
   label: string;
   searchTerm: string;
+  /** Human UniProt accession the position numbering refers to, when the gene is known. */
+  uniprot: string | null;
 };
 
 export type PatchResidue = {
@@ -64,6 +91,19 @@ export type MutationSiteReport = {
   hydrophobicNeighbors: number;
   patch: PatchResidue[];
 };
+
+/** Full amino-acid names by one-letter code, for plain-language text. */
+export const AA_NAME: Record<string, string> = {
+  A: "alanine", R: "arginine", N: "asparagine", D: "aspartic acid", C: "cysteine",
+  Q: "glutamine", E: "glutamic acid", G: "glycine", H: "histidine", I: "isoleucine",
+  L: "leucine", K: "lysine", M: "methionine", F: "phenylalanine", P: "proline",
+  S: "serine", T: "threonine", W: "tryptophan", Y: "tyrosine", V: "valine",
+};
+
+/** One-letter code for a residue name given as one or three letters, or null. */
+export function oneLetter(x: string): string | null {
+  return canonAa(x);
+}
 
 function canonAa(x: string): string | null {
   const u = x.toUpperCase();
@@ -101,6 +141,7 @@ export function parseMutationQuery(raw: string): ParsedMutation | null {
     pos: Number(t[2]),
     label: `${wt}${t[2]}${mt}`,
     searchTerm,
+    uniprot: alsGeneFor(target)?.uniprot ?? null,
   };
 }
 
@@ -147,6 +188,10 @@ export function assessMutationSite(
     verdict = "no";
     headline = "Mutation position is outside this chain’s sequence.";
     detail = `Asked for ${mut.label}, but this polymer is ${seq.length} residues. Pick another structure or chain.`;
+  } else if (observed === mut.mt) {
+    verdict = "yes";
+    headline = `This structure already carries the mutant residue, ${observed}${pos}.`;
+    detail = `The deposited sequence has ${mut.mt} where wild type has ${mut.wt}. Use it to see the mutant fold, and compare with a wild-type entry for the same protein.`;
   } else if (wtMatch === false) {
     verdict = "partial";
     headline = `Sequence has ${observed}${pos}, not ${mut.wt}${pos}.`;
@@ -154,9 +199,9 @@ export function assessMutationSite(
       "Numbering may differ between UniProt and this PDB entity, or this is a different isoform/construct. Treat mapping with care.";
   } else if (windowGravy < -0.5 || charged + polar >= hydrophobic) {
     verdict = "yes";
-    headline = `${mut.label} sits in a relatively polar local window.`;
+    headline = `${mut.label} sits in a polar local window.`;
     detail =
-      "Neighborhood chemistry is not a deep hydrophobic core, a candidate surface/interface site to inspect in 3D (Complement-style first gate).";
+      "The neighbouring residues are mostly polar or charged, so the side chain may be surface-exposed. This is a sequence-only estimate, not measured exposure. Confirm in 3D.";
   } else if (windowGravy > 0.8 && hydrophobic >= charged + polar + 2) {
     verdict = "partial";
     headline = `${mut.label} sits in a hydrophobic-leaning window.`;

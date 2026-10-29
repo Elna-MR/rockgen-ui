@@ -29,10 +29,11 @@ export function ProteinHealthReportPanel({ uniprotId }: Props) {
 
   return (
     <section className="section" id="health-report">
-      <h2>Protein Health Report</h2>
+      <h2>Protein evidence summary</h2>
       <p className="hint">
-        First reusable scientific deliverable: comparison, structure interpretation, gaps, and next
-        experiments.
+        Generated from the site&rsquo;s curated evidence graph. It is not peer reviewed and not a
+        structure prediction. Suggested experiments are hypotheses for researchers, not
+        recommendations.
       </p>
       {error && <p className="error">{error}</p>}
       {!report && !error && <p className="hint">Loading report…</p>}
@@ -53,7 +54,7 @@ export function ProteinHealthReportPanel({ uniprotId }: Props) {
               </li>
             ))}
           </ul>
-          <h3>Recommended next experiments</h3>
+          <h3>Possible next experiments (hypotheses)</h3>
           <ul className="gap-list">
             {report.recommended_next_experiments.map((e) => (
               <li key={e}>{e}</li>

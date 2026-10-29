@@ -23,8 +23,10 @@ export default function HomePage() {
             before proposing therapeutics.
           </p>
           <p className="home-intro">
-            ProtScope™ is an AI-powered platform that analyzes proteins from 1-D amino acid
-            sequence to 3-D and quaternary structures.
+            ProtScope™ is a research workspace for neurodegenerative disease proteins. It links
+            ALS genes, variants and biomarkers in a knowledge graph with evidence labels, and lets
+            you explore experimentally solved structures. It does not predict structures or
+            diagnose disease.
           </p>
           <div className="cta-row">
             <Link className="btn btn-primary" href="/learn">
@@ -63,21 +65,41 @@ export default function HomePage() {
           <h2 id="capabilities-heading">What you can do here</h2>
           <ul className="home-capability-list">
             <li>
-              <strong>Learn disease biology</strong>
-              Follow gene → protein → pathway stories without assuming a therapeutic answer.
+              <Link href="/learn">
+                <strong>Learn disease biology</strong>
+                <span>Follow gene → protein → pathway stories without assuming a therapeutic answer.</span>
+                <em>Start learning →</em>
+              </Link>
             </li>
             <li>
-              <strong>Compare shared mechanisms</strong>
-              See where diseases converge (for example aggregation or transport failure) and
-              where they diverge.
+              <Link href="/diseases/als/mechanisms">
+                <strong>Compare shared mechanisms</strong>
+                <span>
+                  See where PFN1 and TUBA4A share failure routes, such as aggregation or transport
+                  stress, and where they differ.
+                </span>
+                <em>Open mechanisms →</em>
+              </Link>
             </li>
             <li>
-              <strong>Inspect structures and variants</strong>
-              Explore deposited protein folds and disease-linked substitutions in 3D context.
+              <Link href="/proteins/explore">
+                <strong>Explore structures and variants</strong>
+                <span>
+                  Search experimentally solved protein structures and check where an ALS variant
+                  sits on them.
+                </span>
+                <em>Open structures →</em>
+              </Link>
             </li>
             <li>
-              <strong>Review evidence carefully</strong>
-              Separate computational prediction, cell models, genetics, and clinical findings.
+              <Link href="/diseases/als/evidence">
+                <strong>Review evidence carefully</strong>
+                <span>
+                  Each claim is labeled as computational prediction, cell model, genetics or
+                  clinical finding, with its limits.
+                </span>
+                <em>Open evidence →</em>
+              </Link>
             </li>
           </ul>
         </section>
@@ -85,8 +107,8 @@ export default function HomePage() {
         <section className="section home-agentics-cta" aria-labelledby="home-agentics-heading">
           <h2 id="home-agentics-heading">Lumen</h2>
           <p className="hint">
-            Four agents for disease science. Live tools today. Chat, and BioEmu2 dynamics, come in
-            Beta.
+            Lumen is ProtScope&rsquo;s set of four research agents. Pulse (biomarkers) can chat today;
+            Meridian, Helix and Allele open in Beta.
           </p>
           <div className="cta-row">
             <Link className="btn btn-primary" href="/agentics">

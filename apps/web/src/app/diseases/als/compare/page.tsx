@@ -48,7 +48,7 @@ export default async function AlsCrossProteinComparePage({ searchParams }: Props
           )}
         </div>
         <div className="status-pill">
-          <span className="eyebrow">Mechanism similarity</span>
+          <span className="eyebrow">Mechanism overlap (of curated ratings, not a measured value)</span>
           <strong>{cmp.similarity.similarity}</strong>
           <div className="cta-row" style={{ marginTop: "0.75rem" }}>
             <Link className="btn btn-ghost" href="/diseases/als">

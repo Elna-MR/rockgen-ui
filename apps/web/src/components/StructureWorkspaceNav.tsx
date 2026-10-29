@@ -17,7 +17,7 @@ const TABS = [
     id: "design",
     href: "/proteins/design",
     label: "Peptide design",
-    blurb: "Complement binders at the site",
+    blurb: "Peptide ideas at the site",
   },
 ] as const;
 

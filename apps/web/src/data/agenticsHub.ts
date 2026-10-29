@@ -64,6 +64,16 @@ export const AGENTICS_LIVE: AgenticsCapability[] = [
     ctaLabel: "Open design UI",
   },
   {
+    id: "als-biomarkers",
+    title: "ALS biomarker explorer",
+    blurb:
+      "Filter graph-backed ALS biomarkers by what they are used for, with evidence level, limits and candidate data sources.",
+    status: "live",
+    tier: "free",
+    href: "/diseases/als/biomarkers",
+    ctaLabel: "Open biomarkers",
+  },
+  {
     id: "als-mutation-intel",
     title: "ALS mutation path & compare",
     blurb:
@@ -142,6 +152,12 @@ export type ProtScopeCompanion = {
   focus: string;
   blurb: string;
   status: "beta";
+  /** "open" once chat works for this agent; the rest stay "beta". */
+  chat: "open" | "beta";
+  /** Live tools that cover this specialty today, while chat is not open. */
+  liveTools: { label: string; href: string }[];
+  /** Questions the agent is built for; shown as examples, not as working chat. */
+  sampleQuestions: string[];
 };
 
 export const PROTOSCOPE_COMPANIONS: ProtScopeCompanion[] = [
@@ -152,6 +168,16 @@ export const PROTOSCOPE_COMPANIONS: ProtScopeCompanion[] = [
     blurb:
       "Talk through disease questions, evidence maps, and mechanism framing before molecule design.",
     status: "beta",
+    chat: "beta",
+    liveTools: [
+      { label: "Scientific Review (Ask)", href: "/ask" },
+      { label: "ALS evidence", href: "/diseases/als/evidence" },
+      { label: "ALS mechanisms", href: "/diseases/als/mechanisms" },
+    ],
+    sampleQuestions: [
+      "Which ALS mechanisms do PFN1 and TUBA4A share?",
+      "How strong is the evidence that PFN1 G118V drives misfolding?",
+    ],
   },
   {
     slug: "helix",
@@ -160,6 +186,15 @@ export const PROTOSCOPE_COMPANIONS: ProtScopeCompanion[] = [
     blurb:
       "Chat about fold, domains, and motion. Helix will explain BioEmu2 ensembles when that engine is connected.",
     status: "beta",
+    chat: "beta",
+    liveTools: [
+      { label: "Structure explorer", href: "/proteins/explore" },
+      { label: "Mutation inspector", href: "/proteins/inspect" },
+    ],
+    sampleQuestions: [
+      "Where in the fold does a substitution sit?",
+      "Which domains of PFN1 interact with actin?",
+    ],
   },
   {
     slug: "allele",
@@ -168,6 +203,15 @@ export const PROTOSCOPE_COMPANIONS: ProtScopeCompanion[] = [
     blurb:
       "Discuss pathogenic variants, structural impact hypotheses, and evidence grades.",
     status: "beta",
+    chat: "beta",
+    liveTools: [
+      { label: "Mutation inspector", href: "/proteins/inspect" },
+      { label: "ALS evidence", href: "/diseases/als/evidence" },
+    ],
+    sampleQuestions: [
+      "What is known about PFN1 G118V and how well is it supported?",
+      "How do TUBA4A variants compare with PFN1 variants?",
+    ],
   },
   {
     slug: "pulse",
@@ -176,6 +220,14 @@ export const PROTOSCOPE_COMPANIONS: ProtScopeCompanion[] = [
     blurb:
       "Explore molecular readouts and pathway stress signals tied to research questions.",
     status: "beta",
+    chat: "open",
+    liveTools: [
+      { label: "ALS biomarker explorer", href: "/diseases/als/biomarkers" },
+    ],
+    sampleQuestions: [
+      "Which biomarkers can show whether a treatment is hitting its target?",
+      "What does NfL tell us, and what can it not tell us?",
+    ],
   },
 ];
 

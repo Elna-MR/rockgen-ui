@@ -39,7 +39,6 @@ export function BiomarkerIntelligenceSection() {
             </p>
             <p className="hint">
               Linked mutation context: {b.linkedMutation}
-              {b.linkedTrial ? ` · Trial: ${b.linkedTrial}` : ""}
             </p>
           </article>
         ))}

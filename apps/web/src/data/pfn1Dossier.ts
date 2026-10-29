@@ -28,7 +28,7 @@ export const PFN1_ANNOTATIONS = {
     },
     {
       id: "pocket",
-      name: "Predicted local pocket (near G118)",
+      name: "Region around G118 (illustrative, not a validated pocket)",
       ranges: [[112, 120]] as [number, number][],
       color: "#f0b429",
     },
@@ -126,16 +126,16 @@ export const PFN1_COMPARISON: ComparisonRow[] = [
   {
     property: "Hydrophobic exposure",
     wildType: "Lower",
-    mutant: "Higher (aggregation-prone surface)",
+    mutant: "Possibly higher (hypothesis, not directly measured)",
     evidenceLabel: "predicted computationally",
-    confidence: "Moderate",
+    confidence: "Low",
   },
   {
     property: "Aggregation risk",
     wildType: "Low",
     mutant: "Elevated",
     evidenceLabel: "mixed evidence",
-    confidence: "High",
+    confidence: "Moderate",
   },
   {
     property: "Actin interaction",
@@ -143,13 +143,6 @@ export const PFN1_COMPARISON: ComparisonRow[] = [
     mutant: "Potentially disrupted / context-dependent",
     evidenceLabel: "not yet validated",
     confidence: "Low",
-  },
-  {
-    property: "Evidence confidence (aggregation)",
-    wildType: "—",
-    mutant: "High / Moderate from review engine",
-    evidenceLabel: "mixed evidence",
-    confidence: "High",
   },
 ];
 
@@ -172,7 +165,7 @@ export const PFN1_PATHWAY: PathwayStep[] = [
   },
   {
     id: "flexibility",
-    label: "Reduced local flexibility",
+    label: "Altered local flexibility (direction not established)",
     claimTopic: "structural_change",
     support: "computational",
     description:
@@ -224,7 +217,7 @@ export const PFN1_PATHWAY: PathwayStep[] = [
     claimTopic: "aggregation",
     support: "experimental",
     description:
-      "Human genetic association of PFN1 variants with familial ALS (literature and ClinVar-indexed reports).",
+      "Human genetic association of PFN1 variants with familial ALS (Wu et al., Nature 2012).",
   },
 ];
 
@@ -233,50 +226,29 @@ export const PFN1_TIMELINE = [
     year: "2012",
     title: "PFN1 mutations linked to familial ALS",
     evidence_type: "human_genetic",
-    paper_id: "pmid:23334667",
-    url: "https://pubmed.ncbi.nlm.nih.gov/23334667/",
+    paper_id: "pmid:22801503",
+    url: "https://pubmed.ncbi.nlm.nih.gov/22801503/",
   },
   {
-    year: "2014",
-    title: "ALS-linked mutations enlarge aggregation propensity of PFN1",
+    year: "2015",
+    title: "Structural basis for mutation-induced destabilization of profilin 1 in ALS",
     evidence_type: "in_vitro",
-    paper_id: "pmid:25447202",
-    url: "https://pubmed.ncbi.nlm.nih.gov/25447202/",
+    paper_id: "pmid:26056300",
+    url: "https://pubmed.ncbi.nlm.nih.gov/26056300/",
   },
   {
-    year: "2018",
-    title: "Molecular dynamics / biophysics predict structural effects",
-    evidence_type: "computational_prediction",
-    paper_id: "pmid:25447202",
-    url: "https://pubmed.ncbi.nlm.nih.gov/25447202/",
-  },
-  {
-    year: "2018",
-    title: "Laboratory studies support aggregation tendency",
-    evidence_type: "in_vitro",
-    paper_id: "pmid:25447202",
-    url: "https://pubmed.ncbi.nlm.nih.gov/25447202/",
-  },
-  {
-    year: "2021",
-    title: "Mouse models link mutant PFN1 aggregation to toxicity",
+    year: "2017",
+    title: "Mutant profilin 1 transgenic mice recapitulate features of motor neuron disease",
     evidence_type: "animal",
-    paper_id: null,
-    url: null,
-  },
-  {
-    year: "2021",
-    title: "Interaction partners (e.g. actin / MBP context) under investigation",
-    evidence_type: "animal",
-    paper_id: null,
-    url: null,
+    paper_id: "pmid:28040732",
+    url: "https://pubmed.ncbi.nlm.nih.gov/28040732/",
   },
 ];
 
 export const PFN1_GAPS = [
   "No clinical evidence directly validating PFN1 G118V aggregation in patients",
   "No validated PFN1-stabilizing drug",
-  "Unclear whether MBP co-aggregation is causal or secondary",
+  "Unclear whether co-aggregation with other proteins is causal or secondary",
   "Limited comparison across all PFN1 mutations",
   "No confirmed disease-state-specific druggable pocket",
 ];

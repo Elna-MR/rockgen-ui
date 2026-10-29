@@ -101,7 +101,7 @@ export function SequenceViewer({ sequence }: Props) {
       {selectedMut && (
         <p className="seq-callout">
           Selected: <strong>{selectedMut.label}</strong> (position {selectedMut.position},{" "}
-          {selectedMut.bindingRegion} context, {selectedMut.evidenceStrength} evidence) ·{" "}
+          {selectedMut.bindingRegion} context, {selectedMut.evidenceStrength} curated rating, not a published grade) ·{" "}
           <Link href={`/proteins/P07737/compare#${selectedMut.key.replace(":", "-")}`}>
             Open mutation review
           </Link>

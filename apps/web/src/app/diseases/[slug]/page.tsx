@@ -200,7 +200,7 @@ export default async function DiseaseHubPage({ params }: Props) {
           </Link>
           <Link href="/diseases/als/network" className="hub-link">
             <strong>Gene network</strong>
-            <span>Familial ALS STRING interactions by functional module.</span>
+            <span>Familial ALS gene interactions (curated) by functional module.</span>
           </Link>
           <Link href="/diseases/als/compare" className="hub-link">
             <strong>Pathway compare</strong>

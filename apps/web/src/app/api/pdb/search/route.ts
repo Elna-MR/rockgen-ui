@@ -8,6 +8,7 @@ type Hit = {
   year: string;
   score: number;
   thumbnail: string;
+  resolution: number | null;
 };
 
 async function entrySummary(pdbId: string, score: number): Promise<Hit | null> {
@@ -26,6 +27,7 @@ async function entrySummary(pdbId: string, score: number): Promise<Hit | null> {
       method: (d.exptl || [])[0]?.method || "Unknown",
       chains: info.deposited_polymer_entity_instance_count ?? info.polymer_entity_count ?? 1,
       year: released.slice(0, 4) || "—",
+      resolution: info.resolution_combined?.[0] ?? null,
       score,
       thumbnail: `https://cdn.rcsb.org/images/structures/${pdbId.toLowerCase()}_assembly-1.jpeg`,
     };
@@ -36,8 +38,11 @@ async function entrySummary(pdbId: string, score: number): Promise<Hit | null> {
 
 export async function GET(req: NextRequest) {
   const q = (req.nextUrl.searchParams.get("q") || "").trim();
+  // Known ALS genes search by UniProt accession, so every hit is that human protein.
+  const uniprot = (req.nextUrl.searchParams.get("uniprot") || "").trim().toUpperCase();
+  const byUniprot = /^[A-Z][A-Z0-9]{5,9}$/.test(uniprot);
   const rows = Math.min(Number(req.nextUrl.searchParams.get("rows") || 14), 24);
-  if (!q) {
+  if (!q && !byUniprot) {
     return NextResponse.json({ query: q, total: 0, results: [] });
   }
 
@@ -49,11 +54,22 @@ export async function GET(req: NextRequest) {
         "User-Agent": "ProtScopeStructureExplorer/1.0",
       },
       body: JSON.stringify({
-        query: {
-          type: "terminal",
-          service: "full_text",
-          parameters: { value: q },
-        },
+        query: byUniprot
+          ? {
+              type: "terminal",
+              service: "text",
+              parameters: {
+                attribute:
+                  "rcsb_polymer_entity_container_identifiers.reference_sequence_identifiers.database_accession",
+                operator: "exact_match",
+                value: uniprot,
+              },
+            }
+          : {
+              type: "terminal",
+              service: "full_text",
+              parameters: { value: q },
+            },
         return_type: "entry",
         request_options: {
           paginate: { start: 0, rows },
@@ -75,10 +91,17 @@ export async function GET(req: NextRequest) {
     const summaries = await Promise.all(
       resultSet.map((r) => entrySummary(r.identifier, r.score ?? 0)),
     );
-    const results = summaries.filter(Boolean) as Hit[];
+    let results = summaries.filter(Boolean) as Hit[];
+    if (byUniprot) {
+      // Best resolution first; entries without one (NMR) go last.
+      results = results.sort(
+        (a, b) => (a.resolution ?? Infinity) - (b.resolution ?? Infinity),
+      );
+    }
 
     return NextResponse.json({
       query: q,
+      uniprot: byUniprot ? uniprot : null,
       total: searchJson.total_count ?? results.length,
       results,
     });

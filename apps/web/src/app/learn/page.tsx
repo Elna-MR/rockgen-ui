@@ -11,7 +11,7 @@ export default function LearnHubPage() {
         <div>
           <p className="lede learninghub-desc">
             Learninghub™ allows you to explore proteins, genetic variants, and shared biological
-            pathways to understand the proteotoxicities in conditions like ALS, Parkinson&apos;s,
+            pathways to understand protein misfolding in conditions like ALS, Parkinson&apos;s,
             Alzheimer&apos;s and other diseases.
           </p>
           <h1>What protein to ProtScope? Enter here:</h1>
@@ -39,7 +39,7 @@ export default function LearnHubPage() {
           </Link>
           <Link href="/biology-first" className="hub-link">
             <strong>Biology</strong>
-            <span>See the disease map before designing molecules</span>
+            <span>Read the biology background for these proteins and pathways</span>
           </Link>
         </div>
       </section>

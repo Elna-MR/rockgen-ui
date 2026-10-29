@@ -5,8 +5,8 @@ export function ComparisonPanel() {
     <section className="section">
       <h2>Wild-type vs G118V</h2>
       <p className="hint">
-        Predictions are labeled separately from experimental and animal observations, they must not
-        look like proven facts.
+        Each row is labeled as measured, predicted or not yet validated. The labels are editorial
+        summaries of the literature, not results computed by this site.
       </p>
       <div className="table-wrap">
         <table className="evidence-table compare-table">

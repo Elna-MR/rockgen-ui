@@ -401,3 +401,25 @@ def retrieve_for_question(
             c for c in matrix if (not c.get("validated")) or c.get("confidence") == "low" or "therapeutic" in (c.get("topic") or "")
         ],
     }
+
+
+def list_biomarkers(slug: str) -> list[dict[str, Any]]:
+    driver = get_driver()
+    query = """
+    MATCH (b:Biomarker)-[:INDICATES]->(d:Disease {slug: $slug})
+    OPTIONAL MATCH (b)-[:REFLECTS]->(ax:DiseaseAxis)
+    OPTIONAL MATCH (s:DataSource)-[:CAN_INFORM]->(b)
+    RETURN b AS biomarker,
+           collect(DISTINCT ax.name) AS axes,
+           collect(DISTINCT s {.id, .name, .provider, .url, .access_status}) AS data_sources
+    ORDER BY b.name
+    """
+    with driver.session() as session:
+        return [
+            {
+                **_node_props(r["biomarker"]),
+                "axes": r["axes"],
+                "data_sources": r["data_sources"],
+            }
+            for r in session.run(query, slug=slug)
+        ]

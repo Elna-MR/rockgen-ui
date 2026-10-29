@@ -15,7 +15,7 @@ const STATUS_LABEL: Record<Status, string> = {
 };
 
 const COVERAGE: Array<{ need: string; status: Status; next: string }> = [
-  { need: "Structure and variants", status: "ready", next: "Add your proteins" },
+  { need: "Viewing published structures and annotated variants", status: "ready", next: "Add your proteins" },
   { need: "Evidence review", status: "partial", next: "Extend past PFN1 G118V" },
   { need: "ER stress pathways", status: "partial", next: "Link to ALS genes" },
   { need: "Kinases, e.g. MAP4K", status: "not-yet", next: "Add structure pages" },
@@ -57,7 +57,7 @@ export default function PartnersPage() {
           </li>
           <li>
             <strong>Auditable evidence</strong>
-            Every score shows its steps.
+            Rule-based scores list the rules behind them.
           </li>
           <li>
             <strong>Shared mechanisms</strong>

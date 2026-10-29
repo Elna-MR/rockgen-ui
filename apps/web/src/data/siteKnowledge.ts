@@ -49,7 +49,7 @@ function buildCorpus(): KnowledgeChunk[] {
       "ProtScope home",
       "/",
       "Site",
-      "ProtScope™ is an AI-powered platform that analyzes proteins from 1-D amino acid sequence to 3-D and quaternary structures. Theme: protein folding in health, protein misfolding in disease. Learninghub™ explores proteins, genetic variants, and shared biological pathways to understand proteotoxicities in ALS, Parkinson’s, Alzheimer’s, and related conditions. Learn and Research paths; Lumen agents. Educational only, not medical advice.",
+      "ProtScope™ is a research workspace for neurodegenerative disease proteins. It links ALS genes, variants and biomarkers in a knowledge graph with evidence labels, and lets you explore experimentally solved protein structures and sequence chemistry. It does not predict structures or diagnose disease. Theme: protein folding in health, protein misfolding in disease. Learninghub™ explores proteins, genetic variants, and shared biological pathways to understand proteotoxicities in ALS, Parkinson’s, Alzheimer’s, and related conditions. Learn and Research paths; Lumen agents. Educational only, not medical advice.",
       ["protscope", "rockgen", "home", "about", "what is", "platform", "value"],
     ),
     chunk(
@@ -57,7 +57,7 @@ function buildCorpus(): KnowledgeChunk[] {
       "Biology",
       "/biology-first",
       "Site",
-      "Biology on ProtScope characterizes disease by investigating proteins, proteotoxicity, pathogenic variants, and shared cellular pathways involved in disease progression. ProtScope™ is a platform where neurodegenerative diseases can be studied by analyzing proteins and pathological processes. A disease mechanism is a pathological process that can impact an organ, such as the central nervous system, and injure vulnerable neurons — for example proteotoxicity including protein misfolding and aggregation, endoplasmic reticulum stress, cytoskeletal stress, mitochondrial dysfunction, or impaired axonal transport. Genes and proteins can converge on overlapping routes. Neurons (motor, dopaminergic, cortical, striatal) keep organelles under quality control for neurotransmission, cargo transport, and cytoskeletal integrity; injury produces neurological symptoms. ProtScope lets you start from genes and proteins and run AI-powered protein chemistry experiments to discover mechanisms and identify targets. The Biology page cycles central nervous system folds: PFN1 (profilin-1), SOD1, α-synuclein, tau, huntingtin, and TDP-43. Each fold assembles, holds, then changes to the next protein.",
+      "Biology on ProtScope characterizes disease by investigating proteins, proteotoxicity, pathogenic variants, and shared cellular pathways involved in disease progression. ProtScope™ is a platform where neurodegenerative diseases can be studied by analyzing proteins and pathological processes. A disease mechanism is a pathological process that can impact an organ, such as the central nervous system, and injure vulnerable neurons — for example proteotoxicity including protein misfolding and aggregation, endoplasmic reticulum stress, cytoskeletal stress, mitochondrial dysfunction, or impaired axonal transport. Genes and proteins can converge on overlapping routes. Neurons (motor, dopaminergic, cortical, striatal) keep organelles under quality control for neurotransmission, cargo transport, and cytoskeletal integrity; injury produces neurological symptoms. ProtScope lets you start from genes and proteins and explore curated knowledge-graph evidence, experimentally solved PDB structures and simple sequence chemistry. It does not run experiments or identify drug targets. The Biology page cycles central nervous system folds: PFN1 (profilin-1), SOD1, α-synuclein, tau, huntingtin, and TDP-43. Each fold assembles, holds, then changes to the next protein.",
       ["biology", "biology first", "approach", "mechanism", "molecule", "pathology"],
     ),
     chunk(
@@ -81,7 +81,7 @@ function buildCorpus(): KnowledgeChunk[] {
       "Lumen — ProtScope agents",
       "/agentics",
       "Site",
-      "Lumen is ProtScope’s fancy name for its agent layer: ProtScope agents you communicate with for evidence-grounded neurodegeneration research. Live today: Scientific Review (Ask), site guide chatbot, structure explorer, mutation inspector and peptide design UI embeds, and narrow ALS demos. Named Lumen agents in Beta: Meridian (disease and evidence), Helix (protein structure), Allele (variants), and Pulse (biomarkers). Chat not open yet. Paid unlocks may come later; no payment now. Educational only.",
+      "Lumen is ProtScope’s fancy name for its agent layer: ProtScope agents you communicate with for evidence-grounded neurodegeneration research. Live today: Scientific Review (Ask), site guide chatbot, structure explorer, mutation inspector and peptide design UI embeds, and narrow ALS demos. Lumen has four named agents: Meridian (disease and evidence), Helix (protein structure), Allele (variants), and Pulse (biomarkers). Pulse chat is open and answers only from the ALS biomarkers in the knowledge graph; chat for Meridian, Helix and Allele is in Beta. Paid unlocks may come later; no payment now. Educational only.",
       ["lumen", "agentics", "agents", "meridian", "helix", "allele", "pulse", "beta", "chat", "protoscope", "waitlist"],
     ),
     chunk(

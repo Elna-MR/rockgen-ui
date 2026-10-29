@@ -393,3 +393,24 @@ export function getProteinIntelligence(uniprotId: string) {
 export function getDiseaseIntelligence(slug: string) {
   return apiGet<DiseaseIntelligence>(`/v1/intelligence/diseases/${slug}`);
 }
+
+export type BiomarkerContext = "diagnostic" | "prognostic" | "pharmacodynamic" | "stratification";
+
+export type DiseaseBiomarker = {
+  id: string;
+  name: string;
+  specimen: string[];
+  context_of_use: BiomarkerContext[];
+  evidence_level: "strong" | "moderate" | "emerging";
+  evidence_note: string;
+  limitation: string;
+  curation_status?: string;
+  axes: string[];
+  data_sources: { id: string; name: string; provider: string; url: string; access_status: string }[];
+};
+
+export function getDiseaseBiomarkers(slug: string) {
+  return apiGet<{ slug: string; biomarkers: DiseaseBiomarker[] }>(
+    `/v1/diseases/${slug}/biomarkers`,
+  );
+}

@@ -87,7 +87,7 @@ export const RESEARCH_DISEASES: ResearchDisease[] = [
       },
       {
         title: "Gene network",
-        summary: "Familial ALS STRING interactions by functional module.",
+        summary: "Familial ALS gene interactions (curated) by functional module.",
         href: "/diseases/als/network",
         status: "ready",
       },
@@ -219,7 +219,7 @@ export const RESEARCH_DISEASES: ResearchDisease[] = [
       {
         symbol: "MAPT",
         name: "Tau (microtubule-associated protein tau)",
-        role: "Hyperphosphorylated misfolded tau forms neurofibrillary tangles and tracks clinical progression.",
+        role: "Hyperphosphorylated misfolded tau forms neurofibrillary tangles. Tangle burden relates to cognitive decline, though the relationship varies between people.",
       },
       {
         symbol: "APOE",
@@ -252,7 +252,7 @@ export const RESEARCH_DISEASES: ResearchDisease[] = [
       },
       {
         title: "Biology",
-        summary: "See the disease map before designing molecules.",
+        summary: "Read the biology background for these proteins and pathways.",
         href: "/biology-first",
         status: "ready",
       },
@@ -295,7 +295,7 @@ export const RESEARCH_DISEASES: ResearchDisease[] = [
       {
         symbol: "HTT",
         name: "Huntingtin",
-        role: "Pathogenic polyglutamine expansion generates toxic gain-of-function species; longer expansions generally associate with earlier onset.",
+        role: "Pathogenic polyglutamine expansion generates toxic gain-of-function species; longer expansions generally associate with earlier onset, but length alone cannot predict an individual's onset.",
       },
     ],
     mechanisms: [

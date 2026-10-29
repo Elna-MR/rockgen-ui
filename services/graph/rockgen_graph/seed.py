@@ -1,6 +1,7 @@
 from pathlib import Path
 
 from rockgen_graph.client import get_driver
+from rockgen_graph.biomarker_seed import seed_biomarkers
 from rockgen_graph.mechanism_seed import STATEMENTS as MECHANISM_STATEMENTS
 
 
@@ -147,13 +148,7 @@ MERGE (disease)-[:MENTIONED_IN]->(paper1)
 MERGE (mut)-[:MENTIONED_IN]->(paper2)
 MERGE (protein)-[:MENTIONED_IN]->(paper2)
 
-MERGE (trial:ClinicalTrial {nct_id: 'NCT02655497'})
-SET trial.title = 'Study of ALS Biomarkers and Outcomes',
-    trial.status = 'Completed',
-    trial.phase = 'Observational',
-    trial.url = 'https://clinicaltrials.gov/study/NCT02655497'
 
-MERGE (disease)-[:STUDIED_IN]->(trial)
 
 MERGE (biomarker:Biomarker {id: 'nfl-serum'})
 SET biomarker.name = 'Serum Neurofilament Light Chain (NfL)',
@@ -171,7 +166,6 @@ SET biomarker.name = 'Serum Neurofilament Light Chain (NfL)',
 
 MERGE (biomarker)-[:INDICATES]->(disease)
 MERGE (mut)-[:CONTEXTUAL_PROGRAM_MARKER]->(biomarker)
-MERGE (trial)-[:MEASURES]->(biomarker)
 
 MERGE (drug:Drug {id: 'riluzole'})
 SET drug.name = 'Riluzole',
@@ -197,6 +191,7 @@ def seed_graph() -> None:
         session.run(SEED_CYPHER)
         for stmt in MECHANISM_STATEMENTS:
             session.run(stmt)
+        seed_biomarkers(session)
 
 
 def main() -> None:

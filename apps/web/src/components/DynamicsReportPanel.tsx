@@ -55,14 +55,18 @@ export function DynamicsReportPanel() {
 
   return (
     <section className="section" id="dynamics">
-      <h2>Protein Dynamics, PFN1 G118V</h2>
+      <h2>Protein dynamics, PFN1 G118V (illustrative demo)</h2>
+      <p className="error" role="note">
+        <strong>No molecular-dynamics simulation was run.</strong> The values below are synthetic,
+        generated to illustrate what a real report would look like. They are not measurements and
+        say nothing about the real behaviour of PFN1 or G118V.
+      </p>
       <p className="hint">
-        Frames are conformational samples over time (a movie of atomic coordinates), not a million
-        screenshots. We store trajectories/features/clusters; images render only for selected
-        frames.
+        A real dynamics run would produce frames: conformational samples over time. Connecting a
+        simulation backend such as OpenMM is planned.
       </p>
       {error && <p className="error">{error}</p>}
-      {!report && !error && <p className="hint">Running dynamics analysis…</p>}
+      {!report && !error && <p className="hint">Loading demo report…</p>}
       {report && (
         <>
           <p className="eyebrow">

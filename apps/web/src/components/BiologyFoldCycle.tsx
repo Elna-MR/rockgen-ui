@@ -1,62 +1,19 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { FoldAssembly } from "@/components/FoldAssembly";
+import { FOLD_STRUCTURES } from "@/data/foldStructures";
 
-/** Disease folds already used on the site. Each one assembles, holds, then yields. */
-const FOLDS = [
-  {
-    id: "pfn1",
-    src: "/brand/protscope-hero-ribbon-light.png?v=plate1",
-    name: "Profilin-1",
-    meta: "PFN1 · actin assembly · familial ALS",
-    alt: "Ribbon diagram of profilin-1 assembling. Copper ribbons are alpha helices and blue ribbons are beta sheets.",
-  },
-  {
-    id: "sod1",
-    src: "/brand/folds/fold-als-sod1-light.png?v=plate1",
-    name: "Superoxide dismutase",
-    meta: "SOD1 · oxidative stress · ALS",
-    alt: "Ribbon diagram of superoxide dismutase assembling.",
-  },
-  {
-    id: "snca",
-    src: "/brand/folds/fold-pd-snca-light.png?v=plate1",
-    name: "α-synuclein",
-    meta: "SNCA · Lewy pathology · Parkinson’s",
-    alt: "Ribbon diagram of alpha-synuclein assembling.",
-  },
-  {
-    id: "mapt",
-    src: "/brand/folds/fold-ad-tau-light.png?v=plate1",
-    name: "Tau",
-    meta: "MAPT · microtubules · Alzheimer’s",
-    alt: "Ribbon diagram of tau assembling.",
-  },
-  {
-    id: "htt",
-    src: "/brand/folds/fold-hd-htt-light.png?v=plate1",
-    name: "Huntingtin",
-    meta: "HTT · polyglutamine · Huntington’s",
-    alt: "Ribbon diagram of huntingtin assembling.",
-  },
-  {
-    id: "tardbp",
-    src: "/brand/folds/fold-ftd-tardbp-light.png?v=plate1",
-    name: "TDP-43",
-    meta: "TARDBP · RNA binding · FTD / ALS",
-    alt: "Ribbon diagram of TDP-43 assembling.",
-  },
-] as const;
-
-const BUILD_MS = 3400;
-const HOLD_MS = 1800;
+const BUILD_MS = 3600;
+const HOLD_MS = 2400;
 const CYCLE_MS = BUILD_MS + HOLD_MS;
 
-/** Cycles central-nervous-system folds: pieces merge, the fold holds, then the next protein starts. */
+/** Cycles central-nervous-system protein folds: pieces merge by type, the fold holds, then the next starts. */
 export function BiologyFoldCycle() {
   const [index, setIndex] = useState(0);
   const [phase, setPhase] = useState<"build" | "hold">("build");
   const [reduceMotion, setReduceMotion] = useState(false);
+  const [failed, setFailed] = useState(false);
 
   useEffect(() => {
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -66,41 +23,40 @@ export function BiologyFoldCycle() {
     return () => media.removeEventListener("change", onChange);
   }, []);
 
-  useEffect(() => {
-    FOLDS.forEach((fold) => {
-      const image = new Image();
-      image.src = fold.src;
-    });
-  }, []);
-
+  // Which protein is on screen, and when it moves from building to holding.
   useEffect(() => {
     if (reduceMotion) {
-      const id = window.setInterval(() => {
-        setIndex((current) => (current + 1) % FOLDS.length);
-      }, CYCLE_MS);
+      setPhase("hold");
+      const id = window.setInterval(() => setIndex((i) => (i + 1) % FOLD_STRUCTURES.length), CYCLE_MS);
       return () => window.clearInterval(id);
     }
-
     setPhase("build");
     const holdTimer = window.setTimeout(() => setPhase("hold"), BUILD_MS);
-    const nextTimer = window.setTimeout(() => {
-      setPhase("build");
-      setIndex((current) => (current + 1) % FOLDS.length);
-    }, CYCLE_MS);
+    const nextTimer = window.setTimeout(
+      () => setIndex((i) => (i + 1) % FOLD_STRUCTURES.length),
+      CYCLE_MS,
+    );
     return () => {
       window.clearTimeout(holdTimer);
       window.clearTimeout(nextTimer);
     };
   }, [index, reduceMotion]);
 
-  const fold = FOLDS[index];
+  const fold = FOLD_STRUCTURES[index];
+  const status = reduceMotion || phase === "hold" ? "Fold" : "Building";
 
   return (
     <figure className="approach-hero-visual approach-hero-visual-strong bio-fold">
-      <div className={`bio-fold-stage is-${reduceMotion ? "hold" : phase}`} key={fold.id}>
-        <img className="bio-fold-part is-left" src={fold.src} alt="" width={640} height={360} draggable={false} />
-        <img className="bio-fold-part is-right" src={fold.src} alt="" width={640} height={360} draggable={false} />
-        <img className="bio-fold-part is-core" src={fold.src} alt={fold.alt} width={640} height={360} draggable={false} />
+      <div className={`bio-fold-stage is-${reduceMotion ? "hold" : phase}`}>
+        <FoldAssembly
+          foldId={fold.id}
+          buildMs={BUILD_MS}
+          reduceMotion={reduceMotion}
+          className="bio-fold-canvas"
+          label={`${fold.name}: 3D ribbon diagram from ${fold.source}. Helices, sheets and loops assemble into the fold.`}
+          onError={() => setFailed(true)}
+        />
+        {failed && <p className="hint">The 3D view could not load on this device.</p>}
         <p className="bio-fold-key">
           <span>
             <i className="is-helix" aria-hidden="true" /> Helix
@@ -108,12 +64,16 @@ export function BiologyFoldCycle() {
           <span>
             <i className="is-sheet" aria-hidden="true" /> Sheet
           </span>
+          <span>
+            <i className="is-loop" aria-hidden="true" /> Loop
+          </span>
         </p>
       </div>
       <figcaption aria-live="polite">
-        <p className="bio-fold-status">{reduceMotion || phase === "hold" ? "Fold" : "Building"}</p>
+        <p className="bio-fold-status">{status}</p>
         <p className="bio-fold-name">{fold.name}</p>
         <p className="bio-fold-meta">{fold.meta}</p>
+        <p className="bio-fold-source">{fold.source}</p>
         <span
           className="bio-fold-meter"
           key={`${fold.id}-meter`}

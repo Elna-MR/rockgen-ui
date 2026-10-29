@@ -18,8 +18,10 @@ export function ProteinStateScores({ mutations }: Props) {
     <section className="section" id="protein-state-scores">
       <h2>Protein State Scores</h2>
       <p className="hint">
-        Transparent, rule-based indices across six dimensions. These are{" "}
-        <strong>not</strong> disease probabilities.
+        Heuristic, rule-based indices (0 to 100) defined by this site, across six dimensions. They
+        are <strong>not</strong> experimental measurements, have not been validated against lab or
+        clinical data, and are <strong>not</strong> disease probabilities. The &ldquo;why&rdquo;
+        lists show the rules behind each score.
       </p>
       <div className="score-grid">
         {mutations.map((m) => {

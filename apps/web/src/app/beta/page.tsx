@@ -59,7 +59,7 @@ export default function BetaPage() {
         <ul className="home-capability-list">
           <li>
             <strong>ProtScope companion chat</strong>
-            Communicate with Meridian, Helix, Allele, and Pulse over graph-grounded science.
+            Pulse (biomarkers) can chat now. Meridian, Helix and Allele are planned. Answers come from the knowledge graph and are not validated.
           </li>
           <li>
             <strong>Expanded mutation analysis</strong>
@@ -67,7 +67,7 @@ export default function BetaPage() {
           </li>
           <li>
             <strong>Peptide ligand design pipelines</strong>
-            Server-backed design with saved runs (beyond the free UI embed).
+            Server-backed design with saved runs (planned). Any output would be a computational hypothesis, not a validated binder.
           </li>
           <li>
             <strong>Higher Ask quotas &amp; saved workspaces</strong>

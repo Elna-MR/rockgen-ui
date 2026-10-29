@@ -23,13 +23,19 @@ const TABS = [
     id: "network",
     href: "/diseases/als/network",
     label: "Gene network",
-    blurb: "STRING · fALS genes",
+    blurb: "Curated · fALS genes",
   },
   {
     id: "compare",
     href: "/diseases/als/compare",
     label: "Compare",
     blurb: "PFN1 vs TUBA4A",
+  },
+  {
+    id: "biomarkers",
+    href: "/diseases/als/biomarkers",
+    label: "Biomarkers",
+    blurb: "Use · evidence · limits",
   },
   {
     id: "evidence",

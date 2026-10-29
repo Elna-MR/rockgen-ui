@@ -8,6 +8,8 @@ import {
   forceManyBody,
   forceSimulation,
   select,
+  type BaseType,
+  type Selection,
 } from "d3";
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
@@ -64,6 +66,8 @@ type Props = {
 export function FalsNetworkGraph({ graph }: Props) {
   const svgRef = useRef<SVGSVGElement | null>(null);
   const wrapRef = useRef<HTMLDivElement | null>(null);
+  const nodeSelRef = useRef<Selection<SVGGElement, SimNode, SVGGElement, unknown> | null>(null);
+  const linkSelRef = useRef<Selection<BaseType | SVGLineElement, SimLink, SVGGElement, unknown> | null>(null);
   const [activeMod, setActiveMod] = useState<string | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [minConfidence, setMinConfidence] = useState(0.5);
@@ -107,14 +111,12 @@ export function FalsNetworkGraph({ graph }: Props) {
       linked.add(l.source);
       linked.add(l.target);
     }
-    // Keep selected gene even if temporarily isolated after filtering.
-    if (selectedId) linked.add(selectedId);
     nodes = nodes.filter((n) => linked.has(n.id) || n.f >= Math.max(minFamilialPct, 1));
 
     // When programmes-only, keep edges among programme genes; dimming handled in render.
     return { nodes, links };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [graph, activeMod, minConfidence, minFamilialPct, geneBars, selectedId, programmesOnly]);
+  }, [graph, activeMod, minConfidence, minFamilialPct, geneBars, programmesOnly]);
 
   const selected = useMemo(
     () => graph.nodes.find((n) => n.id === selectedId) || null,
@@ -222,9 +224,10 @@ export function FalsNetworkGraph({ graph }: Props) {
       .append("circle")
       .attr("r", (d) => 7 + Math.sqrt(Math.max(d.f, 0.05)) * 3.4)
       .attr("fill", (d) => MODULE_COLOR[d.mod] || MODULE_COLOR.oth)
-      .attr("fill-opacity", (d) => (selectedId === d.id ? 1 : 0.9))
-      .attr("stroke", (d) => (selectedId === d.id ? "#1a2b33" : "#fff"))
-      .attr("stroke-width", (d) => (selectedId === d.id ? 2.25 : 1.4));
+      .attr("class", "fals-node-dot")
+      .attr("fill-opacity", 0.9)
+      .attr("stroke", "#fff")
+      .attr("stroke-width", 1.4);
 
     // Frequency / connection bar under each gene
     node.each(function (d) {
@@ -292,27 +295,8 @@ export function FalsNetworkGraph({ graph }: Props) {
         })
     );
 
-    const neighborIds = new Set<string>();
-    if (hoverId) {
-      for (const l of links) {
-        const a = typeof l.source === "string" ? l.source : l.source.id;
-        const b = typeof l.target === "string" ? l.target : l.target.id;
-        if (a === hoverId) neighborIds.add(b);
-        if (b === hoverId) neighborIds.add(a);
-      }
-      neighborIds.add(hoverId);
-    }
-
-    node.style("opacity", (d) => {
-      if (!hoverId) return 1;
-      return neighborIds.has(d.id) ? 1 : 0.15;
-    });
-    link.style("opacity", (d) => {
-      if (!hoverId) return 1;
-      const a = typeof d.source === "string" ? d.source : d.source.id;
-      const b = typeof d.target === "string" ? d.target : d.target.id;
-      return a === hoverId || b === hoverId ? 1 : 0.06;
-    });
+    nodeSelRef.current = node;
+    linkSelRef.current = link;
 
     simulation.on("tick", () => {
       link
@@ -330,9 +314,42 @@ export function FalsNetworkGraph({ graph }: Props) {
 
     return () => {
       simulation.stop();
+      nodeSelRef.current = null;
+      linkSelRef.current = null;
       svg.selectAll("*").remove();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [visible]);
+
+  // Hover and selection only restyle the existing graph, so the layout never restarts.
+  useEffect(() => {
+    const node = nodeSelRef.current;
+    const link = linkSelRef.current;
+    if (!node || !link) return;
+
+    const neighborIds = new Set<string>();
+    if (hoverId) {
+      neighborIds.add(hoverId);
+      link.each((d) => {
+        const a = typeof d.source === "string" ? d.source : d.source.id;
+        const b = typeof d.target === "string" ? d.target : d.target.id;
+        if (a === hoverId) neighborIds.add(b);
+        if (b === hoverId) neighborIds.add(a);
+      });
+    }
+
+    node.style("opacity", (d) => (!hoverId || neighborIds.has(d.id) ? 1 : 0.3));
+    link.style("opacity", (d) => {
+      if (!hoverId) return 1;
+      const a = typeof d.source === "string" ? d.source : d.source.id;
+      const b = typeof d.target === "string" ? d.target : d.target.id;
+      return a === hoverId || b === hoverId ? 1 : 0.12;
+    });
+    node
+      .select<SVGCircleElement>("circle.fals-node-dot")
+      .attr("fill-opacity", (d) => (selectedId === d.id ? 1 : 0.9))
+      .attr("stroke", (d) => (selectedId === d.id ? "#1a2b33" : "#fff"))
+      .attr("stroke-width", (d) => (selectedId === d.id ? 2.25 : 1.4));
   }, [visible, selectedId, hoverId]);
 
   function resetFilters() {
@@ -363,6 +380,11 @@ export function FalsNetworkGraph({ graph }: Props) {
           thickness is curated interaction confidence. Ringed nodes have a named drug candidate , 
           hover for programmes, click for notes and the local gene map. Bars change which links stay
           visible.
+        </p>
+        <p className="hint fals-lead">
+          Programme notes are company-reported summaries as of October 2026 and may be out of date.
+          They are not treatment recommendations, and not every programme is open to enrolment.
+          Familial-share percentages are approximate and depend on ancestry.
         </p>
 
         <div className="fals-sliders">
