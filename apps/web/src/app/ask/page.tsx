@@ -22,6 +22,8 @@ export default function AskPage() {
       <p className="hint" style={{ marginTop: "1.5rem" }}>
         <Link href="/diseases">← Research hub</Link>
         {" · "}
+        <Link href="/diseases/literature">Search the literature</Link>
+        {" · "}
         <Link href="/diseases/primers/als#plain-language">ALS plain language</Link>
       </p>
     </main>

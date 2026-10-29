@@ -95,6 +95,10 @@ export default function ResearchHubPage() {
             <strong>Structure explorer</strong>
             <span>PDB search, mutation sites, and folds</span>
           </Link>
+          <Link href="/diseases/literature" className="hub-link">
+            <strong>Literature search</strong>
+            <span>Live PubMed search, ALS papers by default</span>
+          </Link>
           <Link href="/ask" className="hub-link">
             <strong>Ask a review</strong>
             <span>Structured scientific Q&amp;A with citations</span>
