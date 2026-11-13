@@ -151,6 +151,29 @@ function formatReleased(iso: string | null) {
   return iso.slice(0, 10);
 }
 
+/** Fetch JSON, retrying brief network drops and server errors before giving up. */
+async function fetchJsonWithRetry(url: string, what: string, attempts = 3) {
+  let lastError: Error | null = null;
+  for (let i = 0; i < attempts; i += 1) {
+    try {
+      const res = await fetch(url);
+      if (res.ok) return await res.json();
+      if (res.status < 500) {
+        const data = await res.json().catch(() => ({}));
+        throw new FatalError(data.error || `${what} failed (${res.status})`);
+      }
+      lastError = new Error("The structure service is busy right now.");
+    } catch (e) {
+      if (e instanceof FatalError) throw e;
+      lastError = new Error("Could not reach the structure service.");
+    }
+    if (i < attempts - 1) await new Promise((r) => setTimeout(r, 500 * 2 ** i));
+  }
+  throw lastError ?? new Error(`${what} failed.`);
+}
+
+class FatalError extends Error {}
+
 export function StructureExplorer({ catalog, initialQuery }: Props) {
   const [query, setQuery] = useState(initialQuery || "PFN1-G118V");
   const [mutationQuery, setMutation] = useState<ParsedMutation | null>(() =>
@@ -169,6 +192,7 @@ export function StructureExplorer({ catalog, initialQuery }: Props) {
   /** Set when the search resolved to a known human ALS protein (exact UniProt match). */
   const [analysis, setAnalysis] = useState<StructureAnalysis | null>(null);
   const [matchedGene, setMatchedGene] = useState<{ uniprot: string; symbol: string } | null>(null);
+  const [reloadTick, setReloadTick] = useState(0);
 
   const liveParse = useMemo(() => parseMutationQuery(query), [query]);
   const resolvedTerm = liveParse?.pdbId || liveParse?.searchTerm || query.trim();
@@ -196,9 +220,7 @@ export function StructureExplorer({ catalog, initialQuery }: Props) {
       const url = gene
         ? `/api/pdb/search?uniprot=${gene.uniprot}&rows=24`
         : `/api/pdb/search?q=${encodeURIComponent(pdbTerm)}&rows=14`;
-      const res = await fetch(url);
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || `Search failed (${res.status})`);
+      const data = await fetchJsonWithRetry(url, "Search");
       setHits(data.results || []);
       setTotal(data.total || 0);
       const first = data.results?.[0]?.pdb_id as string | undefined;
@@ -229,9 +251,7 @@ export function StructureExplorer({ catalog, initialQuery }: Props) {
       setError(null);
       setActiveResi(null);
       try {
-        const res = await fetch(`/api/pdb/entry/${selectedId}`);
-        const data = await res.json();
-        if (!res.ok) throw new Error(data.error || `Entry failed (${res.status})`);
+        const data = await fetchJsonWithRetry(`/api/pdb/entry/${selectedId}`, "Entry");
         if (!cancelled) {
           setEntry(data);
         }
@@ -245,7 +265,7 @@ export function StructureExplorer({ catalog, initialQuery }: Props) {
     return () => {
       cancelled = true;
     };
-  }, [selectedId, query]);
+  }, [selectedId, query, reloadTick]);
 
   // In a complex the first chain is often a partner (e.g. actin in a profilin-actin entry).
   // Prefer the chain that maps to the protein the user asked about.
@@ -429,14 +449,30 @@ export function StructureExplorer({ catalog, initialQuery }: Props) {
         </div>
       </div>
 
-      {error && <p className="error">{error}</p>}
+      {error && (
+        <p className="error">
+          {error} Your search is still in the box.{" "}
+          <button
+            type="button"
+            className="chip"
+            onClick={() => {
+              setReloadTick((t) => t + 1);
+              void runSearch(query);
+            }}
+          >
+            Try again
+          </button>
+        </p>
+      )}
 
       <div className="explorer-layout">
         <aside className="explorer-sidebar" aria-label="Matching structures">
           <p className="eyebrow">
             {searching
               ? "Searching PDB…"
-              : `${hits.length} structure${hits.length === 1 ? "" : "s"}${
+              : error && hits.length === 0
+                ? "Search did not finish"
+                : `${hits.length} structure${hits.length === 1 ? "" : "s"}${
                   total > hits.length ? ` of ${total.toLocaleString()}` : ""
                 }${matchedGene ? ` of human ${matchedGene.symbol}` : lastSearched ? ` for “${lastSearched}”` : ""}`}
           </p>
@@ -468,7 +504,7 @@ export function StructureExplorer({ catalog, initialQuery }: Props) {
               </li>
             ))}
             {searching && hits.length === 0 && <li className="hint">Looking up structures…</li>}
-            {!searching && hits.length === 0 && (
+            {!searching && hits.length === 0 && !error && (
               <li className="hint">No PDB structures for this query. Try a protein name or PDB id.</li>
             )}
           </ul>
